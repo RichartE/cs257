@@ -1,0 +1,14 @@
+usage: olympics.py [-h] (-g | -n NOC | -y YEAR | -s S)
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -g, --gold            lists all the NOCs and the number of gold medals they have won, in decreasing order of the number of gold medals.
+  -n NOC, --noc NOC     given an NOC, prints a list of all their athletes.
+  -y YEAR, --year YEAR  given a year, prints the number of athletes who competed.
+  -s S, --sport S       given a sport, prints all the years it has been competed in.
+
+example:
+    python3 olympics.py -g
+    python3 olympics.py -n KEN
+    python3 olympics.py -y 1998
+    python3 olympics.py -s Judo
