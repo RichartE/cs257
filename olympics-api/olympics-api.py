@@ -63,14 +63,15 @@ def get_nocs():
         noc_list.append(noc_dict)
     return json.dumps(noc_list)
 
-@app.route('/medalists/games/<games_id>/<noc>')
 @app.route('/medalists/games/<games_id>')
-def get_medalists(games_id, noc=""):
+def get_medalists(games_id):
     ''' Returns a JSON list of dictionaries of medalist at a specified game. If noc is included filters to only athletes from the noc. '''
 
     cursor = cursor_init()
     medalist_list = []
-    if noc == "":
+    noc = flask.request.args.get('noc')
+    print(noc)
+    if noc is None:
         query = '''SELECT athletes.id, athletes.name, athletes.sex, events.sport, events.event, medals.medal_type
                 FROM athletes, events, medals, competitions
                 WHERE medals.events_id = events.id
