@@ -21,15 +21,10 @@ def cursor_init():
         exit()
     return cursor
 
-
-@app.route('/')
-def hello():
-    return 'Hello, Citizen of CS257.'
-
 @app.route('/games')
 def get_games():
+    ''' Returns JSON of all the games order from old to new. '''
     cursor = cursor_init()
-    ''' Returns the first matching actor, or an empty dictionary if there's no match. '''
     games_list = []
     query = 'SELECT * FROM competitions ORDER BY competitions.year;'
     try:
@@ -50,8 +45,8 @@ def get_games():
 
 @app.route('/nocs')
 def get_nocs():
+    ''' Returns JSON containing all the NOC in althebetical order. '''
     cursor = cursor_init()
-    ''' Returns the first matching actor, or an empty dictionary if there's no match. '''
     noc_list = []
     query = 'SELECT * FROM countries ORDER BY countries.noc;'
     try:
@@ -71,19 +66,17 @@ def get_nocs():
 @app.route('/medalists/games/<games_id>/<noc>')
 @app.route('/medalists/games/<games_id>')
 def get_medalists(games_id, noc=""):
+    ''' Returns a JSON list of dictionaries of medalist at a specified game. If noc is included filters to only athletes from the noc. '''
+
     cursor = cursor_init()
-    ''' Returns the first matching actor, or an empty dictionary if there's no match. '''
     medalist_list = []
-    print(noc)
     if noc == "":
-        print("A")
         query = '''SELECT athletes.id, athletes.name, athletes.sex, events.sport, events.event, medals.medal_type
                 FROM athletes, events, medals, competitions
                 WHERE medals.events_id = events.id
                 AND medals.athletes_id = athletes.id
                 AND competitions.id = {};'''.format(games_id)
     else:
-        print("B")
         query = '''SELECT athletes.id, athletes.name, athletes.sex, events.sport, events.event, medals.medal_type
                 FROM athletes, events, medals, competitions, athletes_countries_age_competitions, countries
                 WHERE medals.events_id = events.id
