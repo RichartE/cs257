@@ -10,12 +10,12 @@ header {
 nav {
     float: left;
     width: 20%;
-    height: 80vh;
+    height: 70vh;
     background-color: lightgreen; 
 }
 section {
     float: left;
     width: 80%;
-    height: 80vh;
+    height: 70vh;
     background-color: mediumslateblue; 
 }
