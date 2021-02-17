@@ -1,0 +1,112 @@
+Author: Etienne Richart
+
+Dataset: My dataset will be comprised from two different sources: 
+    1.  NASA Astronaut Yearbook (https://www.kaggle.com/nasa/astronaut-yearbook) Click Download
+        This dataset is made up of many features including:
+            a. name
+            b. birth date
+            c. birth place
+            d. gender
+            e. alma mater
+            f. major
+            g. millitary rank
+            h. space flights (number & hours)
+            i. space walks (number & hours)
+            j. missions names
+            k. deaths
+        Validity: This dataset is slighlty outdated (2004 - 2013?)
+    2.  Astronaut database (https://data.mendeley.com/datasets/86tsnnbv2w/1) Click Download All then use (https://www.rebasedata.com/convert-accdb-to-csv-online) to convert from MS Access to CSV.
+        This dataset is made up of many features including:
+            a. name
+            b. original name
+            c. gender
+            d. birth year
+            e. nationality
+            f. mission title
+            g. ascent shuttle
+            h. descend shuttle
+            i. total mission hours
+            j. total EVA hours
+        Validity: This dataset was last updated in 2019
+
+User Stories:
+    A. As I enter the page I have a vague idea that there is astronaut data on the website but I would like a better idea of what I can use the website for
+        1. As a client who is uncertain about the capabilities of the website I would like to see some graphs made by the website in order to be reasured that it is worth it for me to learn how the website works.
+            a. Precompute some graphs and store them as images on the server.
+            b. Display them as a slide show on top maybe. This could make it hard for screen readers and so it may be better to think of a different format like tabs or something.  
+    B. As a person interested in graphing how many astronauts there have been per country, I want to be able to examine the raw data to see if it is possible and maybe be inspired to make other graphs.
+        1. In order to check the values of the features I think I will want to use for graphing, I will be able to select features of interest to view or ignore.
+            a. To implement this, above the raw data table there will be a "form" with checkboxes that you can select, this will allow the client to select desireable features to be visible like name and nationality.
+        2. In order to grasp the order that astronauts were recruited, I would like to sort the data by year recruited.
+            a. I will have three dropdown after the feature checkboxes that allows people to decide what to sort by first, second and third. Once the search button is clicked a call will be made to the server to get new data and display it.
+            b. Next to each feature label in the table I will have an arrow symbol that when clicked will display the sort descending or ascending or alphabetical or inverse alphabetical. It could then stably sort the displayed data without making a new call to the server.
+        3. While I am exploring the data to decide how to build my graph, I do not want to be overwhelmed and so would like to limit the number of entries.
+            a. After the checkboxes I will have another input box where people can select how many entries to display.
+            b. Next to the input I may have a button for 10 and MAX that will set the input number to 10 or max to make the process more efficient.
+        4. As I look through the data I find an astronaut that interests me and I would like to view their information in a more human readable way such as a "Profile" page which summarizes their information and may includes pictures of themselves and their differnt missions (with links to the mission pages).
+            a. I will make the astronaut name a button that when clicked will take the client to a page that displays the astronaut information in a more human readable format.
+            b. This could instead be a popup or modal on the same page.
+            c. I could use the python wikipedia API to present additional information. 
+        5. As I am changing the mission features I wish to see I realise that I have been making my changes to the astronaut features instead and wish to hide the section in order to not repeat the mistake.
+            a. I will have a button to the right of the section title that when clicked will hide the rest of the section in order to make the page shorter.
+    C. As a person interested in graphing the number of astronauts on missions to see if it increases as we time moves closer to the present, I would like to explore the raw data in order to see which features to use.
+        1. As I try to find features of interest for my graph I get lost in all the columns, as such I will be able to select which columns are visible so that I need not scroll around as much.
+            a. To implement this, above the raw data table there will be a "form" with checkboxes that you can select to .
+        2. To learn more about a mission that caught my eye, I will be able to click on the mission name to travel to the mission page which presents the information in a more human readable way. 
+            a. I will make the mission name a button that when clicked will take the client to a page that displays the mission information in a more human readable format.
+            b. This could instead be a popup or modal on the same page.
+            c. I could use the python wikipedia API to present additional information. 
+        3. In order to get an idea about how my graph should look, I will be able to sort by mission year.
+            a. I will have three dropdown after the feature checkboxes that allows people to decide what to sort by first, second and third. Once the search button is clicked a call will be made to the server to get new data and display it.
+            b. Next to each feature label in the table I will have an arrow symbol that when clicked will display the sort descending or ascending or alphabetical or inverse alphabetical. It could then stably sort the displayed data without making a new call to the server.
+        4. As I scroll down through the raw entries I get overwhelmed by the amount and so wish to limit the number of entries displayed.
+            a. After the checkboxes I will have another input box where people can select how many entries to display.
+            b. Next to the input I may have a button for 10 and MAX that will set the input number to 10 or max to make the process more efficient.
+        5. As I am changes to the graph selection I realise that I have been making my changes to the mission features instead and wish to hide the section in order to not repeat the mistake.
+            a. I will have a button to the right of the section title that when clicked will hide the rest of the section in order to make the page shorter.
+    D. Now that I have finished exploring the data I wish to make a graph with the features I selected.
+        1. After exploring the data I decide to graph the number of missions per year 
+            a. Three dropdowns for x-axis, y-axis and agregate (count, sum, etc.)
+            b. Run the query on the database
+            d. Use python to create a chart. 
+            e. Pass chart to webpage, if possible keep it interactive so that the chart has tooltips, else just send it as an image. 
+        2. I decide that I want to graph the number of mission per year but only by the U.S.
+            a. Query builder made up of four dropdowns:
+                i. The first feature (mission nationality)
+                ii. The operator (is equal)
+                iii. The other thing (U.S.)
+                iv. connector (if left blank then the builder is done, if set to 'AND' or 'OR' will make another query builder line appear with the same four dropdowns)
+        3. Once I have run the graphing tool I want to be able to see the graph to check that it looks right and download it to be able to use it later.
+            a. The query return a graph object of image that is displayed.
+            b. Next to the display is a download icon that will download the image when clicked.
+    E. As a person concerned with academic honest I will want to know more about the data.
+        1. As I may be using the graph for very important work I want to make sure that the data used by the webapp is reliable
+            a. Include a footer with links to the data
+        2. As a budding software developer I want to try and build the site myself and so would like a copy of database so that I do not have to build it mtself. OR As a person concerned with the accuracy of the website I would like to check the datbase structure to ensure that it is sound and logical
+            a. Include the database schema and .psql file for download in the footer. 
+        3. I have decided to use a graph made on the website and so would like to cite my source.
+            a. Include the author of the website and relevant info for citation in the footer.
+    F. I arrive on the website looking for info on Neil Armstrong and so directly look for a search bar to his name in.
+        1. As I try to search for Yuri Gagarin I forget how to spell his last name and would like some sort of autocomplete
+            a. Have a search bar in the top right corner.
+            b. The search bar is liked to a list of the names of astronauts, missions and spacecrafts that will provide autocomplete options.
+        2. I want to search for a specific mission but I it is on the tip of my tongue and I am conviced that I will remember it once I see the name.
+            a. Under the serch bar is a tab for astronauts and missions. Clicking the tab will navigate to a new page (may just hide the home page and display the other page infront)
+            b. The astronauts or missions page has a list of missions/astronauts with a relevant name, national flag and image if possible.
+            c. The page can be sorted by name or year (maybe nationality) 
+            d. Each entry in the list is clickable and will take the user to the corresponding "profile" page (or modal/popup ).
+            e. At the top of the page is a breadcrub so the user can navigate back to home
+        3. Having serched for Neil Armstrong, I would like to see all the information on Neil Armstrong on the website.
+            a. Take the client to the Neil Armstrong "Profile Page" 
+            b. Display basic info (name, nationality, missions with link to the mission "profile") first next to a picture if possible
+            c. Then add the rest of the information in a human readble way
+            d. If possible use the wikipedia API to include their summary near the end since it may not be found.
+            
+Priority:
+    1) Searching the raw data
+    2) Graphing
+    3) Astronaut and Mission list pages
+    4) Astronaut and Mission profile pages
+    5) Search Bar
+    6) Adding wikipedia API to profile pages
+    7) Adding images to everything
