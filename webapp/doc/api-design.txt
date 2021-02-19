@@ -1,0 +1,149 @@
+Author: Etienne Richart
+
+
+REQUEST: /features/
+RESPONSE: An JSON list of dictionaries, each which represent a feature.
+Each feature dictionary will have the following fields.
+    Feature Name -- (string) the name of the feature
+    Feature Type -- (string) the type of the feature
+    Raw -- (string) either astronaut, mission or neither
+
+REQUEST: /astronauts/raw/
+GET PARAMETERS: 
+    features {Optional, '|' separated feature list, default=all the features} feature names to be checked for sql injection then added in the SELECT block of the query
+    sort {Optional, '|' separated list of features to sort by, default='id'} feature names to be checked for sql injection then added in the SORT block of the query
+    show {Optional, number of entries to show/limit, default=10} number to be checked for sql injection then added in the LIMIT block of the query
+RESPONSE: a JSON list of dictionaries, 10 or {show} entries long, each of which repressents one astronaut, sorted by id or {show}.
+Each astronaut dictionary may have all the following fields or just some as indicated by {features}.
+    Name -- (string) the astronaut's name
+    Original Name -- (string) the astronaut's name in their original language (ex: Russion, Chinese)
+    Nationwide Number -- (int) the order of the astronaut in their nation (ex: Yuri Gagarin is 1 for Russia/U.S.S.R)
+    Sex -- (string) the astronaut's gender
+    Year of Birth -- (int) the astronaut's YOB
+    Nationality -- (string) the astronaut's nationality
+    Mil/Civ -- (string) Mil if the astronaut was in the military, Civ if the astronaut was a civilian
+    Year of Selection -- (int) The year the astronaut was selected to become an astronaut
+    Total number of missions -- (int) the total number of missions the astronaut participated in.
+    Total mission hours -- (double) the total number of hours the astronaut was in space.
+    Total EVA hrs -- (double) the astronaut's total extravehicular time.
+    Missions -- (array/list (string)) list of the missions the astronaut was on
+    Mission Years -- (array/list (int)) list of the years the astronaut had a mission
+    Occupations -- (array/list (string)) list of different roles the astronaut had on missions
+    The following fields will only exist for some astronauts who are in the NASA Yearbook Database
+    Status -- (string) the astronaut's status (active, retired, management, deceased)
+    Alma Mater -- (array/list (string)) list of the astronaut's Alma Mater
+    Undergraduate Major -- (string) the astronaut's undergraduate major
+    Graduate Major -- (string) the astronaut's graduate major
+    Death Date -- (Date) the astronaut's date of death
+    Death Mission -- (string) the mission where the astronaut died if they died on a mission
+
+REQUEST: /astronauts/raw/max
+RESPONSE: integer of the number of entries
+
+REQUEST: /missions/raw/
+GET PARAMETERS: 
+    features {Optional, '|' separated feature list, default=all the features} feature names to be checked for sql injection then added in the SELECT block of the query
+    sort {Optional, '|' separated list of features to sort by, default='id'} feature names to be checked for sql injection then added in the SORT block of the query
+    show {Optional, number of entries to show/limit, default=10} number to be checked for sql injection then added in the LIMIT block of the query
+RESPONSE: a JSON list of dictionaries, 10 or {show} entries long, each of which repressents one mission, sorted by id or {show}.
+Each astronaut dictionary may have all the following fields or just some as indicated by {features}.
+    Mission Title -- (string) the name of the mission
+    Mission Year -- (int) year of the mission
+    Ascent Shuttle -- (string) the shuttle used to ascend into space
+    Orbit -- (string) the craft used while in orbit
+    Descent Shuttle -- (string) the shuttle used to return from space
+    Mission Length (hours) -- (double) the duration of the mission
+    Combined EVA hours -- (double) the sum of each astronaut's EVA time on the mission
+    Astronauts -- (array/list (string)) the names of the astronauts on the mission
+    Occupations -- (array/list (string)) the jobs the astronauts had on the mission.
+    Composition -- (string) Mil if all the members of the mission were military, Civ if all the members of the mission were civilian and Mil/Civ if it is a combination.
+
+REQUEST: /missions/raw/max
+RESPONSE: integer of the number of entries
+
+REQUEST: /graph
+GET PARAMETERS:
+    query {Optional, the psql query, default=""} some sort of query string to be checked for sql injection then added in the WHERE block of the query
+    sort {Optional, '|' separated list of features to sort by, default=''} feature names to be checked for sql injection then added in the SORT block of the query
+    show {Optional, number of entries to show/limit, default=''} number to be checked for sql injection then added in the LIMIT block of the query
+    layout {Required, '|' separated, x-axis, y-axis, aggregate} the x-axis and y-axis to be checked for sql injection then added in the SELECT block of the query, aggregate will be used on the y-axis feature like SELECT COUNT(y-axis) x-axis
+RESPONSE: an interactive graph if possible or an image. It could also be a link to put into an <img> tag's href.
+
+REQUEST: /astronauts/list/name
+RESPONSE: a JSON list of dictionaries, each of which represents one astronaut, sorted by name. Each astronaut will have the following fields.
+    Name -- (string) the astronaut's name
+    Year of Selection -- (int) The year the astronaut was selected to become an astronaut
+    Nationality -- (string) the astronaut's nationality
+
+REQUEST: /astronauts/list/year
+RESPONSE: a JSON list of dictionaries, each of which represents one astronaut, sorted by year selected. Each astronaut will have the following fields.
+    Name -- (string) the astronaut's name
+    Year of Selection -- (int) The year the astronaut was selected to become an astronaut
+    Nationality -- (string) the astronaut's nationality
+
+REQUEST: /missions/list/name
+RESPONSE: a JSON list of dictionaries, each of which represents one mission, sorted by mission title. Each mission will have the following fields.
+    Mission Title -- (string) the name of the mission
+    Mission Year -- (int) year of the mission
+
+REQUEST: /missions/list/year
+RESPONSE: a JSON list of dictionaries, each of which represents one mission, sorted by mission year. Each mission will have the following fields.
+    Mission Title -- (string) the name of the mission
+    Mission Year -- (int) year of the mission
+
+REQUEST: /astronauts/<name>
+RESPONSE: a JSON dictionary, which repressents the astronaut.
+The dictionary will have the following fields.
+    Name -- (string) the astronaut's name
+    Original Name -- (string) the astronaut's name in their original language (ex: Russion, Chinese)
+    Nationwide Number -- (int) the order of the astronaut in their nation (ex: Yuri Gagarin is 1 for Russia/U.S.S.R)
+    Sex -- (string) the astronaut's gender
+    Year of Birth -- (int) the astronaut's YOB
+    Nationality -- (string) the astronaut's nationality
+    Mil/Civ -- (string) Mil if the astronaut was in the military, Civ if the astronaut was a civilian
+    Year of Selection -- (int) The year the astronaut was selected to become an astronaut
+    Total number of missions -- (int) the total number of missions the astronaut participated in.
+    Total mission hours -- (double) the total number of hours the astronaut was in space.
+    Total EVA hrs -- (double) the astronaut's total extravehicular time.
+    Astronauts -- (array/list (dictionary)) dictionary of the astronaut on the missions
+        Mission Year -- (int) year of the mission
+        Mission Length (hours) -- (double) the duration of the mission
+        Occupations -- (string) role on the mission
+        EVA hrs -- (double) extravehicular hours on the mission
+        Crewmates -- (array/list (string)) list of crewmate names on the mission
+    Summary -- (string) Using the wikipedia API pass a summary of the astronaut 
+    The following fields will only exist for some astronauts who are in the NASA Yearbook Database
+    Status -- (string) the astronaut's status (active, retired, management, deceased)
+    Alma Mater -- (array/list (string)) list of the astronaut's Alma Mater
+    Undergraduate Major -- (string) the astronaut's undergraduate major
+    Graduate Major -- (string) the astronaut's graduate major
+    Death Date -- (Date) the astronaut's date of death
+    Death Mission -- (string) the mission where the astronaut died if they died on a mission
+
+REQUEST: /missions/<title>
+RESPONSE: a JSON dictionary, which repressents the mission.
+The dictionary will have the following fields. 
+    Mission Title -- (string) the name of the mission
+    Mission Year -- (int) year of the mission
+    Ascent Shuttle -- (string) the shuttle used to ascend into space
+    Orbit -- (string) the craft used while in orbit
+    Descent Shuttle -- (string) the shuttle used to return from space
+    Mission Length (hours) -- (double) the duration of the mission
+    Combined EVA hours -- (double) the sum of each astronaut's EVA time on the mission
+    Composition -- (string) Mil if all the members of the mission were military, Civ if all the members of the mission were civilian and Mil/Civ if it is a combination.
+    Astronauts -- (array/list (dictionaries)) list of the astronaut dictionaries on the mission
+        Name -- (string) astronaut name
+        Year of Selection -- (int) The year the astronaut was selected to become an astronaut
+        Selection -- (string) the group from which the astronaut was selected for the mission
+        Occupation -- (string) role on the mission
+        EVA hrs -- (double) extravehicular hours on the mission
+        Mil/Civ -- (string) Mil if the astronaut was in the military, Civ if the astronaut was a civilian
+        Nationality -- (string) the astronaut's nationality
+        Mission Number -- (int) the total number of mission's the astronaut has been upto and including this mission.
+    Summary -- (string) Using the wikipedia API pass a summary of the mission 
+
+REQUEST: /search/<query>
+RESPONSE: a JSON list, of dictionaries, each of which repressents a close match to the search.
+Each dictionary will have the following fields.
+    Title --(string) An astronaut name, mission title or space craft name.
+    Link --(string) the formatted request for the information in the title. If it an astronaut 'astronaut/<astronaut name>' if a space craft would be 'missions/<mission that used space craft title>'
