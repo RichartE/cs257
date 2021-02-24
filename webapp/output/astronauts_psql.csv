@@ -1,0 +1,564 @@
+1,"Gagarin, Yuri",ГАГАРИН Юрий Алексеевич,1,M,1934,1,Mil,1960,1,1.77,0
+2,"Titov, Gherman",ТИТОВ Герман Степанович,2,M,1935,1,Mil,1960,1,25.3,0
+3,"Glenn, John H., Jr.","Glenn, John H., Jr.",1,M,1921,2,Mil,1959,2,218,0
+4,"Carpenter, M. Scott","Carpenter, M. Scott",2,M,1925,2,Mil,1959,1,5,0
+5,"Nikolayev, Andriyan",НИКОЛАЕВ Андриян Григорьевич,2,M,1929,1,Mil,1960,2,519.33,0
+6,"Popovich, Pavel",ПОПОВИЧ Павел Романович,4,M,1930,1,Mil,1960,2,448.45,0
+7,"Schirra, Walter M., Jr.","Schirra, Walter M., Jr.",3,M,1923,2,Mil,1959,3,295.2,0
+8,"Cooper, L. Gordon, Jr.","Cooper, L. Gordon, Jr.",4,M,1927,2,Mil,1959,2,225,0
+9,"Bykovsky, Valery",БЫКОВСКИЙ Валерий Федорович,5,M,1934,1,Mil,1960,3,497.8,0
+10,"Tereshkova, Valentina",ТЕРЕШКОВА Валентина Владимировна,6,F,1937,1,Mil,1962,1,70.83,0
+11,"Komarov, Vladimir",КОМАРОВ Владимир Михайлович,7,M,1927,1,Mil,1960,2,51.07,0
+12,"Feoktistov, Konstantin",ФЕОКТИСТОВ Константин Петрович,8,M,1926,1,Civ,1964,1,24.28,0
+13,"Yegorov, Boris",ЕГОРОВ Борис Борисович,9,M,1937,1,Civ,1964,1,24.28,0
+14,"Belyayev, Pavel",БЕЛЯЕВ Павел Иванович,10,M,1925,1,Mil,1960,1,26.03,0
+15,"Leonov, Aleksei",ЛЕОНОВ Алексей Архипович,11,M,1934,1,Mil,1960,2,168.53,0.73
+16,"Grissom, Virgil I.","Grissom, Virgil I.",5,M,1926,2,Mil,1959,1,4.86,0
+17,"Young, John W.","Young, John W.",6,M,1930,2,Mil,1962,6,835.65,20.23
+18,"McDivitt, James A.","McDivitt, James A.",7,M,1929,2,Mil,1962,2,338,0
+19,"White, Edward H., II","White, Edward H., II",8,M,1930,2,Mil,1962,1,97.93,0.33
+20,"Conrad, Charles, Jr.","Conrad, Charles, Jr.",9,M,1930,2,Mil,1962,4,1179,12.77
+21,"Borman, Frank","Borman, Frank",10,M,1928,2,Mil,1962,2,477,0
+22,"Lovell, James A., Jr.","Lovell, James A., Jr.",11,M,1928,2,Mil,1962,4,715.05,0
+23,"Stafford, Thomas P.","Stafford, Thomas P.",12,M,1930,2,Mil,1962,4,508,0
+24,"Armstrong, Neil A.","Armstrong, Neil A.",13,M,1930,2,Civ,1962,2,206,2.51
+25,"Scott, David R.","Scott, David R.",14,M,1932,2,Mil,1963,3,546,19.9
+26,"Cernan, Eugene A.","Cernan, Eugene A.",15,M,1934,2,Mil,1963,3,565,24.18
+27,"Collins, Michael","Collins, Michael",16,M,1930,2,Civ,1963,2,266,1.47
+28,"Gordon, Richard F., Jr.","Gordon, Richard F., Jr.",17,M,1929,2,Mil,1963,2,315.88,2.68
+29,"Aldrin, Edwin Eugene, Jr.","Aldrin, Edwin Eugene, Jr.",18,M,1930,2,Mil,1963,2,289,8
+30,"Eisele, Donn F.","Eisele, Donn F.",19,M,1930,2,Mil,1963,1,260,0
+31,"Cunningham, Ronnie Walter","Cunningham, Ronnie Walter",20,M,1932,2,Civ,1963,1,260.13,0
+100,"Savinykh, Viktor",Виктор Петрович Савиных,50,M,1940,1,Civ,1978,3,6065.63,5
+101,Jugderdemidiin Gurragchaa,Жүгдэрдэмидийн Гүррагчаа,1,M,1947,3,Civ,1978,1,188.7,0
+102,"Crippen, Robert L.","Crippen, Robert L.",44,M,1937,2,Mil,1969,4,565,0
+103,Dumitru Prunariu,Dumitru-Dorin Prunariu,1,M,1952,4,Civ,1978,1,188.7,0
+104,"Engle, Joe H.","Engle, Joe H.",45,M,1932,2,Mil,1966,2,224,0
+105,"Truly, Richard H.","Truly, Richard H.",46,M,1937,2,Mil,1969,2,199.34,0
+106,"Fullerton, Charles G.","Fullerton, Charles G.",47,M,1936,2,Mil,1969,2,382,0
+107,"Berezovoy, Anatoly",Анатолий Николаевич Березовой,51,M,1942,1,Mil,1970,1,5073.07,2.55
+108,"Chrétien, Jean-Loup","Chrétien, Jean-Loup",1,M,1938,5,Mil,1980,3,1043.32,5.95
+109,"Hartsfield, Henry W., Jr.","Hartsfield, Henry W., Jr.",48,M,1933,2,Mil,1969,3,481,0
+110,"Serebrov, Aleksandr",Александр Александрович Серебров,52,M,1944,1,Civ,1978,4,8950.87,31.82
+32,"Beregovoi, Georgi",БЕРЕГОВОЙ Георгий Тимофеевич,12,M,1921,1,Mil,1964,1,94.83,0
+33,"Anders, William Alison","Anders, William Alison",21,M,1933,2,Civ,1963,1,147,0
+34,"Shatalov, Vladimir",ШАТАЛОВ Владимир Александрович,13,M,1927,1,Mil,1963,3,237.92,0
+35,"Volynov, Boris",ВОЛЫНОВ Борис Валентинович,14,M,1934,1,Mil,1960,2,1255.28,0
+36,"Yeliseyev, Aleksei",ЕЛИСЕЕВ Алексей Станиславович,15,M,1934,1,Civ,1968,3,214.33,0.62
+37,"Khrunov, Yevgeny",ХРУНОВ Евгений Викторович,16,M,1933,1,Mil,1960,1,47.75,0.62
+38,"Schweickart, Russell L.","Schweickart, Russell L.",22,M,1935,2,Civ,1963,1,241,1.13
+39,"Shonin, Georgi",ШОНИН Георгий Степанович,17,M,1935,1,Mil,1960,1,118.7,0
+40,"Kubasov, Valeri",КУБАСОВ Валерий Николаевич,18,M,1935,1,Mil,1968,3,449.95,0
+41,"Filipchenko, Anatoly",ФИЛИПЧЕНКО Анатолий Васильевич,19,M,1928,1,Mil,1963,2,261.05,0
+42,"Volkov, Vladislav",Владислав Николаевич Волков,20,M,1935,1,Mil,1968,2,689.02,0
+43,"Gorbatko, Viktor",Виктор Васильевич Горбатко,21,M,1934,1,Mil,1960,3,732.78,0
+44,"Bean, Alan Lavern","Bean, Alan Lavern",23,M,1932,2,Mil,1963,2,1671.75,9.32
+45,"Swigert, John L., Jr.","Swigert, John L., Jr.",24,M,1931,2,Civ,1966,1,142,0
+46,"Haise, Fred W., Jr.","Haise, Fred W., Jr.",25,M,1933,2,Civ,1966,1,142,0
+47,"Sevastyanov, Vitali",Виталий Иванович Севастьянов,22,M,1935,1,Civ,1968,2,1936.3,0
+48,"Shepard, Alan B., Jr.","Shepard, Alan B., Jr.",26,M,1923,2,Mil,1959,2,216.25,9.25
+49,"Roosa, Stuart A.","Roosa, Stuart A.",27,M,1933,2,Mil,1966,1,216,0
+50,"Mitchell, Edgar D.","Mitchell, Edgar D.",28,M,1930,2,Mil,1966,1,216,9.38
+51,"Rukavishnikov, Nikolai",Николай Николаевич Рукавишников,23,M,1932,1,Mil,1968,3,237.15,0
+52,"Dobrovolski, Georgi",Георгий Тимофеевич Добровольский,24,M,1928,1,Mil,1963,1,570.35,0
+53,"Patsayev, Viktor",Виктор Иванович Пацаев,25,M,1933,1,Civ,1968,1,570.35,0
+54,"Worden, Alfred M.","Worden, Alfred M.",29,M,1932,2,Mil,1966,1,295.2,0.63
+55,"Irwin, James B.","Irwin, James B.",30,M,1930,2,Mil,1966,1,295,18.5
+56,"Mattingly, Thomas K., II","Mattingly, Thomas K., II",31,M,1936,2,Mil,1966,3,508,1.38
+57,"Duke, Jr. Charles Moss","Duke, Jr. Charles Moss",32,M,1935,2,Mil,1966,1,265,20.25
+58,"Evans, Ronald E.","Evans, Ronald E.",33,M,1933,2,Mil,1966,1,301,1.4
+59,"Schmitt, Harrison H.","Schmitt, Harrison H.",34,M,1935,2,Civ,1965,1,301,22.07
+60,"Weitz, Paul J.","Weitz, Paul J.",35,M,1932,2,Mil,1966,2,793.22,2.27
+61,"Kerwin, Joseph P.","Kerwin, Joseph P.",36,M,1932,2,Mil,1965,1,672,3.42
+62,"Lousma, Jack R.","Lousma, Jack R.",37,M,1936,2,Mil,1966,2,1619,11
+63,"Garriott, Owen K.","Garriott, Owen K.",38,M,1930,2,Civ,1965,2,1674,13.72
+64,"Lazarev, Vasili",Василий Григорьевич Лазарев,26,M,1928,1,Mil,1964,1,47.25,0
+65,"Makarov, Oleg",Олег Григорьевич Макаров,27,M,1933,1,Civ,1968,3,497.33,0
+66,"Carr, Gerald P.","Carr, Gerald P.",39,M,1932,2,Mil,1966,1,2017,15.85
+67,"Pogue, William R.","Pogue, William R.",40,M,1930,2,Mil,1966,1,2017,13.62
+68,"Gibson, Edward G.","Gibson, Edward G.",41,M,1936,2,Civ,1965,1,2017,15.35
+69,"Klimuk, Pyotr",Петр Ильич Климук,28,M,1942,1,Mil,1965,3,1890.28,0
+70,"Lebedev, Valentin",Валентин Витальевич Лебедев,29,M,1942,1,Civ,1972,2,5261.98,2.55
+71,"Artyukhin, Yuri",Юрий Петрович Артюхин,30,M,1930,1,Mil,1963,1,377.5,0
+72,"Sarafanov, Gennadi",Геннадий Васильевич Сарафанов,31,M,1942,1,Mil,1965,1,48.2,0
+73,"Dyomin, Lev",Лев Степанович Дёмин,32,M,1926,1,Mil,1963,1,48.2,0
+74,"Gubarev, Aleksei",Алексей Александрович Губарев,33,M,1931,1,Mil,1963,2,899.6,0
+75,"Grechko, Georgi",Георгий Михайлович Гречко,34,M,1931,1,Civ,1968,3,3236.53,1.01
+76,"Brand, Vance D.","Brand, Vance D.",42,M,1931,2,Civ,1966,4,746,0
+77,"Slayton, Donald K.","Slayton, Donald K.",43,M,1924,2,Civ,1959,1,217.47,0
+78,"Zholobov, Vitali",Виталий Михайлович Жолобов,35,M,1937,1,Mil,1963,1,1182.38,0
+79,"Aksyonov, Vladimir",Владимир Викторович Аксёнов,36,M,1935,1,Mil,1973,2,284.18,0
+80,"Zudov, Vyacheslav",Вячеслав Дмитриевич Зудов,37,M,1942,1,Mil,1965,1,48.1,0
+81,"Rozhdestvensky, Valery",Валерий Ильич Рождественский,38,M,1939,1,Mil,1965,1,48.1,0
+82,"Glazkov, Yuri",Юрий Николаевич Глазков,39,M,1939,1,Mil,1965,1,425.42,0
+83,"Kovalyonok, Vladimir",Владимир Васильевич Ковалёнок,40,M,1942,1,Mil,1967,3,5193.13,2.33
+84,"Ryumin, Valery",Валерий Викторович Рюмин,41,M,1939,1,Civ,1973,4,8921.4,1.38
+85,"Romanenko, Yuri",Юрий Викторович Романенко,42,M,1944,1,Mil,1970,3,10338.35,10.27
+86,"Dzhanibekov, Vladimir",Владимир Александрович Джанибеков,43,M,1942,1,Mil,1970,5,3495.93,8.57
+87,Vladimir Remek,,1,M,1948,6,Mil,1976,1,190.28,0
+88,"Ivanchenkov, Aleksandr",Александр Сергеевич Иванченков,44,M,1940,1,Mil,1973,2,3540.62,2.33
+89,Miroslaw Hermaszewske,Miroslaw Hermaszewske,1,M,1941,7,Mil,1976,1,190.03,0
+90,"Jahn, Sigmund","Jahn, Sigmund",1,M,1937,8,Mil,1976,1,188.82,0
+91,"Lyakhov, Vladimir",Владимир Афанасьевич Ляхов,45,M,1941,1,Mil,1967,3,7999.78,7.12
+92,Georgi Ivanov,Георги Иванов Иванов,1,M,1940,9,Mil,1978,1,47,0
+93,"Popov, Leonid",Леонид Иванович Попов,46,M,1945,1,Mil,1970,3,4814.75,0
+94,Bertalan Farkas,Farkas Bertalan,1,M,1949,10,Civ,1978,1,188.75,0
+95,"Malyshev, Yuri",Юрий Васильевич Малышев,47,M,1941,1,Mil,1967,2,283.98,0
+96,Pham Tuan,Phạm Tuân,1,M,1947,11,Mil,1979,1,188.7,0
+97,Arnaldo Tamayo Mendez,Arnaldo Tamayo Méndez,1,M,1942,12,Mil,1978,1,188.71,0
+98,"Kizim, Leonid",Леонид Денисович Кизим,48,M,1941,1,Mil,1965,3,8993.93,31.48
+99,"Strekalov, Gennadi",Геннадий Михайлович Стрекалов,49,M,1940,1,Civ,1973,5,6454.37,20.93
+111,"Savitskaya, Svetlana",Светлана Евгеньевна Савицкая,53,F,1948,1,Civ,1980,2,473.1,3.58
+112,"Overmyer, Robert F.","Overmyer, Robert F.",49,M,1936,2,Mil,1966,2,290,0
+113,"Allen, Joseph P.","Allen, Joseph P.",50,M,1937,2,Civ,1967,2,314,11.7
+114,"Lenoir, William B.","Lenoir, William B.",51,M,1939,2,Civ,1967,1,122,0
+115,"Bobko, Karol J.","Bobko, Karol J.",52,M,1937,2,Mil,1969,3,386,0
+116,"Peterson, Donald H.","Peterson, Donald H.",53,M,1933,2,Mil,1969,1,120,3.83
+117,"Musgrave, Franklin Story","Musgrave, Franklin Story",54,M,1935,2,Civ,1967,6,1281,25.9
+118,"Titov, Vladimir",Владимир Георгиевич Титов,54,M,1947,1,Mil,1976,4,9288.75,18.8
+119,"Hauck, Frederick H.","Hauck, Frederick H.",55,M,1941,2,Mil,1978,3,434,0
+120,"Fabian, John M.","Fabian, John M.",56,M,1939,2,Mil,1978,2,316,0
+121,"Ride, Sally K.","Ride, Sally K.",57,F,1951,2,Civ,1978,2,343,0
+122,"Thagard, Norman E.","Thagard, Norman E.",58,M,1943,2,Civ,1978,5,3373.4,0
+123,"Aleksandrov, Aleksandr",Александр Павлович Александров,55,M,1943,1,Civ,1978,2,7434.03,5.86
+124,"Brandenstein, Daniel C.","Brandenstein, Daniel C.",59,M,1943,2,Mil,1978,4,789,0
+125,"Bluford, Guion S., Jr.","Bluford, Guion S., Jr.",60,M,1942,2,Mil,1978,4,688,0
+126,"Gardner, Dale A.","Gardner, Dale A.",61,M,1948,2,Mil,1978,2,336,12
+127,"Thornton, William E.","Thornton, William E.",62,M,1929,2,Civ,1967,2,313.26,0
+128,"Shaw, Brewster H., Jr.","Shaw, Brewster H., Jr.",63,M,1945,2,Mil,1978,3,533.75,0
+129,"Parker, Robert A. R.","Parker, Robert A. R.",64,M,1936,2,Civ,1967,2,463,0
+130,"Lichtenberg, Byron Kurt","Lichtenberg, Byron Kurt",65,M,1948,2,Mil,1982,2,462.31,0
+131,"Merbold, Ulf","Merbold, Ulf",1,M,1941,8,Civ,1978,3,1197.6,0
+132,"Gibson, Robert L.","Gibson, Robert L.",66,M,1946,2,Mil,1978,5,868.13,0
+133,"McNair, Ronald E.","McNair, Ronald E.",67,M,1950,2,Civ,1978,2,191,12.02
+134,"Stewart, Robert L.","Stewart, Robert L.",68,M,1942,2,Mil,1978,2,289.2,11.95
+135,"McCandless, Bruce, II","McCandless, Bruce, II",69,M,1937,2,Mil,1966,2,312,11.95
+136,"Solovyov, Vladimir",Владимир Алексеевич Соловьёв,56,M,1946,1,Civ,1978,2,8686.82,31.67
+137,"Atkov, Oleg",Олег Юрьевич Атьков,57,M,1949,1,Civ,1983,1,5686.82,0
+138,Rakesh Sharma,राकेश शर्मा,1,M,1949,13,Mil,1982,1,4365.8,0
+139,"Scobee, Francis R.","Scobee, Francis R.",70,M,1939,2,Mil,1978,2,168,0
+140,"Hart, Terry J.","Hart, Terry J.",71,M,1946,2,Civ,1978,1,167.67,0
+141,"Van Hoften, James D. A.","Van Hoften, James D. A.",72,M,1944,2,Civ,1978,2,337.95,21.89
+142,"Nelson, George D.","Nelson, George D.",73,M,1950,2,Civ,1978,3,411,10.1
+143,"Volk, Igor",Игорь Петрович Волк,58,M,1937,1,Mil,1977,1,283.23,0
+144,"Coats, Michael L.","Coats, Michael L.",74,M,1952,2,Mil,1978,3,464,0
+145,"Mullane, Richard M.","Mullane, Richard M.",75,M,1945,2,Mil,1978,3,356,0
+146,"Hawley, Steven A.","Hawley, Steven A.",76,M,1951,2,Civ,1978,5,768,0
+147,"Resnik, Judith A.","Resnik, Judith A.",77,F,1949,2,Civ,1978,2,144,0
+148,"Walker, Charles David","Walker, Charles David",78,M,1948,2,Civ,1983,3,478.29,0
+149,"McBride, Jon A.","McBride, Jon A.",79,M,1943,2,Mil,1978,1,197,0
+150,"Sullivan, Kathryn D.","Sullivan, Kathryn D.",80,F,1951,2,Civ,1978,3,532,3.45
+151,"Leestma, David C.","Leestma, David C.",81,M,1949,2,Mil,1980,3,532,3.5
+152,"Scully-Power, Paul Desmond","Scully-Power, Paul Desmond",82,M,1944,2,Civ,1984,1,197.67,0
+153,"Garneau, Marc Joseph Jean-Pierre","Garneau, Marc Joseph Jean-Pierre",1,M,1949,14,Mil,1983,3,697.67,0
+154,"Walker, David Mathieson","Walker, David Mathieson",83,M,1944,2,Mil,1978,4,724.45,0
+155,"Fisher, Anna L.","Fisher, Anna L.",84,F,1949,2,Civ,1978,1,191,0
+156,"Shriver, Loren J.","Shriver, Loren J.",85,M,1944,2,Mil,1978,3,386,0
+157,"Onizuka, Ellison S.","Onizuka, Ellison S.",86,M,1946,2,Mil,1978,2,74,0
+158,"Buchli, James F.","Buchli, James F.",87,M,1945,2,Mil,1978,4,490,0
+159,"Payton, Gary Eugene","Payton, Gary Eugene",88,M,1948,2,Mil,1979,1,73.675,0
+160,"Williams, Donald E.","Williams, Donald E.",89,M,1942,2,Mil,1978,2,286,0
+161,"Seddon, Margaret Rhea","Seddon, Margaret Rhea",90,F,1947,2,Civ,1978,3,722,0
+162,"Griggs, S. David","Griggs, S. David",91,M,1947,2,Civ,1978,1,168,3.17
+163,"Hoffman, Jeffrey A.","Hoffman, Jeffrey A.",92,M,1944,2,Civ,1978,5,1211.9,25.2
+164,"Garn, Edwin Jacob","Garn, Edwin Jacob",93,M,1932,2,Mil,1985,1,168.15,0
+165,"Gregory, Frederick D.","Gregory, Frederick D.",94,M,1941,2,Mil,1978,3,455,0
+166,"Lind, Don L.","Lind, Don L.",95,M,1930,2,Mil,1966,1,168,0
+167,"Lodewijk, van der Berg","Lodewijk, van der Berg",96,M,1932,2,Civ,1983,1,168.525,0
+168,"Wang, Taylor Gun-Jin",王赣骏,97,M,1940,2,Civ,1984,1,168.525,0
+169,"Creighton, John O.","Creighton, John O.",98,M,1943,2,Mil,1978,3,404,0
+170,"Nagel, Steven R.","Nagel, Steven R.",99,M,1946,2,Mil,1978,4,522,0
+171,"Lucid, Shannon W.","Lucid, Shannon W.",100,F,1943,2,Civ,1978,5,5353,0
+172,"Baudry, Patrick","Baudry, Patrick",2,M,1946,5,Mil,1980,1,169.63,0
+173,"Al-saud, Sultan bin Salman",,1,M,1956,15,Civ,1985,1,170,0
+174,"Bridges, Roy D., Jr.","Bridges, Roy D., Jr.",101,M,1943,2,Mil,1980,1,190,0
+175,"Henize, Karl G.","Henize, Karl G.",102,M,1926,2,Civ,1967,1,190.75,0
+176,"England, Anthony W.","England, Anthony W.",103,M,1942,2,Civ,1967,1,190,0
+177,"Acton, Loren Wilbur","Acton, Loren Wilbur",104,M,1936,2,Civ,1978,1,190.94,0
+178,"Bartoe, John-David Francis","Bartoe, John-David Francis",105,M,1944,2,Civ,1978,1,190.94,0
+179,"Covey, Richard O.","Covey, Richard O.",106,M,1946,2,Mil,1978,4,645,0
+180,"Lounge, John M.","Lounge, John M.",107,M,1946,2,Civ,1980,3,482,0
+181,"Fisher, William F.","Fisher, William F.",108,M,1946,2,Civ,1980,1,170,11.76
+182,"Vasyutin, Vladimir",Владимир Владимирович Васютин,59,M,1952,1,Mil,1976,1,1557.87,0
+183,"Volkov, Alexander",Александр Александрович Волков,60,M,1948,1,Mil,1976,3,9395.87,10.2
+184,"Grabe, Ronald J.","Grabe, Ronald J.",109,M,1945,2,Mil,1980,4,626.73,0
+185,"Hilmers, David C.","Hilmers, David C.",110,M,1950,2,Mil,1980,4,493,0
+186,"Pailes, William Arthur","Pailes, William Arthur",111,M,1936,2,Mil,1982,1,98.11,0
+187,"Dunbar, Bonnie J.","Dunbar, Bonnie J.",112,F,1949,2,Civ,1980,5,1208,0
+188,"Furrer, Reinhard Alfred","Furrer, Reinhard Alfred",2,M,1940,8,Civ,1982,1,168.73,0
+189,"Messerschmid, Ernst Willi","Messerschmid, Ernst Willi",3,M,1945,8,Mil,1982,1,168.73,0
+190,"Ockels, Wubbo Johannes","Ockels, Wubbo Johannes",1,M,1946,16,Civ,1978,1,168.73,0
+191,"O'Connor, Bryan D.","O'Connor, Bryan D.",113,M,1946,2,Mil,1980,2,386,0
+192,"Ross, Jerry L.","Ross, Jerry L.",114,M,1948,2,Mil,1980,7,1393,58.53
+193,"Cleave, Mary L.","Cleave, Mary L.",115,F,1947,2,Civ,1980,2,262,0
+194,"Spring, Sherwood C.","Spring, Sherwood C.",116,M,1944,2,Mil,1980,1,165,12.17
+195,"Neri Vela, Rodolfl",,1,M,1952,17,Civ,1985,1,165.67,0
+196,"Bolden, Charles F., Jr.","Bolden, Charles F., Jr.",117,M,1946,2,Mil,1980,4,680,0
+197,"Chang-Diaz, Franklin R.","Chang-Diaz, Franklin R.",118,M,1950,2,Civ,1980,7,1601,19.52
+198,"Cenker, Robert Joseph","Cenker, Robert Joseph",119,M,1948,2,Civ,1985,1,146.42,0
+199,"Nelson, William Clarence","Nelson, William Clarence",120,M,1942,2,Civ,1984,1,6.03,0
+200,"Smith, Michael John","Smith, Michael John",121,M,1945,2,Mil,1980,1,0.61,0
+201,"Jarvis, Gregory Bruce","Jarvis, Gregory Bruce",122,M,1944,2,Civ,1984,1,0.61,0
+202,"McAuliffe, Sharon Christa Corrigan","McAuliffe, Sharon Christa Corrigan",123,F,1948,2,Civ,1985,1,0.61,0
+203,"Laveykin, Aleksandr",Александр Иванович Лавейкин,61,M,1951,1,Civ,1978,1,4179.42,8.8
+204,"Viktorenko, Aleksandr",Александр Степанович Викторенко,62,M,1947,1,Mil,1978,4,11737.55,19.65
+205,"Faris, M. Achmed",,1,M,1951,18,Mil,1985,1,191,0
+206,"Manarov, Musa",Муса Хираманович Манаров,63,M,1951,1,Mil,1978,2,12984.47,34.38
+207,"Levchenko, Anatoli",Левченко Анатолий Семёнович,64,M,1941,1,Mil,1977,1,189.97,0
+208,"Solovyev, Anatoly",Анатолий Яковлевич Соловьёв,65,M,1948,1,Mil,1976,5,15624.03,78.8
+209,"Aleksandrov, Aleksandr",Александър Панайотов Александров,2,M,1951,9,Mil,1978,1,47,0
+210,"Polyakov, Valeri",Валерий Владимирович Поляков,66,M,1942,1,Civ,1972,2,16288.53,0
+211,"Mohmand, Abdul Ahad",,1,M,1959,19,Mil,1988,1,212,0
+212,"Krikalev, Sergei",Сергей Константинович Крикалёв,67,M,1958,1,Civ,1985,6,19281.65,41.43
+213,"Gardner, Guy S.","Gardner, Guy S.",124,M,1948,2,Mil,1980,2,320.16,0
+214,"Shepherd, William M.","Shepherd, William M.",125,M,1949,2,Mil,1984,4,3721,0
+215,"Blaha, John E.","Blaha, John E.",126,M,1942,2,Mil,1980,5,3864,0
+216,"Springer, Robert C.","Springer, Robert C.",127,M,1942,2,Mil,1980,2,237,0
+217,"Bagian, James P.","Bagian, James P.",128,M,1952,2,Civ,1980,2,338,0
+218,"Lee, Mark C.","Lee, Mark C.",129,M,1952,2,Mil,1984,4,789.76,26.02
+219,"Richards, Richard N.","Richards, Richard N.",130,M,1946,2,Mil,1980,4,813,0
+220,"Adamson, James C.","Adamson, James C.",131,M,1946,2,Mil,1984,2,334,0
+221,"Brown, Mark N.","Brown, Mark N.",132,M,1951,2,Mil,1984,2,249,0
+222,"McCulley, Michael J.","McCulley, Michael J.",133,M,1943,2,Mil,1984,1,119,0
+223,"Baker, Ellen S.","Baker, Ellen S.",134,F,1953,2,Civ,1984,3,686,0
+224,"Carter, Manley Lanier, Jr.","Carter, Manley Lanier, Jr.",135,M,1947,2,Mil,1984,1,120,0
+225,"Thornton, Kathryn C.","Thornton, Kathryn C.",136,F,1952,2,Civ,1984,4,975.23,21.18
+226,"Wetherbee, James D.","Wetherbee, James D.",137,M,1952,2,Mil,1984,6,1594.38,0
+227,"Ivins, Marsha S.","Ivins, Marsha S.",138,F,1951,2,Civ,1984,5,1341.8,0
+228,"Low, G. David","Low, G. David",139,M,1956,2,Civ,1984,3,713,5.83
+229,"Balandin, Aleksandr",Александр Николаевич Баландин,68,M,1953,1,Civ,1978,1,4297.28,10.78
+230,"Casper, John H.","Casper, John H.",140,M,1943,2,Mil,1984,4,825,0
+231,"Thuot, Pierre J.","Thuot, Pierre J.",141,M,1955,2,Mil,1985,3,654.85,17.7
+232,"Manakov, Gennadi",Геннадий Михайлович Манаков,69,M,1950,1,Mil,1985,2,7437.3,12.72
+233,"Cabana, Robert D.","Cabana, Robert D.",142,M,1949,2,Mil,1985,4,910,0
+234,"Melnick, Bruce E.","Melnick, Bruce E.",143,M,1949,2,Mil,1987,2,311,0
+235,"Akers, Thomas D.","Akers, Thomas D.",144,M,1951,2,Mil,1987,4,814,30.15
+236,"Culbertson, Frank L., Jr.","Culbertson, Frank L., Jr.",145,M,1949,2,Mil,1984,3,3447,5.07
+237,"Meade, Carl J.","Meade, Carl J.",146,M,1950,2,Mil,1985,3,710,6.85
+238,"Gemar, Charles D.","Gemar, Charles D.",147,M,1955,2,Mil,1985,3,581.5,0
+239,"Durrance, Samuel Thornton","Durrance, Samuel Thornton",148,M,1943,2,Civ,1984,2,614.69,0
+240,"Parise, Ronald Anthony","Parise, Ronald Anthony",149,M,1951,2,Civ,1984,2,614.69,0
+241,"Afanasyev, Viktor Mikhaylovich",Виктор Михайлович Афанасьев,70,M,1948,1,Mil,1985,4,13338.55,38.05
+242,"Akiyama, Toyohiro",秋山豊寛,1,M,1942,20,Civ,1989,1,189.9,0
+243,"Cameron, Kenneth D.","Cameron, Kenneth D.",150,M,1949,2,Mil,1984,3,561,0
+244,"Godwin, Linda M.","Godwin, Linda M.",151,F,1952,2,Civ,1985,4,917.99,10.23
+245,"Apt, Jerome","Apt, Jerome",152,M,1949,2,Civ,1985,4,847,10.82
+246,"Hammond, L. Blaine, Jr.","Hammond, L. Blaine, Jr.",153,M,1952,2,Mil,1984,2,461,0
+247,"Harbaugh, Gregory J.","Harbaugh, Gregory J.",154,M,1956,2,Civ,1987,4,816,18.49
+248,"McMonagle, Donald R.","McMonagle, Donald R.",155,M,1952,2,Mil,1987,3,604,0
+249,"Veach, Charles Lacy","Veach, Charles Lacy",155,M,1944,2,Civ,1984,2,436.3,0
+250,"Hieb, Richard J.","Hieb, Richard J.",157,M,1955,2,Civ,1985,3,765,17.7
+251,"Artsebarsky, Anatoly",Анатолий Павлович Арцебарский,71,M,1956,1,Mil,1985,1,3471.35,32.28
+252,Helen Sharman,Helen Sharman,1,F,1963,21,Civ,1989,1,189.22,0
+253,"Gutierrez, Sidney M.","Gutierrez, Sidney M.",158,M,1951,2,Mil,1984,2,487,0
+254,"Jernigan, Tamara E.","Jernigan, Tamara E.",159,F,1959,2,Civ,1985,5,1511,7.92
+255,"Gaffney, Andrew","Gaffney, Andrew",160,M,1946,2,Civ,1984,1,218,0
+256,"Hughes-Fulford, Millie Elizabeth","Hughes-Fulford, Millie Elizabeth",161,F,1945,2,Civ,1983,1,218.37,0
+257,"Baker, Michael A.","Baker, Michael A.",162,M,1953,2,Mil,1985,4,965,0
+258,"Reightler, Kenneth S., Jr.","Reightler, Kenneth S., Jr.",163,M,1951,2,Mil,1987,2,312,0
+259,"Aubakirov, Toktar",Тоқтар Оңғарбайұлы Әубәкіров,72,M,1946,1,Mil,1991,1,190.2,0
+260,"Viehbock, Franz","Viehbock, Franz",1,M,1960,22,Civ,1989,1,190.2,0
+261,"Henricks, Terence T.","Henricks, Terence T.",164,M,1952,2,Mil,1985,4,190.75,0
+262,"Voss, James S.","Voss, James S.",165,M,1949,2,Mil,1987,5,1000,23.08
+263,"Runco, Mario, Jr.","Runco, Mario, Jr.",166,M,1952,2,Mil,1987,3,549,4.47
+264,"Hennen, Thomas John","Hennen, Thomas John",167,M,1952,2,Mil,1988,1,167.11,0
+265,"Oswald, Stephen S.","Oswald, Stephen S.",168,M,1951,2,Mil,1985,3,814,0
+266,"Readdy, William F.","Readdy, William F.",169,M,1952,2,Civ,1987,3,672,0
+267,"Bondar, Roberta Lynn","Bondar, Roberta Lynn",2,F,1945,14,Civ,1983,1,193.77,0
+268,"Kaleri, Aleksandr",Александр Юрьевич Калери,73,M,1956,1,Civ,1984,5,18462.62,23.58
+269,"Flade, Klaus-Dietrich","Flade, Klaus-Dietrich",4,M,1952,8,Mil,1990,1,189.95,0
+270,"Duffy, Brian","Duffy, Brian",170,M,1953,2,Mil,1985,4,976,0
+271,"Foale, C. Michael","Foale, C. Michael",171,M,1957,2,Civ,1987,6,8976,22.73
+272,"Frimout, David","Frimout, Dirk Dries david",1,M,1941,23,Civ,1985,1,214.15,0
+273,"Chilton, Kevin P.","Chilton, Kevin P.",172,M,1954,2,Mil,1987,3,704,0
+274,"Bowersox, Kenneth D.","Bowersox, Kenneth D.",173,M,1956,2,Mil,1987,5,5304,13.28
+275,"DeLucas, Lawrence James","DeLucas, Lawrence James",174,M,1950,2,Civ,1990,1,331.53,0
+276,"Trinh, Eugene Huu-Chau","Trinh, Eugene Huu-Chau",175,M,1950,2,Civ,1983,1,331.53,0
+277,"Avdeyev, Sergei",Сергей Васильевич Авдеев,74,M,1956,1,Civ,1987,3,17942.23,41
+278,"Tognini, Michel","Tognini, Michel",3,M,1949,5,Mil,1985,2,449.77,0
+279,"Allen, Andrew M.","Allen, Andrew M.",176,M,1955,2,Mil,1987,3,904,0
+280,"Nicollier, Claude","Nicollier, Claude",1,M,1944,24,Civ,1978,4,1184.07,8.16
+281,Franco Malerba,Franco Malerba,1,M,1946,25,Civ,1998,1,191.25,0
+282,"Brown, Curtis L., Jr.","Brown, Curtis L., Jr.",177,M,1956,2,Mil,1987,6,1381,0
+283,"Davis, Nancy Jan","Davis, Nancy Jan",178,F,1953,2,Civ,1987,3,673,0
+284,"Jemison, Mae C.","Jemison, Mae C.",179,F,1956,2,Civ,1987,1,190.5,0
+285,"Mohri, Mamoru",毛利衛,2,M,1948,20,Civ,1985,2,190.5,0
+286,Steven MacLean,Steven MacLean,3,M,1954,14,Mil,1983,2,520.03,7.18
+287,"Clifford, Michael R.","Clifford, Michael R.",180,M,1952,2,Mil,1990,3,666,6.03
+288,"Helms, Susan J.","Helms, Susan J.",181,F,1958,2,Mil,1990,5,5054,8.93
+289,"Poleshchuk, Aleksandr",Александр Федорович Полещук,75,M,1953,1,Mil,1989,1,4296.72,9.97
+290,"Cockrell, Kenneth D.","Cockrell, Kenneth D.",182,M,1950,2,Civ,1990,5,1560,0
+291,"Ochoa, Ellen","Ochoa, Ellen",183,F,1958,2,Civ,1990,4,978,0
+292,"Precourt, Charles J., Jr.","Precourt, Charles J., Jr.",184,M,1955,2,Mil,1990,4,932,0
+293,"Harris, Bernard A., Jr.","Harris, Bernard A., Jr.",185,M,1956,2,Civ,1990,2,437,4.65
+294,"Walter, Ulrich","Walter, Ulrich",5,M,1954,8,Civ,1987,1,239.67,0
+295,"Schlegel, Hans","Schlegel, Hans",6,M,1951,8,Civ,1987,2,546,6.75
+296,"Currie, Nancy J.","Currie, Nancy J.",186,F,1958,2,Mil,1990,4,999,0
+297,"Wisoff, Peter J. K.","Wisoff, Peter J. K.",187,M,1958,2,Civ,1990,4,1064.15,19.88
+298,"Voss, Janice E.","Voss, Janice E.",188,F,1956,2,Civ,1990,5,1199.81,0
+299,"Tsibliyev, Vasili",Василий Васильевич Циблиев,76,M,1954,1,Mil,1987,2,9159.87,19.18
+300,"Haigneré, Jean-Pierre","Haigneré, Jean-Pierre",4,M,1948,5,Mil,1985,2,5028,6.32
+301,"Newman, James H.","Newman, James H.",189,M,1956,2,Civ,1990,4,1032,43.03
+302,"Bursch, Daniel W.","Bursch, Daniel W.",190,M,1957,2,Mil,1990,4,5448,11.77
+303,"Walz, Carl E.","Walz, Carl E.",191,M,1955,2,Mil,1990,4,5533.06,18.91
+304,"Searfoss, Richard A.","Searfoss, Richard A.",192,M,1956,2,Mil,1990,3,938,0
+305,"McArthur, William S., Jr.","McArthur, William S., Jr.",193,M,1951,2,Mil,1990,4,5396,24.35
+306,"Wolf, David A.","Wolf, David A.",194,M,1956,2,Civ,1990,4,4040.95,41.95
+307,"Fettman, Martin Joseph","Fettman, Martin Joseph",195,M,1956,2,Civ,1992,1,336.47,0
+308,Yuri Vladimirovich Usachyov,Юрий Владимирович Усачёв,77,M,1957,1,Mil,1989,4,13270.42,31.15
+309,"Sega, Ronald M.","Sega, Ronald M.",196,M,1952,2,Civ,1990,2,420,0
+310,"Jones, Thomas D.","Jones, Thomas D.",197,M,1955,2,Civ,1990,4,1272.82,19.82
+311,"Malenchenko, Yuri",Юрий Иванович Маленченко,78,M,1961,1,Mil,1987,6,16872.47,34.83
+312,"Musabayev, Talgat",Талғат Аманкелдіұлы Мұсабаев,79,M,1951,1,Mil,1990,3,8193.8,42.6
+313,"Halsell, James D., Jr.","Halsell, James D., Jr.",198,M,1956,2,Mil,1990,5,1257,0
+314,"Chiao, Leroy","Chiao, Leroy",199,M,1960,2,Civ,1990,4,5503,36.09
+315,"Thomas, Donald A.","Thomas, Donald A.",200,M,1955,2,Civ,1990,4,1038,0
+316,"Mukai, Chiaki",向井千秋,3,F,1952,20,Civ,1985,2,568,0
+317,"Linenger, Jerry M.","Linenger, Jerry M.",210,M,1955,2,Mil,1992,2,3218.83,0
+318,"Wilcutt, Terrence W.","Wilcutt, Terrence W.",202,M,1949,2,Mil,1990,4,1008,0
+319,"Smith, Steven L.","Smith, Steven L.",203,M,1958,2,Civ,1992,4,960,49.8
+320,"Kondakova, Yelena V.",Елена Владимировна Кондакова,80,F,1957,1,Civ,1989,2,4282.68,0
+321,"Tanner, Joseph R.","Tanner, Joseph R.",204,M,1950,2,Civ,1992,4,1045.25,46.48
+322,"Clervoy, Jean-François","Clervoy, Jean-François",5,M,1958,5,Mil,1985,3,675.1,0
+323,"Parazynski, Scott E.","Parazynski, Scott E.",205,M,1961,2,Civ,1992,5,1379,47.08
+324,"Collins, Eileen M.","Collins, Eileen M.",206,F,1956,2,Mil,1990,4,872,0
+325,"Gregory, William G.","Gregory, William G.",207,M,1957,2,Mil,1990,1,399,0
+326,"Grunsfeld, John M.","Grunsfeld, John M.",208,M,1958,2,Civ,1992,5,1405,59.5
+327,"Lawrence, Wendy B.","Lawrence, Wendy B.",209,F,1959,2,Mil,1992,4,1226,0
+328,"Dezhurov, Vladimir N.",Владимир Николаевич Дежуров,81,M,1962,1,Mil,1987,2,5861.47,36.87
+329,"Budarin, Nikolai",Николай Михайлович Бударин,82,M,1953,1,Civ,1989,3,10657.42,46.02
+330,Kregel Kevin R.,Kregel Kevin R.,210,M,1956,2,Civ,1992,4,1266.35,0
+331,"Weber, Mary E.","Weber, Mary E.",211,F,1962,2,Civ,1992,2,450.5,0
+332,"Gidzenko, Yuri",Юрий Павлович Гидзенко,83,M,1962,1,Mil,1987,3,7918.73,3.1
+333,"Reiter, Thomas","Reiter, Thomas",7,M,1958,8,Mil,1992,2,8405.58,14.25
+334,"Gernhardt, Michael L.","Gernhardt, Michael L.",212,M,1956,2,Civ,1992,4,1039.05,23.26
+335,"Rominger, Kent V.","Rominger, Kent V.",213,M,1956,2,Mil,1992,5,1608,0
+336,"Coleman, Catherine G.","Coleman, Catherine G.",214,F,1960,2,Mil,1992,3,500,0
+337,"Lopez-Alegria, Michael E.","Lopez-Alegria, Michael E.",215,M,1958,2,Mil,1992,4,6190.67,67.67
+338,"Leslie, Fred Weldon","Leslie, Fred Weldon",216,M,1951,2,Civ,1994,1,382.02,0
+339,"Sacco, Albert Jr.","Sacco, Albert Jr.",217,M,1949,2,Civ,1994,1,382.02,0
+340,Chris Hadfield,Chris Hadfield,4,M,1959,14,Mil,1992,3,4191.82,14.83
+341,"Jett, Brent W.","Jett, Brent W.",218,M,1958,2,Mil,1992,4,1002.02,0
+342,"Scott, Winston E.","Scott, Winston E.",219,M,1950,2,Mil,1992,2,590,19.38
+343,"Wakata, Koichi",若田光一,4,M,1963,20,Civ,1992,4,8336.5,0
+344,"Barry, Daniel T.","Barry, Daniel T.",220,M,1953,2,Civ,1992,3,734,25.82
+345,"Onufrienko, Yuri",Юрий Иванович Онуфриенко,84,M,1961,1,Mil,1989,2,9350.77,42.53
+346,"Horowitz, Scott J.","Horowitz, Scott J.",221,M,1957,2,Mil,1992,4,1138.68,0
+347,"Cheli, Maurizio","Cheli, Maurizio",2,M,1959,25,Mil,1992,1,377.68,0
+348,"Guidoni, Umberto","Guidoni, Umberto",3,M,1954,25,Civ,1996,2,663.17,0
+349,"Thomas, Andrew S. W.","Thomas, Andrew S. W.",222,M,1951,26,Civ,1992,4,4264,6.35
+350,"Linnehan, Richard M.","Linnehan, Richard M.",223,M,1957,2,Civ,1992,4,1427,42.2
+351,"Brady, Charles E., Jr.","Brady, Charles E., Jr.",224,M,1951,2,Mil,1992,1,405,0
+352,"Favier, Jean-Jacques","Favier, Jean-Jacques",6,M,1949,5,Civ,1985,1,405.8,0
+353,Robert Thirsk,Robert Thirsk,5,M,1953,14,Civ,1983,2,4917.8,0
+354,"Korzun, Valery",Валерий Григорьевич Корзун,85,M,1953,1,Mil,1987,2,9159.68,22.33
+355,"André-Deshays, Claudie (Haigneré)","André-Deshays, Claudie (Haigneré)",7,F,1957,5,Civ,1985,2,614.37,0
+356,"Lazutkin, Aleksandr",Александр Иванович Лазуткин,86,M,1957,1,Civ,1992,1,4438.12,0
+357,"Ewald, Reinhold","Ewald, Reinhold",8,M,1956,8,Civ,1990,1,472.57,0
+358,"Kilrain-Still, Susan L.","Kilrain-Still, Susan L.",225,F,1961,2,Mil,1995,2,471,0
+359,"Crouch, Roger Keith","Crouch, Roger Keith",226,M,1940,2,Civ,1995,2,4576.07,0
+360,"Linteris, Gregory Thomas","Linteris, Gregory Thomas",227,M,1957,2,Civ,1995,2,4576.07,0
+361,"Noriega, Carlos I.","Noriega, Carlos I.",228,M,1959,2,Mil,1995,2,481,19.33
+362,"Lu, Edward T.","Lu, Edward T.",229,M,1963,2,Civ,1995,3,4943.3,6.23
+363,"Vinogradov, Pavel",Павел Владимирович Виноградов,87,M,1953,1,Civ,1992,3,13126.53,38.4
+364,"Curbeam, Robert L., Jr.","Curbeam, Robert L., Jr.",230,M,1962,2,Mil,1994,3,902,45.55
+365,"Robinson, Stephen K.","Robinson, Stephen K.",231,M,1955,2,Civ,1994,4,1156,20.08
+366,Bjarni Tryggvason,Bjarni Tryggvason,6,M,1945,14,Civ,1983,1,284,0
+367,"Bloomfield, Michael J.","Bloomfield, Michael J.",232,M,1959,2,Mil,1994,3,779,0
+368,"Lindsey, Steven W.","Lindsey, Steven W.",233,M,1960,2,Mil,1995,5,1508,0
+369,"Chawla, Kalpana","Chawla, Kalpana",234,F,1962,2,Civ,1994,2,758,0
+370,"Doi, Takao",土井隆雄,5,M,1954,20,Civ,1985,2,763.6,12.7
+371,"Kadenyuk, Leonid",Леонід Костянтинович Каденюк,1,M,1951,27,Civ,1976,1,376.57,0
+372,"Edwards, Joe F., Jr.","Edwards, Joe F., Jr.",235,M,1958,2,Mil,1995,1,211,0
+373,"Reilly, James F.","Reilly, James F.",236,M,1954,2,Civ,1994,3,853,30.72
+374,"Anderson, Michael P.","Anderson, Michael P.",237,M,1959,2,Mil,1994,2,593,0
+375,"Sharipov, Salizhan",Салижан Шакирович Шарипов,88,M,1964,1,Mil,1990,2,4838.83,10
+376,"Eyharts, Léopold","Eyharts, Léopold",8,M,1957,5,Mil,1990,2,1653.52,0
+377,"Altman, Scott D.","Altman, Scott D.",238,M,1959,2,Mil,1994,4,1224,0
+378,"Hire, Kathryn P.","Hire, Kathryn P.",239,F,1959,2,Mil,1995,2,711,0
+379,"Williams, Dafydd Rhys","Williams, Dafydd Rhys",7,M,1954,14,Civ,1992,2,676.85,17.78
+380,"Buckey, Jay Clark Jr.","Buckey, Jay Clark Jr.",240,M,1956,2,Civ,1991,1,382.31,0
+381,"Pawelczyk, James Anthony","Pawelczyk, James Anthony",241,M,1960,2,Civ,1996,1,382.31,0
+382,"Gorie, Dominic L.","Gorie, Dominic L.",242,M,1957,2,Mil,1995,4,1176.1,0
+383,"Kavandi, Janet L.","Kavandi, Janet L.",243,F,1957,2,Civ,1995,3,810,0
+384,"Padalka, Gennady",Геннадий Иванович Падалка,89,M,1958,1,Mil,1989,5,21083.52,37.95
+385,"Baturin, Yuri",Юрий Михайлович Батурин,90,M,1949,1,Civ,1997,2,473.75,0
+387,"Sturckow, Frederick W.","Sturckow, Frederick W.",244,M,1961,2,Mil,1995,4,1237,0
+388,"Bella, Ivan","Bella, Ivan",1,M,1964,28,Mil,1998,1,190,0
+389,"Husband, Rick D.","Husband, Rick D.",245,M,1957,2,Mil,1995,2,617,0
+390,"Payette, Julie","Payette, Julie",8,F,1963,14,Civ,1992,2,611.98,0
+391,"Tokarev, Valeri",Валерий Иванович Токарев,91,M,1952,1,Mil,1989,2,4791.1,11.08
+392,"Ashby, Jeffrey S.","Ashby, Jeffrey S.",246,M,1954,2,Mil,1995,3,664,0
+393,"Kelly, Scott J.","Kelly, Scott J.",247,M,1964,2,Mil,1996,4,12490,18.33
+394,"Thiele, Gerhard","Thiele, Gerhard",9,M,1953,8,Civ,1987,1,269.65,0
+395,"Zalyotin, Sergei",Сергей Викторович Залётин,92,M,1962,1,Mil,1990,2,2008.6,5.05
+396,"Williams, Jeffrey N.","Williams, Jeffrey N.",248,M,1958,2,Mil,1996,4,12752,31.92
+397,"Mastracchio, Richard A.","Mastracchio, Richard A.",249,M,1960,2,Civ,1996,4,5460,53.07
+398,"Burbank, Daniel C.","Burbank, Daniel C.",250,M,1961,2,Mil,1996,3,4534,7.18
+399,"Morukov, Boris",Борис Владимирович Моруков,93,M,1950,1,Civ,1989,1,283.2,0
+400,"Melroy, Pamela A.","Melroy, Pamela A.",251,F,1961,2,Mil,1995,3,930,0
+401,"Polansky, Mark L.","Polansky, Mark L.",252,M,1956,2,Civ,1996,3,993,0
+402,"Kelly, James M.","Kelly, James M.",253,M,1959,2,Mil,1996,2,640,0
+403,"Richards, Paul W.","Richards, Paul W.",254,M,1964,2,Civ,1996,1,307,6.35
+404,"Phillips, John L.","Phillips, John L.",255,M,1951,2,Civ,1996,3,4872,4.78
+405,"Lonchakov, Yuri",Юрий Валентинович Лончаков,94,M,1965,1,Mil,1997,3,4818.65,10.28
+406,"Tito, Dennis Anthony","Tito, Dennis Anthony",256,M,1940,2,Civ,2000,1,190.13,0
+407,"Hobaugh, Charles O.","Hobaugh, Charles O.",257,M,1961,2,Mil,1996,3,871.78,0
+408,"Forrester, Patrick G.","Forrester, Patrick G.",258,M,1957,2,Mil,1996,3,950,25.5
+409,"Tyurin, Mikhail",Михаил Владиславович Тюрин,95,M,1960,1,Mil,1994,3,12770.85,25.52
+410,"Kozeyev, Konstantin",Константин Мирович Козеев,96,M,1967,1,Civ,1996,1,235.98,0
+411,"Kelly, Mark E.","Kelly, Mark E.",259,M,1964,2,Mil,1996,4,1297,0
+412,"Tani, Daniel M.","Tani, Daniel M.",260,M,1961,2,Civ,1996,2,3163,39.18
+413,"Carey, Duane G.","Carey, Duane G.",261,M,1957,2,Mil,1996,1,262,0
+414,"Massimino, Michael J.","Massimino, Michael J.",262,M,1962,2,Civ,1996,2,517.8,30.74
+415,"Frick, Stephen N.","Frick, Stephen N.",263,M,1964,2,Mil,1996,2,565,0
+416,"Walheim, Rex J.","Walheim, Rex J.",264,M,1962,2,Mil,1996,3,872.51,56.73
+417,"Morin, Lee M.","Morin, Lee M.",265,M,1952,2,Mil,1996,1,259,14.12
+418,"Vittori, Roverto","Vittori, Roverto",4,M,1964,25,Mil,1998,3,851.65,0
+419,"Shuttleworth, M. Richard","Shuttleworth, M. Richard",1,M,1973,29,Civ,2001,1,237,0
+420,"Lockhart, Paul S.","Lockhart, Paul S.",266,M,1956,2,Mil,1996,2,663.38,0
+421,"Perrin, Philippe","Perrin, Philippe",9,M,1963,5,Mil,1990,1,332.58,19.52
+422,"Whitson, Peggy A.","Whitson, Peggy A.",267,F,1960,2,Civ,1996,3,15982,60.31
+423,"Treshchov, Sergei",Сергей Евгеньевич Трещёв,97,M,1958,1,Civ,1992,1,4438.25,5.35
+424,"Magnus, Sandra H.","Magnus, Sandra H.",268,F,1964,2,Civ,1996,3,3776,0
+425,"Sellers, Piers J.","Sellers, Piers J.",269,M,1955,30,Civ,1996,3,839,41.17
+426,"Yurchikhin, Fyodor",Фёдор Николаевич Юрчихин,98,M,1959,1,Civ,1997,5,16147,59.43
+427,"De Winne, Frank","De Winne, Frank",2,M,1961,23,Mil,1998,2,4769.58,0
+428,"Herrington, John B.","Herrington, John B.",270,M,1958,2,Mil,1996,1,330,19.92
+429,"Pettit, Donald R.","Pettit, Donald R.",271,M,1955,2,Civ,1996,3,8872.5,13.28
+430,"McCool, William C.","McCool, William C.",272,M,1961,2,Mil,1996,1,382,0
+431,"Brown, David M.","Brown, David M.",273,M,1956,2,Mil,1996,1,382,0
+432,"Clark, Laurel B.","Clark, Laurel B.",274,F,1961,2,Mil,1996,1,382,0
+433,"Ramon, Ilan",אילן רמון,1,M,1954,31,Mil,1996,1,382.33,0
+434,"Yang, Liwei",杨利伟,1,M,1965,32,Mil,2003,1,21,0
+435,"Fincke, E. Michael","Fincke, E. Michael",275,M,1967,2,Mil,1996,3,9159,48.61
+436,"Kuipers, Andre","Kuipers, Andre",2,M,1958,16,Civ,1998,2,4888,0
+437,"Shargin, Yuri",Юрий Георгиевич Шаргин,99,M,1960,1,Mil,1996,1,237.5,0
+438,"Noguchi, Soichi",野口聡一,6,M,1965,20,Civ,1996,2,4251.1,20.08
+439,"Camarda, Charles J.","Camarda, Charles J.",276,M,1952,2,Civ,1996,1,333,0
+440,"Olsen, Gregory Hammond","Olsen, Gregory Hammond",277,M,1945,2,Civ,2004,1,237.29,0
+441,"Fei, Junlong",费俊龙,2,M,1966,32,Mil,2005,1,115,0
+442,Nie Haisheng,聂海胜,3,M,1964,32,Mil,2005,2,466,0
+443,"Pontes, Marcos Cesar","Pontes, Marcos Cesar",1,M,1963,33,Mil,1998,1,237.28,0
+444,"Fossum, Michael E.","Fossum, Michael E.",278,M,1957,2,Civ,1998,3,4651,48.53
+445,"Nowak, Lisa M.","Nowak, Lisa M.",279,F,1963,2,Mil,1996,1,306,0
+446,"Wilson, Stephanie D.","Wilson, Stephanie D.",280,F,1966,2,Civ,1996,3,1031.77,0
+447,"Ferguson, Christopher J.","Ferguson, Christopher J.",281,M,1961,2,Mil,1998,3,672,0
+448,"Stefanyshyn-Piper, Heidemarie M.","Stefanyshyn-Piper, Heidemarie M.",282,F,1963,2,Mil,1996,2,648,33.7
+449,"Ansari, Anousheh",انوشه انصاری,283,F,1966,2,Civ,2006,1,261.525,0
+450,"Oefelein, William A.","Oefelein, William A.",284,M,1965,2,Mil,1998,1,308,0
+451,"Patrick, Nicholas J. M.","Patrick, Nicholas J. M.",285,M,1964,30,Civ,1998,2,638,18.23
+452,Christer Fuglesang,Christer Fuglesang,1,M,1957,34,Civ,1992,2,641.63,31.9
+453,"Higginbotham, Joan E.","Higginbotham, Joan E.",286,F,1964,2,Civ,1996,1,308,0
+454,"Williams, Sunita L.","Williams, Sunita L.",287,F,1965,2,Mil,1998,1,7722,50.67
+455,"Kotov, Oleg",Олег Валериевич Котов,100,M,1965,1,Mil,1996,3,12629.03,36.7
+456,"Simonyi, Charles (Karoly)","Simonyi, Charles (Karoly)",288,M,1948,2,Civ,2006,2,638.77,0
+457,"Archambault, Lee J.","Archambault, Lee J.",289,M,1960,2,Mil,1998,2,639.5,0
+458,"Swanson, Steven R.","Swanson, Steven R.",290,M,1960,2,Civ,1998,3,4646.85,27.9
+459,"Olivas, John D.","Olivas, John D.",291,M,1965,2,Civ,1998,2,668,34.47
+460,"Anderson, Clayton C.","Anderson, Clayton C.",292,M,1959,2,Civ,1998,2,4046,38.46
+461,"Caldwell, Tracy E.","Caldwell, Tracy E.",293,F,1969,2,Civ,1998,2,4526,22.81
+462,"Drew, Alvin Benjamin","Drew, Alvin B.",294,M,1962,2,Mil,2000,2,613,12.8
+463,"Morgan, Barbara R.","Morgan, Barbara R.",295,F,1951,2,Civ,1998,1,305,0
+464,"Shukor, Sheikh Muszaphar","Shukor, Sheikh Muszaphar",1,M,1972,35,Civ,2006,1,261.23,0
+465,"Zamka, George D.","Zamka, George D.",296,M,1962,2,Mil,1998,2,692.53,0
+466,"Wheelock, Douglas H.","Wheelock, Douglas H.",297,M,1960,2,Mil,1998,2,4281.57,41.5
+467,"Nespoli, Paolo A.","Nespoli, Paolo A.",5,M,1957,25,Mil,1998,3,7514.61,0
+468,"Poindexter, Alan G.","Poindexter, Alan G.",298,M,1961,2,Mil,1998,2,669,0
+469,"Melvin, Leland D.","Melvin, Leland D.",299,M,1964,2,Civ,1998,2,565,0
+470,"Love, Stanley G.","Love, Stanley G.",300,M,1965,2,Civ,1998,1,306,15.38
+471,"Johnson, Gregory H.","Johnson, Gregory H.",301,M,1962,2,Mil,1998,2,755.83,0
+472,"Behnken, Robert L.","Behnken, Robert L.",302,M,1970,2,Mil,2000,2,708,37.54
+473,"Foreman, Michael J.","Foreman, Michael J.",303,M,1957,2,Mil,1998,2,637,32.31
+474,"Reisman, Garrett E.","Reisman, Garrett E.",304,M,1968,2,Civ,1998,2,2473,21.2
+475,"Volkov, Sergei",Сергей Александрович Волков,101,M,1973,1,Mil,1997,3,12786.32,23.28
+476,"Kononenko, Oleg D.",Олег Дмитриевич Кононенко,102,M,1964,1,Mil,1996,4,16081,32.2
+477,"Yi, Soyeon (Lee So-hyun)",이소연,1,F,1978,36,Civ,2006,1,261,0
+478,"Ham, Kenneth T.","Ham, Kenneth T.",305,M,1964,2,Mil,1998,2,612,0
+479,"Nyberg, Karen L.","Nyberg, Karen L.",306,F,1969,2,Civ,2000,2,4320,0
+480,"Garan, Ronald J., Jr.","Garan, Ronald J., Jr.",307,M,1961,2,Mil,2000,2,4272,27
+481,"Hoshide, Akihiko",星出彰彦,7,M,1968,20,Civ,1999,2,3377.5,21.38
+482,"Chamitoff, Gregory","Chamitoff, Gregory",308,M,1962,2,Civ,1998,2,4770,13.72
+483,"Zhai, Zhigang",翟志刚,4,M,1966,32,Mil,2008,1,68,0.23
+484,"Liu, Boming",刘伯明,5,M,1966,32,Mil,2008,1,68,0.03
+485,"Jing, Haipeng",景海鹏,6,M,1966,32,Mil,2008,3,1146,0
+486,"Garriott, Richard Allen","Garriott, Richard Allen",309,M,1961,30,Civ,2007,1,284.89,0
+487,"Boe, Eric A.","Boe, Eric A.",310,M,1964,2,Mil,2000,2,687,0
+488,"Bowen, Stephen G.","Bowen, Stephen G.",311,M,1964,2,Mil,2000,3,970,47.3
+489,"Kimbrough, Robert S.","Kimbrough, Robert S.",312,M,1967,2,Mil,2004,2,10763.25,26
+490,"Antonelli, Dominic A.","Antonelli, Dominic A.",313,M,1967,2,Mil,2000,2,579,0
+491,"Acaba, Joseph M.","Acaba, Joseph M.",314,M,1967,2,Civ,2004,3,7272.23,19.93
+492,"Arnold, Richard R., II","Arnold, Richard R., II",315,M,1963,2,Civ,2004,2,307,32.07
+493,"Barratt, Michael R.","Barratt, Michael R.",316,M,1959,2,Civ,2000,2,5085,5.1
+494,"Johnson, Gregory C.","Johnson, Gregory C.",317,M,1954,2,Civ,1998,1,309.63,0
+495,"Good, Michael T.","Good, Michael T.",318,M,1962,2,Mil,2000,2,591.15,30
+496,"McArthur, K. Megan","McArthur, K. Megan",319,F,1971,2,Civ,2000,1,309,0
+497,"Feustel, Andrew J.","Feustel, Andrew J.",320,M,1965,2,Civ,2000,3,687,61.8
+498,"Romanenko, Roman",Роман Юрьевич Романенко,103,M,1971,1,Mil,1997,2,8003.02,6.62
+499,"Hurley, Douglas G.","Hurley, Douglas G.",321,M,1966,2,Mil,2000,2,683,0
+500,"Cassidy, Christopher J.","Cassidy, Christopher J.",322,M,1970,2,Mil,2004,2,4744,31.23
+501,"Marshburn, Thomas H.","Marshburn, Thomas H.",323,M,1960,2,Mil,2004,2,3870,24.5
+502,"Kopra, Timothy L.","Kopra, Timothy L.",324,M,1963,2,Mil,2000,2,3315,13.51
+503,"Ford, Kevin A.","Ford, Kevin A.",324,M,1960,2,Mil,2000,2,3781,0
+504,"Hernandez, Jose M.","Hernandez, Jose M.",326,M,1962,2,Civ,2004,1,332,0
+505,"Stott, Nicole P.","Stott, Nicole P.",327,F,1962,2,Civ,2000,2,1747,6.58
+506,"Surayev, Maksim",Максим Викторович Сураев,104,M,1972,1,Mil,1997,2,8028.18,9.42
+507,Guy Laliberte,Guy Laliberte,9,M,1959,14,Civ,2009,1,261.28,0
+508,"Wilmore, Barry E.","Wilmore, Barry E.",328,M,1962,2,Mil,2000,2,4272,25.67
+509,"Bresnik, Randolph J.","Bresnik, Randolph J.",329,M,1967,2,Mil,2004,2,3587.93,31.33
+510,"Satcher, Robert L.","Satcher, Robert L.",330,M,1965,2,Civ,2004,1,259,12.32
+511,"Creamer, Timothy J.","Creamer, Timothy J.",331,M,1959,2,Mil,1998,1,3912,0
+512,"Virts, Terry W., Jr.","Virts, Terry W., Jr.",332,M,1967,2,Mil,2000,2,5113.62,19.1
+513,"Skvortsov, Aleksandr Jr.",Александр Александрович Скворцов,105,M,1966,1,Mil,1997,3,12588.98,12.67
+514,"Korniyenko, Mikhail",Михаил Борисович Корниенко,106,M,1960,1,Civ,1998,2,12005.43,12.28
+515,"Dutton, James P.","Dutton, James P.",333,M,1968,2,Mil,2004,1,362,0
+516,"Metcalf-Lindenburger, Dorothy M.","Metcalf-Lindenburger, Dorothy M.",334,F,1975,2,Civ,2004,1,362,0
+517,"Yamazaki, Naoko",山崎直子,8,F,1970,20,Civ,1999,1,362.8,0
+518,"Walker, Shannon","Walker, Shannon",335,F,1965,2,Civ,2004,1,3919.18,0
+519,"Skripochka, Oleg",Олег Иванович Скрипочка,107,M,1969,1,Civ,1997,3,10653.3,16.65
+520,"Kondratyev, Dmitri",Дмитрий Юрьевич Кондратьев,108,M,1969,1,Mil,1997,1,3823.28,10.2
+521,"Samokutyayev, Aleksandr",Александр Михайлович Самокутяев,109,M,1970,1,Mil,2003,2,7955.38,10.05
+522,"Borisenko, Andrei",Андрей Иванович Борисенко,110,M,1964,1,Mil,2003,2,14324.25,0
+523,"Furukawa, Satoshi",古川聡,9,M,1964,20,Civ,1999,1,4014,0
+524,"Shkaplerov, Anton",Антон Николаевич Шкаплеров,111,M,1972,1,Mil,2003,3,12796,14.47
+525,"Ivanishin, Anatoli",Анатолий Алексеевич Иванишин,112,M,1969,1,Mil,2003,2,6729,0
+526,"Revin, Sergei",Сергей Николаевич Ревин,113,M,1966,1,Civ,1996,1,2999.87,0
+527,"Liu, Wang",刘旺,7,M,1969,32,Mil,2012,1,312,0
+528,"Liu, Yang",刘洋,8,F,1978,32,Mil,2012,1,312,0
+529,"Novitski, Oleg",Олег Викторович Новицкий,114,M,1971,1,Mil,2006,2,8169.83,0
+530,"Tarelkin, Yevgeni",Евгений Игоревич Тарелкин,115,M,1974,1,Mil,2003,1,3448.25,0
+531,"Misurkin, Aleksandr",Александр Александрович Мисуркин,116,M,1977,1,Mil,2006,2,8027.5,28.25
+532,"Parmitano, Luca","Parmitano, Luca",6,M,1976,25,Mil,2009,2,8293.31,26.88
+533,"Zhang, Xiaoguang",张晓光,9,M,1968,32,Mil,2013,1,350,0
+534,"Wang, Yapi",王亚平,10,M,1980,32,Mil,2013,1,350,0
+535,"Ryazanski, Sergei",Сергей Николаевич Рязанский,117,M,1974,1,Civ,2003,2,7318.93,26.92
+536,"Hopkins, Michael Scott","Hopkins, Michael Scott",336,M,1968,2,Mil,2009,1,3990.42,12.97
+537,"Artemyev, Oleg",Олег Германович Артемьев,118,M,1970,1,Mil,2003,2,8784,20.34
+538,"Wiseman, Gregory Reid","Wiseman, Gregory Reid",337,M,1975,2,Mil,2009,1,3968.1,12.78
+539,"Gerst, Alexander","Gerst, Alexander",11,M,1976,8,Civ,2009,2,8689.84,6.22
+540,"Serova, Yelena",Елена Олеговна Серова,119,F,1976,1,Civ,2006,1,4013.7,0
+541,"Cristofretti, Samantha","Cristofretti, Samantha",7,F,1977,25,Mil,2009,1,4783.5,0
+542,"Yui, Kimiya",油井亀美也,10,M,1970,20,Mil,2009,1,3400,0
+543,"Lindgren, Kjell Norwood","Lindgren, Kjell Norwood",338,M,1973,2,Mil,2009,1,3400.15,15.07
+544,"Mogensen, Andreas","Mogensen, Andreas",1,M,1976,37,Civ,2009,1,236.23,0
+545,Aidyn (Aydyn) Akanovich Aimbetov,Айдын Ақанұлы Айымбетов,1,M,1972,38,Mil,2012,1,236.23,0
+546,"Peake, Timothy Nigel","Peake, Timothy Nigel",2,M,1972,21,Mil,2009,1,4462,4.72
+547,"Ovchinin, Aleksey ",Алексей Николаевич Овчинин,120,M,1971,1,Mil,2006,3,8995.75,6
+548,"Onishi, Takuya",大西卓哉,11,M,1975,20,Civ,2009,1,6902.35,0
+549,"Rubins, Kathleen","Rubins, Kathleen",339,F,1978,2,Civ,2009,1,6902.35,12.77
+550,"Chen, Dong",陈冬,11,M,1978,32,Mil,2010,1,774.5,0
+551,"Ryzhikov, Sergey",Сергей Николаевич Рыжиков,121,M,1974,1,Mil,2006,1,10383.25,0
+552,"Pesquet, Thomas","Pesquet, Thomas",121,M,1978,5,Civ,2009,1,15105.08,13
+553,"Fischer, Jack","Fischer, Jack",340,M,1974,2,Mil,2009,1,3258.13,7
+554,"Vande Hei, Mark","Vande Hei, Mark",341,M,1966,2,Mil,2009,1,4037.23,27
+555,"Tingle, Scott","Tingle, Scott",342,M,1965,2,Mil,2009,1,4037,7.4
+556,"Kanai, Norishige",金井宣茂,12,M,1976,20,Civ,2009,1,4037,5.95
+557,"Prokopyev, Sergei",Сергей Валерьевич Прокопьев,122,M,1975,1,Mil,2010,1,4722,15.52
+558,"Auñón-Chancellor, Serena","Auñón-Chancellor, Serena",343,F,1976,2,Civ,2009,1,4722,0
+559,"Hague, Tyler","Hague, Tyler",344,M,1975,2,Mil,2013,2,4864,19.93
+560,"Saint-Jaques, David","Saint-Jaques, David",10,M,1970,14,Civ,2009,1,4887,6.5
+561,"McClain, Anne Charlotte","McClain, Anne Charlotte",345,F,1979,2,Mil,2013,1,4887,13.13
+562,"Koch, Christina","Koch, Christina",346,F,1979,2,Civ,2013,1,7372.3,27.8
+563,"Morgan, Andrew","Morgan, Andrew",347,M,1976,2,Mil,2013,1,4303.08,39.52
+564,"Meir, Jessica","Meir, Jessica",348,F,1977,2,Civ,2013,1,2697.6,7.28
+565,"Al Mansoori, Hazzaa",هَزَّاع ٱلْمَنْصُوْرِي,1,M,1983,39,Mil,2018,1,189,0

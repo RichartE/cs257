@@ -131,4 +131,6 @@ dmypy.json
 # Passwords
 config.py
 
-input
+Astronaut database.accdb
+Astronaut database.csv
+Astronaut database.xlsx

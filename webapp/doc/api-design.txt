@@ -29,13 +29,6 @@ Each astronaut dictionary may have all the following fields or just some as indi
     Missions -- (array/list (string)) list of the missions the astronaut was on
     Mission Years -- (array/list (int)) list of the years the astronaut had a mission
     Occupations -- (array/list (string)) list of different roles the astronaut had on missions
-    The following fields will only exist for some astronauts who are in the NASA Yearbook Database
-    Status -- (string) the astronaut's status (active, retired, management, deceased)
-    Alma Mater -- (array/list (string)) list of the astronaut's Alma Mater
-    Undergraduate Major -- (string) the astronaut's undergraduate major
-    Graduate Major -- (string) the astronaut's graduate major
-    Death Date -- (Date) the astronaut's date of death
-    Death Mission -- (string) the mission where the astronaut died if they died on a mission
 
 REQUEST: /astronauts/raw/max
 RESPONSE: integer of the number of entries
@@ -111,14 +104,7 @@ The dictionary will have the following fields.
         Occupations -- (string) role on the mission
         EVA hrs -- (double) extravehicular hours on the mission
         Crewmates -- (array/list (string)) list of crewmate names on the mission
-    Summary -- (string) Using the wikipedia API pass a summary of the astronaut 
-    The following fields will only exist for some astronauts who are in the NASA Yearbook Database
-    Status -- (string) the astronaut's status (active, retired, management, deceased)
-    Alma Mater -- (array/list (string)) list of the astronaut's Alma Mater
-    Undergraduate Major -- (string) the astronaut's undergraduate major
-    Graduate Major -- (string) the astronaut's graduate major
-    Death Date -- (Date) the astronaut's date of death
-    Death Mission -- (string) the mission where the astronaut died if they died on a mission
+    Summary -- (string) Using the wikipedia API pass a summary of the astronaut
 
 REQUEST: /missions/<title>
 RESPONSE: a JSON dictionary, which repressents the mission.

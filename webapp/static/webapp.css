@@ -1,0 +1,224 @@
+* {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: azure;
+}
+
+header {
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+header > h1 {
+    color: white;
+    max-width: 60vw;
+    width: 60vw;
+    font-size: 3em;
+}
+
+header > div {
+    max-width: 38vw;
+    width: 38vw;
+    justify-self: flex-end;
+    display: inline-flex;
+    flex-direction: column;
+    vertical-align: top;
+    justify-content: space-between;
+}
+
+header > div > form {
+    align-self: flex-end;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+header > div > form > label{
+    color: white;
+}
+
+input {
+    border-radius: 3px;
+}
+
+nav > ul {
+    list-style-type: none;
+    margin-right: 10px;
+}
+
+nav > ul > li {
+    background-color: lightgrey;
+    float: left;
+    text-align: center;
+    border: solid 2px black;
+    border-bottom: none;
+    width: 50%;
+    padding: 3px 0;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+
+#astronautsTab:hover {
+    background-color: lightskyblue;
+    color: white;
+}
+
+#missionsTab:hover {
+    background-color: mediumaquamarine;
+    color: white;
+}
+
+h2 {
+    text-decoration: underline;
+    margin-left: 3vw;
+}
+
+section {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    padding-top: 20px;
+}
+
+#example {
+    background-color: tomato;
+}
+
+#exampleSelection {
+    max-width: 20vw;
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#exampleSelection > h2  {
+    align-self: flex-start;
+}
+
+#exampleSelection > div {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: start;
+    transform: translateX(40%) translateY(-90px);
+}
+
+#exampleSelection > div > div {
+    margin-bottom: 4em;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: orange;
+    width: 150%;
+}
+
+#exampleSelection > div > div.active{
+    background-color: peru;
+}
+#exampleGraphs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2vw;
+    width: 76vw;
+}
+
+#exampleGraphs > img {
+    z-index: 2;
+    display: none;
+}
+
+#astronauts, #missions {
+    flex-direction: column;
+}
+
+.rawHeader {
+    display: flex;
+    align-items: baseline;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.rawHeader > button {
+    margin-right: 10vw;
+    font-size: 1em;
+    background-color: unset;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.rawHeader > button:hover {
+    font-weight: bold;
+}
+
+section > table {
+    max-height: 50vh;
+    overflow: hidden;
+}
+
+.table-wrapper {
+    position:relative;
+    padding: 2vw;
+    max-height: calc(50vh + 2vw);
+}
+
+.table-scroll {
+    overflow: auto; 
+    max-height: 50vh; 
+}
+
+.table-scroll, .table-wrapper {
+    transition: max-height 0.25s ease-in;
+}
+
+table {
+    min-width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    text-align: right;
+}
+
+tbody > tr {
+    background-color: #ddd;
+}
+
+tbody > tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tbody > tr:hover {
+    background-color: lightskyblue;
+    color: whitesmoke;
+}
+
+th {
+    font-weight: bolder;
+    position: sticky;
+    top: -1px;
+    background-color: darkgray;
+    color: white;
+}
+
+th, td {
+    padding: 5px;
+    white-space: nowrap;
+}
+
+.hide, .hide > div{
+    max-height: 0px;
+}

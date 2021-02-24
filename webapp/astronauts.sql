@@ -1,0 +1,2362 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.5 (Ubuntu 12.5-0ubuntu0.20.04.1)
+-- Dumped by pg_dump version 12.5 (Ubuntu 12.5-0ubuntu0.20.04.1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: astronaut_mission; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.astronaut_mission (
+    id integer,
+    astronaut integer,
+    mission integer,
+    occupation text,
+    eva_hours numeric,
+    mission_num integer,
+    selection text
+);
+
+
+--
+-- Name: astronauts; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.astronauts (
+    id integer,
+    english_name text,
+    original_name text,
+    nwnumber integer,
+    sex character varying(1),
+    yob integer,
+    nationality integer,
+    mil_civ character varying(3),
+    yos integer,
+    total_missions integer,
+    total_mission_hours numeric,
+    total_eva_hours numeric
+);
+
+
+--
+-- Name: missions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.missions (
+    id integer,
+    title text,
+    mission_year integer,
+    ascent text,
+    orbit text,
+    decent text,
+    duration numeric,
+    combined_eva numeric,
+    composition text
+);
+
+
+--
+-- Name: nationality; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.nationality (
+    id integer,
+    nation text
+);
+
+
+--
+-- Data for Name: astronaut_mission; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.astronaut_mission (id, astronaut, mission, occupation, eva_hours, mission_num, selection) FROM stdin;
+1	1	1	pilot	0.0	1	TsPK-1
+2	2	2	pilot	0.0	1	TsPK-1
+3	3	3	pilot	0.0	1	NASA Astronaut Group 1
+4	3	4	PSP	0.0	2	NASA Astronaut Group 2
+5	4	5	Pilot	0.0	1	NASA- 1
+6	5	6	pilot	0.0	1	TsPK-1
+7	5	7	pilot	0.0	2	TsPK-2
+8	6	8	pilot	0.0	1	TsPK-1
+9	6	9	commander	0.0	2	TsPK-2
+10	7	10	pilot	0.0	1	1959 NASA group 1
+11	7	11	commander	0.0	2	1960 NASA group 1
+12	7	12	commander	0.0	3	1961 NASA group 1
+13	8	13	pilot	0.0	1	NASA- 1
+14	8	14	commander	0.0	2	NASA- 1
+15	9	15	pilot	0.0	1	TsPK-1
+16	9	16	commander	0.0	2	TsPK-2
+17	9	17	commander	0.0	3	TsPK-3
+18	10	18	pilot	0.0	1	VVS Women
+19	11	19	commander	0.0	1	TsPK-1
+20	11	20	commander	0.0	2	TsPK-2
+21	12	19	MSP	0.0	1	Voskhod-1 / TsKBEM-1
+22	13	19	MSP	0.0	1	Voskhod-1
+23	14	21	commander	0.0	1	TsPK-1
+24	15	21	pilot	0.73	1	TsPK-1
+25	15	22	commander	0.0	2	TsPK-2
+26	16	23	commander	0.0	1	NASA Astronaut Group 2
+27	17	23	pilot	0.0	1	1962 NASA group 2
+28	17	24	pilot	0.0	2	1963 NASA group 2
+29	17	25	pilot	0.0	3	1964 NASA group 2
+30	17	26	commander	20.23	4	1965 NASA group 2
+31	17	27	commander	0.0	5	1966 NASA group 2
+32	17	28	commander	0.0	6	1967 NASA group 2
+33	18	29	commander	0.0	1	NASA- 2
+34	18	30	commander	0.0	2	NASA- 2
+35	19	29	pilot	0.33	1	1962 NASA group 2
+36	20	14	pilot	0.0	1	NASA- 2
+37	20	31	commander	0.0	2	NASA- 2
+38	20	32	commander	7.75	3	NASA- 2
+39	20	33	commander	5.02	4	NASA- 2
+40	21	34	commander	0.0	1	NASA- 2
+41	21	35	commander	0.0	2	NASA- 2
+42	22	34	pilot	0.0	1	NASA- 2
+43	22	36	commander	0.0	2	NASA- 2
+44	22	35	pilot	0.0	3	NASA- 2
+45	22	37	commander	0.0	4	NASA- 2
+46	23	38	pilot	0.0	1	1996 NASA group
+47	23	39	commander	0.0	2	1996 NASA group
+48	23	25	commander	0.0	3	1996 NASA group
+49	23	40	commander	0.0	4	1996 NASA group
+50	24	41	commander	0.0	1	1958 USAF Man in Space Soonest, 1960 USAF Dyna-Soar, NASA- 2
+51	24	42	commander	2.52	2	1958 USAF Man in Space Soonest, 1960 USAF Dyna-Soar, NASA- 2
+52	25	41	pilot	0.0	1	1963 NASA group 3
+53	25	30	pilot	1.13	2	1963 NASA group 3
+54	25	43	commander	18.77	3	1963 NASA group 3
+55	26	39	pilot	2.12	1	NASA- 3
+56	26	25	pilot	0.0	2	NASA- 3
+57	26	44	commander	22.13	3	NASA- 3
+58	27	24	pilot	1.47	1	NASA- 3
+59	27	42	pilot	0.0	2	NASA- 3
+60	28	31	pilot	0.0	1	NASA Astronaut Group 3
+61	28	32	pilot	2.68	2	NASA Astronaut Group 4
+62	29	36	pilot	5.5	1	NASA- 3
+63	29	42	pilot	2.5	2	NASA- 3
+64	30	12	pilot	0.0	1	NASA- 3
+65	31	12	pilot	0.0	1	NASA- 3
+66	100	45	flight engineer	0.0	2	NPOE-4
+67	100	46	flight engineer	0.0	3	NPOE-4
+68	101	47	flight engineer	0.0	1	1978 Intercosmos Group
+69	102	27	pilot	0.0	1	NASA- 7
+70	102	48	commander	0.0	2	NASA- 7
+71	102	49	commander	0.0	3	NASA- 7
+72	102	50	commander	0.0	4	NASA- 7
+73	103	51	MSP	0.0	1	1978 Intercosmos Group
+74	104	52	commander	0.0	1	NASA- 5
+75	104	53	commander	0.0	2	NASA- 5
+76	105	52	pilot	0.0	1	1965 USAF MOL group 1
+77	105	54	commander	0.0	2	1965 USAF MOL group 1
+78	106	55	pilot	0.0	1	USAF MOL Group 2 \n NASA- 7
+79	106	56	commander	0.0	2	USAF MOL Group 2 \n NASA- 7
+80	107	45	commander	2.55	1	TsPK-5
+81	108	45	MSP	0.0	1	CNES-1
+82	108	57	MSP	5.95	2	CNES-1
+83	108	58	MSP	0.0	3	CNES-1
+84	109	59	pilot	0.0	1	NASA Astronaut Group 7
+85	109	60	commander	0.0	2	NASA Astronaut Group 7
+86	109	61	commander	0.0	3	NASA Astronaut Group 7
+87	110	45	flight engineer	0.0	1	NPOE-4
+88	32	62	commander	0.0	1	TsPK-2
+89	33	35	pilot	0.0	1	NASA- 3
+90	34	63	commander	0.0	1	TsPK-2
+91	34	64	commander	0.0	2	TsPK-3
+92	34	65	commander	0.0	3	TsPK-4
+93	35	66	commander	0.0	1	TsPK-1
+94	35	67	commander	0.0	2	TsPK-1
+95	36	68	flight engineer	0.62	1	Korolyov-Group / Mishin-Group / TsKBEM-1
+96	36	64	flight engineer	0.0	2	Korolyov-Group / Mishin-Group / TsKBEM-2
+97	36	65	flight engineer	0.0	3	Korolyov-Group / Mishin-Group / TsKBEM-3
+98	37	68	MSP	0.62	1	TsPK-1
+99	38	69	pilot	1.13	1	1963 NASA group 3
+100	39	70	commander	0.0	1	TsPK-1
+101	40	70	flight engineer	0.0	1	Korolyov-Group / Mishin-Group / TsKBEM-1
+102	40	22	flight engineer	0.0	2	Korolyov-Group / Mishin-Group / TsKBEM-2
+103	40	71	commander	0.0	3	Korolyov-Group / Mishin-Group / TsKBEM-3
+104	41	72	commander	0.0	1	TsPK-2
+105	41	73	commander	0.0	2	TsPK-3
+106	42	72	flight engineer	0.0	1	Korolyov-Group / Mishin-Group / TsKBEM-1
+212	110	108	MSP	0.0	2	NPOE-4
+107	42	74	flight engineer	0.0	2	Korolyov-Group / Mishin-Group / TsKBEM-1
+108	43	72	MSP	0.0	1	TsPK-1
+109	43	75	commander	0.0	2	TsPK-2
+110	43	76	commander	0.0	3	TsPK-3
+111	44	32	pilot	6.4	1	1963 NASA group 3
+112	44	77	commander	2.68	2	1963 NASA group 3
+113	45	37	pilot	0.0	1	1966 NASA group 5
+114	46	37	pilot	0.0	1	NASA Astronaut Group 5
+115	47	7	flight engineer	0.0	1	Mishin-Group / TsKBEM-1
+116	47	78	flight engineer	0.0	2	Mishin-Group / TsKBEM-2
+117	48	79	commander	9.25	2	1959 NASA group 1
+118	49	79	pilot	0.0	1	1966 NASA group 5
+119	50	79	pilot	9.38	1	NASA- 5
+120	51	65	flight engineer	0.0	1	Korolyov-Group / Mishin-Group / TsKBEM-1
+121	51	73	flight engineer	0.0	2	Korolyov-Group / Mishin-Group / TsKBEM-2
+122	51	80	commander	0.0	3	Korolyov-Group / Mishin-Group / TsKBEM-3
+123	52	74	commander	0.0	1	TsPK-2
+124	53	74	flight engineer	0.0	1	TsKBEM-1
+125	54	43	pilot	0.63	1	1966 NASA group 5
+126	55	43	pilot	18.5	1	NASA- 5
+127	56	26	pilot	1.38	1	NASA- 5
+128	56	59	commander	0.0	2	NASA- 5
+129	56	81	commander	0.0	3	NASA- 5
+130	57	26	pilot	20.25	1	NASA- 5
+131	58	44	pilot	1.4	1	NASA- 5
+132	59	44	pilot	22.07	1	NASA-4
+133	60	82	pilot	2.27	1	1966 NASA group 5
+134	60	83	commander	0.0	2	1966 NASA group 5
+135	61	33	MSP	3.42	1	NASA- 4
+136	62	77	pilot	11.0	1	NASA- 5
+137	62	55	commander	0.0	2	NASA- 5
+138	63	77	MSP	13.72	1	NASA Astronaut Group 4
+139	63	28	MSP	0.0	2	NASA Astronaut Group 5
+140	64	84	commander	0.0	1	Voskhod-1 / TsPK-3
+141	65	84	flight engineer	0.0	1	Korolyov-Group / Mishin-Group / TsKBEM-1
+142	65	85	flight engineer	0.0	2	Korolyov-Group / Mishin-Group / TsKBEM-2
+143	65	86	flight engineer	0.0	3	Korolyov-Group / Mishin-Group / TsKBEM-3
+144	66	87	commander	15.85	1	NASA- 5
+145	67	87	pilot	13.62	1	NASA-5
+146	68	87	MSP	15.35	1	NASA Astronaut Group 4
+147	69	88	commander	0.0	1	TsPK-3
+148	69	89	commander	0.0	2	TsPK-4
+149	69	90	commander	0.0	3	TsPK-5
+150	70	88	flight engineer	0.0	1	TsKBEM-2 / AN-4
+151	70	45	flight engineer	2.55	2	TsKBEM-2 / AN-5
+152	71	9	flight engineer	0.0	1	TsPK-2
+153	72	91	commander	0.0	1	TsPK-3
+154	73	91	flight engineer	0.0	1	TsPK-2
+155	74	92	commander	0.0	1	TsPK-2
+156	74	93	commander	0.0	2	TsPK-3
+157	75	92	flight engineer	0.0	1	Korolyov-Group / Mishin-Group / TsKBEM-1 / AN-3
+158	75	93	flight engineer	1.01	2	Korolyov-Group / Mishin-Group / TsKBEM-1 / AN-4
+159	75	72	flight engineer	0.0	3	Korolyov-Group / Mishin-Group / TsKBEM-1 / AN-5
+160	76	40	pilot	0.0	1	NASA- 5
+161	76	94	commander	0.0	2	NASA- 5
+162	76	95	commander	0.0	3	NASA- 5
+163	76	96	commander	0.0	4	NASA- 5
+164	77	40	pilot	0.0	1	1959 NASA group 1
+165	78	67	flight engineer	0.0	1	TsPK-2
+166	79	16	flight engineer	0.0	1	TsKBEM-3
+167	79	97	flight engineer	0.0	2	TsKBEM-4
+168	80	98	commander	0.0	1	TsPK-3
+169	81	98	flight engineer	0.0	1	TsPK-3
+170	82	75	flight engineer	0.0	1	TsPK-3
+171	83	99	commander	0.0	1	TsPK-4
+172	83	93	commander	2.33	2	TsPK-5
+173	83	93	commander	0.0	3	TsPK-6
+174	84	99	flight engineer	0.0	1	TsKBEM-3
+175	84	93	flight engineer	1.38	2	TsKBEM-3
+176	84	93	flight engineer	0.0	3	TsKBEM-3
+177	84	100	MSP	0.0	4	TsKBEM-3
+178	85	101	commander	1.47	1	TsPK-5
+179	85	102	commander	0.0	2	TsPK-5
+180	85	46	commander	8.8	3	TsPK-5
+181	86	85	commander	0.0	1	TsPK-5
+182	86	47	commander	0.0	2	TsPK-5
+183	86	45	commander	0.0	3	TsPK-5
+184	86	45	commander	3.57	4	TsPK-5
+185	86	45	commander	5.0	5	TsPK-5
+186	87	103	pilot	0.0	1	Air Gorce Group 6 - USSR
+187	88	93	flight engineer	2.33	1	TsKBEM-3
+188	88	45	flight engineer	0.0	2	TsKBEM-4
+189	89	104	pilot	0.0	1	1976 Intercosmos Group
+190	90	105	MSP	0.0	1	Interkosmos-1
+191	91	93	commander	1.38	1	TsPK-4
+192	91	45	commander	5.73	2	TsPK-4
+193	91	106	commander	0.0	3	TsPK-4
+194	92	80	pilot	0.0	1	1978 Intercosmos Group
+195	93	93	commander	0.0	1	TsPK-5
+196	93	93	commander	0.0	2	TsPK-6
+197	93	45	commander	0.0	3	TsPK-7
+198	94	71	pilot	0.0	1	1978 Intercosmos Group
+199	95	45	commander	0.0	1	TsPK-4
+200	95	45	commander	0.0	2	TsPK-5
+201	96	93	MSP	0.0	1	1979 Intercosmos Group
+202	97	102	pilot	0.0	1	1978 Intercosmos Group
+203	98	93	commander	0.0	1	TsPK-3
+204	98	45	commander	22.83	2	TsPK-4
+205	98	107	commander	8.83	3	TsPK-5
+206	99	93	MSP	0.0	1	TsKBEM-3
+207	99	108	flight engineer	0.0	2	TsKBEM-3
+208	99	45	flight engineer	0.0	3	TsKBEM-3
+209	99	109	flight engineer	2.75	4	TsKBEM-3
+210	99	110	flight engineer	18.18	5	TsKBEM-3
+211	100	93	flight engineer	5.0	1	NPOE-4
+213	110	111	flight engineer	17.6	3	NPOE-4
+214	110	112	flight engineer	14.22	4	NPOE-4
+215	111	45	MSP	0.0	1	MAP
+216	111	45	flight engineer	3.58	2	MAP
+217	112	94	pilot	0.0	1	MOL-2 / NASA-7
+218	112	113	commander	0.0	2	MOL-2 / NASA-7
+219	113	94	MSP	0.0	1	NASA- 6
+220	113	114	MSP	11.7	2	NASA- 6
+221	114	94	MSP	0.0	1	NASA- 6
+222	115	83	pilot	0.0	1	1966 USAF MOL Gropu 2, NASA- 7
+223	115	115	commander	0.0	2	1966 USAF MOL Gropu 2, NASA- 7
+224	115	116	commander	0.0	3	1966 USAF MOL Gropu 2, NASA- 7
+225	116	83	MSP	3.83	1	MOL-3 / NASA-7
+226	117	83	MSP	3.87	1	NASA-6
+227	117	117	MSP	0.0	2	NASA-6
+228	117	118	MSP	0.0	3	NASA-6
+229	117	119	MSP	0.0	4	NASA-6
+230	117	120	MSP	22.03	5	NASA-6
+231	117	121	MSP	0.0	6	NASA-6
+232	118	108	commander	0.0	1	TsPK-6
+233	118	106	commander	13.78	2	TsPK-7
+234	118	122	MSP	0.0	3	TsPK-8
+235	118	123	commander	5.02	4	TsPK-9
+236	119	48	pilot	0.0	1	NASA Astronaut Group 8
+237	119	114	commander	0.0	2	NASA Astronaut Group 8
+238	119	124	commander	0.0	3	NASA Astronaut Group 8
+239	120	48	MSP	0.0	1	NASA- 8
+240	120	125	MSP	0.0	2	NASA- 8
+241	121	48	MSP	0.0	1	NASA-8
+242	121	50	MSP	0.0	2	NASA-8
+243	122	48	MSP	0.0	1	1978 NASA group
+244	122	126	MSP	0.0	2	1978 NASA group
+245	122	127	MSP	0.0	3	1978 NASA group
+246	122	128	MSP	0.0	4	1978 NASA group
+247	122	110	MSP	0.0	5	1978 NASA group
+248	123	45	flight engineer	5.86	1	NPOE-4
+249	123	46	flight engineer	0.0	2	NPOE-4
+250	124	54	pilot	0.0	1	NASA- 8
+251	124	125	commander	0.0	2	NASA- 8
+252	124	129	commander	0.0	3	NASA- 8
+253	124	130	commander	0.0	4	NASA- 8
+254	125	54	MSP	0.0	1	NASA- 8
+255	125	61	MSP	0.0	2	NASA- 8
+256	125	131	MSP	0.0	3	NASA- 8
+257	125	132	MSP	0.0	4	NASA- 8
+258	126	54	MSP	0.0	1	NASA Astronaut Group 8
+259	126	133	MSP	12.0	2	NASA Astronaut Group 8
+260	127	54	MSP	0.0	1	1967 NASA group
+261	127	113	MSP	0.0	2	1967 NASA group
+262	128	28	pilot	0.0	1	1978 NASA group 8
+263	128	134	commander	0.0	2	1979 NASA group 8
+264	128	135	commander	0.0	3	1980 NASA group 8
+265	129	28	MSP	0.0	1	NASA-6
+266	129	96	MSP	0.0	2	NASA-6
+267	130	136	PSP	0.0	1	NASA-9
+268	130	137	PSP	0.0	2	NASA-9
+269	131	28	PSP	0.0	1	ESA-1
+270	131	128	PSP	0.0	2	ESA-1
+271	131	138	MSP	0.0	3	ESA-1
+272	132	95	pilot	0.0	1	NASA Astronaut Group 8
+273	132	139	commander	0.0	2	NASA Astronaut Group 8
+274	132	140	commander	0.0	3	NASA Astronaut Group 8
+275	132	141	commander	0.0	4	NASA Astronaut Group 8
+276	132	142	commander	0.0	5	NASA Astronaut Group 8
+277	133	95	MSP	12.02	1	NASA- 8
+278	133	143	MSP	0.0	2	NASA- 8
+279	134	144	MSP	11.95	1	1978 NASA group
+280	134	145	MSP	0.0	2	1978 NASA group
+281	135	95	MSP	11.95	1	NASA- 5
+282	135	146	MSP	0.0	2	NASA- 5
+283	136	45	flight engineer	22.83	1	NPOE-4
+284	136	107	flight engineer	8.83	2	NPOE-4
+285	137	45	MSP	0.0	1	AMN
+286	138	45	pilot	0.0	1	1982 Soviet Intercosmos Space Program
+287	139	49	pilot	0.0	1	1978 NASA group 8
+288	139	143	commander	0.0	2	1978 NASA group 8
+289	140	49	MSP	0.0	1	NASA Astronaut Group 8
+290	141	147	MSP	10.13	1	1978 NASA group
+291	141	148	MSP	11.76	2	1978 NASA group
+292	142	149	MSP	10.1	1	NASA-8
+293	142	150	MSP	0.0	2	NASA-8
+294	142	124	MSP	0.0	3	NASA-8
+295	143	45	MSP	0.0	1	LII-1
+296	144	60	pilot	0.0	1	NASA- 8
+297	144	151	commander	0.0	2	NASA- 8
+298	144	131	commander	0.0	3	NASA- 8
+299	145	152	MSP	0.0	1	NASA-8
+300	145	140	MSP	0.0	2	NASA-8
+301	145	153	MSP	0.0	3	NASA-8
+302	146	60	MSP	0.0	1	NASA Astronaut Group 8
+303	146	139	MSP	0.0	2	NASA Astronaut Group 8
+304	146	146	MSP	0.0	3	NASA Astronaut Group 8
+305	146	154	MSP	0.0	4	NASA Astronaut Group 8
+306	146	155	MSP	0.0	5	NASA Astronaut Group 8
+307	147	60	MSP	0.0	1	NASA-8
+308	147	143	MSP	0.0	2	NASA-9
+309	148	152	PSP	0.0	1	PS
+310	148	156	PSP	0.0	2	PS
+311	148	157	PSP	0.0	3	PS
+312	149	50	pilot	0.0	1	NASA- 8
+313	150	50	MSP	3.45	1	1978 NASA group
+314	150	146	MSP	0.0	2	1978 NASA group
+315	150	158	MSP	0.0	3	1978 NASA group
+316	151	50	MSP	1.0	1	NASA- 9
+317	151	135	MSP	0.0	2	NASA- 9
+318	151	158	MSP	0.0	3	NASA- 9
+319	152	50	PSP	0.0	1	PS
+320	153	50	PSP	0.0	1	1983 NRC Group
+321	153	159	MSP	0.0	2	1983 NRC Group
+322	153	160	MSP	0.0	3	1983 NRC Group
+323	154	114	pilot	0.0	1	1978 NASA group 8
+324	154	127	commander	0.0	2	1978 NASA group 8
+325	154	132	commander	0.0	3	1978 NASA group 8
+326	154	161	commander	0.0	4	1978 NASA group 8
+327	155	114	MSP	0.0	1	NASA- 8
+328	156	162	pilot	0.0	1	1978 NASA group
+329	156	146	commander	0.0	2	1978 NASA group
+330	156	163	commander	0.0	3	1978 NASA group
+331	157	164	MSP	0.0	1	NASA-8
+332	157	165	MSP	0.0	2	NASA-8
+333	158	162	MSP	0.0	1	NASA- 8
+334	158	61	MSP	0.0	2	NASA- 8
+335	158	151	MSP	0.0	3	NASA- 8
+336	158	166	MSP	0.0	4	NASA- 8
+337	159	167	PSP	0.0	1	1979 USAF group
+338	160	115	pilot	0.0	1	1981 NASA group 8
+339	160	168	commander	0.0	2	1981 NASA group 8
+340	161	115	MSP	0.0	1	NASA-8
+341	161	169	MSP	0.0	2	NASA-8
+342	161	170	MSP	0.0	3	NASA-8
+343	162	115	MSP	3.17	1	NASA Astronaut Group 8
+344	163	115	MSP	3.17	1	NASA- 8
+345	163	96	MSP	0.0	2	NASA- 8
+346	163	163	MSP	0.0	3	NASA- 8
+347	163	120	MSP	22.03	4	NASA- 8
+348	163	171	MSP	0.0	5	NASA- 8
+349	164	156	PSP	0.0	1	PS
+350	165	113	pilot	0.0	1	NASA Astronaut Group 8
+351	165	118	commander	0.0	2	NASA Astronaut Group 8
+352	165	119	commander	0.0	3	NASA Astronaut Group 8
+353	166	113	MSP	0.0	1	NASA- 5
+354	167	172	PSP	0.0	1	PS
+355	168	173	PSP	0.0	1	Spacelab-3 mission payload specialist
+356	169	125	pilot	0.0	1	NASA- 8
+357	169	153	commander	0.0	2	NASA- 8
+358	169	166	commander	0.0	3	NASA- 8
+359	170	174	MSP	0.0	1	NASA-8
+360	170	175	pilot	0.0	2	NASA-8
+361	170	176	commander	0.0	3	NASA-8
+362	170	177	commander	0.0	4	NASA-8
+363	171	125	MSP	0.0	1	NASA- 8
+364	171	168	MSP	0.0	2	NASA- 8
+365	171	178	MSP	0.0	3	NASA- 8
+366	171	170	MSP	0.0	4	NASA- 8
+367	171	179	MSP	0.0	5	NASA- 8
+368	172	174	PSP	0.0	1	CNES-1
+369	173	174	PSP	0.0	1	Saudi-Arabia
+370	174	56	pilot	0.0	1	NASA- 9
+371	175	56	MSP	0.0	1	NASA- 6
+372	176	56	MSP	0.0	1	NASA- 6
+373	177	180	PSP	0.0	1	PS for Spacelab-2
+374	178	56	PSP	0.0	1	PS for Spacelab-2
+375	179	53	pilot	0.0	1	NASA- 8
+376	179	124	pilot	0.0	2	NASA- 8
+377	179	181	commander	0.0	3	NASA- 8
+378	179	120	commander	0.0	4	NASA- 8
+379	180	53	MSP	0.0	1	NASA- 9
+380	180	124	MSP	0.0	2	NASA- 9
+381	180	96	MSP	0.0	3	NASA- 9
+382	181	53	MSP	11.76	1	NASA- 9
+383	182	45	commander	0.0	1	TsPK-6
+384	183	45	MSP	0.0	1	TsPK-6
+385	183	182	MSP	6.0	2	TsPK-6
+386	183	183	MSP	4.2	3	TsPK-6
+387	184	116	pilot	0.0	1	NASA Astronaut Group 9
+388	184	127	pilot	0.0	2	NASA Astronaut Group 10
+389	184	128	commander	0.0	3	NASA Astronaut Group 11
+390	184	184	commander	0.0	4	NASA Astronaut Group 12
+391	185	116	MSP	0.0	1	NASA- 9
+392	185	124	MSP	0.0	2	NASA- 10
+393	185	153	MSP	0.0	3	NASA- 11
+394	185	128	MSP	0.0	4	NASA- 12
+395	186	116	PSP	0.0	1	USAF group
+396	187	61	MSP	0.0	1	NASA- 9
+397	187	129	MSP	0.0	2	NASA- 9
+398	187	185	MSP	0.0	3	NASA- 9
+399	187	142	MSP	0.0	4	NASA- 9
+400	187	186	MSP	0.0	5	NASA- 9
+401	188	175	PSP	0.0	1	DLR-1
+402	189	175	PSP	0.0	1	DLR-1
+403	190	61	PSP	0.0	1	1978 ESA Group
+404	191	187	pilot	0.0	1	NASA-9
+405	191	188	commander	0.0	2	NASA-9
+406	192	120	MSP	12.2	1	NASA-9
+407	192	140	MSP	0.0	2	NASA-9
+408	192	176	MSP	10.58	3	NASA-9
+409	192	177	MSP	0.0	4	NASA-9
+410	192	189	MSP	7.25	5	NASA-9
+411	192	190	MSP	14.38	6	NASA-9
+412	192	191	MSP	14.12	7	NASA-9
+413	193	127	MSP	0.0	1	NASA- 9
+414	193	134	MSP	0.0	2	NASA- 9
+415	194	134	MSP	12.17	1	1980 NASA group
+416	195	134	PSP	0.0	1	1985 NASA Group
+417	196	139	pilot	0.0	1	NASA- 9
+418	196	146	pilot	0.0	2	NASA- 9
+419	196	158	commander	0.0	3	NASA- 9
+420	196	192	commander	0.0	4	NASA- 9
+421	197	139	MSP	0.0	1	NASA- 9
+422	197	168	MSP	0.0	2	NASA- 9
+423	197	163	MSP	0.0	3	NASA- 9
+424	197	192	MSP	0.0	4	NASA- 9
+425	197	171	MSP	0.0	5	NASA- 9
+426	197	193	MSP	0.0	6	NASA- 9
+427	197	194	MSP	19.52	7	NASA- 9
+428	198	150	PSP	0.0	1	PS by RCA
+429	199	150	PSP	0.0	1	Congress Observer
+430	200	195	pilot	0.0	1	1980 NASA group 9
+431	201	195	PSP	0.0	1	PS by SAL
+432	202	195	PSP	0.0	1	1985 Teacher in Space
+433	203	46	flight engineer	8.8	1	NPOE-4
+434	204	107	commander	0.0	1	TsPK-7
+435	204	111	commander	17.6	2	TsPK-7
+436	204	196	commander	2.05	3	TsPK-7
+437	204	197	commander	0.0	4	TsPK-7
+438	205	107	MSP	0.0	1	Syria
+439	206	106	flight engineer	13.78	1	NPOE-4
+440	206	198	flight engineer	20.75	2	NPOE-4
+441	207	199	MSP	0.0	1	LII-1
+442	208	46	commander	0.0	1	TsPK-6
+443	208	200	commander	10.78	2	TsPK-6
+444	208	201	commander	18.35	3	TsPK-6
+445	208	202	commander	14.53	4	TsPK-6
+446	208	123	commander	89.13	5	TsPK-6
+447	209	46	pilot	0.0	1	1978 Intercosmos Group
+448	210	106	flight engineer	0.0	1	IMBP-1
+449	210	203	MSP	0.0	2	IMBP-1
+450	211	106	MSP	0.0	1	Afghanistan
+451	212	182	flight engineer	0.0	1	NPOE-7
+452	212	204	flight engineer	34.48	2	NPOE-7
+453	212	205	flight engineer	0.0	3	NPOE-7
+454	212	206	flight engineer	0.0	4	NPOE-7
+455	212	107	flight engineer	0.0	5	NPOE-7
+456	212	196	commander	4.95	6	NPOE-7
+457	213	140	pilot	0.0	1	NASA Astronaut Group 9
+458	213	96	pilot	0.0	2	NASA Astronaut Group 9
+459	214	140	MSP	0.0	1	1984 NASA group 10
+460	214	207	MSP	0.0	2	1984 NASA group 10
+461	214	208	MSP	0.0	3	1984 NASA group 10
+462	214	107	flight engineer	0.0	4	1984 NASA group 10
+463	215	151	pilot	0.0	1	NASA- 9
+464	215	118	pilot	0.0	2	NASA- 9
+465	215	178	commander	0.0	3	NASA- 9
+466	215	170	commander	0.0	4	NASA- 9
+467	215	179	MSP	0.0	5	NASA- 9
+468	216	151	MSP	0.0	1	1980 NASA group
+469	216	181	MSP	0.0	2	1980 NASA group
+470	217	151	MSP	0.0	1	NASA- 9
+471	217	169	MSP	0.0	2	NASA- 9
+472	218	127	MSP	0.0	1	NASA- 10
+473	218	141	MSP	0.0	2	NASA- 10
+474	218	209	MSP	6.85	3	NASA- 10
+475	218	154	MSP	19.17	4	NASA- 10
+476	219	135	pilot	0.0	1	NASA-9
+477	219	207	commander	0.0	2	NASA-9
+478	219	185	commander	0.0	3	NASA-9
+479	219	209	commander	0.0	4	NASA-9
+480	220	135	MSP	0.0	1	NASA- 10
+481	220	178	MSP	0.0	2	NASA- 10
+482	221	135	MSP	0.0	1	NASA- 10
+483	221	166	MSP	0.0	2	NASA- 10
+484	222	168	pilot	0.0	1	NASA- 10
+485	223	168	MSP	0.0	1	NASA- 10
+486	223	185	MSP	0.0	2	NASA- 10
+487	223	142	MSP	0.0	3	NASA- 10
+488	224	118	MSP	0.0	1	NASA- 10
+489	225	118	MSP	0.0	1	1984 NASA group
+490	225	130	MSP	7.75	2	1984 NASA group
+491	225	120	MSP	13.43	3	1984 NASA group
+492	225	210	MSP	0.0	4	1984 NASA group
+493	226	129	pilot	0.0	1	1984 NASA group 10
+494	226	208	commander	0.0	2	1984 NASA group 10
+495	226	211	commander	0.0	3	1984 NASA group 10
+496	226	58	commander	0.0	4	1984 NASA group 10
+497	226	212	commander	0.0	5	1984 NASA group 10
+498	226	213	commander	0.0	6	1984 NASA group 10
+499	227	129	MSP	0.0	1	NASA- 10
+500	227	163	MSP	0.0	2	NASA- 10
+501	227	214	MSP	0.0	3	NASA- 10
+502	227	215	MSP	0.0	4	NASA- 10
+503	227	216	MSP	0.0	5	NASA- 10
+504	228	129	MSP	0.0	1	NASA- 10
+505	228	178	MSP	0.0	2	NASA- 10
+506	228	184	MSP	5.83	3	NASA- 10
+507	229	200	flight engineer	10.78	1	NPOE-4
+508	230	153	pilot	0.0	1	NASA- 10
+509	230	217	commander	0.0	2	NASA- 10
+510	230	214	commander	0.0	3	NASA- 10
+511	230	159	commander	0.0	4	NASA- 10
+512	231	153	MSP	0.0	1	1985 NASA group
+513	231	130	MSP	17.7	2	1985 NASA group
+514	231	214	MSP	0.0	3	1985 NASA group
+515	232	109	commander	2.75	1	GKNII-2 / TsPK-9
+516	232	218	commander	9.97	2	GKNII-2 / TsPK-9
+517	233	207	pilot	0.0	1	NASA- 11
+518	233	132	pilot	0.0	2	NASA- 11
+519	233	219	commander	0.0	3	NASA- 11
+520	233	190	commander	0.0	4	NASA- 11
+521	234	207	MSP	0.0	1	NASA- 12
+522	234	130	MSP	0.0	2	NASA- 13
+523	235	207	MSP	0.0	1	NASA- 12
+524	235	130	MSP	16.72	2	NASA- 12
+525	235	120	MSP	13.43	3	NASA- 12
+526	235	220	MSP	0.0	4	NASA- 12
+527	236	181	pilot	0.0	1	NASA- 10
+528	236	221	commander	0.0	2	NASA- 10
+529	236	106	commander	5.07	3	NASA- 10
+530	237	181	MSP	0.0	1	NASA- 11
+531	237	185	MSP	0.0	2	NASA- 11
+532	237	209	MSP	6.85	3	NASA- 11
+533	238	181	MSP	0.0	1	NASA Astronaut Group 11
+534	238	166	MSP	0.0	2	NASA Astronaut Group 11
+535	238	214	MSP	0.0	3	NASA Astronaut Group 11
+536	239	222	PSP	0.0	1	PS for Astro-1
+537	239	223	PSP	0.0	2	PS for Astro-2
+538	240	96	PSP	0.0	1	PS for Astro-1
+539	240	224	PSP	0.0	2	PS for Astro-1
+540	241	198	commander	20.75	1	GKNII-2 / TsPK-9
+541	241	203	commander	0.0	2	GKNII-2 / TsPK-9
+542	241	225	commander	17.47	3	GKNII-2 / TsPK-9
+543	241	226	commander	0.0	4	GKNII-2 / TsPK-9
+544	242	227	Other (Journalist)	0.0	1	TBS
+545	243	176	pilot	0.0	1	NASA- 10
+546	243	228	commander	0.0	2	NASA- 10
+547	243	189	commander	0.0	3	NASA- 10
+548	244	176	MSP	0.0	1	NASA Astronaut Group 11
+549	244	229	MSP	0.0	2	NASA Astronaut Group 12
+550	244	230	MSP	6.03	3	NASA Astronaut Group 13
+551	244	231	MSP	4.2	4	NASA Astronaut Group 14
+552	245	176	MSP	10.82	1	NASA- 11
+553	245	141	MSP	0.0	2	NASA- 11
+554	245	229	MSP	0.0	3	NASA- 11
+555	245	220	MSP	0.0	4	NASA- 11
+556	246	131	pilot	0.0	1	NASA Astronaut Group 10
+557	246	209	pilot	0.0	2	NASA Astronaut Group 11
+558	247	131	MSP	0.0	1	NASA Astronaut Group 12
+559	247	217	MSP	4.47	2	NASA Astronaut Group 13
+560	247	142	MSP	0.0	3	NASA Astronaut Group 14
+561	247	154	MSP	14.02	4	NASA Astronaut Group 15
+562	248	131	MSP	0.0	1	NASA- 12
+563	248	217	pilot	0.0	2	NASA- 12
+564	248	232	commander	0.0	3	NASA- 12
+565	249	131	MSP	0.0	1	1984 NASA group 10
+566	249	208	MSP	0.0	2	1984 NASA group 10
+567	250	131	MSP	0.0	1	NASA- 11
+568	250	130	MSP	17.7	2	NASA- 12
+569	250	219	MSP	0.0	3	NASA- 13
+570	251	204	commander	32.28	1	GKNII-2 / RAN-5 / TsPK-9
+571	252	233	MSP	0.0	1	1989 Juno
+572	253	169	MSP	0.0	1	NASA Astronaut Group 10
+573	253	229	commander	0.0	2	NASA Astronaut Group 11
+574	254	169	MSP	0.0	1	NASA- 11
+575	254	208	MSP	0.0	2	NASA- 12
+576	254	224	MSP	0.0	3	NASA- 13
+577	254	121	MSP	0.0	4	NASA- 14
+578	254	234	MSP	7.92	5	NASA- 15
+579	255	169	PSP	0.0	1	Spacelab-4 / SLS-1
+580	256	169	PSP	0.0	1	NASA PS
+581	257	178	pilot	0.0	1	NASA- 11
+582	257	208	pilot	0.0	2	NASA- 11
+583	257	235	commander	0.0	3	NASA- 11
+584	257	215	commander	0.0	4	NASA- 11
+585	258	166	pilot	0.0	1	NASA-12
+586	258	192	pilot	0.0	2	NASA-12
+587	259	183	MSP	0.0	1	Kazakhstan
+588	260	236	MSP	0.0	1	Austria
+589	261	119	pilot	0.0	1	NASA- 11
+590	261	177	pilot	0.0	2	NASA- 12
+591	261	237	commander	0.0	3	NASA- 13
+592	261	238	commander	0.0	4	NASA- 14
+593	262	119	MSP	0.0	1	1987 NASA group
+594	262	132	MSP	0.0	2	1987 NASA group
+595	262	161	MSP	6.77	3	1987 NASA group
+596	262	239	MSP	6.73	4	1987 NASA group
+597	262	46	MSP	9.58	5	1987 NASA group
+598	263	119	MSP	0.0	1	NASA-12
+599	263	217	MSP	4.47	2	NASA-12
+600	263	159	MSP	0.0	3	NASA-12
+601	264	119	PSP	0.0	1	Terra Scout
+602	265	128	pilot	0.0	1	NASA-11
+603	265	224	pilot	0.0	2	NASA-11
+604	265	128	commander	0.0	3	NASA-11
+605	266	128	MSP	0.0	1	NASA-12
+606	266	221	pilot	0.0	2	NASA-12
+607	266	220	commander	0.0	3	NASA-12
+608	267	128	PSP	0.0	1	1983 NRC Group
+609	268	196	flight engineer	2.05	1	NPOE-6
+610	268	240	flight engineer	12.6	2	NPOE-6
+611	268	241	flight engineer	5.05	3	NPOE-6
+612	268	198	flight engineer	3.92	4	NPOE-6
+613	268	242	flight engineer	0.0	5	NPOE-6
+614	269	243	MSP	0.0	1	DLR-3
+615	270	158	pilot	0.0	1	NASA- 11
+616	270	184	pilot	0.0	2	NASA- 11
+617	270	244	commander	0.0	3	NASA- 11
+618	270	245	commander	0.0	4	NASA- 11
+619	271	158	MSP	0.0	1	NASA- 12
+620	271	228	MSP	0.0	2	NASA- 12
+621	271	211	MSP	4.65	3	NASA- 12
+622	271	246	MSP	7.0	4	NASA- 12
+623	271	247	MSP	8.17	5	NASA- 12
+624	271	198	commander	3.92	6	NASA- 12
+625	272	158	PSP	0.0	1	ATLAS-1
+626	273	130	pilot	0.0	1	NASA- 12
+627	273	229	pilot	0.0	2	NASA- 12
+628	273	230	commander	0.0	3	NASA- 12
+629	274	185	pilot	0.0	1	NASA- 12
+630	274	120	pilot	0.0	2	NASA- 12
+631	274	210	commander	0.0	3	NASA- 12
+632	274	154	commander	0.0	4	NASA- 12
+633	274	200	commander	13.28	5	NASA- 12
+634	275	185	PSP	0.0	1	United States Microgravity Labratory-1
+635	276	185	PSP	0.0	1	Spacelab-3
+636	277	201	flight engineer	18.35	1	NPOE-8
+637	277	248	flight engineer	5.27	2	NPOE-8
+638	277	249	flight engineer	17.38	3	NPOE-8
+639	278	250	MSP	0.0	1	CNES-2/EAC
+640	278	155	MSP	0.0	2	CNES-2/EAC
+641	279	163	pilot	0.0	1	NASA- 12
+642	279	214	pilot	0.0	2	NASA- 12
+643	279	171	commander	0.0	3	NASA- 12
+644	280	163	PSP	0.0	1	1978 ESA Group
+645	280	61	PSP	0.0	2	1978 ESA Group
+646	280	171	MSP	0.0	3	1978 ESA Group
+647	280	247	MSP	8.16	4	1978 ESA Group
+648	281	251	PSP	0.0	1	1989 ESA Group
+649	282	141	pilot	0.0	1	NASA- 12
+650	282	232	pilot	0.0	2	NASA- 12
+651	282	159	pilot	0.0	3	NASA- 12
+652	282	252	commander	0.0	4	NASA- 12
+653	282	4	commander	0.0	5	NASA- 12
+654	282	247	commander	0.0	6	NASA- 12
+655	283	141	MSP	0.0	1	NASA- 12
+656	283	192	MSP	0.0	2	NASA- 12
+657	283	252	MSP	0.0	3	NASA- 12
+658	284	141	MSP	0.0	1	NASA- 12
+659	285	141	PSP	0.0	1	NASDA-1
+660	285	253	MSP	0.0	2	NASDA-1
+661	286	208	PSP	0.0	1	1983 NRC Group
+662	286	254	MSP	7.18	2	1983 NRC Group
+663	287	132	MSP	0.0	1	NASA- 13
+664	287	229	MSP	0.0	2	NASA- 13
+665	287	230	MSP	6.03	3	NASA- 13
+666	288	217	MSP	0.0	1	NASA- 13
+667	288	209	MSP	0.0	2	NASA- 13
+668	288	238	MSP	0.0	3	NASA- 13
+669	288	239	MSP	0.0	4	NASA- 13
+670	288	46	flight engineer	8.93	5	NASA- 13
+671	289	218	flight engineer	9.97	1	NPOE-9
+672	290	228	MSP	0.0	1	NASA- 13
+673	290	161	pilot	0.0	2	NASA- 13
+674	290	121	commander	0.0	3	NASA- 13
+675	290	216	commander	0.0	4	NASA- 13
+676	290	194	commander	0.0	5	NASA- 13
+677	291	228	MSP	0.0	1	NASA-13
+678	291	232	MSP	0.0	2	NASA-13
+679	291	234	MSP	0.0	3	NASA-13
+680	291	191	MSP	0.0	4	NASA-13
+681	292	177	MSP	0.0	1	NASA-13
+682	292	142	pilot	0.0	2	NASA-13
+683	292	255	commander	0.0	3	NASA-13
+684	292	193	commander	0.0	4	NASA-13
+685	293	177	MSP	4.65	1	NASA Astronaut Group 13
+686	293	211	MSP	0.0	2	NASA Astronaut Group 14
+687	294	177	PSP	0.0	1	DLR-2/EAC
+688	295	177	PSP	0.0	1	DLR-2/EAC
+689	295	256	MSP	6.75	2	DLR-2/EAC
+690	296	184	MSP	0.0	1	NASA- 13
+691	296	237	MSP	0.0	2	NASA- 13
+692	296	190	MSP	0.0	3	NASA- 13
+693	296	257	MSP	0.0	4	NASA- 13
+694	297	184	MSP	5.83	1	1990 NASA group
+695	297	235	MSP	0.0	2	1990 NASA group
+696	297	215	MSP	0.0	3	1990 NASA group
+697	297	245	MSP	14.05	4	1990 NASA group
+698	298	184	MSP	0.0	1	1990 NASA group
+699	298	211	MSP	0.0	2	1990 NASA group
+700	298	258	MSP	0.0	3	1990 NASA group
+701	298	259	MSP	0.0	4	1990 NASA group
+702	298	253	MSP	0.0	5	1990 NASA group
+703	299	112	commander	14.22	1	TsPK-8
+704	299	246	commander	5.22	2	TsPK-8
+705	300	260	MSP	6.32	1	CNES-2/EAC
+706	300	225	flight engineer	0.0	2	CNES-2/EAC
+707	301	221	MSP	7.08	1	NASA-13
+708	301	161	MSP	0.0	2	NASA-13
+709	301	190	MSP	21.38	3	NASA-13
+710	301	257	MSP	14.57	4	NASA-13
+711	302	221	MSP	0.0	1	NASA- 13
+712	302	235	MSP	0.0	2	NASA- 13
+713	302	159	MSP	0.0	3	NASA- 13
+714	302	182	flight engineer	11.77	4	NASA- 13
+715	303	221	MSP	7.08	1	1990 NASA group
+716	303	219	MSP	0.0	2	1990 NASA group
+717	303	220	MSP	0.0	3	1990 NASA group
+718	303	182	MSP	11.83	4	1990 NASA group
+719	304	170	pilot	0.0	1	1990 NASA group 13
+720	304	230	pilot	0.0	2	1990 NASA group 13
+721	304	261	commander	0.0	3	1990 NASA group 13
+722	305	170	MSP	0.0	1	NASA- 13
+723	305	189	MSP	0.0	2	NASA- 13
+724	305	245	MSP	13.27	3	NASA- 13
+725	305	201	flight engineer	11.08	4	NASA- 13
+726	306	170	MSP	0.0	1	1990 NASA group
+727	306	123	MSP	3.87	2	1990 NASA group
+728	306	262	MSP	19.68	3	1990 NASA group
+729	306	263	MSP	18.4	4	1990 NASA group
+730	307	170	PSP	0.0	1	PS for STS-58
+731	308	264	flight engineer	0.0	1	1989 NPOE Cosmonaut Group
+732	308	265	flight engineer	30.5	2	1989 NPOE Cosmonaut Group
+733	308	266	MSP	0.0	3	1989 NPOE Cosmonaut Group
+734	308	46	commander	0.65	4	1989 NPOE Cosmonaut Group
+735	309	192	MSP	0.0	1	1990 NASA group 13
+736	309	230	MSP	0.0	2	1990 NASA group 13
+737	310	229	MSP	0.0	1	NASA- 13
+738	310	235	MSP	0.0	2	NASA- 14
+739	310	121	MSP	0.0	3	NASA- 14
+740	310	216	MSP	19.82	4	NASA- 14
+741	311	267	commander	11.12	1	TsPK-8
+742	311	268	Flight engineer	6.23	2	TsPK-8
+743	311	109	commander	0.0	3	TsPK-8
+744	311	267	commander	6.92	4	TsPK-8
+745	311	269	commander	5.85	5	TsPK-8
+746	311	270	commander	4.72	6	TsPK-8
+747	312	267	flight engineer	11.12	1	MGA/Kazakhstan
+748	312	242	commander	31.48	2	MGA/Kazakhstan
+749	312	271	commander	0.0	3	MGA/Kazakhstan
+750	313	219	pilot	0.0	1	NASA Astronaut Group 13
+751	313	189	pilot	0.0	2	NASA Astronaut Group 14
+752	313	258	commander	0.0	3	NASA Astronaut Group 15
+753	313	259	commander	0.0	4	NASA Astronaut Group 16
+754	313	239	commander	0.0	5	NASA Astronaut Group 17
+755	314	219	MSP	0.0	1	NASA- 13
+756	314	244	MSP	12.85	2	NASA- 13
+757	314	245	MSP	13.27	3	NASA- 13
+758	314	183	commander	9.97	4	NASA- 13
+759	315	219	MSP	0.0	1	1990 NASA group
+760	315	237	MSP	0.0	2	1990 NASA group
+761	315	258	MSP	0.0	3	1990 NASA group
+762	315	259	MSP	0.0	4	1990 NASA group
+763	316	219	PSP	0.0	1	NASDA-1
+764	316	4	PSP	0.0	2	NASDA-1
+765	317	209	MSP	0.0	1	NASA- 14
+766	317	179	MSP	0.0	2	NASA- 15
+767	318	235	pilot	0.0	1	1990 NASA group
+768	318	220	pilot	0.0	2	1990 NASA group
+769	318	186	commander	0.0	3	1990 NASA group
+770	318	272	commander	0.0	4	1990 NASA group
+771	319	235	MSP	0.0	1	1992 NASA group
+772	319	154	MSP	19.17	2	1993 NASA group
+773	319	247	MSP	16.38	3	1994 NASA group
+774	319	191	MSP	14.25	4	1995 NASA group
+775	320	197	flight engineer	0.0	1	NPOE-9
+776	320	246	MSP	0.0	2	NPOE-9
+777	321	232	MSP	0.0	1	1992 NASA group
+778	321	154	MSP	14.02	2	1992 NASA group
+779	321	160	MSP	19.33	3	1992 NASA group
+780	321	254	MSP	13.13	4	1992 NASA group
+781	322	232	MSP	0.0	1	CNES-2/ESA-2/EAC
+782	322	255	MSP	0.0	2	CNES-2/ESA-2/EAC
+783	322	247	MSP	0.0	3	CNES-2/ESA-2/EAC
+784	323	232	MSP	0.0	1	NASA-14
+785	323	58	MSP	5.017	2	NASA-14
+786	323	4	MSP	0.0	3	NASA-14
+787	323	273	MSP	14.83	4	NASA-14
+788	323	274	MSP	27.23	5	NASA-14
+789	324	211	pilot	0.0	1	NASA- 13
+790	324	255	pilot	0.0	2	NASA- 13
+791	324	155	commander	0.0	3	NASA- 13
+792	324	275	commander	0.0	4	NASA- 13
+793	325	224	pilot	0.0	1	NASA Astronaut Group 13
+794	326	224	MSP	0.0	1	NASA Astronaut Group 14
+795	326	215	MSP	0.0	2	NASA Astronaut Group 15
+796	326	247	MSP	16.33	3	NASA Astronaut Group 16
+797	326	257	MSP	21.15	4	NASA Astronaut Group 17
+798	326	276	MSP	20.97	5	NASA Astronaut Group 18
+799	327	224	MSP	0.0	1	NASA- 14
+800	327	58	MSP	0.0	2	NASA- 14
+801	327	193	MSP	0.0	3	NASA- 14
+802	327	275	MSP	0.0	4	NASA- 14
+803	328	110	commander	18.18	1	TsPK-8
+804	328	106	commander	18.67	2	TsPK-8
+805	329	202	flight engineer	14.53	1	NPOE-9
+806	329	242	flight engineer	31.48	2	NPOE-9
+807	329	200	flight engineer	0.0	3	NPOE-9
+808	330	237	pilot	0.0	1	NASA- 14
+809	330	238	pilot	0.0	2	NASA- 14
+810	330	277	commander	0.0	3	NASA- 14
+811	330	253	commander	0.0	4	NASA- 14
+812	331	237	MSP	0.0	1	1992 NASA group
+813	331	239	MSP	0.0	2	1992 NASA group
+814	332	248	commander	3.1	1	TsPK-8
+815	332	107	commander	0.0	2	TsPK-8
+816	332	278	commander	0.0	3	TsPK-8
+817	333	248	flight engineer	8.35	1	ESA-2/EAC
+818	333	218	flight engineer	5.9	2	ESA-2/EAC
+819	334	161	MSP	6.76	1	NASA Astronaut Group 14
+820	334	258	MSP	0.0	2	NASA Astronaut Group 15
+821	334	259	MSP	0.0	3	NASA Astronaut Group 16
+822	334	279	MSP	16.5	4	NASA Astronaut Group 17
+823	335	210	pilot	0.0	1	NASA-14
+824	335	121	pilot	0.0	2	NASA-14
+825	335	252	pilot	0.0	3	NASA-14
+826	335	234	commander	0.0	4	NASA-14
+827	335	273	commander	0.0	5	NASA-14
+828	336	210	MSP	0.0	1	NASA- 14
+829	336	155	MSP	0.0	2	NASA- 14
+830	336	249	flight engineer	0.0	3	NASA- 14
+831	337	210	MSP	0.0	1	NASA- 14
+832	337	245	MSP	14.05	2	NASA- 15
+833	337	213	MSP	19.92	3	NASA- 16
+834	337	112	flight engineer	33.7	4	NASA- 17
+835	338	210	PSP	0.0	1	PS for STS-73
+836	339	210	PSP	0.0	1	PS for STS-73
+837	340	189	pilot	0.0	1	1992 CSA Group
+838	340	273	pilot	14.83	2	1992 CSA Group
+839	340	280	pilot	0.0	3	1992 CSA Group
+840	341	244	pilot	0.0	1	NASA- 14
+841	341	215	pilot	0.0	2	NASA- 15
+842	341	160	commander	0.0	3	NASA- 16
+843	341	254	commander	0.0	4	NASA- 17
+844	342	244	MSP	6.68	1	1992 NASA group 14
+845	342	277	MSP	12.7	2	1992 NASA group 14
+846	343	244	MSP	0.0	1	NASDA-2
+847	343	245	MSP	0.0	2	NASDA-2
+848	343	110	flight engineer	0.0	3	NASDA-2
+849	343	281	commander	0.0	4	NASDA-2
+850	344	244	MSP	6.15	1	NASA- 14
+851	344	234	MSP	7.92	2	NASA- 14
+852	344	282	MSP	11.75	3	NASA- 14
+853	345	240	commander	30.5	1	TsPK-10
+854	345	182	commander	12.03	2	TsPK-11
+855	346	171	pilot	0.0	1	NASA- 14
+856	346	154	pilot	0.0	2	NASA- 15
+857	346	239	pilot	0.0	3	NASA- 16
+858	346	282	commander	0.0	4	NASA- 17
+859	347	171	MSP	0.0	1	1992 ESA Group
+860	348	171	MSP	0.0	1	1996 NASA Group
+861	348	273	MSP	0.0	2	1996 NASA Group
+862	349	159	MSP	0.0	1	1992 NASA group
+863	349	123	MSP	0.0	2	1992 NASA group
+864	349	212	MSP	6.35	3	1992 NASA group
+865	349	275	MSP	0.0	4	1992 NASA group
+866	350	238	MSP	0.0	1	NASA- 14
+867	350	261	MSP	0.0	2	NASA- 14
+868	350	257	MSP	20.92	3	NASA- 14
+869	350	283	MSP	21.28	4	NASA- 14
+870	351	238	MSP	0.0	1	NASA- 14
+871	352	238	PSP	0.0	1	CNES-2
+872	353	238	MSP	0.0	1	1983 NRC Group
+873	353	248	flight engineer	0.0	2	1983 NRC Group
+874	354	179	commander	12.6	1	TsPK-8
+875	354	111	commander	9.73	2	TsPK-9
+876	355	284	MSP	0.0	1	CNES-2/EAC
+877	355	285	flight engineer	0.0	2	CNES-2/EAC
+878	356	246	flight engineer	0.0	1	NPOE-10
+879	357	286	MSP	0.0	1	DLR-3/EAC
+880	358	258	pilot	0.0	1	NASA- 15
+881	358	259	pilot	0.0	2	NASA- 15
+882	359	258	PSP	0.0	1	PS for STS-42
+883	359	259	PSP	0.0	2	PS for STS-43
+884	360	258	PSP	0.0	1	PS for STS-42
+885	360	259	PSP	0.0	2	PS for STS-43
+886	361	255	MSP	0.0	1	NASA-15
+887	361	160	MSP	19.33	2	NASA-15
+888	362	255	MSP	0.0	1	NASA- 15
+889	362	272	MSP	6.23	2	NASA- 16
+890	362	109	flight engineer	0.0	3	NASA- 17
+891	363	123	flight engineer	25.27	1	NPOE-10
+892	363	218	commander	6.52	2	NPOE-10
+893	363	287	commander	6.62	3	NPOE-10
+894	364	252	MSP	0.0	1	NASA- 15
+895	364	216	MSP	19.82	2	NASA- 15
+896	364	288	MSP	24.75	3	NASA- 15
+897	365	252	MSP	0.0	1	NASA-15
+898	365	4	MSP	0.0	2	NASA-15
+899	365	275	MSP	20.08	3	NASA-15
+900	365	289	MSP	0.0	4	NASA-15
+901	366	252	PSP	0.0	1	1983 NRC Group
+902	367	58	pilot	0.0	1	NASA- 15
+903	367	160	pilot	0.0	2	NASA- 15
+904	367	191	commander	0.0	3	NASA- 15
+905	368	277	pilot	0.0	1	NASA- 15
+906	368	4	pilot	0.0	2	NASA- 16
+907	368	279	commander	0.0	3	NASA- 17
+908	368	290	commander	0.0	4	NASA- 18
+909	368	291	commander	0.0	5	NASA- 19
+910	369	277	MSP	0.0	1	NASA- 16
+911	369	292	MSP	0.0	2	NASA- 16
+912	370	277	MSP	12.7	1	NASDA-1
+913	370	283	MSP	0.0	2	NASDA-1
+914	371	293	pilot	0.0	1	TsPK-6 / GKNII-1 / Ukraine
+915	372	186	pilot	0.0	1	NASA- 15
+916	373	186	MSP	0.0	1	NASA-15
+917	373	279	MSP	16.48	2	NASA-15
+918	373	294	MSP	14.22	3	NASA-15
+919	374	186	MSP	0.0	1	NASA- 15
+920	374	292	MSP	0.0	2	NASA- 15
+921	375	123	Flight engineer	0.0	1	TsPK-11
+922	375	183	commander	10.0	2	TsPK-11
+923	376	295	MSP	0.0	1	CNES-3/EAC
+924	376	267	flight engineer	0.0	2	CNES-3/EAC
+925	377	261	pilot	0.0	1	NASA- 15
+926	377	272	pilot	0.0	2	NASA- 15
+927	377	257	commander	0.0	3	NASA- 15
+928	377	276	commander	0.0	4	NASA- 15
+929	378	261	MSP	0.0	1	NASA- 15
+930	378	289	MSP	0.0	2	NASA- 16
+931	379	261	MSP	0.0	1	1992 CSA Group
+932	379	296	MSP	17.78	2	1992 CSA Group
+933	380	261	PSP	0.0	1	PS for Neurolab
+934	381	261	PSP	0.0	1	PS for neurolab
+935	382	193	pilot	0.0	1	NASA Astronaut Group 15
+936	382	253	pilot	0.0	2	NASA Astronaut Group 16
+937	382	231	commander	0.0	3	NASA Astronaut Group 17
+938	382	283	commander	0.0	4	NASA Astronaut Group 18
+939	383	193	MSP	0.0	1	NASA- 15
+940	383	253	MSP	0.0	2	NASA- 15
+941	383	279	MSP	0.0	3	NASA- 15
+942	384	249	commander	5.9	1	TsPK-10
+943	384	204	commander	15.73	2	TsPK-10
+944	384	202	commander	4.9	3	TsPK-10
+945	384	297	commander	5.85	4	TsPK-10
+946	384	298	commander	5.57	5	TsPK-10
+947	385	249	MSP	0.0	1	Politician-1
+948	385	4	flight engineer	0.0	1	1992 ESA Group
+949	385	271	MSP	0.0	2	Politician-2
+950	385	299	flight engineer	0.0	2	1992 ESA Group
+951	387	190	pilot	0.0	1	1994 NASA group 15
+952	387	282	pilot	0.0	2	1994 NASA group 15
+953	387	294	commander	0.0	3	1994 NASA group 15
+954	387	300	commander	0.0	4	1994 NASA group 15
+955	388	225	MSP	0.0	1	Slovakia
+956	389	234	pilot	0.0	1	NASA- 15
+957	389	292	commander	0.0	2	NASA- 16
+958	390	234	MSP	0.0	1	1992 CSA Group
+959	390	263	MSP	0.0	2	1992 CSA Group
+960	391	301	Flight engineer	0.0	1	GKNII-3 / TsPK-12
+961	391	201	MSP	11.08	2	GKNII-3 / TsPK-12
+962	392	155	pilot	0.0	1	NASA-15
+963	392	273	pilot	0.0	2	NASA-15
+964	392	262	commander	0.0	3	NASA-15
+965	393	247	pilot	0.0	1	NASA- 16
+966	393	296	commander	0.0	2	NASA- 16
+967	393	242	flight engineer	0.0	3	NASA- 16
+968	393	298	flight engineer	18.33	4	NASA- 16
+969	394	253	MSP	0.0	1	DLR-2/EAC
+970	395	241	commander	5.05	1	TsPK-11
+971	395	302	commander	0.0	2	TsPK-11
+972	396	239	MSP	6.73	1	1996 NASA group 8
+973	396	218	flight engineer	12.42	2	1996 NASA group 8
+974	396	240	flight engineer	0.0	3	1996 NASA group 8
+975	396	303	flight engineer	12.77	4	1996 NASA group 8
+976	397	272	MSP	0.0	1	NASA- 16
+977	397	296	MSP	18.22	2	NASA- 16
+978	397	304	MSP	20.28	3	NASA- 16
+979	397	281	flight engineer	14.57	4	NASA- 16
+980	398	272	MSP	0.0	1	NASA- 16
+981	398	254	MSP	7.18	2	NASA- 16
+982	398	305	commander	0.0	3	NASA- 16
+983	399	268	Flight engineer	0.0	1	IMBP-5
+984	400	245	pilot	0.0	1	NASA- 15
+985	400	262	pilot	0.0	2	NASA- 15
+986	400	274	commander	0.0	3	NASA- 15
+987	401	216	pilot	0.0	1	NASA-16
+988	401	288	commander	0.0	2	NASA-16
+989	401	263	commander	0.0	3	NASA-16
+990	402	212	pilot	0.0	1	NASA- 16
+991	402	275	pilot	0.0	2	NASA- 16
+992	403	212	MSP	6.35	1	NASA-16
+993	404	273	MSP	0.0	1	NASA-16
+994	404	196	flight engineer	4.78	2	NASA-16
+995	404	306	MSP	0.0	3	NASA-16
+996	405	307	MSP	0.0	1	TsPK-12
+997	405	302	flight engineer	0.0	2	TsPK-12
+998	405	110	commander	10.28	3	TsPK-12
+999	406	308	Other (space tourist)	0.0	1	MirCorp
+1000	407	279	pilot	0.0	1	NASA- 16
+1001	407	296	pilot	0.0	2	NASA- 16
+1002	407	309	commander	0.0	3	NASA- 16
+1003	408	282	MSP	11.75	1	NASA- 16
+1004	408	294	MSP	13.75	2	NASA- 16
+1005	408	300	MSP	0.0	3	NASA- 16
+1006	409	106	flight engineer	13.58	1	NPOE-11
+1007	409	112	flight engineer	11.93	2	NPOE-11
+1008	409	281	commander	0.0	3	NPOE-11
+1009	410	226	flight engineer	0.0	1	RKKE-12
+1010	411	231	pilot	0.0	1	NASA- 16
+1011	411	290	pilot	0.0	2	NASA- 16
+1012	411	310	commander	0.0	3	NASA- 16
+1013	411	311	commander	0.0	4	NASA- 16
+1014	412	231	MSP	4.2	1	1996 NASA group
+1015	412	267	MSP	34.98	2	1996 NASA group
+1016	413	257	pilot	0.0	1	NASA- 16
+1017	414	257	MSP	14.77	1	NASA- 16
+1018	414	276	MSP	15.97	2	NASA- 16
+1019	415	191	pilot	0.0	1	NASA- 16
+1020	415	256	commander	0.0	2	NASA- 16
+1021	416	191	MSP	34.6	1	1996 NASA group
+1022	416	256	MSP	22.13	2	1996 NASA group
+1023	416	312	MSP	0.0	3	1996 NASA group
+1024	417	191	MSP	14.12	1	NASA- 16
+1025	418	313	flight engineer	0.0	1	1998 ESA Group
+1026	418	314	flight engineer	0.0	2	1998 ESA Group
+1027	418	311	MSP	0.0	3	1998 ESA Group
+1028	419	315	Other (Space tourist)	0.0	1	Space Tourist 2
+1029	420	194	pilot	0.0	1	NASA- 16
+1030	420	213	pilot	0.0	2	NASA- 17
+1031	421	194	MSP	19.52	1	CNES-3/EAC
+1032	422	111	MSP	4.38	1	1996 NASA group
+1033	422	267	flight engineer	35.35	2	1996 NASA group
+1034	422	316	flight engineer	20.58	3	1996 NASA group
+1035	423	111	flight engineer	5.35	1	NPOE-10
+1036	424	262	MSP	0.0	1	NASA- 16
+1037	424	110	MSP	0.0	2	NASA- 16
+1038	424	312	MSP	0.0	3	NASA- 16
+1039	425	262	MSP	19.68	1	NASA-16
+1040	425	290	MSP	21.48	2	NASA-16
+1041	425	317	MSP	0.0	3	NASA-16
+1042	426	318	MSP	0.0	1	RKKE-14
+1043	426	203	flight engineer	18.73	2	RKKE-14
+1044	426	123	commander	13.17	3	RKKE-14
+1045	426	319	commander	20.03	4	RKKE-14
+1046	426	320	commander	7.5	5	RKKE-14
+1047	427	321	commander	0.0	1	EAC
+1048	427	248	commander	0.0	2	EAC
+1049	428	213	MSP	19.92	1	NASA- 16
+1050	429	200	flight engineer	13.28	1	NASA-16
+1051	429	322	MSP	0.0	2	NASA-16
+1052	429	323	flight engineer	0.0	3	NASA-16
+1053	430	292	pilot	0.0	1	NASA- 16
+1054	431	292	MSP	0.0	1	NASA- 16
+1055	432	292	MSP	0.0	1	NASA- 16
+1056	433	292	PSP	0.0	1	1996 NASA Group
+1057	434	324	commander	0.0	1	China-1
+1058	435	204	flight engineer	15.75	1	NASA- 16
+1059	435	110	commander	10.45	2	NASA- 16
+1060	435	311	MSP	22.42	3	NASA- 16
+1061	436	325	flight engineer	0.0	1	1998 ESA Group
+1062	436	323	flight engineer	0.0	2	1998 ESA Group
+1063	437	326	flight engineer	0.0	1	MKS
+1064	438	275	MSP	20.08	1	NASDA-3
+1065	438	179	flight engineer	0.0	2	NASDA-3
+1066	439	275	MSP	0.0	1	NASA- 16
+1067	440	327	Space tourist	0.0	1	
+1068	441	328	commander	0.0	1	China-1
+1069	442	328	flight engineer	0.0	1	China-1
+1070	442	329	commander	0.0	2	China-1
+1071	443	330	pilot	0.0	1	1998 NASA Group
+1072	444	290	MSP	21.48	1	NASA- 17
+1073	444	310	MSP	20.53	2	NASA- 17
+1074	444	241	commander	6.52	3	NASA- 17
+1075	445	290	MSP	0.0	1	NASA-16
+1076	446	290	MSP	0.0	1	1996 NASA group
+1077	446	274	MSP	0.0	2	1996 NASA group
+1078	446	304	MSP	0.0	3	1996 NASA group
+1079	447	254	pilot	0.0	1	NASA- 17
+1080	447	322	commander	0.0	2	NASA- 17
+1081	447	312	commander	0.0	3	NASA- 17
+1082	448	254	MSP	13.13	1	1963 NASA group 2
+1083	448	322	MSP	20.57	2	1963 NASA group 2
+1084	449	331	Other (space tourist)	0.0	1	N/A
+1085	450	288	pilot	0.0	1	NASA-17
+1086	451	288	MSP	0.0	1	NASA-17
+1087	451	289	MSP	18.23	2	NASA-17
+1088	452	288	MSP	18.23	1	1992 ESA Group
+1089	452	300	MSP	13.67	2	1992 ESA Group
+1090	453	288	MSP	0.0	1	NASA- 16
+1091	454	112	MSP	28.28	1	1998 NASA group
+1092	454	269	flight engineer	21.38	2	1998 NASA group
+1093	455	203	commander	11.05	1	MKS
+1094	455	179	commander	5.73	2	MKS
+1095	455	332	commander	19.92	3	MKS
+1096	456	333	Other (space tourist)	0.0	1	N/A
+1097	456	334	Other (space tourist)	0.0	2	N/A
+1098	457	294	pilot	0.0	1	NASA- 17
+1099	457	306	commander	0.0	2	NASA- 17
+1100	458	294	MSP	13.75	1	1998 NASA group
+1101	458	306	MSP	12.93	2	1998 NASA group
+1102	458	335	flight engineer	0.0	3	1998 NASA group
+1103	459	294	MSP	14.22	1	NASA-17
+1104	459	300	MSP	20.25	2	NASA-17
+1105	460	203	flight engineer	18.13	1	NASA- 17
+1106	460	304	MSP	20.28	2	NASA- 17
+1107	461	296	MSP	0.0	1	NASA- 17
+1108	461	246	flight engineer	22.81	2	NASA- 17
+1109	462	296	MSP	0.0	1	NASA- 18
+1110	462	291	MSP	12.8	2	NASA- 18
+1111	463	296	MSP	0.0	1	NASA- 17
+1112	464	336	Other (space tourist)	0.0	1	2006 Angkasawan Program
+1113	465	274	pilot	0.0	1	1998 NASA group
+1114	465	289	commander	0.0	2	1998 NASA group
+1115	466	274	MSP	20.68	1	1998 NASA group
+1116	466	123	flight engineer	22.82	2	1998 NASA group
+1117	467	274	MSP	0.0	1	1998 ESA Group
+1118	467	249	flight engineer	0.0	2	1998 ESA Group
+1119	467	337	flight engineer	0.0	3	1998 ESA Group
+1120	468	256	pilot	0.0	1	NASA-17
+1121	468	304	commander	0.0	2	NASA-17
+1122	469	256	MSP	0.0	1	NASA- 17
+1123	469	309	MSP	0.0	2	NASA- 17
+1124	470	256	MSP	15.38	1	NASA- 17
+1125	471	283	pilot	0.0	1	NASA- 17
+1126	471	311	pilot	0.0	2	NASA- 18
+1127	472	283	MSP	19.32	1	NASA- 18
+1128	472	289	MSP	18.23	2	NASA- 18
+1129	473	283	MSP	19.57	1	NASA- 17
+1130	473	309	MSP	12.75	2	NASA- 17
+1131	474	267	flight engineer	7.0	1	NASA-17
+1132	474	317	MSP	14.18	2	NASA-17
+1133	475	197	commander	12.2	1	TsPK-12
+1134	475	241	commander	6.367	2	TsPK-12
+1135	475	338	commander	4.72	3	TsPK-12
+1136	476	197	flight engineer	12.2	1	MKS
+1137	476	323	commander	6.25	2	MKS
+1138	476	339	commander	0.0	3	MKS
+1139	476	340	commander	13.75	4	MKS
+1140	477	341	Other (Space tourist)	0.0	1	South Korea
+1141	478	310	pilot	0.0	1	NASA Astronaut Group 17
+1142	478	317	commander	0.0	2	NASA Astronaut Group 18
+1143	479	310	MSP	0.0	1	NASA- 18
+1144	479	319	flight engineer	0.0	2	NASA- 18
+1145	480	310	MSP	20.5	1	NASA Astronaut Group 18
+1146	480	225	MSP	6.5	2	NASA Astronaut Group 18
+1147	481	310	MSP	0.0	1	NASDA-4
+1148	481	269	flight engineer	21.38	2	NASDA-4
+1149	482	197	flight engineer	0.0	1	NASA-17
+1150	482	311	MSP	13.72	2	NASA-17
+1151	483	342	commander	0.23	1	China-1
+1152	484	342	flight engineer	0.03	1	China-1
+1153	485	342	flight engineer	0.0	1	China-1
+1154	485	343	commander	0.0	2	China-1
+1155	485	344	commander	0.0	3	China-1
+1156	486	345	Space tourist	0.0	1	N/A
+1157	487	322	pilot	0.0	1	NASA- 18
+1158	487	291	pilot	0.0	2	NASA- 18
+1159	488	322	MSP	19.85	1	NASA- 18
+1160	488	317	MSP	14.57	2	NASA- 18
+1161	488	291	MSP	12.8	3	NASA- 18
+1162	489	322	MSP	0.0	1	NASA- 19
+1163	489	346	flight engineer	26.0	2	NASA- 19
+1164	490	306	pilot	0.0	1	NASA- 18
+1165	490	317	pilot	0.0	2	NASA- 18
+1166	491	306	MSP	12.95	1	NASA- 19
+1167	491	297	flight engineer	0.0	2	NASA- 19
+1168	491	347	flight engineer	6.98	3	NASA- 19
+1169	492	306	MSP	12.57	1	NASA- 19
+1170	492	348	flight engineer	19.5	2	NASA- 19
+1171	493	202	flight engineer	5.1	1	NASA- 18
+1172	493	291	MSP	0.0	2	NASA- 18
+1173	494	276	pilot	0.0	1	NASA- 17
+1174	495	276	MSP	16.08	1	NASA Astronaut Group 18
+1175	495	317	MSP	13.92	2	NASA Astronaut Group 19
+1176	496	276	MSP	0.0	1	NASA- 18
+1177	497	276	MSP	21.0	1	NASA- 18
+1178	497	311	MSP	21.3	2	NASA- 18
+1179	497	348	flight engineer	19.5	3	NASA- 18
+1180	498	248	flight engineer	0.0	1	TsPK-12
+1181	498	280	flight engineer	6.62	2	TsPK-12
+1182	499	263	pilot	0.0	1	NASA- 18
+1183	499	312	pilot	0.0	2	NASA- 19
+1184	500	263	MSP	18.08	1	NASA- 19
+1185	500	287	flight engineer	13.5	2	NASA- 19
+1186	501	263	MSP	18.98	1	NASA- 19
+1187	501	280	flight engineer	5.5	2	NASA- 19
+1188	502	248	MSP	5.53	1	NASA- 18
+1189	502	270	flight engineer	7.98	2	NASA- 18
+1190	503	300	pilot	0.0	1	NASA- 18
+1191	503	349	commander	0.0	2	NASA- 18
+1192	504	300	MSP	0.0	1	NASA- 19
+1193	505	248	flight engineer	6.58	1	2000 NASA group
+1194	505	291	MSP	0.0	2	2000 NASA group
+1195	506	350	commander	3.68	1	TsPK-12
+1196	506	240	commander	5.73	2	TsPK-12
+1197	507	351	Other (Space tourist)	0.0	1	Space Tourist
+1198	508	309	pilot	0.0	1	2000 NASA group
+1199	508	352	flight engineer	25.67	2	2000 NASA group
+1200	509	309	MSP	11.83	1	NASA- 19
+1201	509	337	flight engineer	19.5	2	NASA- 19
+1202	510	309	MSP	12.32	1	2004 NASA Group 19
+1203	511	179	flight engineer	0.0	1	NASA- 17
+1204	512	289	pilot	0.0	1	2000 NASA group
+1205	512	353	flight engineer	19.1	2	2001 NASA group
+1206	513	246	commander	0.0	1	TsPK-12
+1207	513	335	commander	12.67	2	TsPK-12
+1208	513	354	commander	0.0	3	TsPK-12
+1209	514	246	flight engineer	6.72	1	RKKE-14
+1210	514	298	flight engineer	5.57	2	RKKE-14
+1211	515	304	pilot	0.0	1	NASA- 19
+1212	516	304	MSP	0.0	1	NASA- 19
+1213	517	304	MSP	0.0	1	NASDA-4
+1214	518	123	flight engineer	0.0	1	2004 NASA group
+1215	519	242	flight engineer	16.65	1	RKKE-14
+1216	519	303	flight engineer	0.0	2	RKKE-14
+1217	519	355	commander	0.0	3	RKKE-14
+1218	520	249	commander	10.2	1	TsPK-12
+1219	521	225	commander	6.37	1	TsPK-13
+1220	521	352	commander	3.63	2	TsPK-13
+1221	522	225	flight engineer	0.0	1	RKKE-15
+1222	522	346	flight engineer	0.0	2	RKKE-15
+1223	523	241	flight engineer	0.0	1	NASDA-4
+1224	524	305	commander	6.25	1	TsPK-13
+1225	524	353	commander	0.0	2	TsPK-13
+1226	524	356	commander	8.22	3	TsPK-13
+1227	525	305	commander	0.0	1	TsPK-13
+1228	525	357	flight engineer	0.0	2	TsPK-13
+1229	526	297	flight engineer	0.0	1	RKKE-12
+1230	527	343	flight engineer	0.0	1	China-1
+1231	528	343	flight engineer	0.0	1	China-2
+1232	529	349	commander	0.0	1	TsPK-14
+1233	529	316	commander	0.0	2	TsPK-14
+1234	530	349	flight engineer	0.0	1	TsPK-13
+1235	531	287	flight engineer	20.03	1	TsPK-14
+1236	531	347	commander	8.22	2	TsPK-14
+1237	532	319	flight engineer	7.65	1	2009 ESA Group
+1238	532	358	flight engineer	19.23	2	2009 ESA Group
+1239	533	329	flight engineer	0.0	1	China-1
+1240	534	329	flight engineer	0.0	1	China-2
+1241	535	332	flight engineer	19.92	1	IMBP-6
+1242	535	337	commander	7.0	2	IMBP-6
+1243	536	332	flight engineer	12.97	1	2009 NASA group
+1244	537	335	flight engineer	12.57	1	RKKE-15
+1245	537	348	commander	7.77	2	RKKE-15
+1246	538	350	MSP	12.78	1	2009 NASA group
+1247	539	350	flight engineer	6.22	1	ESA-3/EAC
+1248	539	359	flight engineer	0.0	2	ESA-3/EAC
+1249	540	352	flight engineer	0.0	1	RKKE-15
+1250	541	353	flight engineer	0.0	1	2009 ESA Group
+1251	542	339	flight engineer	0.0	1	JAXA-5
+1252	543	339	flight engineer	15.07	1	2009 NASA group
+1253	544	360	flight engineer	0.0	1	ESA-3/EAC
+1254	545	360	flight engineer	0.0	1	Kzazkh Cosmonaut Group 1
+1255	546	270	pilot	4.72	1	2009 ESA Group
+1256	547	303	commander	0.0	1	TsPK-14
+1257	547	340	commander	0.0	2	TsPK-14
+1258	547	361	commander	6.0	3	TsPK-14
+1259	548	357	flight engineer	0.0	1	JAXA-5
+1260	549	357	flight engineer	12.77	1	NASA-20
+1261	550	344	flight engineer	0.0	1	China-2
+1262	551	346	commander	0.0	1	TsPK-14
+1263	552	316	flight engineer	13.0	1	ESA-3/EAC
+1264	553	320	flight engineer	7.0	1	NASA-20
+1265	554	347	flight engineer	27.0	1	NASA-20
+1266	555	356	flight engineer	7.4	1	NASA-20
+1267	556	356	flight engineer	5.95	1	JAXA-5
+1268	557	359	commander	15.52	1	TsPK-15
+1269	558	359	flight engineer	0.0	1	NASA-20
+1270	559	340	flight engineer	19.93	1	NASA-21
+1271	559	361	flight engineer	19.93	2	NASA-21
+1272	560	340	flight engineer	6.5	1	CSA-3
+1273	561	340	flight engineer	13.13	1	NASA-21
+1274	562	361	flight engineer	27.8	1	NASA-21
+1275	563	354	flight engineer	39.52	1	NASA-21
+1276	564	354	flight engineer	7.28	1	NASA-21
+1277	565	362	spaceflight participant	0.0	1	\tMBRSC Selection 1
+\.
+
+
+--
+-- Data for Name: astronauts; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.astronauts (id, english_name, original_name, nwnumber, sex, yob, nationality, mil_civ, yos, total_missions, total_mission_hours, total_eva_hours) FROM stdin;
+1	Gagarin, Yuri	ГАГАРИН Юрий Алексеевич	1	M	1934	1	Mil	1960	1	1.77	0
+2	Titov, Gherman	ТИТОВ Герман Степанович	2	M	1935	1	Mil	1960	1	25.3	0
+3	Glenn, John H., Jr.	Glenn, John H., Jr.	1	M	1921	2	Mil	1959	2	218	0
+4	Carpenter, M. Scott	Carpenter, M. Scott	2	M	1925	2	Mil	1959	1	5	0
+5	Nikolayev, Andriyan	НИКОЛАЕВ Андриян Григорьевич	2	M	1929	1	Mil	1960	2	519.33	0
+6	Popovich, Pavel	ПОПОВИЧ Павел Романович	4	M	1930	1	Mil	1960	2	448.45	0
+7	Schirra, Walter M., Jr.	Schirra, Walter M., Jr.	3	M	1923	2	Mil	1959	3	295.2	0
+8	Cooper, L. Gordon, Jr.	Cooper, L. Gordon, Jr.	4	M	1927	2	Mil	1959	2	225	0
+9	Bykovsky, Valery	БЫКОВСКИЙ Валерий Федорович	5	M	1934	1	Mil	1960	3	497.8	0
+10	Tereshkova, Valentina	ТЕРЕШКОВА Валентина Владимировна	6	F	1937	1	Mil	1962	1	70.83	0
+11	Komarov, Vladimir	КОМАРОВ Владимир Михайлович	7	M	1927	1	Mil	1960	2	51.07	0
+12	Feoktistov, Konstantin	ФЕОКТИСТОВ Константин Петрович	8	M	1926	1	Civ	1964	1	24.28	0
+13	Yegorov, Boris	ЕГОРОВ Борис Борисович	9	M	1937	1	Civ	1964	1	24.28	0
+14	Belyayev, Pavel	БЕЛЯЕВ Павел Иванович	10	M	1925	1	Mil	1960	1	26.03	0
+15	Leonov, Aleksei	ЛЕОНОВ Алексей Архипович	11	M	1934	1	Mil	1960	2	168.53	0.73
+16	Grissom, Virgil I.	Grissom, Virgil I.	5	M	1926	2	Mil	1959	1	4.86	0
+17	Young, John W.	Young, John W.	6	M	1930	2	Mil	1962	6	835.65	20.23
+18	McDivitt, James A.	McDivitt, James A.	7	M	1929	2	Mil	1962	2	338	0
+19	White, Edward H., II	White, Edward H., II	8	M	1930	2	Mil	1962	1	97.93	0.33
+20	Conrad, Charles, Jr.	Conrad, Charles, Jr.	9	M	1930	2	Mil	1962	4	1179	12.77
+21	Borman, Frank	Borman, Frank	10	M	1928	2	Mil	1962	2	477	0
+22	Lovell, James A., Jr.	Lovell, James A., Jr.	11	M	1928	2	Mil	1962	4	715.05	0
+23	Stafford, Thomas P.	Stafford, Thomas P.	12	M	1930	2	Mil	1962	4	508	0
+24	Armstrong, Neil A.	Armstrong, Neil A.	13	M	1930	2	Civ	1962	2	206	2.51
+25	Scott, David R.	Scott, David R.	14	M	1932	2	Mil	1963	3	546	19.9
+26	Cernan, Eugene A.	Cernan, Eugene A.	15	M	1934	2	Mil	1963	3	565	24.18
+27	Collins, Michael	Collins, Michael	16	M	1930	2	Civ	1963	2	266	1.47
+28	Gordon, Richard F., Jr.	Gordon, Richard F., Jr.	17	M	1929	2	Mil	1963	2	315.88	2.68
+29	Aldrin, Edwin Eugene, Jr.	Aldrin, Edwin Eugene, Jr.	18	M	1930	2	Mil	1963	2	289	8
+30	Eisele, Donn F.	Eisele, Donn F.	19	M	1930	2	Mil	1963	1	260	0
+31	Cunningham, Ronnie Walter	Cunningham, Ronnie Walter	20	M	1932	2	Civ	1963	1	260.13	0
+100	Savinykh, Viktor	Виктор Петрович Савиных	50	M	1940	1	Civ	1978	3	6065.63	5
+101	Jugderdemidiin Gurragchaa	Жүгдэрдэмидийн Гүррагчаа	1	M	1947	3	Civ	1978	1	188.7	0
+102	Crippen, Robert L.	Crippen, Robert L.	44	M	1937	2	Mil	1969	4	565	0
+103	Dumitru Prunariu	Dumitru-Dorin Prunariu	1	M	1952	4	Civ	1978	1	188.7	0
+104	Engle, Joe H.	Engle, Joe H.	45	M	1932	2	Mil	1966	2	224	0
+105	Truly, Richard H.	Truly, Richard H.	46	M	1937	2	Mil	1969	2	199.34	0
+106	Fullerton, Charles G.	Fullerton, Charles G.	47	M	1936	2	Mil	1969	2	382	0
+107	Berezovoy, Anatoly	Анатолий Николаевич Березовой	51	M	1942	1	Mil	1970	1	5073.07	2.55
+108	Chrétien, Jean-Loup	Chrétien, Jean-Loup	1	M	1938	5	Mil	1980	3	1043.32	5.95
+109	Hartsfield, Henry W., Jr.	Hartsfield, Henry W., Jr.	48	M	1933	2	Mil	1969	3	481	0
+110	Serebrov, Aleksandr	Александр Александрович Серебров	52	M	1944	1	Civ	1978	4	8950.87	31.82
+32	Beregovoi, Georgi	БЕРЕГОВОЙ Георгий Тимофеевич	12	M	1921	1	Mil	1964	1	94.83	0
+33	Anders, William Alison	Anders, William Alison	21	M	1933	2	Civ	1963	1	147	0
+34	Shatalov, Vladimir	ШАТАЛОВ Владимир Александрович	13	M	1927	1	Mil	1963	3	237.92	0
+35	Volynov, Boris	ВОЛЫНОВ Борис Валентинович	14	M	1934	1	Mil	1960	2	1255.28	0
+36	Yeliseyev, Aleksei	ЕЛИСЕЕВ Алексей Станиславович	15	M	1934	1	Civ	1968	3	214.33	0.62
+37	Khrunov, Yevgeny	ХРУНОВ Евгений Викторович	16	M	1933	1	Mil	1960	1	47.75	0.62
+38	Schweickart, Russell L.	Schweickart, Russell L.	22	M	1935	2	Civ	1963	1	241	1.13
+39	Shonin, Georgi	ШОНИН Георгий Степанович	17	M	1935	1	Mil	1960	1	118.7	0
+40	Kubasov, Valeri	КУБАСОВ Валерий Николаевич	18	M	1935	1	Mil	1968	3	449.95	0
+41	Filipchenko, Anatoly	ФИЛИПЧЕНКО Анатолий Васильевич	19	M	1928	1	Mil	1963	2	261.05	0
+42	Volkov, Vladislav	Владислав Николаевич Волков	20	M	1935	1	Mil	1968	2	689.02	0
+43	Gorbatko, Viktor	Виктор Васильевич Горбатко	21	M	1934	1	Mil	1960	3	732.78	0
+44	Bean, Alan Lavern	Bean, Alan Lavern	23	M	1932	2	Mil	1963	2	1671.75	9.32
+45	Swigert, John L., Jr.	Swigert, John L., Jr.	24	M	1931	2	Civ	1966	1	142	0
+46	Haise, Fred W., Jr.	Haise, Fred W., Jr.	25	M	1933	2	Civ	1966	1	142	0
+47	Sevastyanov, Vitali	Виталий Иванович Севастьянов	22	M	1935	1	Civ	1968	2	1936.3	0
+48	Shepard, Alan B., Jr.	Shepard, Alan B., Jr.	26	M	1923	2	Mil	1959	2	216.25	9.25
+49	Roosa, Stuart A.	Roosa, Stuart A.	27	M	1933	2	Mil	1966	1	216	0
+50	Mitchell, Edgar D.	Mitchell, Edgar D.	28	M	1930	2	Mil	1966	1	216	9.38
+51	Rukavishnikov, Nikolai	Николай Николаевич Рукавишников	23	M	1932	1	Mil	1968	3	237.15	0
+52	Dobrovolski, Georgi	Георгий Тимофеевич Добровольский	24	M	1928	1	Mil	1963	1	570.35	0
+53	Patsayev, Viktor	Виктор Иванович Пацаев	25	M	1933	1	Civ	1968	1	570.35	0
+54	Worden, Alfred M.	Worden, Alfred M.	29	M	1932	2	Mil	1966	1	295.2	0.63
+55	Irwin, James B.	Irwin, James B.	30	M	1930	2	Mil	1966	1	295	18.5
+56	Mattingly, Thomas K., II	Mattingly, Thomas K., II	31	M	1936	2	Mil	1966	3	508	1.38
+57	Duke, Jr. Charles Moss	Duke, Jr. Charles Moss	32	M	1935	2	Mil	1966	1	265	20.25
+58	Evans, Ronald E.	Evans, Ronald E.	33	M	1933	2	Mil	1966	1	301	1.4
+59	Schmitt, Harrison H.	Schmitt, Harrison H.	34	M	1935	2	Civ	1965	1	301	22.07
+60	Weitz, Paul J.	Weitz, Paul J.	35	M	1932	2	Mil	1966	2	793.22	2.27
+61	Kerwin, Joseph P.	Kerwin, Joseph P.	36	M	1932	2	Mil	1965	1	672	3.42
+62	Lousma, Jack R.	Lousma, Jack R.	37	M	1936	2	Mil	1966	2	1619	11
+63	Garriott, Owen K.	Garriott, Owen K.	38	M	1930	2	Civ	1965	2	1674	13.72
+64	Lazarev, Vasili	Василий Григорьевич Лазарев	26	M	1928	1	Mil	1964	1	47.25	0
+65	Makarov, Oleg	Олег Григорьевич Макаров	27	M	1933	1	Civ	1968	3	497.33	0
+66	Carr, Gerald P.	Carr, Gerald P.	39	M	1932	2	Mil	1966	1	2017	15.85
+67	Pogue, William R.	Pogue, William R.	40	M	1930	2	Mil	1966	1	2017	13.62
+68	Gibson, Edward G.	Gibson, Edward G.	41	M	1936	2	Civ	1965	1	2017	15.35
+69	Klimuk, Pyotr	Петр Ильич Климук	28	M	1942	1	Mil	1965	3	1890.28	0
+70	Lebedev, Valentin	Валентин Витальевич Лебедев	29	M	1942	1	Civ	1972	2	5261.98	2.55
+71	Artyukhin, Yuri	Юрий Петрович Артюхин	30	M	1930	1	Mil	1963	1	377.5	0
+72	Sarafanov, Gennadi	Геннадий Васильевич Сарафанов	31	M	1942	1	Mil	1965	1	48.2	0
+73	Dyomin, Lev	Лев Степанович Дёмин	32	M	1926	1	Mil	1963	1	48.2	0
+74	Gubarev, Aleksei	Алексей Александрович Губарев	33	M	1931	1	Mil	1963	2	899.6	0
+75	Grechko, Georgi	Георгий Михайлович Гречко	34	M	1931	1	Civ	1968	3	3236.53	1.01
+76	Brand, Vance D.	Brand, Vance D.	42	M	1931	2	Civ	1966	4	746	0
+77	Slayton, Donald K.	Slayton, Donald K.	43	M	1924	2	Civ	1959	1	217.47	0
+78	Zholobov, Vitali	Виталий Михайлович Жолобов	35	M	1937	1	Mil	1963	1	1182.38	0
+79	Aksyonov, Vladimir	Владимир Викторович Аксёнов	36	M	1935	1	Mil	1973	2	284.18	0
+80	Zudov, Vyacheslav	Вячеслав Дмитриевич Зудов	37	M	1942	1	Mil	1965	1	48.1	0
+81	Rozhdestvensky, Valery	Валерий Ильич Рождественский	38	M	1939	1	Mil	1965	1	48.1	0
+82	Glazkov, Yuri	Юрий Николаевич Глазков	39	M	1939	1	Mil	1965	1	425.42	0
+83	Kovalyonok, Vladimir	Владимир Васильевич Ковалёнок	40	M	1942	1	Mil	1967	3	5193.13	2.33
+84	Ryumin, Valery	Валерий Викторович Рюмин	41	M	1939	1	Civ	1973	4	8921.4	1.38
+85	Romanenko, Yuri	Юрий Викторович Романенко	42	M	1944	1	Mil	1970	3	10338.35	10.27
+86	Dzhanibekov, Vladimir	Владимир Александрович Джанибеков	43	M	1942	1	Mil	1970	5	3495.93	8.57
+87	Vladimir Remek		1	M	1948	6	Mil	1976	1	190.28	0
+88	Ivanchenkov, Aleksandr	Александр Сергеевич Иванченков	44	M	1940	1	Mil	1973	2	3540.62	2.33
+89	Miroslaw Hermaszewske	Miroslaw Hermaszewske	1	M	1941	7	Mil	1976	1	190.03	0
+90	Jahn, Sigmund	Jahn, Sigmund	1	M	1937	8	Mil	1976	1	188.82	0
+91	Lyakhov, Vladimir	Владимир Афанасьевич Ляхов	45	M	1941	1	Mil	1967	3	7999.78	7.12
+92	Georgi Ivanov	Георги Иванов Иванов	1	M	1940	9	Mil	1978	1	47	0
+93	Popov, Leonid	Леонид Иванович Попов	46	M	1945	1	Mil	1970	3	4814.75	0
+94	Bertalan Farkas	Farkas Bertalan	1	M	1949	10	Civ	1978	1	188.75	0
+95	Malyshev, Yuri	Юрий Васильевич Малышев	47	M	1941	1	Mil	1967	2	283.98	0
+96	Pham Tuan	Phạm Tuân	1	M	1947	11	Mil	1979	1	188.7	0
+97	Arnaldo Tamayo Mendez	Arnaldo Tamayo Méndez	1	M	1942	12	Mil	1978	1	188.71	0
+98	Kizim, Leonid	Леонид Денисович Кизим	48	M	1941	1	Mil	1965	3	8993.93	31.48
+99	Strekalov, Gennadi	Геннадий Михайлович Стрекалов	49	M	1940	1	Civ	1973	5	6454.37	20.93
+111	Savitskaya, Svetlana	Светлана Евгеньевна Савицкая	53	F	1948	1	Civ	1980	2	473.1	3.58
+112	Overmyer, Robert F.	Overmyer, Robert F.	49	M	1936	2	Mil	1966	2	290	0
+113	Allen, Joseph P.	Allen, Joseph P.	50	M	1937	2	Civ	1967	2	314	11.7
+114	Lenoir, William B.	Lenoir, William B.	51	M	1939	2	Civ	1967	1	122	0
+115	Bobko, Karol J.	Bobko, Karol J.	52	M	1937	2	Mil	1969	3	386	0
+116	Peterson, Donald H.	Peterson, Donald H.	53	M	1933	2	Mil	1969	1	120	3.83
+117	Musgrave, Franklin Story	Musgrave, Franklin Story	54	M	1935	2	Civ	1967	6	1281	25.9
+118	Titov, Vladimir	Владимир Георгиевич Титов	54	M	1947	1	Mil	1976	4	9288.75	18.8
+119	Hauck, Frederick H.	Hauck, Frederick H.	55	M	1941	2	Mil	1978	3	434	0
+120	Fabian, John M.	Fabian, John M.	56	M	1939	2	Mil	1978	2	316	0
+121	Ride, Sally K.	Ride, Sally K.	57	F	1951	2	Civ	1978	2	343	0
+122	Thagard, Norman E.	Thagard, Norman E.	58	M	1943	2	Civ	1978	5	3373.4	0
+123	Aleksandrov, Aleksandr	Александр Павлович Александров	55	M	1943	1	Civ	1978	2	7434.03	5.86
+124	Brandenstein, Daniel C.	Brandenstein, Daniel C.	59	M	1943	2	Mil	1978	4	789	0
+125	Bluford, Guion S., Jr.	Bluford, Guion S., Jr.	60	M	1942	2	Mil	1978	4	688	0
+126	Gardner, Dale A.	Gardner, Dale A.	61	M	1948	2	Mil	1978	2	336	12
+127	Thornton, William E.	Thornton, William E.	62	M	1929	2	Civ	1967	2	313.26	0
+128	Shaw, Brewster H., Jr.	Shaw, Brewster H., Jr.	63	M	1945	2	Mil	1978	3	533.75	0
+129	Parker, Robert A. R.	Parker, Robert A. R.	64	M	1936	2	Civ	1967	2	463	0
+130	Lichtenberg, Byron Kurt	Lichtenberg, Byron Kurt	65	M	1948	2	Mil	1982	2	462.31	0
+131	Merbold, Ulf	Merbold, Ulf	1	M	1941	8	Civ	1978	3	1197.6	0
+132	Gibson, Robert L.	Gibson, Robert L.	66	M	1946	2	Mil	1978	5	868.13	0
+133	McNair, Ronald E.	McNair, Ronald E.	67	M	1950	2	Civ	1978	2	191	12.02
+134	Stewart, Robert L.	Stewart, Robert L.	68	M	1942	2	Mil	1978	2	289.2	11.95
+135	McCandless, Bruce, II	McCandless, Bruce, II	69	M	1937	2	Mil	1966	2	312	11.95
+136	Solovyov, Vladimir	Владимир Алексеевич Соловьёв	56	M	1946	1	Civ	1978	2	8686.82	31.67
+137	Atkov, Oleg	Олег Юрьевич Атьков	57	M	1949	1	Civ	1983	1	5686.82	0
+138	Rakesh Sharma	राकेश शर्मा	1	M	1949	13	Mil	1982	1	4365.8	0
+139	Scobee, Francis R.	Scobee, Francis R.	70	M	1939	2	Mil	1978	2	168	0
+140	Hart, Terry J.	Hart, Terry J.	71	M	1946	2	Civ	1978	1	167.67	0
+141	Van Hoften, James D. A.	Van Hoften, James D. A.	72	M	1944	2	Civ	1978	2	337.95	21.89
+142	Nelson, George D.	Nelson, George D.	73	M	1950	2	Civ	1978	3	411	10.1
+143	Volk, Igor	Игорь Петрович Волк	58	M	1937	1	Mil	1977	1	283.23	0
+144	Coats, Michael L.	Coats, Michael L.	74	M	1952	2	Mil	1978	3	464	0
+145	Mullane, Richard M.	Mullane, Richard M.	75	M	1945	2	Mil	1978	3	356	0
+146	Hawley, Steven A.	Hawley, Steven A.	76	M	1951	2	Civ	1978	5	768	0
+147	Resnik, Judith A.	Resnik, Judith A.	77	F	1949	2	Civ	1978	2	144	0
+148	Walker, Charles David	Walker, Charles David	78	M	1948	2	Civ	1983	3	478.29	0
+149	McBride, Jon A.	McBride, Jon A.	79	M	1943	2	Mil	1978	1	197	0
+150	Sullivan, Kathryn D.	Sullivan, Kathryn D.	80	F	1951	2	Civ	1978	3	532	3.45
+151	Leestma, David C.	Leestma, David C.	81	M	1949	2	Mil	1980	3	532	3.5
+152	Scully-Power, Paul Desmond	Scully-Power, Paul Desmond	82	M	1944	2	Civ	1984	1	197.67	0
+153	Garneau, Marc Joseph Jean-Pierre	Garneau, Marc Joseph Jean-Pierre	1	M	1949	14	Mil	1983	3	697.67	0
+154	Walker, David Mathieson	Walker, David Mathieson	83	M	1944	2	Mil	1978	4	724.45	0
+155	Fisher, Anna L.	Fisher, Anna L.	84	F	1949	2	Civ	1978	1	191	0
+156	Shriver, Loren J.	Shriver, Loren J.	85	M	1944	2	Mil	1978	3	386	0
+157	Onizuka, Ellison S.	Onizuka, Ellison S.	86	M	1946	2	Mil	1978	2	74	0
+158	Buchli, James F.	Buchli, James F.	87	M	1945	2	Mil	1978	4	490	0
+159	Payton, Gary Eugene	Payton, Gary Eugene	88	M	1948	2	Mil	1979	1	73.675	0
+160	Williams, Donald E.	Williams, Donald E.	89	M	1942	2	Mil	1978	2	286	0
+161	Seddon, Margaret Rhea	Seddon, Margaret Rhea	90	F	1947	2	Civ	1978	3	722	0
+162	Griggs, S. David	Griggs, S. David	91	M	1947	2	Civ	1978	1	168	3.17
+163	Hoffman, Jeffrey A.	Hoffman, Jeffrey A.	92	M	1944	2	Civ	1978	5	1211.9	25.2
+164	Garn, Edwin Jacob	Garn, Edwin Jacob	93	M	1932	2	Mil	1985	1	168.15	0
+165	Gregory, Frederick D.	Gregory, Frederick D.	94	M	1941	2	Mil	1978	3	455	0
+166	Lind, Don L.	Lind, Don L.	95	M	1930	2	Mil	1966	1	168	0
+167	Lodewijk, van der Berg	Lodewijk, van der Berg	96	M	1932	2	Civ	1983	1	168.525	0
+168	Wang, Taylor Gun-Jin	王赣骏	97	M	1940	2	Civ	1984	1	168.525	0
+169	Creighton, John O.	Creighton, John O.	98	M	1943	2	Mil	1978	3	404	0
+170	Nagel, Steven R.	Nagel, Steven R.	99	M	1946	2	Mil	1978	4	522	0
+171	Lucid, Shannon W.	Lucid, Shannon W.	100	F	1943	2	Civ	1978	5	5353	0
+172	Baudry, Patrick	Baudry, Patrick	2	M	1946	5	Mil	1980	1	169.63	0
+173	Al-saud, Sultan bin Salman		1	M	1956	15	Civ	1985	1	170	0
+174	Bridges, Roy D., Jr.	Bridges, Roy D., Jr.	101	M	1943	2	Mil	1980	1	190	0
+175	Henize, Karl G.	Henize, Karl G.	102	M	1926	2	Civ	1967	1	190.75	0
+176	England, Anthony W.	England, Anthony W.	103	M	1942	2	Civ	1967	1	190	0
+177	Acton, Loren Wilbur	Acton, Loren Wilbur	104	M	1936	2	Civ	1978	1	190.94	0
+178	Bartoe, John-David Francis	Bartoe, John-David Francis	105	M	1944	2	Civ	1978	1	190.94	0
+179	Covey, Richard O.	Covey, Richard O.	106	M	1946	2	Mil	1978	4	645	0
+180	Lounge, John M.	Lounge, John M.	107	M	1946	2	Civ	1980	3	482	0
+181	Fisher, William F.	Fisher, William F.	108	M	1946	2	Civ	1980	1	170	11.76
+182	Vasyutin, Vladimir	Владимир Владимирович Васютин	59	M	1952	1	Mil	1976	1	1557.87	0
+183	Volkov, Alexander	Александр Александрович Волков	60	M	1948	1	Mil	1976	3	9395.87	10.2
+184	Grabe, Ronald J.	Grabe, Ronald J.	109	M	1945	2	Mil	1980	4	626.73	0
+185	Hilmers, David C.	Hilmers, David C.	110	M	1950	2	Mil	1980	4	493	0
+186	Pailes, William Arthur	Pailes, William Arthur	111	M	1936	2	Mil	1982	1	98.11	0
+187	Dunbar, Bonnie J.	Dunbar, Bonnie J.	112	F	1949	2	Civ	1980	5	1208	0
+188	Furrer, Reinhard Alfred	Furrer, Reinhard Alfred	2	M	1940	8	Civ	1982	1	168.73	0
+189	Messerschmid, Ernst Willi	Messerschmid, Ernst Willi	3	M	1945	8	Mil	1982	1	168.73	0
+190	Ockels, Wubbo Johannes	Ockels, Wubbo Johannes	1	M	1946	16	Civ	1978	1	168.73	0
+191	O'Connor, Bryan D.	O'Connor, Bryan D.	113	M	1946	2	Mil	1980	2	386	0
+192	Ross, Jerry L.	Ross, Jerry L.	114	M	1948	2	Mil	1980	7	1393	58.53
+193	Cleave, Mary L.	Cleave, Mary L.	115	F	1947	2	Civ	1980	2	262	0
+194	Spring, Sherwood C.	Spring, Sherwood C.	116	M	1944	2	Mil	1980	1	165	12.17
+195	Neri Vela, Rodolfl		1	M	1952	17	Civ	1985	1	165.67	0
+196	Bolden, Charles F., Jr.	Bolden, Charles F., Jr.	117	M	1946	2	Mil	1980	4	680	0
+197	Chang-Diaz, Franklin R.	Chang-Diaz, Franklin R.	118	M	1950	2	Civ	1980	7	1601	19.52
+198	Cenker, Robert Joseph	Cenker, Robert Joseph	119	M	1948	2	Civ	1985	1	146.42	0
+199	Nelson, William Clarence	Nelson, William Clarence	120	M	1942	2	Civ	1984	1	6.03	0
+200	Smith, Michael John	Smith, Michael John	121	M	1945	2	Mil	1980	1	0.61	0
+201	Jarvis, Gregory Bruce	Jarvis, Gregory Bruce	122	M	1944	2	Civ	1984	1	0.61	0
+202	McAuliffe, Sharon Christa Corrigan	McAuliffe, Sharon Christa Corrigan	123	F	1948	2	Civ	1985	1	0.61	0
+203	Laveykin, Aleksandr	Александр Иванович Лавейкин	61	M	1951	1	Civ	1978	1	4179.42	8.8
+204	Viktorenko, Aleksandr	Александр Степанович Викторенко	62	M	1947	1	Mil	1978	4	11737.55	19.65
+205	Faris, M. Achmed		1	M	1951	18	Mil	1985	1	191	0
+206	Manarov, Musa	Муса Хираманович Манаров	63	M	1951	1	Mil	1978	2	12984.47	34.38
+207	Levchenko, Anatoli	Левченко Анатолий Семёнович	64	M	1941	1	Mil	1977	1	189.97	0
+208	Solovyev, Anatoly	Анатолий Яковлевич Соловьёв	65	M	1948	1	Mil	1976	5	15624.03	78.8
+209	Aleksandrov, Aleksandr	Александър Панайотов Александров	2	M	1951	9	Mil	1978	1	47	0
+210	Polyakov, Valeri	Валерий Владимирович Поляков	66	M	1942	1	Civ	1972	2	16288.53	0
+211	Mohmand, Abdul Ahad		1	M	1959	19	Mil	1988	1	212	0
+212	Krikalev, Sergei	Сергей Константинович Крикалёв	67	M	1958	1	Civ	1985	6	19281.65	41.43
+213	Gardner, Guy S.	Gardner, Guy S.	124	M	1948	2	Mil	1980	2	320.16	0
+214	Shepherd, William M.	Shepherd, William M.	125	M	1949	2	Mil	1984	4	3721	0
+215	Blaha, John E.	Blaha, John E.	126	M	1942	2	Mil	1980	5	3864	0
+216	Springer, Robert C.	Springer, Robert C.	127	M	1942	2	Mil	1980	2	237	0
+217	Bagian, James P.	Bagian, James P.	128	M	1952	2	Civ	1980	2	338	0
+218	Lee, Mark C.	Lee, Mark C.	129	M	1952	2	Mil	1984	4	789.76	26.02
+219	Richards, Richard N.	Richards, Richard N.	130	M	1946	2	Mil	1980	4	813	0
+220	Adamson, James C.	Adamson, James C.	131	M	1946	2	Mil	1984	2	334	0
+221	Brown, Mark N.	Brown, Mark N.	132	M	1951	2	Mil	1984	2	249	0
+222	McCulley, Michael J.	McCulley, Michael J.	133	M	1943	2	Mil	1984	1	119	0
+223	Baker, Ellen S.	Baker, Ellen S.	134	F	1953	2	Civ	1984	3	686	0
+224	Carter, Manley Lanier, Jr.	Carter, Manley Lanier, Jr.	135	M	1947	2	Mil	1984	1	120	0
+225	Thornton, Kathryn C.	Thornton, Kathryn C.	136	F	1952	2	Civ	1984	4	975.23	21.18
+226	Wetherbee, James D.	Wetherbee, James D.	137	M	1952	2	Mil	1984	6	1594.38	0
+227	Ivins, Marsha S.	Ivins, Marsha S.	138	F	1951	2	Civ	1984	5	1341.8	0
+228	Low, G. David	Low, G. David	139	M	1956	2	Civ	1984	3	713	5.83
+229	Balandin, Aleksandr	Александр Николаевич Баландин	68	M	1953	1	Civ	1978	1	4297.28	10.78
+230	Casper, John H.	Casper, John H.	140	M	1943	2	Mil	1984	4	825	0
+231	Thuot, Pierre J.	Thuot, Pierre J.	141	M	1955	2	Mil	1985	3	654.85	17.7
+232	Manakov, Gennadi	Геннадий Михайлович Манаков	69	M	1950	1	Mil	1985	2	7437.3	12.72
+233	Cabana, Robert D.	Cabana, Robert D.	142	M	1949	2	Mil	1985	4	910	0
+234	Melnick, Bruce E.	Melnick, Bruce E.	143	M	1949	2	Mil	1987	2	311	0
+235	Akers, Thomas D.	Akers, Thomas D.	144	M	1951	2	Mil	1987	4	814	30.15
+236	Culbertson, Frank L., Jr.	Culbertson, Frank L., Jr.	145	M	1949	2	Mil	1984	3	3447	5.07
+237	Meade, Carl J.	Meade, Carl J.	146	M	1950	2	Mil	1985	3	710	6.85
+238	Gemar, Charles D.	Gemar, Charles D.	147	M	1955	2	Mil	1985	3	581.5	0
+239	Durrance, Samuel Thornton	Durrance, Samuel Thornton	148	M	1943	2	Civ	1984	2	614.69	0
+240	Parise, Ronald Anthony	Parise, Ronald Anthony	149	M	1951	2	Civ	1984	2	614.69	0
+241	Afanasyev, Viktor Mikhaylovich	Виктор Михайлович Афанасьев	70	M	1948	1	Mil	1985	4	13338.55	38.05
+242	Akiyama, Toyohiro	秋山豊寛	1	M	1942	20	Civ	1989	1	189.9	0
+243	Cameron, Kenneth D.	Cameron, Kenneth D.	150	M	1949	2	Mil	1984	3	561	0
+244	Godwin, Linda M.	Godwin, Linda M.	151	F	1952	2	Civ	1985	4	917.99	10.23
+245	Apt, Jerome	Apt, Jerome	152	M	1949	2	Civ	1985	4	847	10.82
+246	Hammond, L. Blaine, Jr.	Hammond, L. Blaine, Jr.	153	M	1952	2	Mil	1984	2	461	0
+247	Harbaugh, Gregory J.	Harbaugh, Gregory J.	154	M	1956	2	Civ	1987	4	816	18.49
+248	McMonagle, Donald R.	McMonagle, Donald R.	155	M	1952	2	Mil	1987	3	604	0
+249	Veach, Charles Lacy	Veach, Charles Lacy	155	M	1944	2	Civ	1984	2	436.3	0
+250	Hieb, Richard J.	Hieb, Richard J.	157	M	1955	2	Civ	1985	3	765	17.7
+251	Artsebarsky, Anatoly	Анатолий Павлович Арцебарский	71	M	1956	1	Mil	1985	1	3471.35	32.28
+252	Helen Sharman	Helen Sharman	1	F	1963	21	Civ	1989	1	189.22	0
+253	Gutierrez, Sidney M.	Gutierrez, Sidney M.	158	M	1951	2	Mil	1984	2	487	0
+254	Jernigan, Tamara E.	Jernigan, Tamara E.	159	F	1959	2	Civ	1985	5	1511	7.92
+255	Gaffney, Andrew	Gaffney, Andrew	160	M	1946	2	Civ	1984	1	218	0
+256	Hughes-Fulford, Millie Elizabeth	Hughes-Fulford, Millie Elizabeth	161	F	1945	2	Civ	1983	1	218.37	0
+257	Baker, Michael A.	Baker, Michael A.	162	M	1953	2	Mil	1985	4	965	0
+258	Reightler, Kenneth S., Jr.	Reightler, Kenneth S., Jr.	163	M	1951	2	Mil	1987	2	312	0
+259	Aubakirov, Toktar	Тоқтар Оңғарбайұлы Әубәкіров	72	M	1946	1	Mil	1991	1	190.2	0
+260	Viehbock, Franz	Viehbock, Franz	1	M	1960	22	Civ	1989	1	190.2	0
+261	Henricks, Terence T.	Henricks, Terence T.	164	M	1952	2	Mil	1985	4	190.75	0
+262	Voss, James S.	Voss, James S.	165	M	1949	2	Mil	1987	5	1000	23.08
+263	Runco, Mario, Jr.	Runco, Mario, Jr.	166	M	1952	2	Mil	1987	3	549	4.47
+264	Hennen, Thomas John	Hennen, Thomas John	167	M	1952	2	Mil	1988	1	167.11	0
+265	Oswald, Stephen S.	Oswald, Stephen S.	168	M	1951	2	Mil	1985	3	814	0
+266	Readdy, William F.	Readdy, William F.	169	M	1952	2	Civ	1987	3	672	0
+267	Bondar, Roberta Lynn	Bondar, Roberta Lynn	2	F	1945	14	Civ	1983	1	193.77	0
+268	Kaleri, Aleksandr	Александр Юрьевич Калери	73	M	1956	1	Civ	1984	5	18462.62	23.58
+269	Flade, Klaus-Dietrich	Flade, Klaus-Dietrich	4	M	1952	8	Mil	1990	1	189.95	0
+270	Duffy, Brian	Duffy, Brian	170	M	1953	2	Mil	1985	4	976	0
+271	Foale, C. Michael	Foale, C. Michael	171	M	1957	2	Civ	1987	6	8976	22.73
+272	Frimout, David	Frimout, Dirk Dries david	1	M	1941	23	Civ	1985	1	214.15	0
+273	Chilton, Kevin P.	Chilton, Kevin P.	172	M	1954	2	Mil	1987	3	704	0
+274	Bowersox, Kenneth D.	Bowersox, Kenneth D.	173	M	1956	2	Mil	1987	5	5304	13.28
+275	DeLucas, Lawrence James	DeLucas, Lawrence James	174	M	1950	2	Civ	1990	1	331.53	0
+276	Trinh, Eugene Huu-Chau	Trinh, Eugene Huu-Chau	175	M	1950	2	Civ	1983	1	331.53	0
+277	Avdeyev, Sergei	Сергей Васильевич Авдеев	74	M	1956	1	Civ	1987	3	17942.23	41
+278	Tognini, Michel	Tognini, Michel	3	M	1949	5	Mil	1985	2	449.77	0
+279	Allen, Andrew M.	Allen, Andrew M.	176	M	1955	2	Mil	1987	3	904	0
+280	Nicollier, Claude	Nicollier, Claude	1	M	1944	24	Civ	1978	4	1184.07	8.16
+281	Franco Malerba	Franco Malerba	1	M	1946	25	Civ	1998	1	191.25	0
+282	Brown, Curtis L., Jr.	Brown, Curtis L., Jr.	177	M	1956	2	Mil	1987	6	1381	0
+283	Davis, Nancy Jan	Davis, Nancy Jan	178	F	1953	2	Civ	1987	3	673	0
+284	Jemison, Mae C.	Jemison, Mae C.	179	F	1956	2	Civ	1987	1	190.5	0
+285	Mohri, Mamoru	毛利衛	2	M	1948	20	Civ	1985	2	190.5	0
+286	Steven MacLean	Steven MacLean	3	M	1954	14	Mil	1983	2	520.03	7.18
+287	Clifford, Michael R.	Clifford, Michael R.	180	M	1952	2	Mil	1990	3	666	6.03
+288	Helms, Susan J.	Helms, Susan J.	181	F	1958	2	Mil	1990	5	5054	8.93
+289	Poleshchuk, Aleksandr	Александр Федорович Полещук	75	M	1953	1	Mil	1989	1	4296.72	9.97
+290	Cockrell, Kenneth D.	Cockrell, Kenneth D.	182	M	1950	2	Civ	1990	5	1560	0
+291	Ochoa, Ellen	Ochoa, Ellen	183	F	1958	2	Civ	1990	4	978	0
+292	Precourt, Charles J., Jr.	Precourt, Charles J., Jr.	184	M	1955	2	Mil	1990	4	932	0
+293	Harris, Bernard A., Jr.	Harris, Bernard A., Jr.	185	M	1956	2	Civ	1990	2	437	4.65
+294	Walter, Ulrich	Walter, Ulrich	5	M	1954	8	Civ	1987	1	239.67	0
+295	Schlegel, Hans	Schlegel, Hans	6	M	1951	8	Civ	1987	2	546	6.75
+296	Currie, Nancy J.	Currie, Nancy J.	186	F	1958	2	Mil	1990	4	999	0
+297	Wisoff, Peter J. K.	Wisoff, Peter J. K.	187	M	1958	2	Civ	1990	4	1064.15	19.88
+298	Voss, Janice E.	Voss, Janice E.	188	F	1956	2	Civ	1990	5	1199.81	0
+299	Tsibliyev, Vasili	Василий Васильевич Циблиев	76	M	1954	1	Mil	1987	2	9159.87	19.18
+300	Haigneré, Jean-Pierre	Haigneré, Jean-Pierre	4	M	1948	5	Mil	1985	2	5028	6.32
+301	Newman, James H.	Newman, James H.	189	M	1956	2	Civ	1990	4	1032	43.03
+302	Bursch, Daniel W.	Bursch, Daniel W.	190	M	1957	2	Mil	1990	4	5448	11.77
+303	Walz, Carl E.	Walz, Carl E.	191	M	1955	2	Mil	1990	4	5533.06	18.91
+304	Searfoss, Richard A.	Searfoss, Richard A.	192	M	1956	2	Mil	1990	3	938	0
+305	McArthur, William S., Jr.	McArthur, William S., Jr.	193	M	1951	2	Mil	1990	4	5396	24.35
+306	Wolf, David A.	Wolf, David A.	194	M	1956	2	Civ	1990	4	4040.95	41.95
+307	Fettman, Martin Joseph	Fettman, Martin Joseph	195	M	1956	2	Civ	1992	1	336.47	0
+308	Yuri Vladimirovich Usachyov	Юрий Владимирович Усачёв	77	M	1957	1	Mil	1989	4	13270.42	31.15
+309	Sega, Ronald M.	Sega, Ronald M.	196	M	1952	2	Civ	1990	2	420	0
+310	Jones, Thomas D.	Jones, Thomas D.	197	M	1955	2	Civ	1990	4	1272.82	19.82
+311	Malenchenko, Yuri	Юрий Иванович Маленченко	78	M	1961	1	Mil	1987	6	16872.47	34.83
+312	Musabayev, Talgat	Талғат Аманкелдіұлы Мұсабаев	79	M	1951	1	Mil	1990	3	8193.8	42.6
+313	Halsell, James D., Jr.	Halsell, James D., Jr.	198	M	1956	2	Mil	1990	5	1257	0
+314	Chiao, Leroy	Chiao, Leroy	199	M	1960	2	Civ	1990	4	5503	36.09
+315	Thomas, Donald A.	Thomas, Donald A.	200	M	1955	2	Civ	1990	4	1038	0
+316	Mukai, Chiaki	向井千秋	3	F	1952	20	Civ	1985	2	568	0
+317	Linenger, Jerry M.	Linenger, Jerry M.	210	M	1955	2	Mil	1992	2	3218.83	0
+318	Wilcutt, Terrence W.	Wilcutt, Terrence W.	202	M	1949	2	Mil	1990	4	1008	0
+319	Smith, Steven L.	Smith, Steven L.	203	M	1958	2	Civ	1992	4	960	49.8
+320	Kondakova, Yelena V.	Елена Владимировна Кондакова	80	F	1957	1	Civ	1989	2	4282.68	0
+321	Tanner, Joseph R.	Tanner, Joseph R.	204	M	1950	2	Civ	1992	4	1045.25	46.48
+322	Clervoy, Jean-François	Clervoy, Jean-François	5	M	1958	5	Mil	1985	3	675.1	0
+323	Parazynski, Scott E.	Parazynski, Scott E.	205	M	1961	2	Civ	1992	5	1379	47.08
+324	Collins, Eileen M.	Collins, Eileen M.	206	F	1956	2	Mil	1990	4	872	0
+325	Gregory, William G.	Gregory, William G.	207	M	1957	2	Mil	1990	1	399	0
+326	Grunsfeld, John M.	Grunsfeld, John M.	208	M	1958	2	Civ	1992	5	1405	59.5
+327	Lawrence, Wendy B.	Lawrence, Wendy B.	209	F	1959	2	Mil	1992	4	1226	0
+328	Dezhurov, Vladimir N.	Владимир Николаевич Дежуров	81	M	1962	1	Mil	1987	2	5861.47	36.87
+329	Budarin, Nikolai	Николай Михайлович Бударин	82	M	1953	1	Civ	1989	3	10657.42	46.02
+330	Kregel Kevin R.	Kregel Kevin R.	210	M	1956	2	Civ	1992	4	1266.35	0
+331	Weber, Mary E.	Weber, Mary E.	211	F	1962	2	Civ	1992	2	450.5	0
+332	Gidzenko, Yuri	Юрий Павлович Гидзенко	83	M	1962	1	Mil	1987	3	7918.73	3.1
+333	Reiter, Thomas	Reiter, Thomas	7	M	1958	8	Mil	1992	2	8405.58	14.25
+334	Gernhardt, Michael L.	Gernhardt, Michael L.	212	M	1956	2	Civ	1992	4	1039.05	23.26
+335	Rominger, Kent V.	Rominger, Kent V.	213	M	1956	2	Mil	1992	5	1608	0
+336	Coleman, Catherine G.	Coleman, Catherine G.	214	F	1960	2	Mil	1992	3	500	0
+337	Lopez-Alegria, Michael E.	Lopez-Alegria, Michael E.	215	M	1958	2	Mil	1992	4	6190.67	67.67
+338	Leslie, Fred Weldon	Leslie, Fred Weldon	216	M	1951	2	Civ	1994	1	382.02	0
+339	Sacco, Albert Jr.	Sacco, Albert Jr.	217	M	1949	2	Civ	1994	1	382.02	0
+340	Chris Hadfield	Chris Hadfield	4	M	1959	14	Mil	1992	3	4191.82	14.83
+341	Jett, Brent W.	Jett, Brent W.	218	M	1958	2	Mil	1992	4	1002.02	0
+342	Scott, Winston E.	Scott, Winston E.	219	M	1950	2	Mil	1992	2	590	19.38
+343	Wakata, Koichi	若田光一	4	M	1963	20	Civ	1992	4	8336.5	0
+344	Barry, Daniel T.	Barry, Daniel T.	220	M	1953	2	Civ	1992	3	734	25.82
+345	Onufrienko, Yuri	Юрий Иванович Онуфриенко	84	M	1961	1	Mil	1989	2	9350.77	42.53
+346	Horowitz, Scott J.	Horowitz, Scott J.	221	M	1957	2	Mil	1992	4	1138.68	0
+347	Cheli, Maurizio	Cheli, Maurizio	2	M	1959	25	Mil	1992	1	377.68	0
+348	Guidoni, Umberto	Guidoni, Umberto	3	M	1954	25	Civ	1996	2	663.17	0
+349	Thomas, Andrew S. W.	Thomas, Andrew S. W.	222	M	1951	26	Civ	1992	4	4264	6.35
+350	Linnehan, Richard M.	Linnehan, Richard M.	223	M	1957	2	Civ	1992	4	1427	42.2
+351	Brady, Charles E., Jr.	Brady, Charles E., Jr.	224	M	1951	2	Mil	1992	1	405	0
+352	Favier, Jean-Jacques	Favier, Jean-Jacques	6	M	1949	5	Civ	1985	1	405.8	0
+353	Robert Thirsk	Robert Thirsk	5	M	1953	14	Civ	1983	2	4917.8	0
+354	Korzun, Valery	Валерий Григорьевич Корзун	85	M	1953	1	Mil	1987	2	9159.68	22.33
+355	André-Deshays, Claudie (Haigneré)	André-Deshays, Claudie (Haigneré)	7	F	1957	5	Civ	1985	2	614.37	0
+356	Lazutkin, Aleksandr	Александр Иванович Лазуткин	86	M	1957	1	Civ	1992	1	4438.12	0
+357	Ewald, Reinhold	Ewald, Reinhold	8	M	1956	8	Civ	1990	1	472.57	0
+358	Kilrain-Still, Susan L.	Kilrain-Still, Susan L.	225	F	1961	2	Mil	1995	2	471	0
+359	Crouch, Roger Keith	Crouch, Roger Keith	226	M	1940	2	Civ	1995	2	4576.07	0
+360	Linteris, Gregory Thomas	Linteris, Gregory Thomas	227	M	1957	2	Civ	1995	2	4576.07	0
+361	Noriega, Carlos I.	Noriega, Carlos I.	228	M	1959	2	Mil	1995	2	481	19.33
+362	Lu, Edward T.	Lu, Edward T.	229	M	1963	2	Civ	1995	3	4943.3	6.23
+363	Vinogradov, Pavel	Павел Владимирович Виноградов	87	M	1953	1	Civ	1992	3	13126.53	38.4
+364	Curbeam, Robert L., Jr.	Curbeam, Robert L., Jr.	230	M	1962	2	Mil	1994	3	902	45.55
+365	Robinson, Stephen K.	Robinson, Stephen K.	231	M	1955	2	Civ	1994	4	1156	20.08
+366	Bjarni Tryggvason	Bjarni Tryggvason	6	M	1945	14	Civ	1983	1	284	0
+367	Bloomfield, Michael J.	Bloomfield, Michael J.	232	M	1959	2	Mil	1994	3	779	0
+368	Lindsey, Steven W.	Lindsey, Steven W.	233	M	1960	2	Mil	1995	5	1508	0
+369	Chawla, Kalpana	Chawla, Kalpana	234	F	1962	2	Civ	1994	2	758	0
+370	Doi, Takao	土井隆雄	5	M	1954	20	Civ	1985	2	763.6	12.7
+371	Kadenyuk, Leonid	Леонід Костянтинович Каденюк	1	M	1951	27	Civ	1976	1	376.57	0
+372	Edwards, Joe F., Jr.	Edwards, Joe F., Jr.	235	M	1958	2	Mil	1995	1	211	0
+373	Reilly, James F.	Reilly, James F.	236	M	1954	2	Civ	1994	3	853	30.72
+374	Anderson, Michael P.	Anderson, Michael P.	237	M	1959	2	Mil	1994	2	593	0
+375	Sharipov, Salizhan	Салижан Шакирович Шарипов	88	M	1964	1	Mil	1990	2	4838.83	10
+376	Eyharts, Léopold	Eyharts, Léopold	8	M	1957	5	Mil	1990	2	1653.52	0
+377	Altman, Scott D.	Altman, Scott D.	238	M	1959	2	Mil	1994	4	1224	0
+378	Hire, Kathryn P.	Hire, Kathryn P.	239	F	1959	2	Mil	1995	2	711	0
+379	Williams, Dafydd Rhys	Williams, Dafydd Rhys	7	M	1954	14	Civ	1992	2	676.85	17.78
+380	Buckey, Jay Clark Jr.	Buckey, Jay Clark Jr.	240	M	1956	2	Civ	1991	1	382.31	0
+381	Pawelczyk, James Anthony	Pawelczyk, James Anthony	241	M	1960	2	Civ	1996	1	382.31	0
+382	Gorie, Dominic L.	Gorie, Dominic L.	242	M	1957	2	Mil	1995	4	1176.1	0
+383	Kavandi, Janet L.	Kavandi, Janet L.	243	F	1957	2	Civ	1995	3	810	0
+384	Padalka, Gennady	Геннадий Иванович Падалка	89	M	1958	1	Mil	1989	5	21083.52	37.95
+385	Baturin, Yuri	Юрий Михайлович Батурин	90	M	1949	1	Civ	1997	2	473.75	0
+387	Sturckow, Frederick W.	Sturckow, Frederick W.	244	M	1961	2	Mil	1995	4	1237	0
+388	Bella, Ivan	Bella, Ivan	1	M	1964	28	Mil	1998	1	190	0
+389	Husband, Rick D.	Husband, Rick D.	245	M	1957	2	Mil	1995	2	617	0
+390	Payette, Julie	Payette, Julie	8	F	1963	14	Civ	1992	2	611.98	0
+391	Tokarev, Valeri	Валерий Иванович Токарев	91	M	1952	1	Mil	1989	2	4791.1	11.08
+392	Ashby, Jeffrey S.	Ashby, Jeffrey S.	246	M	1954	2	Mil	1995	3	664	0
+393	Kelly, Scott J.	Kelly, Scott J.	247	M	1964	2	Mil	1996	4	12490	18.33
+394	Thiele, Gerhard	Thiele, Gerhard	9	M	1953	8	Civ	1987	1	269.65	0
+395	Zalyotin, Sergei	Сергей Викторович Залётин	92	M	1962	1	Mil	1990	2	2008.6	5.05
+396	Williams, Jeffrey N.	Williams, Jeffrey N.	248	M	1958	2	Mil	1996	4	12752	31.92
+397	Mastracchio, Richard A.	Mastracchio, Richard A.	249	M	1960	2	Civ	1996	4	5460	53.07
+398	Burbank, Daniel C.	Burbank, Daniel C.	250	M	1961	2	Mil	1996	3	4534	7.18
+399	Morukov, Boris	Борис Владимирович Моруков	93	M	1950	1	Civ	1989	1	283.2	0
+400	Melroy, Pamela A.	Melroy, Pamela A.	251	F	1961	2	Mil	1995	3	930	0
+401	Polansky, Mark L.	Polansky, Mark L.	252	M	1956	2	Civ	1996	3	993	0
+402	Kelly, James M.	Kelly, James M.	253	M	1959	2	Mil	1996	2	640	0
+403	Richards, Paul W.	Richards, Paul W.	254	M	1964	2	Civ	1996	1	307	6.35
+404	Phillips, John L.	Phillips, John L.	255	M	1951	2	Civ	1996	3	4872	4.78
+405	Lonchakov, Yuri	Юрий Валентинович Лончаков	94	M	1965	1	Mil	1997	3	4818.65	10.28
+406	Tito, Dennis Anthony	Tito, Dennis Anthony	256	M	1940	2	Civ	2000	1	190.13	0
+407	Hobaugh, Charles O.	Hobaugh, Charles O.	257	M	1961	2	Mil	1996	3	871.78	0
+408	Forrester, Patrick G.	Forrester, Patrick G.	258	M	1957	2	Mil	1996	3	950	25.5
+409	Tyurin, Mikhail	Михаил Владиславович Тюрин	95	M	1960	1	Mil	1994	3	12770.85	25.52
+410	Kozeyev, Konstantin	Константин Мирович Козеев	96	M	1967	1	Civ	1996	1	235.98	0
+411	Kelly, Mark E.	Kelly, Mark E.	259	M	1964	2	Mil	1996	4	1297	0
+412	Tani, Daniel M.	Tani, Daniel M.	260	M	1961	2	Civ	1996	2	3163	39.18
+413	Carey, Duane G.	Carey, Duane G.	261	M	1957	2	Mil	1996	1	262	0
+414	Massimino, Michael J.	Massimino, Michael J.	262	M	1962	2	Civ	1996	2	517.8	30.74
+415	Frick, Stephen N.	Frick, Stephen N.	263	M	1964	2	Mil	1996	2	565	0
+416	Walheim, Rex J.	Walheim, Rex J.	264	M	1962	2	Mil	1996	3	872.51	56.73
+417	Morin, Lee M.	Morin, Lee M.	265	M	1952	2	Mil	1996	1	259	14.12
+418	Vittori, Roverto	Vittori, Roverto	4	M	1964	25	Mil	1998	3	851.65	0
+419	Shuttleworth, M. Richard	Shuttleworth, M. Richard	1	M	1973	29	Civ	2001	1	237	0
+420	Lockhart, Paul S.	Lockhart, Paul S.	266	M	1956	2	Mil	1996	2	663.38	0
+421	Perrin, Philippe	Perrin, Philippe	9	M	1963	5	Mil	1990	1	332.58	19.52
+422	Whitson, Peggy A.	Whitson, Peggy A.	267	F	1960	2	Civ	1996	3	15982	60.31
+423	Treshchov, Sergei	Сергей Евгеньевич Трещёв	97	M	1958	1	Civ	1992	1	4438.25	5.35
+424	Magnus, Sandra H.	Magnus, Sandra H.	268	F	1964	2	Civ	1996	3	3776	0
+425	Sellers, Piers J.	Sellers, Piers J.	269	M	1955	30	Civ	1996	3	839	41.17
+426	Yurchikhin, Fyodor	Фёдор Николаевич Юрчихин	98	M	1959	1	Civ	1997	5	16147	59.43
+427	De Winne, Frank	De Winne, Frank	2	M	1961	23	Mil	1998	2	4769.58	0
+428	Herrington, John B.	Herrington, John B.	270	M	1958	2	Mil	1996	1	330	19.92
+429	Pettit, Donald R.	Pettit, Donald R.	271	M	1955	2	Civ	1996	3	8872.5	13.28
+430	McCool, William C.	McCool, William C.	272	M	1961	2	Mil	1996	1	382	0
+431	Brown, David M.	Brown, David M.	273	M	1956	2	Mil	1996	1	382	0
+432	Clark, Laurel B.	Clark, Laurel B.	274	F	1961	2	Mil	1996	1	382	0
+433	Ramon, Ilan	אילן רמון	1	M	1954	31	Mil	1996	1	382.33	0
+434	Yang, Liwei	杨利伟	1	M	1965	32	Mil	2003	1	21	0
+435	Fincke, E. Michael	Fincke, E. Michael	275	M	1967	2	Mil	1996	3	9159	48.61
+436	Kuipers, Andre	Kuipers, Andre	2	M	1958	16	Civ	1998	2	4888	0
+437	Shargin, Yuri	Юрий Георгиевич Шаргин	99	M	1960	1	Mil	1996	1	237.5	0
+438	Noguchi, Soichi	野口聡一	6	M	1965	20	Civ	1996	2	4251.1	20.08
+439	Camarda, Charles J.	Camarda, Charles J.	276	M	1952	2	Civ	1996	1	333	0
+440	Olsen, Gregory Hammond	Olsen, Gregory Hammond	277	M	1945	2	Civ	2004	1	237.29	0
+441	Fei, Junlong	费俊龙	2	M	1966	32	Mil	2005	1	115	0
+442	Nie Haisheng	聂海胜	3	M	1964	32	Mil	2005	2	466	0
+443	Pontes, Marcos Cesar	Pontes, Marcos Cesar	1	M	1963	33	Mil	1998	1	237.28	0
+444	Fossum, Michael E.	Fossum, Michael E.	278	M	1957	2	Civ	1998	3	4651	48.53
+445	Nowak, Lisa M.	Nowak, Lisa M.	279	F	1963	2	Mil	1996	1	306	0
+446	Wilson, Stephanie D.	Wilson, Stephanie D.	280	F	1966	2	Civ	1996	3	1031.77	0
+447	Ferguson, Christopher J.	Ferguson, Christopher J.	281	M	1961	2	Mil	1998	3	672	0
+448	Stefanyshyn-Piper, Heidemarie M.	Stefanyshyn-Piper, Heidemarie M.	282	F	1963	2	Mil	1996	2	648	33.7
+449	Ansari, Anousheh	انوشه انصاری	283	F	1966	2	Civ	2006	1	261.525	0
+450	Oefelein, William A.	Oefelein, William A.	284	M	1965	2	Mil	1998	1	308	0
+451	Patrick, Nicholas J. M.	Patrick, Nicholas J. M.	285	M	1964	30	Civ	1998	2	638	18.23
+452	Christer Fuglesang	Christer Fuglesang	1	M	1957	34	Civ	1992	2	641.63	31.9
+453	Higginbotham, Joan E.	Higginbotham, Joan E.	286	F	1964	2	Civ	1996	1	308	0
+454	Williams, Sunita L.	Williams, Sunita L.	287	F	1965	2	Mil	1998	1	7722	50.67
+455	Kotov, Oleg	Олег Валериевич Котов	100	M	1965	1	Mil	1996	3	12629.03	36.7
+456	Simonyi, Charles (Karoly)	Simonyi, Charles (Karoly)	288	M	1948	2	Civ	2006	2	638.77	0
+457	Archambault, Lee J.	Archambault, Lee J.	289	M	1960	2	Mil	1998	2	639.5	0
+458	Swanson, Steven R.	Swanson, Steven R.	290	M	1960	2	Civ	1998	3	4646.85	27.9
+459	Olivas, John D.	Olivas, John D.	291	M	1965	2	Civ	1998	2	668	34.47
+460	Anderson, Clayton C.	Anderson, Clayton C.	292	M	1959	2	Civ	1998	2	4046	38.46
+461	Caldwell, Tracy E.	Caldwell, Tracy E.	293	F	1969	2	Civ	1998	2	4526	22.81
+462	Drew, Alvin Benjamin	Drew, Alvin B.	294	M	1962	2	Mil	2000	2	613	12.8
+463	Morgan, Barbara R.	Morgan, Barbara R.	295	F	1951	2	Civ	1998	1	305	0
+464	Shukor, Sheikh Muszaphar	Shukor, Sheikh Muszaphar	1	M	1972	35	Civ	2006	1	261.23	0
+465	Zamka, George D.	Zamka, George D.	296	M	1962	2	Mil	1998	2	692.53	0
+466	Wheelock, Douglas H.	Wheelock, Douglas H.	297	M	1960	2	Mil	1998	2	4281.57	41.5
+467	Nespoli, Paolo A.	Nespoli, Paolo A.	5	M	1957	25	Mil	1998	3	7514.61	0
+468	Poindexter, Alan G.	Poindexter, Alan G.	298	M	1961	2	Mil	1998	2	669	0
+469	Melvin, Leland D.	Melvin, Leland D.	299	M	1964	2	Civ	1998	2	565	0
+470	Love, Stanley G.	Love, Stanley G.	300	M	1965	2	Civ	1998	1	306	15.38
+471	Johnson, Gregory H.	Johnson, Gregory H.	301	M	1962	2	Mil	1998	2	755.83	0
+472	Behnken, Robert L.	Behnken, Robert L.	302	M	1970	2	Mil	2000	2	708	37.54
+473	Foreman, Michael J.	Foreman, Michael J.	303	M	1957	2	Mil	1998	2	637	32.31
+474	Reisman, Garrett E.	Reisman, Garrett E.	304	M	1968	2	Civ	1998	2	2473	21.2
+475	Volkov, Sergei	Сергей Александрович Волков	101	M	1973	1	Mil	1997	3	12786.32	23.28
+476	Kononenko, Oleg D.	Олег Дмитриевич Кононенко	102	M	1964	1	Mil	1996	4	16081	32.2
+477	Yi, Soyeon (Lee So-hyun)	이소연	1	F	1978	36	Civ	2006	1	261	0
+478	Ham, Kenneth T.	Ham, Kenneth T.	305	M	1964	2	Mil	1998	2	612	0
+479	Nyberg, Karen L.	Nyberg, Karen L.	306	F	1969	2	Civ	2000	2	4320	0
+480	Garan, Ronald J., Jr.	Garan, Ronald J., Jr.	307	M	1961	2	Mil	2000	2	4272	27
+481	Hoshide, Akihiko	星出彰彦	7	M	1968	20	Civ	1999	2	3377.5	21.38
+482	Chamitoff, Gregory	Chamitoff, Gregory	308	M	1962	2	Civ	1998	2	4770	13.72
+483	Zhai, Zhigang	翟志刚	4	M	1966	32	Mil	2008	1	68	0.23
+484	Liu, Boming	刘伯明	5	M	1966	32	Mil	2008	1	68	0.03
+485	Jing, Haipeng	景海鹏	6	M	1966	32	Mil	2008	3	1146	0
+486	Garriott, Richard Allen	Garriott, Richard Allen	309	M	1961	30	Civ	2007	1	284.89	0
+487	Boe, Eric A.	Boe, Eric A.	310	M	1964	2	Mil	2000	2	687	0
+488	Bowen, Stephen G.	Bowen, Stephen G.	311	M	1964	2	Mil	2000	3	970	47.3
+489	Kimbrough, Robert S.	Kimbrough, Robert S.	312	M	1967	2	Mil	2004	2	10763.25	26
+490	Antonelli, Dominic A.	Antonelli, Dominic A.	313	M	1967	2	Mil	2000	2	579	0
+491	Acaba, Joseph M.	Acaba, Joseph M.	314	M	1967	2	Civ	2004	3	7272.23	19.93
+492	Arnold, Richard R., II	Arnold, Richard R., II	315	M	1963	2	Civ	2004	2	307	32.07
+493	Barratt, Michael R.	Barratt, Michael R.	316	M	1959	2	Civ	2000	2	5085	5.1
+494	Johnson, Gregory C.	Johnson, Gregory C.	317	M	1954	2	Civ	1998	1	309.63	0
+495	Good, Michael T.	Good, Michael T.	318	M	1962	2	Mil	2000	2	591.15	30
+496	McArthur, K. Megan	McArthur, K. Megan	319	F	1971	2	Civ	2000	1	309	0
+497	Feustel, Andrew J.	Feustel, Andrew J.	320	M	1965	2	Civ	2000	3	687	61.8
+498	Romanenko, Roman	Роман Юрьевич Романенко	103	M	1971	1	Mil	1997	2	8003.02	6.62
+499	Hurley, Douglas G.	Hurley, Douglas G.	321	M	1966	2	Mil	2000	2	683	0
+500	Cassidy, Christopher J.	Cassidy, Christopher J.	322	M	1970	2	Mil	2004	2	4744	31.23
+501	Marshburn, Thomas H.	Marshburn, Thomas H.	323	M	1960	2	Mil	2004	2	3870	24.5
+502	Kopra, Timothy L.	Kopra, Timothy L.	324	M	1963	2	Mil	2000	2	3315	13.51
+503	Ford, Kevin A.	Ford, Kevin A.	324	M	1960	2	Mil	2000	2	3781	0
+504	Hernandez, Jose M.	Hernandez, Jose M.	326	M	1962	2	Civ	2004	1	332	0
+505	Stott, Nicole P.	Stott, Nicole P.	327	F	1962	2	Civ	2000	2	1747	6.58
+506	Surayev, Maksim	Максим Викторович Сураев	104	M	1972	1	Mil	1997	2	8028.18	9.42
+507	Guy Laliberte	Guy Laliberte	9	M	1959	14	Civ	2009	1	261.28	0
+508	Wilmore, Barry E.	Wilmore, Barry E.	328	M	1962	2	Mil	2000	2	4272	25.67
+509	Bresnik, Randolph J.	Bresnik, Randolph J.	329	M	1967	2	Mil	2004	2	3587.93	31.33
+510	Satcher, Robert L.	Satcher, Robert L.	330	M	1965	2	Civ	2004	1	259	12.32
+511	Creamer, Timothy J.	Creamer, Timothy J.	331	M	1959	2	Mil	1998	1	3912	0
+512	Virts, Terry W., Jr.	Virts, Terry W., Jr.	332	M	1967	2	Mil	2000	2	5113.62	19.1
+513	Skvortsov, Aleksandr Jr.	Александр Александрович Скворцов	105	M	1966	1	Mil	1997	3	12588.98	12.67
+514	Korniyenko, Mikhail	Михаил Борисович Корниенко	106	M	1960	1	Civ	1998	2	12005.43	12.28
+515	Dutton, James P.	Dutton, James P.	333	M	1968	2	Mil	2004	1	362	0
+516	Metcalf-Lindenburger, Dorothy M.	Metcalf-Lindenburger, Dorothy M.	334	F	1975	2	Civ	2004	1	362	0
+517	Yamazaki, Naoko	山崎直子	8	F	1970	20	Civ	1999	1	362.8	0
+518	Walker, Shannon	Walker, Shannon	335	F	1965	2	Civ	2004	1	3919.18	0
+519	Skripochka, Oleg	Олег Иванович Скрипочка	107	M	1969	1	Civ	1997	3	10653.3	16.65
+520	Kondratyev, Dmitri	Дмитрий Юрьевич Кондратьев	108	M	1969	1	Mil	1997	1	3823.28	10.2
+521	Samokutyayev, Aleksandr	Александр Михайлович Самокутяев	109	M	1970	1	Mil	2003	2	7955.38	10.05
+522	Borisenko, Andrei	Андрей Иванович Борисенко	110	M	1964	1	Mil	2003	2	14324.25	0
+523	Furukawa, Satoshi	古川聡	9	M	1964	20	Civ	1999	1	4014	0
+524	Shkaplerov, Anton	Антон Николаевич Шкаплеров	111	M	1972	1	Mil	2003	3	12796	14.47
+525	Ivanishin, Anatoli	Анатолий Алексеевич Иванишин	112	M	1969	1	Mil	2003	2	6729	0
+526	Revin, Sergei	Сергей Николаевич Ревин	113	M	1966	1	Civ	1996	1	2999.87	0
+527	Liu, Wang	刘旺	7	M	1969	32	Mil	2012	1	312	0
+528	Liu, Yang	刘洋	8	F	1978	32	Mil	2012	1	312	0
+529	Novitski, Oleg	Олег Викторович Новицкий	114	M	1971	1	Mil	2006	2	8169.83	0
+530	Tarelkin, Yevgeni	Евгений Игоревич Тарелкин	115	M	1974	1	Mil	2003	1	3448.25	0
+531	Misurkin, Aleksandr	Александр Александрович Мисуркин	116	M	1977	1	Mil	2006	2	8027.5	28.25
+532	Parmitano, Luca	Parmitano, Luca	6	M	1976	25	Mil	2009	2	8293.31	26.88
+533	Zhang, Xiaoguang	张晓光	9	M	1968	32	Mil	2013	1	350	0
+534	Wang, Yapi	王亚平	10	M	1980	32	Mil	2013	1	350	0
+535	Ryazanski, Sergei	Сергей Николаевич Рязанский	117	M	1974	1	Civ	2003	2	7318.93	26.92
+536	Hopkins, Michael Scott	Hopkins, Michael Scott	336	M	1968	2	Mil	2009	1	3990.42	12.97
+537	Artemyev, Oleg	Олег Германович Артемьев	118	M	1970	1	Mil	2003	2	8784	20.34
+538	Wiseman, Gregory Reid	Wiseman, Gregory Reid	337	M	1975	2	Mil	2009	1	3968.1	12.78
+539	Gerst, Alexander	Gerst, Alexander	11	M	1976	8	Civ	2009	2	8689.84	6.22
+540	Serova, Yelena	Елена Олеговна Серова	119	F	1976	1	Civ	2006	1	4013.7	0
+541	Cristofretti, Samantha	Cristofretti, Samantha	7	F	1977	25	Mil	2009	1	4783.5	0
+542	Yui, Kimiya	油井亀美也	10	M	1970	20	Mil	2009	1	3400	0
+543	Lindgren, Kjell Norwood	Lindgren, Kjell Norwood	338	M	1973	2	Mil	2009	1	3400.15	15.07
+544	Mogensen, Andreas	Mogensen, Andreas	1	M	1976	37	Civ	2009	1	236.23	0
+545	Aidyn (Aydyn) Akanovich Aimbetov	Айдын Ақанұлы Айымбетов	1	M	1972	38	Mil	2012	1	236.23	0
+546	Peake, Timothy Nigel	Peake, Timothy Nigel	2	M	1972	21	Mil	2009	1	4462	4.72
+547	Ovchinin, Aleksey 	Алексей Николаевич Овчинин	120	M	1971	1	Mil	2006	3	8995.75	6
+548	Onishi, Takuya	大西卓哉	11	M	1975	20	Civ	2009	1	6902.35	0
+549	Rubins, Kathleen	Rubins, Kathleen	339	F	1978	2	Civ	2009	1	6902.35	12.77
+550	Chen, Dong	陈冬	11	M	1978	32	Mil	2010	1	774.5	0
+551	Ryzhikov, Sergey	Сергей Николаевич Рыжиков	121	M	1974	1	Mil	2006	1	10383.25	0
+552	Pesquet, Thomas	Pesquet, Thomas	121	M	1978	5	Civ	2009	1	15105.08	13
+553	Fischer, Jack	Fischer, Jack	340	M	1974	2	Mil	2009	1	3258.13	7
+554	Vande Hei, Mark	Vande Hei, Mark	341	M	1966	2	Mil	2009	1	4037.23	27
+555	Tingle, Scott	Tingle, Scott	342	M	1965	2	Mil	2009	1	4037	7.4
+556	Kanai, Norishige	金井宣茂	12	M	1976	20	Civ	2009	1	4037	5.95
+557	Prokopyev, Sergei	Сергей Валерьевич Прокопьев	122	M	1975	1	Mil	2010	1	4722	15.52
+558	Auñón-Chancellor, Serena	Auñón-Chancellor, Serena	343	F	1976	2	Civ	2009	1	4722	0
+559	Hague, Tyler	Hague, Tyler	344	M	1975	2	Mil	2013	2	4864	19.93
+560	Saint-Jaques, David	Saint-Jaques, David	10	M	1970	14	Civ	2009	1	4887	6.5
+561	McClain, Anne Charlotte	McClain, Anne Charlotte	345	F	1979	2	Mil	2013	1	4887	13.13
+562	Koch, Christina	Koch, Christina	346	F	1979	2	Civ	2013	1	7372.3	27.8
+563	Morgan, Andrew	Morgan, Andrew	347	M	1976	2	Mil	2013	1	4303.08	39.52
+564	Meir, Jessica	Meir, Jessica	348	F	1977	2	Civ	2013	1	2697.6	7.28
+565	Al Mansoori, Hazzaa	هَزَّاع ٱلْمَنْصُوْرِي	1	M	1983	39	Mil	2018	1	189	0
+\.
+
+
+--
+-- Data for Name: missions; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.missions (id, title, mission_year, ascent, orbit, decent, duration, combined_eva, composition) FROM stdin;
+1	Vostok 1	1961	Vostok 1	Vostok 2	Vostok 3	1.77	0.0	Mil
+2	Vostok 2	1961	Vostok 2	Vostok 2	Vostok 2	25	0.0	Mil
+3	MA-6	1962	MA-6	MA-6	MA-6	5	0.0	Mil
+4	STS-95	1998	STS-95	STS-95	STS-95	213	0.0	mil/civ
+5	Mercury-Atlas 7	1962	Mercury-Atlas 7	Mercury-Atlas 7	Mercury-Atlas 7	5	0.0	Mil
+6	Vostok 3	1962	Vostok 3	Vostok 3	Vostok 3	94	0.0	Mil
+7	Soyuz 9	1970	Soyuz 9	Soyuz 9	Soyuz 9	424	0.0	mil/civ
+8	Vostok 4	1962	Vostok 4	Vostok 4	Vostok 4	70.93	0.0	Mil
+9	Soyuz 14	1974	Soyuz 14	Soyuz 14	Soyuz 14	377	0.0	mil/civ
+10	Mercury-Atlas 8	1962	Mercury-Atlas 8	Mercury-Atlas 8	Mercury-Atlas 8	9.22	0.0	Mil
+11	Gemini 6A	1965	Gemini 6A	Gemini 6A	Gemini 6A	25.87	0.0	Mil
+12	Apollo 7	1968	Apollo 7	Apollo 7	Apollo 7	260.13	0.0	mil/civ
+13	Mercury-Atlas 9	1963	Mercury-Atlas 9	Mercury-Atlas 9	Mercury-Atlas 9	34.32	0.0	Mil
+14	Gemini 5	1965	Gemini 5	Gemini 5	Gemini 5	191.92	0.0	mil/civ
+15	Vostok 5	1963	Vostok 5	Vostok 5	Vostok 5	119.13	0.0	Mil
+16	Soyuz 22	1976	Soyuz 22	Soyuz 22	Soyuz 22	189	0.0	mil/civ
+17	Soyuz 31/29	1978	Soyuz 31	Salyut 6	Soyuz 29	188	0.0	Mil
+18	Vostok 6	1963	Vostok 6	Vostok 6	Vostok 6	70.83	0.0	Mil
+19	Voskhod 1	1964	Voskhod 1	Voskhod 1	Voskhod 1	24.28	0.0	mil/civ
+20	Soyuz 1	1967	Soyuz 1	Soyuz 1	Soyuz 1	26.78	0.0	Mil
+21	Voskhod 2	1965	Voskhod 2	Voskhod 2	Voskhod 2	26.03	0.73	mil/civ
+22	Soyuz 19	1975	Soyuz 19	Soyuz 19/Apollo	Soyuz 19	142	0.0	mil/civ
+23	Gemini 3	1965	Gemini 3	Gemini 3	Gemini 3	4.86	0.0	mil/civ
+24	Gemini 10	1966	Gemini 10	Gemini 10	Gemini 10	70.77	1.47	mil/civ
+25	Apollo 10	1969	Apollo 10	Apollo 10	Apollo 10	192.05	0.0	mil/civ
+26	Apollo 16	1972	Apollo 16	Apollo 16	Apollo 16	265.85	41.86	mil/civ
+27	STS-1	1981	STS-1	STS-1	STS-1	54.5	0.0	mil/civ
+28	STS-9	1983	STS-9	STS-9	STS-9	240	0.0	mil/civ
+29	Gemini 4	1965	Gemini 4	Gemini 4	Gemini 4	97	0.33	mil/civ
+30	Apollo 9	1969	Apollo 9	Apollo 9	Apollo 9	241	1.13	mil/civ
+31	Gemini 11	1966	Gemini 11	Gemini 11	Gemini 11	71	0.0	mil/civ
+32	Apollo 12	1969	Apollo 12	Apollo 12	Apollo 12	244	16.83	mil/civ
+33	Skylab 2	1973	Skylab 2	Skylab 2	Skylab 2	673	8.44	mil/civ
+34	Gemini 7	1965	Gemini 7	Gemini 7	Gemini 7	330.58	0.0	mil/civ
+35	Apollo 8	1968	Apollo 8	Apollo 8	Apollo 8	147	0.0	mil/civ
+36	Gemini 12	1966	Gemini 12	Gemini 12	Gemini 12	94	5.5	mil/civ
+37	Apollo 13	1970	Apollo 13	Apollo 13	Apollo 13	142	0.0	mil/civ
+38	gemini 6A	1965	gemini 6A	gemini 6A	gemini 6A	25.86	0.0	Mil
+39	Gemini 9A	1966	Gemini 9A	Gemini 9A	Gemini 9A	72	2.12	mil/civ
+40	ASTP	1975	ASTP	ASTP	ASTP	217	0.0	mil/civ
+41	Gemini 8	1966	Gemini 8	Gemini 8	Gemini 8	11	0.0	mil/civ
+42	Apollo 11	1969	Apollo 11	Apollo 11	Apollo 11	195	5.02	mil/civ
+43	Apollo 15	1971	Apollo 15	Apollo 15	Apollo 15	312	37.9	mil/civ
+44	Apollo 17	1972	Apollo 17	Apollo 17	Apollo 17	302	45.6	mil/civ
+45	Salyut 7	1985	Soyuz T­13	Salyut 7	Soyuz T­14	4035	74.5	mil/civ
+46	2	1988	Soyuz TM­5	Mir EP	Soyuz TM­4	236	36.76	mil/civ
+47	Soyuz 39	1981	Soyuz 39	Soyuz 39	Soyuz 39	188.7	0.0	mil/civ
+48	STS-7	1983	STS-7	STS-7	STS-7	146	0.0	mil/civ
+49	STS-41-C	1984	STS-41-C	STS-41-C	STS-41-C	168	0.0	mil/civ
+50	STS-41-G	1984	STS-41-G	STS-41-G	STS-41-G	197	4.45	mil/civ
+51	Soyuz 40	1981	Soyuz 40	Soyuz 40	Soyuz 40	188.7	0.0	Civ
+52	STS-2	1981	STS-2	STS-2	STS-2	30	0.0	mil/civ
+53	STS-51-I	1985	STS-51-I	STS-51-I	STS-51-I	170	11.76	mil/civ
+54	STS-8	1983	STS-8	STS-8	STS-8	145.13	0.0	mil/civ
+55	STS-3	1982	STS-3	STS-3	STS-3	192	0.0	mil/civ
+56	STS-51-F	1985	STS-51-F	STS-51-F	STS-51-F	190	0.0	mil/civ
+57	Mir Aragatz	1988	Soyuz TM-7	Mir	Soyuz TM-6	594	5.95	Mil
+58	STS-86	1997	STS-86	STS-86	STS-86	259.3	5.02	mil/civ
+59	STS-4	1982	STS-4	STS-4	STS-4	169	0.0	mil/civ
+60	STS-41-D	1984	STS-41-D	STS-41-D	STS-41-D	144	0.0	mil/civ
+61	STS-61-A	1985	STS-61-A	STS-61-A	STS-61-A	168	0.0	mil/civ
+62	Soyuz 3	1968	Soyuz 3	Soyuz 3	Soyuz 3	94.83	0.0	Mil
+63	Soyuz 4	1969	Soyuz 4	Soyuz 4/Soyuz 5	Soyuz 4	71.33	0.0	Mil
+64	Soyuz 8	1969	Soyuz 8	Soyuz 8	Soyuz 8	118	0.0	mil/civ
+65	Soyuz 10	1971	Soyuz 10	Soyuz 10	Soyuz 10	47	0.0	mil/civ
+66	Soyuz 5	1969	Soyuz 5	Soyuz 5/Soyuz 4	Soyuz 5	72	0.0	Mil
+67	Soyuz 21	1976	Soyuz 21	Soyuz 21	Soyuz 21	1182	0.0	mil/civ
+68	Soyuz 5/4	1969	Soyuz 5	Soyuz 5/4	Soyuz 4	47	1.24	mil/civ
+69	apollo 9	1969	apollo 9	apollo 9	apollo 9	241	1.13	Civ
+70	Soyuz 6	1969	Soyuz 6	Soyuz 6	Soyuz 6	118	0.0	mil/civ
+71	Soyuz 36/35	1980	Soyuz 36	Salyut 6	Soyuz 35	188	0.0	mil/civ
+72	Soyuz 7	1969	Soyuz 7	Soyuz 7	Soyuz 7	118	0.0	mil/civ
+73	Soyuz 16	1974	Soyuz 16	Soyuz 16	Soyuz 16	142	0.0	mil/civ
+74	Soyuz 11	1971	Soyuz 11	Salyut 1	Soyuz 11	570	0.0	mil/civ
+75	Soyuz 24	1977	Soyuz 24	Salyut 5	Soyuz 24	425	0.0	mil/civ
+76	Soyuz 37/36	1980	Soyuz 37	Salyut 6	Soyuz 36	188	0.0	Mil
+77	Skylab 3	1973	Apollo CSM-117	Skylab 3	Apollo CSM-117	1427.23	27.4	mil/civ
+78	Soyuz 18	1975	Soyuz 18	Salyut 5	Soyuz 18	1511	0.0	Civ
+79	Apollo 14	1971	Apollo 14	Apollo 14	Apollo 14	216	18.63	mil/civ
+80	Soyuz 33	1979	Soyuz 33	Soyuz 33	Soyuz 33	47	0.0	mil/civ
+81	STS-151-C	1985	STS-151-C	STS-151-C	STS-151-C	73	0.0	Mil
+82	Skylab-2	1973	Apollo Sk.2	Apollo Sk.2	Apollo Sk.2	267	2.27	Mil
+83	STS-6	1983	STS-6	STS-6	STS-6	120	7.7	mil/civ
+84	Soyuz 12	1973	Soyuz 12	Soyuz 12	Soyuz 12	47	0.0	mil/civ
+85	Soyuz 27/26	1978	Soyuz 27	Salyut 6	Soyuz 26	142	0.0	mil/civ
+86	Soyuz T­3	1980	Soyuz T­3	Salyut 6	Soyuz T­3	307	0.0	Civ
+87	Skylab 4	1974	Skylab 4	Skylab 4	Skylab 4	2017	44.82	mil/civ
+88	Soyuz 13	1973	Soyuz 13	Soyuz 13	Soyuz 13	188	0.0	mil/civ
+89	Saluyt 4	1975	Soyuz 18	Saluyt 4	Soyuz 18	1511	0.0	Mil
+90	Saluyt 6	1978	Soyuz 30	Saluyt 6	Soyuz 30	190	0.0	Mil
+91	Soyuz 15	1974	Soyuz 15	Soyuz 15	Soyuz 15	48	0.0	mil/civ
+92	Salyut 4	1975	Soyuz 17	Salyut 4	Soyuz 17	709	0.0	mil/civ
+93	Salyut 6	1978	Soyuz 28	Salyut 6	Soyuz 28	190	13.43	mil/civ
+94	STS-5	1982	STS-5	STS-5	STS-5	122.25	0.0	mil/civ
+95	STS-41-B	1984	STS-41-B	STS-41-B	STS-41-B	191.25	23.97	mil/civ
+96	STS-35	1990	STS-35	STS-35	STS-35	215	0.0	mil/civ
+97	Soyuz T­2	1980	Soyuz T­2	Salyut 6	Soyuz T­2	94	0.0	Mil
+98	Soyuz 23	1976	Soyuz 23	Soyuz 23	Soyuz 23	48	0.0	mil/civ
+99	Soyuz 25	1977	Soyuz 25	Soyuz 25	Soyuz 25	48	0.0	mil/civ
+100	STS­ 91	1998	STS­ 91	STS­ 91	STS­ 91	235	0.0	Civ
+101	Soyuz 26/27	1977	Soyuz 26	Salyut 6	Soyuz 27	2314	1.47	Mil
+102	Soyuz 38	1980	Soyuz 38	Salyut 6	Soyuz 38	188	0.0	mil/civ
+103	Soyuz 28	1978	Soyuz 28	Soyuz 28	Soyuz 28	190.28	0.0	Mil
+104	Soyuz 30	1978	Soyuz 30	Soyuz 30	Soyuz 30	190.03	0.0	Mil
+105	Soyuz 31	1978	Soyuz 31	Soyuz 31	Soyuz 29	188.82	0.0	Mil
+106	3	1988	Soyuz TM­6	Mir	Soyuz TM­5	212	64.88	mil/civ
+107	1	1986	Soyuz T­15	Mir/Salyut 7	Soyuz T­15	3000	17.66	mil/civ
+108	Soyuz T­8	1983	Soyuz T­8	Soyuz T­8	Soyuz T­8	48	0.0	mil/civ
+109	7	1990	Soyuz TM­10	Mir	Soyuz TM­10	3140	5.5	mil/civ
+110	18	1995	Soyuz TM­21	Mir	STS­71	2768	57.09	mil/civ
+111	5	1990	Soyuz TM­8	Mir	Soyuz TM­8	3990	54.66	mil/civ
+112	14	1993	Soyuz TM­17	Mir	Soyuz TM­17	4721	102.35	mil/civ
+113	STS-51-B	1985	STS-51-B	STS-51-B	STS-51-B	168	0.0	mil/civ
+114	STS-51-A	1984	STS-51-A	STS-51-A	STS-51-A	191	11.7	mil/civ
+115	STS-51-D	1985	STS-51-D	STS-51-D	STS-51-D	236	6.34	mil/civ
+116	STS-51-J	1985	STS-51-J	STS-51-J	STS-51-J	98	0.0	mil/civ
+117	STS-51F	1985	STS-51F	STS-51F	STS-51F	191	0.0	Civ
+118	STS-33	1989	STS-33	STS-33	STS-33	168	0.0	mil/civ
+119	STS-44	1991	STS-44	STS-44	STS-44	167	0.0	mil/civ
+120	STS-61	1993	STS-61	STS-61	STS-61	260	83.12	mil/civ
+121	STS-80	1996	STS-80	STS-80	STS-80	424	0.0	mil/civ
+122	STS­63	1995	STS­63	STS­63	STS­63	198	0.0	Mil
+123	24	1997	STS­86	Mir	STS­86	259	159.28	mil/civ
+124	STS-26	1988	STS-26	STS-26	STS-26	97	0.0	mil/civ
+125	STS-51-G	1985	STS-51-G	STS-51-G	STS-51-G	170	0.0	mil/civ
+126	STS-51B	1985	STS-51B	STS-51B	STS-51B	168	0.0	Civ
+127	STS-30	1989	STS-30	STS-30	STS-30	97	0.0	mil/civ
+128	STS-42	1992	STS-42	STS-42	STS-42	192	0.0	mil/civ
+129	STS-32	1990	STS-32	STS-32	STS-32	261	0.0	mil/civ
+130	STS-49	1992	STS-49	STS-49	STS-49	213	59.87	mil/civ
+131	STS-39	1991	STS-39	STS-39	STS-39	199	0.0	mil/civ
+132	STS-53	1992	STS-53	STS-53	STS-53	175	0.0	mil/civ
+133	STS-51A	1984	STS-51A	STS-51A	STS-51A	191	12.0	Mil
+134	STS-61-B	1985	STS-61-B	STS-61-B	STS-61-B	165	12.17	mil/civ
+135	STS-28	1989	STS-28	STS-28	STS-28	121	0.0	mil/civ
+136	Spacelab 1	1983	STS-9	STS-9	STS-9	247.94	0.0	Mil
+137	Atlas-1	1992	STS-45	STS-45	STS-45	214.37	0.0	Mil
+138	Euromir 94	1994	Soyuz TM-20	Euromir 94	Soyuz TM-19	756.6	0.0	Civ
+139	STS-61-C	1986	STS-61-C	STS-61-C	STS-61-C	146	0.0	mil/civ
+140	STS-27	1988	STS-27	STS-27	STS-27	105	0.0	mil/civ
+141	STS-47	1992	STS-47	STS-47	STS-47	190.5	0.0	mil/civ
+142	STS-71	1995	STS-71	STS-71	STS-71	235.38	0.0	mil/civ
+143	STS-51-L	1986	STS-51-L	explosion	explosion	0	0.0	mil/civ
+144	STS-41 B	1984	STS-41 B	STS-41 B	STS-41 B	191.5	11.95	Mil
+145	STS-51 J	1985	STS-51 J	STS-51 J	STS-51 J	97.7	0.0	Mil
+146	STS-31	1990	STS-31	STS-31	STS-31	121	0.0	mil/civ
+147	STS-41 C	1984	STS-41 C	STS-41 C	STS-41 C	167	10.13	Civ
+148	STS-51I	1985	STS-51I	STS-51I	STS-51I	171	11.76	Civ
+149	STS-41C	1984	STS-41C	STS-41C	STS-41C	168	10.1	Civ
+150	STS-61C	1986	STS-61C	STS-61C	STS-61C	146	0.0	mil/civ
+151	STS-29	1989	STS-29	STS-29	STS-29	120	0.0	mil/civ
+152	STS-41D	1984	STS-41D	STS-41D	STS-41D	145	0.0	mil/civ
+153	STS-36	1990	STS-36	STS-36	STS-36	106	0.0	mil/civ
+154	STS-82	1997	STS-82	STS-82	STS-82	239	66.38	mil/civ
+155	STS-93	1999	STS-93	STS-93	STS-93	118	0.0	mil/civ
+156	STS-51D	1985	STS-51D	STS-51D	STS-51D	168.15	0.0	mil/civ
+157	STS-61B	1985	STS-61B	STS-61B	STS-61B	165.16	0.0	Civ
+158	STS-45	1992	STS-45	STS-45	STS-45	213.5	0.0	mil/civ
+159	STS-77	1996	STS-77	STS-77	STS-77	240.67	0.0	mil/civ
+160	STS-97	2000	STS-97	STS-97	STS-97	260	38.66	mil/civ
+161	STS-69	1995	STS-69	STS-69	STS-69	44	13.53	mil/civ
+162	STS-51-C	1985	STS-51-C	STS-51-C	STS-51-C	73.5	0.0	mil/civ
+163	STS-46	1992	STS-46	STS-46	STS-46	191	0.0	mil/civ
+164	STS 51-C	1985	STS 51-C	STS 51-C	STS 51-C	74	0.0	Mil
+165	STS 51-L	1986	STS 51-L	explosion	explosion	0	0.0	Mil
+166	STS-48	1991	STS-48	STS-48	STS-48	128.5	0.0	mil/civ
+167	STS-51C	1985	STS-51C	STS-51C	STS-51C	73.675	0.0	Mil
+168	STS-34	1989	STS-34	STS-34	STS-34	119	0.0	mil/civ
+169	STS-40	1991	STS-40	STS-40	STS-40	218	0.0	mil/civ
+170	STS-58	1993	STS-58	STS-58	STS-58	336	0.0	mil/civ
+171	STS-75	1996	STS-75	STS-75	STS-75	377	0.0	mil/civ
+172	Spacelab-3	1985	STS-51-B	STS-51-B	STS-51-B	168.525	0.0	Civ
+173	spacelab-3	1985	STS-51B	STS-51B	STS-51B	168.525	0.0	Civ
+174	STS-51G	1985	STS-51G	STS-51G	STS-51G	170	0.0	mil/civ
+175	STS-61A	1985	STS-61A	STS-61A	STS-61A	169	0.0	mil/civ
+176	STS-37	1991	STS-37	STS-37	STS-37	143	21.4	mil/civ
+177	STS-55	1993	STS-55	STS-55	STS-55	240	4.65	mil/civ
+178	STS-43	1991	STS-43	STS-43	STS-43	213	0.0	mil/civ
+179	22	1996	STS-79	Mir	STS-76	4516	18.33	mil/civ
+180	Spacelab-2	1978	STS-51-F	STS-51-F	STS-51-F	190.94	0.0	Civ
+181	STS-38	1990	STS-38	STS-38	STS-38	118	0.0	mil/civ
+182	4	1989	Soyuz TM­7	Mir	Soyuz TM­7	3635	41.63	mil/civ
+183	10	1992	Soyuz TM­13	Mir	Soyuz TM­13	4202	24.17	mil/civ
+184	STS-57	1993	STS-57	STS-57	STS-57	239	11.66	mil/civ
+185	STS-50	1992	STS-50	STS-50	STS-50	331	0.0	mil/civ
+186	STS-89	1998	STS-89	STS-89	STS-89	211	0.0	mil/civ
+187	STS-61B Atlantis	1985	STS-61B Atlantis	STS-61B Atlantis	STS-61B Atlantis	165	0.0	Mil
+188	STS-40 Columbia	1991	STS-40 Columbia	STS-40 Columbia	STS-40 Columbia	218	0.0	Mil
+189	STS-74	1995	STS-74	STS-74	STS-74	129	7.25	mil/civ
+190	STS-88	1998	STS-88	STS-88	STS-88	283	35.76	mil/civ
+191	STS-110	2002	STS-110	STS-110	STS-110	259	77.09	mil/civ
+192	STS-60	1994	STS-60	STS-60	STS-60	199	0.0	mil/civ
+193	STS-91	1998	STS-91	STS-91	STS-91	236	0.0	mil/civ
+194	STS-111	2002	STS-111	STS-111	STS-111	333	39.04	mil/civ
+195	STS-51L	1986	STS-51L	explosion	explosion	0.61	0.0	mil/civ
+196	11	1992	Soyuz TM­14	Mir	Soyuz TM­14	3494	13.83	mil/civ
+197	17	1994	Soyuz TM­20	Mir	Soyuz TM­20	4061	24.4	mil/civ
+198	8	1990	Soyuz TM­11	Mir	Soyuz TM­11	4201	49.34	mil/civ
+199	Soyuz TM­4/3	1987	Soyuz TM­4	Soyuz TM­4	Soyuz TM­3	189	0.0	Mil
+200	6	1990	Soyuz TM­9	Mir	Soyuz TM­9	4297	48.12	mil/civ
+201	12	1993	Soyuz TM­15	Mir	Soyuz TM­15	4533	58.86	mil/civ
+202	19	1995	STS­71	Mir	Soyuz TM­21	1811	39.06	mil/civ
+203	15	1994	Soyuz TM­18	Mir	Soyuz TM­20	10505	47.91	mil/civ
+204	9	1991	Soyuz TM­12	Mir	Soyuz TM­13	7484	98.24	mil/civ
+205	STS­60	1994	STS­60	STS­60	STS­60	199	0.0	Civ
+206	STS­88	1998	STS­88	STS­88	STS­88	283	0.0	Civ
+207	STS-41	1990	STS-41	STS-41	STS-41	98	0.0	mil/civ
+208	STS-52	1992	STS-52	STS-52	STS-52	237	0.0	mil/civ
+209	STS-64	1994	STS-64	STS-64	STS-64	262	13.7	mil/civ
+210	STS-73	1995	STS-73	STS-73	STS-73	360	0.0	mil/civ
+211	STS-63	1995	STS-63	STS-63	STS-63	198	4.65	mil/civ
+212	STS-102	2001	STS-102	STS-102	STS-102	307	12.7	mil/civ
+213	STS-113	2002	STS-113	STS-113	STS-113	330	39.84	mil/civ
+214	STS-62	1994	STS-62	STS-62	STS-62	335	0.0	mil/civ
+215	STS-81	1997	STS-81	STS-81	STS-81	244	0.0	mil/civ
+216	STS-98	2001	STS-98	STS-98	STS-98	309	39.64	mil/civ
+217	STS-54	1993	STS-54	STS-54	STS-54	143	8.94	mil/civ
+218	13	1993	Soyuz TM­16	Mir	Soyuz TM­16	4296	44.78	mil/civ
+219	STS-65	1994	STS-65	STS-65	STS-65	354	0.0	mil/civ
+220	STS-79	1996	STS-79	STS-79	STS-79	243	0.0	mil/civ
+221	STS-51	1993	STS-51	STS-51	STS-51	236	14.16	mil/civ
+222	Astro-1	1990	STS-35	STS-35	STS-35	215.15	0.0	Civ
+223	Astro-2	1995	STS-67	STS-67	STS-67	399.54	0.0	Civ
+224	STS-67	1995	STS-67	STS-67	STS-67	399.54	0.0	mil/civ
+225	27	1999	Soyuz TM­29	Mir	Soyuz TM­29	4532	30.34	mil/civ
+226	Soyuz TM­33/32	2001	Soyuz TM­33	Soyuz TM­33	Soyuz TM­32	236.208	0.0	mil/civ
+227	Soyuz TM-11/10	1990	Soyuz TM-11	Soyuz TM-11	Soyuz TM-10	189.9	0.0	Civ
+228	STS-56	1993	STS-56	STS-56	STS-56	222	0.0	mil/civ
+229	STS-59	1994	STS-59	STS-59	STS-59	269.82	0.0	mil/civ
+230	STS-76	1996	STS-76	STS-76	STS-76	221.67	12.06	mil/civ
+231	STS-108	2001	STS-108	STS-108	STS-108	283	8.4	mil/civ
+232	STS-66	1994	STS-66	STS-66	STS-66	262	0.0	mil/civ
+233	Soyuz TM-12/11	1991	Soyuz TM-12	Soyuz TM-12	Soyuz TM-11	189.22	0.0	Civ
+234	STS-96	1999	STS-96	STS-96	STS-96	235	15.84	mil/civ
+235	STS-68	1994	STS-68	STS-68	STS-68	270	0.0	mil/civ
+236	Soyuz TM13/12	1991	Soyuz TM13	Soyuz TM13	Soyuz TM12	190.2	0.0	Civ
+237	STS-70	1995	STS-70	STS-70	STS-70	214	0.0	mil/civ
+238	STS-78	1996	STS-78	STS-78	STS-78	405	0.0	mil/civ
+239	STS-101	2000	STS-101	STS-101	STS-101	236	13.46	mil/civ
+240	21	1996	Soyuz TM­24	Mir	Soyuz TM­24	4721	48.83	mil/civ
+241	28	2000	Soyuz TM­30	Mir	Soyuz TM­30	1747	22.99	mil/civ
+242	25	2010	Soyuz TMA­01M	ISS	Soyuz TMA­01M	3824	79.61	mil/civ
+243	Soyuz TM-14/13	1992	Soyuz TM-14	Soyuz TM-14	Soyuz TM-13	189.95	0.0	Mil
+244	STS-72	1996	STS-72	STS-72	STS-72	214	25.68	mil/civ
+245	STS-92	2000	STS-92	STS-92	STS-92	310	54.64	mil/civ
+246	23	1997	STS-84	Mir	STS-86	3470	41.75	mil/civ
+247	STS-103	1999	STS-103	STS-103	STS-103	191	49.04	mil/civ
+248	20	1995	Soyuz TM­22	Mir	Soyuz TM­22	4297	28.83	mil/civ
+249	26	1998	Soyuz TM28	Mir	Soyuz TM29	9110	33.48	mil/civ
+250	Antares	1992	Soyuz TM-15	Soyuz TM-15	Soyuz TM-14	331	0.0	Mil
+251	sts-46	1992	STS-46	STS-46	STS-46	191.25	0.0	Civ
+252	STS-85	1997	STS-85	STS-85	STS-85	284.5	0.0	mil/civ
+253	STS-99	2000	STS-99	STS-99	STS-99	269.7	0.0	mil/civ
+254	STS-115	2006	STS-115	STS-115	STS-115	283.1	40.62	mil/civ
+255	STS-84	1997	STS-84	STS-84	STS-84	221	0.0	mil/civ
+256	STS-122	2008	STS-122	STS-122	STS-122	306	44.26	mil/civ
+257	STS-109	2002	STS-109	STS-109	STS-109	262	71.41	mil/civ
+258	STS-83	1997	STS-83	STS-83	STS-83	95.21	0.0	mil/civ
+259	STS-94	1997	STS-94	STS-94	STS-94	396.8	0.0	mil/civ
+260	Soyuz TM-17 / Soyuz TM-16	1993	Soyuz TM-17	Soyuz TM-17	Soyuz TM-16	496	6.32	Mil
+261	STS-90	1998	STS-90	STS-90	STS-90	384	0.0	mil/civ
+262	STS-112	2002	STS-112	STS-112	STS-112	259	39.36	mil/civ
+263	STS-127	2009	STS-127	STS-127	STS-127	376	55.46	mil/civ
+264	Mir EO-15	1994	Soyuz TM-18	Mir	Soyuz TM-18	4368.45	0.0	Mil
+265	Mir EO-21	1996	Soyuz TM-23	Mir	Soyuz TM-23	4651.12	30.5	Mil
+266	STS 101	2000	STS 101	Spacehub	STS 101	236.17	0.0	Mil
+267	16	1994	Soyuz TM­19	Mir	Soyuz TM­19	3022	106.49	mil/civ
+268	STS­106	2000	STS­106	STS­106	STS­106	283	6.23	mil/civ
+269	32	2012	Soyuz TMA­05M	ISS	Soyuz TMA­05M	3047	48.61	mil/civ
+270	46	2015	Soyuz TMA­19M	ISS	in space	1477	17.42	mil/civ
+271	Soyuz TM­32/31	2001	Soyuz TM­32	Soyuz TM­32	Soyuz TM­31	190	0.0	mil/civ
+272	STS-106	2000	STS-106	STS-106	STS-106	283	6.23	mil/civ
+273	STS-100	2001	STS-100	STS-100	STS-100	283	29.66	mil/civ
+274	STS-120	2007	STS-120	STS-120	STS-120	362	47.91	mil/civ
+275	STS-114	2005	STS-114	STS-114	STS-114	333	40.16	mil/civ
+276	STS-125	2009	STS-125	STS-125	STS-125	309	74.02	mil/civ
+277	STS-87	1997	STS-87	STS-87	STS-87	376	25.4	mil/civ
+278	Soyuz  3	2002	Soyuz TM­34	Soyuz TM­34	Soyuz TM­33	237	0.0	Mil
+279	STS-104	2001	STS-104	STS-104	STS-104	306.6	32.98	mil/civ
+280	34	2012	Soyuz TMA-07M	ISS	Soyuz TMA-07M	3710.32	12.12	mil/civ
+281	38	2013	Soyuz TMA-11M	ISS	Soyuz TMA-11M	4509.75	14.57	mil/civ
+282	STS-105	2001	STS-105	STS-105	STS-105	285	23.5	mil/civ
+283	STS-123	2008	STS-123	STS-123	STS-123	378	60.17	mil/civ
+284	Soyuz TM-24/23	1996	Soyuz TM-24	Soyuz TM-24	Soyuz TM-23	378.4	0.0	Civ
+285	Soyuz TM-33/32	2001	Soyuz TM-33	Soyuz TM-33	Soyuz TM-32	236	0.0	Civ
+286	Soyuz TM-25/24	1997	Soyuz TM-25	Soyuz TM-25	Soyuz TM-24	472.57	0.0	Civ
+287	35	2013	Soyuz TMA­08M	ISS	Soyuz TMA­08M	3990	40.15	mil/civ
+288	STS-116	2006	STS-116	STS-116	STS-116	309	42.98	mil/civ
+289	STS-130	2010	STS-130	STS-130	STS-130	330	36.46	mil/civ
+290	STS-121	2006	STS-121	STS-121	STS-121	306	42.96	mil/civ
+291	STS-133	2011	STS-133	STS-133	STS-133	307	25.6	mil/civ
+292	STS-107	2003	STS-107	STS-107	Exploded	382	0.0	mil/civ
+293	STS87	1997	STS87	STS87	STS87	376	0.0	Civ
+294	STS-117	2007	STS-117	STS-117	STS-117	336	55.94	mil/civ
+295	Soyuz TM-27/26	1998	Soyuz TM-27	Soyuz TM-27	Soyuz TM-26	496.5	0.0	Mil
+296	STS-118	2007	STS-118	STS-118	STS-118	305	36.0	mil/civ
+297	31	2012	Soyuz TMA­04M	ISS	Soyuz TMA­04M	2999	5.85	mil/civ
+298	43	2015	Soyuz TMA­16M	ISS	Soyuz TMA­16M	4037	29.47	mil/civ
+299	Soyuz TMA-3/2	2003	Soyuz TMA-3	Soyuz TMA-3	Soyuz TMA-2	237.03	0.0	Civ
+300	STS-128	2009	STS-128	STS-128	STS-128	333	33.92	mil/civ
+301	STS­96	1999	STS­96	STS­96	STS­96	235	0.0	Mil
+302	Soyuz TMA­1/TM­34	2002	Soyuz TMA­1	Soyuz TMA­1	Soyuz TM­34	260	0.0	mil/civ
+303	47	2016	Soyuz TMA-20M	ISS	Soyuz TMA-20M	4132	12.77	mil/civ
+304	STS-131	2010	STS-131	STS-131	STS-131	362	40.56	mil/civ
+305	29	2011	Soyuz TMA-22	ISS	Soyuz TMA-22	3968	6.25	mil/civ
+306	STS-119	2009	STS-119	STS-119	STS-119	307.5	38.45	mil/civ
+307	STS­100	2001	STS­100	STS­100	STS­100	285	0.0	Mil
+308	ЭП-1	2001	Soyuz TM-32	Soyuz TM-32	Soyz TM-31	190.13	0.0	Civ
+309	STS-129	2009	STS-129	STS-129	STS-129	259	36.9	mil/civ
+310	STS-124	2008	STS-124	STS-124	STS-124	330	41.03	mil/civ
+311	STS-134	2011	STS-134	STS-134	STS-134	377	57.44	mil/civ
+312	STS-135	2011	STS-135	STS-135	STS-135	306.5	0.0	mil/civ
+313	Soyuz TMA-34/TM-33	2002	Soyuz TMA-34	Soyuz TMA-34	Soyuz TMA-33	237	0.0	Mil
+314	Soyuz TMA-6/TMA-5	2005	Soyuz TMA-6	Soyuz TMA-6	Soyuz TMA-5	237	0.0	Mil
+315	Soyuz TM-34 / Soyuz TM-33	2002	Soyuz TM-34	Soyuz TM-34	Soyuz TM-33	237	0.0	Civ
+316	50	2016	Soyuz MS-03	ISS	Soyuz MS-04	6941	33.58	mil/civ
+317	STS-132	2010	STS-132	STS-132	STS-132	282.5	42.67	mil/civ
+318	STS­112	2002	STS­112	STS­112	STS­112	259	0.0	Civ
+319	36	2013	Soyuz TMA­09M	ISS	Soyuz TMA­09M	3990	27.68	mil/civ
+320	51	2017	Soyuz MS-04	ISS	Soyuz MS-04	3258	14.5	mil/civ
+321	Soyuz TMA-1/TM-34	2002	Soyuz TMA-1	Soyuz TMA-1	Soyuz TMA-34	261	0.0	Mil
+322	STS-126	2008	STS-126	STS-126	STS-126	380.5	40.42	mil/civ
+323	30	2011	Soyuz TMA-03M	ISS	Soyuz TMA-03M	4627	6.25	mil/civ
+324	Shenzhou 5	2005	Shenzhou 5	Shenzhou 5	Shenzhou 5	21	0.0	Mil
+325	Soyuz TMA-4/TMA-3	2004	Soyuz TMA-4	Soyuz TMA-4	Soyuz TMA-3	261	0.0	Civ
+326	Soyuz TMA­5	2004	Soyuz TMA­5	Soyuz TMA­5	Soyuz TMA­5	237	0.0	Mil
+327	Soyuz TMA-7	2005	Soyuz TMA-7	Soyuz TMA-7	Soyuz TMA-7	237.29	0.0	Civ
+328	Shenzhou 6	2005	Shenzhou 6	Shenzhou 6	Shenzhou 6	115	0.0	mil/civ
+329	Shenzhou 10	2008	Shenzhou 10	Shenzhou 10	Shenzhou 10	350	0.0	mil/civ
+330	Soyuz TMA-8	2006	Soyuz TMA-8	Soyuz TMA-8	Soyuz TMA-7	237.28	0.0	Mil
+331	Soyuz TMA-9	2006	Soyuz TMA-9	Soyuz TMA-9	Soyuz TMA-8	261.525	0.0	Civ
+332	37	2013	Soyuz TMA­10M	ISS	Soyuz TMA­10M	3990	52.81	mil/civ
+333	Soyuz TMA-10	2007	Soyuz TMA-10	Soyuz TMA-10	Soyuz TMA-10	331.4	0.0	Civ
+334	Soyuz TMA-14	2009	Soyuz TMA-14	Soyuz TMA-14	Soyuz TMA-14	307.85	0.0	Civ
+335	39	2014	Soyuz TMA-12M	ISS	Soyuz TMA-12M	4007.13	25.24	mil/civ
+336	Soyuz TMA-11/10	2007	Soyuz TMA-11	Soyuz TMA-11	Soyuz TMA-10	261.23	0.0	Civ
+337	52	2017	Soyuz MS-05	ISS	Soyuz MS-05	3328.93	26.5	mil/civ
+338	45	2015	Soyuz TMA­18M	ISS	Soyuz TMA­18M	4003	4.72	Mil
+339	44	2015	Soyuz TMA­17M	ISS	Soyuz TMA­17M	3400	15.07	mil/civ
+340	57	2018	Soyuz MS-11	ISS	Soyuz MS-11	4887	53.31	mil/civ
+341	Soyuz TMA-12 / Soyuz TMA-11	2008	Soyuz TMA-12	Soyuz TMA-12	Soyuz TMA-11	261	0.0	Civ
+342	Shenzhou 7	2008	Shenzhou 7	Shenzhou 7	Shenzhou 7	68	0.26	mil/civ
+343	Shenzhou 9	2012	Shenzhou 9	Shenzhou 9	Shenzhou 9	303.5	0.0	mil/civ
+344	Shenzhou 11	2016	Shenzhou 11	Shenzhou 11	Shenzhou 11	774.5	0.0	mil/civ
+345	Soyuz TMA-13	2008	Soyuz TMA-13	Soyuz TMA-13	Soyuz TMA-12	284.89	0.0	Civ
+346	49	2016	Soyuz MS-02	ISS	Soyuz MS-02	10383.25	26.0	mil/civ
+347	53	2017	Soyuz MS-06	ISS	Soyuz MS-06	4037.23	42.2	mil/civ
+348	55	2018	Soyuz MS-08	ISS	Soyuz MS-08	4722	46.77	mil/civ
+349	33	2012	Soyuz TMA-06M	ISS	Soyuz TMA-06M	3448	0.0	mil/civ
+350	40	2014	Soyuz TMA­13M	ISS	Soyuz TMA­13M	3968	22.68	mil/civ
+351	Soyuz TMA-16/14	2009	Soyuz TMA-16	Soyuz TMA-16	Soyuz TMA-14	261.28	0.0	Civ
+352	41	2014	Soyuz TMA-14M	ISS	Soyuz TMA-14M	4013	29.3	mil/civ
+353	42	2014	Soyuz TMA-15M	ISS	Soyuz TMA-15M	4783.5	19.1	mil/civ
+354	60	2019	Soyuz MS-13	ISS	not completed yet	4302.98	46.8	mil/civ
+355	61	2019	Soyuz MS-15	ISS	not completed yet	2697.53	0.0	Civ
+356	54	2017	Soyuz MS-07	ISS	Soyuz MS-07	4037	21.57	mil/civ
+357	48	2016	Soyuz MS-01	ISS	Soyuz MS-01	2762	12.77	mil/civ
+358		2019	Soyuz MS-13	ISS	not completed yet	4303.03	19.23	Mil
+359	56	2018	Soyuz MS-09	ISS	Soyuz MS-09	4721.82	15.52	mil/civ
+360	Soyuz TMA-18M/16M	2015	Soyuz TMA-18M	Soyuz TMA-18M	Soyuz TMA-16M	236.23	0.0	mil/civ
+361	59	2019	Soyuz MS-12	ISS	Soyuz MS-12	4863.75	53.73	mil/civ
+362	EP-19	2019	Soyuz MS-15	ISS	Soyuz MS-12	189	0.0	Mil
+\.
+
+
+--
+-- Data for Name: nationality; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.nationality (id, nation) FROM stdin;
+1	U.S.S.R/Russia
+2	U.S.
+3	Mongolia
+4	Romania
+5	France
+6	Czechoslovakia
+7	Poland
+8	Germany
+9	Bulgaria
+10	Hungry
+11	Vietnam
+12	Cuba
+13	India
+14	Canada
+15	Saudi Arabia
+16	Netherland
+17	Mexico
+18	Syria
+19	Afghanistan
+20	Japan
+21	U.K.
+22	Austria
+23	Belgium
+24	Switzerland
+25	Italy
+26	Australia
+27	U.S.S.R/Ukraine
+28	Slovakia
+29	Republic of South Africa
+30	U.K./U.S.
+31	Israel
+32	China
+33	Brazil
+34	Sweden
+35	Malysia
+36	Korea
+37	Denmark
+38	Kazakhstan
+39	UAE
+\.
+
+
+--
+-- PostgreSQL database dump complete
+--
+

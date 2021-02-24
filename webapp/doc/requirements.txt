@@ -1,21 +1,7 @@
 Author: Etienne Richart
 
 Dataset: My dataset will be comprised from two different sources: 
-    1.  NASA Astronaut Yearbook (https://www.kaggle.com/nasa/astronaut-yearbook) Click Download
-        This dataset is made up of many features including:
-            a. name
-            b. birth date
-            c. birth place
-            d. gender
-            e. alma mater
-            f. major
-            g. millitary rank
-            h. space flights (number & hours)
-            i. space walks (number & hours)
-            j. missions names
-            k. deaths
-        Validity: This dataset is slighlty outdated (2004 - 2013?)
-    2.  Astronaut database (https://data.mendeley.com/datasets/86tsnnbv2w/1) Click Download All then use (https://www.rebasedata.com/convert-accdb-to-csv-online) to convert from MS Access to CSV.
+    1.  Astronaut database (https://data.mendeley.com/datasets/86tsnnbv2w/1) Click Download All then use (https://www.rebasedata.com/convert-accdb-to-csv-online) to convert from MS Access to CSV.
         This dataset is made up of many features including:
             a. name
             b. original name

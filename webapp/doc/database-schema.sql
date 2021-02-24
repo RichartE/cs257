@@ -15,14 +15,7 @@ CREATE TABLE astronauts (
     yos integer,
     total_missions integer,
     total_mission_hours numeric,
-    total_eva_hours numeric,
-    stat text,
-    alma_mater_one text,
-    alma_mater_two text,
-    undergrad_major text,
-    grad_major text,
-    death_date date,
-    death_mission text
+    total_eva_hours numeric
 );
 
 CREATE TABLE missions (

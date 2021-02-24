@@ -1,0 +1,76 @@
+<!--Author: Etienne Richart-->
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='webapp.css') }}" />
+    <script type="text/javascript" src="{{ url_for('static', filename='webapp.js') }}"></script>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+    <title>FindMyAstronaut - Home</title>
+</head>
+
+<body>
+    <header>
+        <h1>FindMyAstronaut</h1>
+        <div>
+            <form>
+                <label for="search">Search:</label>
+                <input type="text" placeholder="Astronaut, Mission, Craft" name="search" />
+                <input type="submit" value="GO"></input>
+            </form>
+            <nav>
+                <ul>
+                    <li id="astronautsTab">Astronauts</li>
+                    <li id="missionsTab">Missions</li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section id="example">
+        <div id="exampleSelection">
+            <h2>Example Results</h2>
+            <div>
+                <div id="example1" class="active" onclick="display(1)">Example 1</div>
+                <div id="example2" onclick="display(2)">Example 2</div>
+            </div>
+        </div>
+        <div id="exampleGraphs">
+            <img id="exampleGraph1" src="https://wikieducator.org/images/c/c7/Bargraph.jpg" alt="a temporary image of a graph to fill the spot where an actual graph will go." />
+            <img id="exampleGraph2" src="https://images.squarespace-cdn.com/content/v1/55b6a6dce4b089e11621d3ed/1585087896250-R3GZ6OFWYQRZUJRCJU3D/ke17ZwdGBToddI8pDm48kGWofyRxfSJ9uscCn11zkbYUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKct6JBMPHLafCAclEKcWHYDNY2rZovXxL9ZlIF7nd_MJE2NdXUI24p4bxl0V65eVL_/produce_monthly.png" alt="a temporary image of a graph to fill the spot where an actual graph will go." />
+        </div>
+    </section>
+    <section id="astronauts">
+        <div class="rawHeader">
+            <h2>Explore the Astronauts</h2>
+            <button id="toggleRawAstronauts" onclick="hideShow('wrapRawAstronauts', 'toggleRawAstronauts')">hide</button>
+        </div>
+        <div id="wrapRawAstronauts" class="table-wrapper">
+            <div class="table-scroll">
+                <table id="rawAstronauts">
+                </table>
+            </div>
+        </div>
+    </section>
+    <section id="missions">
+        <div class="rawHeader">
+            <h2>Explore the Missions</h2>
+            <button id="toggleRawMissions" onclick="hideShow('wrapRawMissions', 'toggleRawMissions')">hide</button>
+        </div>
+        <div id="wrapRawMissions" class="table-wrapper">
+            <div class="table-scroll">
+                <table id="rawMissions">
+                </table>
+            </div>
+    </section>
+    <section>
+        <h2>Graph the Data</h2>
+        <button id="toggleDataSource"></button>
+        <div id="dataSource"></div>
+    </section>
+    <footer>
+        <h3>About the Data</h3>
+        <p>This data was made from the <a href="https://www.kaggle.com/nasa/astronaut-yearbook">NASA Yearbook</a> and the <a href="https://data.mendeley.com/datasets/86tsnnbv2w/1">Astronaut Database</a>.</p>
+    </footer>
+</body>
+</html>
