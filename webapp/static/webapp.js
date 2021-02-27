@@ -1,9 +1,8 @@
 window.onload = initialize;
-
+let features;
 function initialize() {
     display(1);
-    rawAstronauts();
-    rawMissions();
+    getFeatures();
 }
 
 function display(x) {
@@ -42,51 +41,50 @@ function getAPIBaseURL() {
     return baseURL;
 }
 
-function rawAstronauts() {
-    let url = getAPIBaseURL() + '/astronauts/raw/';
+function getFeatures() {
+    let url = getAPIBaseURL() + '/features/';
 
     fetch(url, {method: 'get'})
 
     .then((response) => response.json())
 
-    .then(function(astronauts) {
-        let tableBody = '<thead>\n<tr>'
-                        + '<th>' + 'id' + '</th>'
-                        + '<th>' + 'nwnumber' + '</th>'
-                        + '<th>' + 'english_name' + '</th>'
-                        + '<th>' + 'original_name' + '</th>'
-                        + '<th>' + 'sex' + '</th>'
-                        + '<th>' + 'yob' + '</th>'
-                        + '<th>' + 'nationality' + '</th>'
-                        + '<th>' + 'mil_civ' + '</td>'
-                        + '<th>' + 'yos' + '</th>'
-                        + '<th>' + 'total_missions' + '</th>'
-                        + '<th>' + 'total_mission_hours' + '</th>'
-                        + '<th>' + 'total_eva_hours' + '</th>'
-                        + '</tr>\n'
-                        +'</thead>\n<tbody>\n';
-        for (let k = 0; k < astronauts.length; k++) {
-            let astronaut = astronauts[k];
-            tableBody += '<tr>' 
-                      + '<td>' + astronaut['id'] + '</td>'
-                      + '<td>' + astronaut['nwnumber'] + '</td>' 
-                      + '<td>' + astronaut['english_name'] + '</td>'
-                      + '<td>' + astronaut['original_name'] + '</td>'
-                      + '<td>' + astronaut['sex'] + '</td>'
-                      + '<td>' + astronaut['yob'] + '</td>'
-                      + '<td>' + astronaut['nationality'] + '</td>'
-                      + '<td>' + astronaut['mil_civ'] + '</td>'
-                      + '<td>' + astronaut['yos'] + '</td>'
-                      + '<td>' + astronaut['total_missions'] + '</td>'
-                      + '<td>' + astronaut['total_mission_hours'] + '</td>'
-                      + '<td>' + astronaut['total_eva_hours'] + '</td>'
-                      + '</tr>\n';
+    .then((featur) => {
+        features = featur;
+        const astronaut_feats = features.filter(feat => feat.table === 'astronauts');
+        raw('/astronauts/raw/', astronaut_feats, 'rawAstronauts');
+        rawForm(astronaut_feats, 'rawAstronautsForm');
+        const mission_feats = features.filter(feat => feat.table === 'missions');
+        raw('/missions/raw/', mission_feats, 'rawMissions');
+        rawForm(mission_feats, 'rawMissionsForm');
+    })
+
+    .catch(function(error) {
+        console.log(error);
+    });
+}
+
+function raw(api, feats, rawID) {
+    let url = getAPIBaseURL() + api;
+
+    fetch(url, {method: 'get'})
+
+    .then((response) => response.json())
+
+    .then(function(things) {
+        let tableBody = '<thead>\n<tr>';
+        feats.forEach(feat => tableBody += '<th>' + feat.name + '</th>');
+        tableBody += '</tr>\n' + '</thead>\n<tbody>\n';
+        for (let k = 0; k < things.length; k++) {
+            let thing = things[k];
+            tableBody += '<tr>'; 
+            feats.forEach(feat => tableBody += '<td>' + thing[feat.name] + '</td>')
+            tableBody += '</tr>\n';
         }
         tableBody += '</tbody>';
 
-        let rawAstronautTable = document.getElementById('rawAstronauts');
-        if (rawAstronautTable) {
-            rawAstronautTable.innerHTML = tableBody;
+        let rawTable = document.getElementById(rawID);
+        if (rawTable) {
+            rawTable.innerHTML = tableBody;
         }
     })
 
@@ -95,50 +93,12 @@ function rawAstronauts() {
     });
 }
 
-function rawMissions() {
-    let url = getAPIBaseURL() + '/missions/raw/';
-
-    fetch(url, {method: 'get'})
-
-    .then((response) => response.json())
-
-    .then(function(missions) {
-        let tableBody = '<thead>\n<tr>'
-                        + '<th>' + 'id' + '</th>'
-                        + '<th>' + 'title' + '</th>'
-                        + '<th>' + 'mission_year' + '</th>'
-                        + '<th>' + 'ascent' + '</th>'
-                        + '<th>' + 'orbit' + '</th>'
-                        + '<th>' + 'decent' + '</th>'
-                        + '<th>' + 'duration' + '</th>'
-                        + '<th>' + 'combined_eva' + '</td>'
-                        + '<th>' + 'composition' + '</th>'
-                        + '</tr>\n'
-                        +'</thead>\n<tbody>\n';
-        for (let k = 0; k < missions.length; k++) {
-            let mission = missions[k];
-            tableBody += '<tr>' 
-                      + '<td>' + mission['id'] + '</td>'
-                      + '<td>' + mission['title'] + '</td>' 
-                      + '<td>' + mission['mission_year'] + '</td>'
-                      + '<td>' + mission['ascent'] + '</td>'
-                      + '<td>' + mission['orbit'] + '</td>'
-                      + '<td>' + mission['decent'] + '</td>'
-                      + '<td>' + mission['duration'] + '</td>'
-                      + '<td>' + mission['combined_eva'] + '</td>'
-                      + '<td>' + mission['composition'] + '</td>'
-                      + '</tr>\n';
-        }
-        tableBody += '</tbody>';
-
-        let rawMissionTable = document.getElementById('rawMissions');
-        if (rawMissionTable) {
-            rawMissionTable.innerHTML = tableBody;
-        }
-    })
-
-    .catch(function(error) {
-        console.log(error);
-    });
+function rawForm(feats, rawID) {
+    console.log(feats);
+    let formBody = '';
+    feats.forEach(feat => formBody += '<input type=checkbox name="' + feat.name + '" id="' + feat.name + feat.table + '" checked/><label for="' + feat.name + feat.table + '">' + feat.name + '</label>');
+    let rawForm = document.getElementById(rawID);
+    if(rawForm) {
+        rawForm.innerHTML = formBody;
+    }
 }
-

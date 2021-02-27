@@ -20,6 +20,39 @@ def get_connection():
 
 
 ########### The API endpoints ###########
+@api.route('/help/')
+def get_help():
+    '''API Documentation'''
+    with open('./doc/api-design.txt', 'r') as helpfile:
+        return helpfile.read()
+
+@api.route('/features/')
+def get_features():
+    '''An JSON list of dictionaries, each which represent a column in a table.'''
+    query = '''SELECT column_name, data_type, table_name
+                FROM information_schema.columns
+                WHERE table_schema NOT IN ('information_schema', 'pg_catalog')
+                ORDER BY table_name, ordinal_position;'''
+    feature_list = []
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(query)
+        for row in cursor:
+            feature = {'name':row[0],
+                      'type':row[1],
+                      'table':row[2]}
+            if feature['name'] == 'nationality':
+                feature['type'] = 'text'
+            feature_list.append(feature)
+        cursor.close()
+        connection.close()
+    except Exception as e:
+        print(e, file=sys.stderr)
+        print('-------------------------------')
+
+    return json.dumps(feature_list)
+
 @api.route('/astronauts/raw/') 
 def get_astronauts():
     ''' Returns a list of all the astronauts in the database'''

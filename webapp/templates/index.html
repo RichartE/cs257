@@ -28,16 +28,16 @@
         </div>
     </header>
     <section id="example">
-        <div id="exampleSelection">
-            <h2>Example Results</h2>
-            <div>
+        <h2>Example Results</h2>
+        <div id="exampleContainer">
+            <div id="exampleSelection">
                 <div id="example1" class="active" onclick="display(1)">Example 1</div>
                 <div id="example2" onclick="display(2)">Example 2</div>
             </div>
-        </div>
-        <div id="exampleGraphs">
-            <img id="exampleGraph1" src="https://wikieducator.org/images/c/c7/Bargraph.jpg" alt="a temporary image of a graph to fill the spot where an actual graph will go." />
-            <img id="exampleGraph2" src="https://images.squarespace-cdn.com/content/v1/55b6a6dce4b089e11621d3ed/1585087896250-R3GZ6OFWYQRZUJRCJU3D/ke17ZwdGBToddI8pDm48kGWofyRxfSJ9uscCn11zkbYUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKct6JBMPHLafCAclEKcWHYDNY2rZovXxL9ZlIF7nd_MJE2NdXUI24p4bxl0V65eVL_/produce_monthly.png" alt="a temporary image of a graph to fill the spot where an actual graph will go." />
+            <div id="exampleGraphs">
+                <img id="exampleGraph1" src="https://wikieducator.org/images/c/c7/Bargraph.jpg" alt="a temporary image of a graph to fill the spot where an actual graph will go." />
+                <img id="exampleGraph2" src="https://images.squarespace-cdn.com/content/v1/55b6a6dce4b089e11621d3ed/1585087896250-R3GZ6OFWYQRZUJRCJU3D/ke17ZwdGBToddI8pDm48kGWofyRxfSJ9uscCn11zkbYUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKct6JBMPHLafCAclEKcWHYDNY2rZovXxL9ZlIF7nd_MJE2NdXUI24p4bxl0V65eVL_/produce_monthly.png" alt="a temporary image of a graph to fill the spot where an actual graph will go." />
+            </div>
         </div>
     </section>
     <section id="astronauts">
@@ -45,6 +45,8 @@
             <h2>Explore the Astronauts</h2>
             <button id="toggleRawAstronauts" onclick="hideShow('wrapRawAstronauts', 'toggleRawAstronauts')">hide</button>
         </div>
+        <form id="rawAstronautsForm">
+        </form>
         <div id="wrapRawAstronauts" class="table-wrapper">
             <div class="table-scroll">
                 <table id="rawAstronauts">
@@ -57,11 +59,14 @@
             <h2>Explore the Missions</h2>
             <button id="toggleRawMissions" onclick="hideShow('wrapRawMissions', 'toggleRawMissions')">hide</button>
         </div>
+        <form id="rawMissionsForm">
+        </form>
         <div id="wrapRawMissions" class="table-wrapper">
             <div class="table-scroll">
                 <table id="rawMissions">
                 </table>
             </div>
+        </div>
     </section>
     <section>
         <h2>Graph the Data</h2>
