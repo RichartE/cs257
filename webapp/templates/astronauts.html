@@ -1,0 +1,44 @@
+<!--Author: Etienne Richart-->
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='astronauts.css') }}" />
+    <script type="text/javascript" src="{{ url_for('static', filename='astronauts.js') }}"></script>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+    <title>FindMyAstronaut - Astronaut List</title>
+</head>
+
+<body>
+    <header>
+        <h1>FindMyAstronaut</h1>
+        <div>
+            <form>
+                <label for="search">Search:</label>
+                <input type="text" placeholder="Astronaut, Mission, Craft" name="search" />
+                <input type="submit" value="GO"></input>
+            </form>
+            <nav>
+                <ul>
+                    <li id="astronautsTab">Astronauts</li>
+                    <li id="missionsTab"><a href="/missions.html">Missions</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section id="astronautList">
+        <h2>Astronaut List:</h2>
+        <div id="orderContainer">
+            <div id="name" class="active" onclick="setList('name');flip()">Name</div>
+            <div id="year" onclick="setList('year');flip()">Year Selected</div>
+        </div>
+        <div id="listContainer">
+        </div>
+    </section>
+    <footer>
+        <h3>About the Data</h3>
+        <p>This data was made from the <a href="https://data.mendeley.com/datasets/86tsnnbv2w/1">Astronaut Database</a>.</p>
+    </footer>
+</body>
+</html>

@@ -60,9 +60,7 @@ def get_astronauts():
 
     sort_argument = flask.request.args.get('features', None)
     if sort_argument is not None:
-        select = sort_argument
-    else:
-        select = '*'
+        pass
     
     astronaut_list = []
     try:
@@ -84,6 +82,32 @@ def get_astronauts():
 
     return json.dumps(astronaut_list)
 
+@api.route('/astronauts/list/') 
+def get_astronauts_list_raw():
+    ''' Returns a list of all the astronauts in the database sorter by name'''
+    query = '''SELECT astronauts.english_name, astronauts.yos, nationality.nation FROM astronauts, nationality WHERE astronauts.nationality = nationality.id ORDER BY '''
+
+    sort_argument = flask.request.args.get('order', 'name')
+    if 'year' in sort_argument:
+        query += 'astronauts.yos;'
+    else:
+        query += 'astronauts.english_name;'
+    
+    astronaut_list = []
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(query)
+        for row in cursor:
+            astronaut = {'english_name':row[0], 'yos':row[1],
+                      'nationality':row[2]}
+            astronaut_list.append(astronaut)
+        cursor.close()
+        connection.close()
+    except Exception as e:
+        print(e, file=sys.stderr)
+    return json.dumps(astronaut_list)
+
 @api.route('/missions/raw/') 
 def get_missions():
     ''' Returns a list of all the missions in the database'''
@@ -91,9 +115,7 @@ def get_missions():
 
     sort_argument = flask.request.args.get('features', None)
     if sort_argument is not None:
-        select = sort_argument
-    else:
-        select = '*'
+        pass
     
     mission_list = []
     try:
@@ -112,6 +134,31 @@ def get_missions():
     except Exception as e:
         print(e, file=sys.stderr)
 
+    return json.dumps(mission_list)
+
+@api.route('/missions/list/') 
+def get_missions_list_raw():
+    ''' Returns a list of all the astronauts in the database sorter by name'''
+    query = '''SELECT title, mission_year FROM missions ORDER BY '''
+
+    sort_argument = flask.request.args.get('order', 'name')
+    if 'year' in sort_argument:
+        query += 'mission_year;'
+    else:
+        query += 'title;'
+    
+    mission_list = []
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(query)
+        for row in cursor:
+            mission = {'title':row[0], 'year':row[1]}
+            mission_list.append(mission)
+        cursor.close()
+        connection.close()
+    except Exception as e:
+        print(e, file=sys.stderr)
     return json.dumps(mission_list)
 
 

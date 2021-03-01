@@ -23,10 +23,12 @@ function display(x) {
     }
 }
 
-function hideShow(x, y) {
+function hideShow(x, y, z) {
     let itemA = document.getElementById(x);
     let itemB = document.getElementById(y);
+    let itemC = document.getElementById(z);
     itemA.classList.toggle("hide");
+    itemC.classList.toggle("moveRight");
     if(itemB.innerText === 'hide') {
         itemB.innerText = 'show';
     }

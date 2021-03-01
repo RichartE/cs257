@@ -21,8 +21,8 @@
             </form>
             <nav>
                 <ul>
-                    <li id="astronautsTab">Astronauts</li>
-                    <li id="missionsTab">Missions</li>
+                    <li id="astronautsTab"><a href="/astronauts.html">Astronauts</a></li>
+                    <li id="missionsTab"><a href="/missions.html">Missions</a></li>
                 </ul>
             </nav>
         </div>
@@ -43,7 +43,7 @@
     <section id="astronauts">
         <div class="rawHeader">
             <h2>Explore the Astronauts</h2>
-            <button id="toggleRawAstronauts" onclick="hideShow('wrapRawAstronauts', 'toggleRawAstronauts')">hide</button>
+            <button id="toggleRawAstronauts" onclick="hideShow('wrapRawAstronauts', 'toggleRawAstronauts', 'rawAstronautsForm')">hide</button>
         </div>
         <form id="rawAstronautsForm">
         </form>
@@ -57,7 +57,7 @@
     <section id="missions">
         <div class="rawHeader">
             <h2>Explore the Missions</h2>
-            <button id="toggleRawMissions" onclick="hideShow('wrapRawMissions', 'toggleRawMissions')">hide</button>
+            <button id="toggleRawMissions" onclick="hideShow('wrapRawMissions', 'toggleRawMissions', 'rawMissionsForm')">hide</button>
         </div>
         <form id="rawMissionsForm">
         </form>
@@ -75,7 +75,7 @@
     </section>
     <footer>
         <h3>About the Data</h3>
-        <p>This data was made from the <a href="https://www.kaggle.com/nasa/astronaut-yearbook">NASA Yearbook</a> and the <a href="https://data.mendeley.com/datasets/86tsnnbv2w/1">Astronaut Database</a>.</p>
+        <p>This data was made from the <a href="https://data.mendeley.com/datasets/86tsnnbv2w/1">Astronaut Database</a>.</p>
     </footer>
 </body>
 </html>
