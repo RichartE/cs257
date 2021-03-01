@@ -85,7 +85,7 @@ def get_astronauts():
 @api.route('/astronauts/list/') 
 def get_astronauts_list_raw():
     ''' Returns a list of all the astronauts in the database sorter by name'''
-    query = '''SELECT astronauts.english_name, astronauts.yos, nationality.nation FROM astronauts, nationality WHERE astronauts.nationality = nationality.id ORDER BY '''
+    query = '''SELECT astronauts.english_name, astronauts.yos, nationality.nation, nationality.code FROM astronauts, nationality WHERE astronauts.nationality = nationality.id ORDER BY '''
 
     sort_argument = flask.request.args.get('order', 'name')
     if 'year' in sort_argument:
@@ -100,7 +100,7 @@ def get_astronauts_list_raw():
         cursor.execute(query)
         for row in cursor:
             astronaut = {'english_name':row[0], 'yos':row[1],
-                      'nationality':row[2]}
+                      'nationality':row[2], 'country_code':row[3]}
             astronaut_list.append(astronaut)
         cursor.close()
         connection.close()

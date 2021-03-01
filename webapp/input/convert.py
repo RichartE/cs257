@@ -37,7 +37,8 @@ def create_astronaut_database_tables():
                     nationality = nationalities[nationality]
                 else:
                     nationalities[nationality] = nationality_id
-                    writer_c.writerow([nationality_id, nationality])
+                    code = get_country_code(nationality)
+                    writer_c.writerow([nationality_id, nationality, code])
                     nationality = nationality_id
                     nationality_id += 1
             
@@ -95,6 +96,49 @@ def create_astronaut_database_tables():
         for mission in missions.values():
             mission[7] = round(mission[7], 2)
             writer.writerow(mission)
+
+def get_country_code(country): 
+    countryCodes = { "U.S.": "us",
+                "U.S.S.R/Russia" : "ru",
+                "Japan": "jp",
+                "Italy": "it",
+                "France": "fr",
+                "UAE":  "ae",
+                "Kazakhstan": "kz",
+                "Canada": "ca",
+                "China": "cn",
+                "Germany": "de",
+                "Belgium": "be",
+                "U.K.": "gb",
+                "Saudi Arabia": "sa",
+                "Bulgaria": "bg",
+                "Cuba": "cu",
+                "Slovakia": "sk",
+                "Hungry": "hu",
+                "Sweden": "se",
+                "Romania": "ro",
+                "Syria": "sy",
+                "Australia": "au",
+                "Austria": "at",
+                "Czechoslovakia": "cz",
+                "Korea": "kr",
+                "Malysia": "my",
+                "Israel": "il",
+                "India": "in",
+                "Brazil": "br",
+                "Vietnam": "vn",
+                "Netherland": "nl",
+                "Mexico": "mx",
+                "Denmark": "dk",
+                "Mongolia": "mn", 
+                "Poland": "pl",
+                "Afghanistan": "af",
+                "Switzerland": "ch",
+                "Republic of South Africa": "za",
+                "U.K./U.S.": "us/gb",
+                "U.S.S.R/Ukraine": "ua"
+            }
+    return countryCodes[country]
 
 if __name__ == '__main__':
     create_astronaut_database_tables()

@@ -4,47 +4,7 @@ let astronautsByYOS;
 let listNode;
 let nameNode;
 let yosNode;
-let countryCodes ={
-    "U.S.": "us",
-    "U.S.S.R/Russia" : "ru",
-    "Japan": "jp",
-    "Italy": "it",
-    "France": "fr",
-    "UAE":  "ae",
-    "Kazakhstan": "kz",
-    "Canada": "ca",
-    "China": "cn",
-    "Germany": "de",
-    "Belgium": "be",
-    "U.K.": "gb",
-    "Saudi Arabia": "sa",
-    "Bulgaria": "bg",
-    "Cuba": "cu",
-    "Slovakia": "sk",
-    "Hungry": "hu",
-    "Sweden": "se",
-    "Romania": "ro",
-    "Syria": "sy",
-    "Australia": "au",
-    "Austria": "at",
-    "Czechoslovakia": "cz",
-    "Korea": "kr",
-    "Malysia": "my",
-    "Israel": "il",
-    "India": "in",
-    "Brazil": "br",
-    "Vietnam": "vn",
-    "Netherland": "nl",
-    "Mexico": "mx",
-    "Denmark": "dk",
-    "Mongolia": "mn", 
-    "Poland": "pl",
-    "Afghanistan": "af",
-    "Switzerland": "ch",
-    "Republic of South Africa": "za",
-    "U.K./U.S.": 'us/flat/64.png" alt="U.S. flag" /> <img src="https://www.countryflags.io/gb',
-    "U.S.S.R/Ukraine": "ua"
-};
+
 function initialize() {
     listNode = document.getElementById('listContainer');
     setList('name');
@@ -70,7 +30,11 @@ function buildList(order) {
 
     .then((astronautlist) => {
         let list = '';
-        astronautlist.forEach(astronaut => list += '<div><h3>' + astronaut.english_name + '</h3><p>Selected in ' + astronaut.yos + '</p><img src="https://www.countryflags.io/' + countryCodes[astronaut.nationality] + '/flat/64.png" alt="' + astronaut.nationality+ ' flag" /></div>');
+        astronautlist.forEach(astronaut => {
+            let flags = '';
+            astronaut.country_code.split("/").forEach(code => flags += '<img src="https://www.countryflags.io/' + code + '/flat/64.png" alt="' + astronaut.nationality+ ' flag" />');
+            list += '<div><h3>' + astronaut.english_name + '</h3><p>Selected in ' + astronaut.yos + '</p>' + flags + '</div>';
+        });
         if (order === 'year') {
             astronautsByYOS = list;
             listNode.innerHTML = astronautsByYOS;

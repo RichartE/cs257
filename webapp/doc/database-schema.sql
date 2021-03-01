@@ -1,6 +1,7 @@
 CREATE TABLE nationality (
     id integer,
-    nation text
+    nation text,
+    code varchar(5)
 );
 
 CREATE TABLE astronauts (
