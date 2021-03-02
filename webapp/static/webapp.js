@@ -1,5 +1,7 @@
 window.onload = initialize;
 let features;
+let maxAstronauts;
+let maxMissions;
 function initialize() {
     display(1);
     getFeatures();
@@ -38,6 +40,26 @@ function hideShow(x, y, z) {
 
 }
 
+function collapseColumn(tableID, columnNumber) {
+    let rows = document.getElementById(tableID).rows;
+    for (i = 0; i < rows.length; i++) {
+        let col = rows[i].childNodes[columnNumber];
+        console.log(col);
+        col.classList.toggle('hideColumn');
+    }
+}
+
+function setMaxes() {
+    maxAstronauts = document.getElementById("rawAstronauts").rows.length - 1;
+    maxMissions = document.getElementById("rawMissions").rows.length - 1;
+    if (maxAstronauts > 0) {
+        document.getElementById("displayastronautsRows").max = maxAstronauts;
+    }
+    if (maxMissions > 0) {
+        document.getElementById("displaymissionsRows").max = maxMissions;
+    }
+}
+
 function getAPIBaseURL() {
     let baseURL = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/api';
     return baseURL;
@@ -54,10 +76,10 @@ function getFeatures() {
         features = featur;
         const astronaut_feats = features.filter(feat => feat.table === 'astronauts');
         raw('/astronauts/raw/', astronaut_feats, 'rawAstronauts');
-        rawForm(astronaut_feats, 'rawAstronautsForm');
+        rawForm(astronaut_feats, 'rawAstronautsForm', 'rawAstronauts');
         const mission_feats = features.filter(feat => feat.table === 'missions');
         raw('/missions/raw/', mission_feats, 'rawMissions');
-        rawForm(mission_feats, 'rawMissionsForm');
+        rawForm(mission_feats, 'rawMissionsForm', 'rawMissions');
     })
 
     .catch(function(error) {
@@ -87,6 +109,7 @@ function raw(api, feats, rawID) {
         let rawTable = document.getElementById(rawID);
         if (rawTable) {
             rawTable.innerHTML = tableBody;
+            setMaxes()
         }
     })
 
@@ -95,10 +118,11 @@ function raw(api, feats, rawID) {
     });
 }
 
-function rawForm(feats, rawID) {
-    console.log(feats);
+function rawForm(feats, rawID, rawTableID) {
     let formBody = '';
-    feats.forEach(feat => formBody += '<input type=checkbox name="' + feat.name + '" id="' + feat.name + feat.table + '" checked/><label for="' + feat.name + feat.table + '">' + feat.name + '</label>');
+    let count = 0;
+    feats.forEach(feat => formBody += '<input type=checkbox name="' + feat.name + '" id="' + feat.name + feat.table + '" checked/><label for="' + feat.name + feat.table + '" onclick="collapseColumn(\'' + rawTableID +'\', ' + count++ + ')">' + feat.name + '</label>');
+    formBody += '<label id="numLabel' + feats[0].table + '" for=display' + feats[0].table + 'Rows" onchange="updateNumLabel(\'display' + feats[0].table + 'Rows\', \'numLabel' + feats[0].table + '\')"><input type=number name="number of rows to display" id="display' + feats[0].table + 'Rows" min=0 value=10 /></label>';
     let rawForm = document.getElementById(rawID);
     if(rawForm) {
         rawForm.innerHTML = formBody;

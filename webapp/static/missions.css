@@ -23,7 +23,11 @@ header {
     justify-content: space-between;
 }
 
-header > h1 {
+header > a {
+    text-decoration: none;
+}
+
+header > a > h1 {
     color: white;
     max-width: 60vw;
     width: 60vw;

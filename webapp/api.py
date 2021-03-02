@@ -49,7 +49,6 @@ def get_features():
         connection.close()
     except Exception as e:
         print(e, file=sys.stderr)
-        print('-------------------------------')
 
     return json.dumps(feature_list)
 
@@ -58,10 +57,40 @@ def get_astronauts():
     ''' Returns a list of all the astronauts in the database'''
     query = '''SELECT * FROM astronauts;'''
 
-    sort_argument = flask.request.args.get('features', None)
-    if sort_argument is not None:
-        pass
+    features = flask.request.args.get('features', '*')
+    print(features)
+    select = []
+    if 'id' in features:
+        select.append('id')
+    if 'english_name' in features:
+        select.append('english_name')
+    if 'original_name' in features:
+        select.append('original_name')
+    if 'nwnumber' in features:
+        select.append('nwnumber')
+    if 'sex' in features:
+        select.append('sex')
+    if 'yob' in features:
+        select.append('yob')
+    if 'nationality' in features:
+        select.append('nationality')
+    if 'mil_civ' in features:
+        select.append('mil_civ')
+    if 'yos' in features:
+        select.append('yos')
+    if 'total_missions' in features:
+        select.append('total_missions')
+    if 'total_mission_hours' in features:
+        select.append('total_mission_hours')
+    if 'total_eva_hours' in features:
+        select.append('total_eva_hours')
+    if len(select) == 0:
+        select = '*'
+    else:
+        select = ', '.join(select)  
     
+    query = 'SELECT ' + select + ' FROM astronauts;'
+
     astronaut_list = []
     try:
         connection = get_connection()
@@ -87,8 +116,8 @@ def get_astronauts_list_raw():
     ''' Returns a list of all the astronauts in the database sorter by name'''
     query = '''SELECT astronauts.english_name, astronauts.yos, nationality.nation, nationality.code FROM astronauts, nationality WHERE astronauts.nationality = nationality.id ORDER BY '''
 
-    sort_argument = flask.request.args.get('order', 'name')
-    if 'year' in sort_argument:
+    features = flask.request.args.get('order', 'name')
+    if 'year' in features:
         query += 'astronauts.yos;'
     else:
         query += 'astronauts.english_name;'
@@ -113,8 +142,8 @@ def get_missions():
     ''' Returns a list of all the missions in the database'''
     query = '''SELECT * FROM missions;'''
 
-    sort_argument = flask.request.args.get('features', None)
-    if sort_argument is not None:
+    features = flask.request.args.get('features', None)
+    if features is not None:
         pass
     
     mission_list = []
@@ -141,8 +170,8 @@ def get_missions_list_raw():
     ''' Returns a list of all the astronauts in the database sorter by name'''
     query = '''SELECT title, mission_year FROM missions ORDER BY '''
 
-    sort_argument = flask.request.args.get('order', 'name')
-    if 'year' in sort_argument:
+    features = flask.request.args.get('order', 'name')
+    if 'year' in features:
         query += 'mission_year;'
     else:
         query += 'title;'

@@ -242,7 +242,7 @@ section > form {
     padding-bottom: 0;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: baseline;
     align-content: space-around;
     transition: transform 0.3s ease-in;
@@ -267,4 +267,8 @@ section > form > label {
 
 .moveRight {
     transform: translateX(110vw);
+}
+
+.hideColumn {
+    display: none;
 }
