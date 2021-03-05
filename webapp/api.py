@@ -54,42 +54,39 @@ def get_features():
 
 @api.route('/astronauts/raw/') 
 def get_astronauts():
-    ''' Returns a list of all the astronauts in the database'''
-    query = '''SELECT * FROM astronauts;'''
-
-    features = flask.request.args.get('features', '*')
-    print(features)
-    select = []
-    if 'id' in features:
-        select.append('id')
-    if 'english_name' in features:
-        select.append('english_name')
-    if 'original_name' in features:
-        select.append('original_name')
-    if 'nwnumber' in features:
-        select.append('nwnumber')
-    if 'sex' in features:
-        select.append('sex')
-    if 'yob' in features:
-        select.append('yob')
-    if 'nationality' in features:
-        select.append('nationality')
-    if 'mil_civ' in features:
-        select.append('mil_civ')
-    if 'yos' in features:
-        select.append('yos')
-    if 'total_missions' in features:
-        select.append('total_missions')
-    if 'total_mission_hours' in features:
-        select.append('total_mission_hours')
-    if 'total_eva_hours' in features:
-        select.append('total_eva_hours')
-    if len(select) == 0:
-        select = '*'
-    else:
-        select = ', '.join(select)  
+    ''' Returns a list of all the astronauts in the database''' 
     
-    query = 'SELECT ' + select + ' FROM astronauts;'
+    sort = flask.request.args.get('order', 'id')
+    order = []
+    if 'id' in sort:
+        order.append('astronauts.id')
+    if 'english_name' in sort:
+        order.append('astronauts.english_name')
+    if 'original_name' in sort:
+        order.append('astronauts.original_name')
+    if 'nwnumber' in sort:
+        order.append('astronauts.nwnumber')
+    if 'sex' in sort:
+        order.append('astronauts.sex')
+    if 'yob' in sort:
+        order.append('astronauts.yob')
+    if 'nationality' in sort:
+        order.append('astronauts.nationality')
+    if 'mil_civ' in sort:
+        order.append('astronauts.mil_civ')
+    if 'yos' in sort:
+        order.append('astronauts.yos')
+    if 'total_missions' in sort:
+        order.append('astronauts.total_missions')
+    if 'total_mission_hours' in sort:
+        order.append('astronauts.total_mission_hours')
+    if 'total_eva_hours' in sort:
+        order.append('astronauts.total_eva_hours')
+    if len(order) == 0:
+        order = 'id'
+    else:
+        order = ', '.join(order)
+    query = '''SELECT astronauts.id, astronauts.english_name, astronauts.original_name, astronauts.nwnumber, astronauts.sex, astronauts.yob, nationality.nation, astronauts.mil_civ, astronauts.yos, astronauts.total_missions, astronauts.total_mission_hours, astronauts.total_eva_hours FROM astronauts, nationality WHERE astronauts.nationality = nationality.id ORDER BY ''' + order + ';'
 
     astronaut_list = []
     try:

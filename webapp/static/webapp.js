@@ -44,7 +44,6 @@ function collapseColumn(tableID, columnNumber) {
     let rows = document.getElementById(tableID).rows;
     for (i = 0; i < rows.length; i++) {
         let col = rows[i].childNodes[columnNumber];
-        console.log(col);
         col.classList.toggle('hideColumn');
     }
 }
@@ -53,11 +52,32 @@ function setMaxes() {
     maxAstronauts = document.getElementById("rawAstronauts").rows.length - 1;
     maxMissions = document.getElementById("rawMissions").rows.length - 1;
     if (maxAstronauts > 0) {
-        document.getElementById("displayastronautsRows").max = maxAstronauts;
+        let input = document.getElementById("displayastronautsRows");
+        input.max = maxAstronauts;
+        input.value = maxAstronauts;
     }
     if (maxMissions > 0) {
-        document.getElementById("displaymissionsRows").max = maxMissions;
+        let input = document.getElementById("displaymissionsRows");
+        input.max = maxMissions;
+        input.value = maxMissions;
     }
+}
+
+function limitRows(tableID, inputID) {
+    let rows = document.getElementById(tableID).rows;
+    let numVisible = document.getElementById(inputID).value;
+    for (i = 0; i < rows.length; i++) {
+        if (i > numVisible) {
+            rows[i].classList.add('hideColumn');
+        }
+        else {
+            rows[i].classList.remove('hideColumn');
+        }
+    }
+}
+
+function setLimit(inputID, limit) {
+    document.getElementById(inputID).value = limit;
 }
 
 function getAPIBaseURL() {
@@ -122,7 +142,8 @@ function rawForm(feats, rawID, rawTableID) {
     let formBody = '';
     let count = 0;
     feats.forEach(feat => formBody += '<input type=checkbox name="' + feat.name + '" id="' + feat.name + feat.table + '" checked/><label for="' + feat.name + feat.table + '" onclick="collapseColumn(\'' + rawTableID +'\', ' + count++ + ')">' + feat.name + '</label>');
-    formBody += '<label id="numLabel' + feats[0].table + '" for=display' + feats[0].table + 'Rows" onchange="updateNumLabel(\'display' + feats[0].table + 'Rows\', \'numLabel' + feats[0].table + '\')"><input type=number name="number of rows to display" id="display' + feats[0].table + 'Rows" min=0 value=10 /></label>';
+    formBody += '<label class="otherLabels" for="display' + feats[0].table + 'Rows" onchange="limitRows(\'raw' + feats[0].table.charAt(0).toUpperCase() + feats[0].table.slice(1) + '\', \'display' + feats[0].table + 'Rows\')">Limit: <input type=number name="number of rows to display" id="display' + feats[0].table + 'Rows" min=0 /></label>';
+    formBody += '<button type="button" class="otherLabels" onclick="setLimit(\'display' + feats[0].table + 'Rows\', 10);limitRows(\'raw' + feats[0].table.charAt(0).toUpperCase() + feats[0].table.slice(1) + '\', \'display' + feats[0].table + 'Rows\')">10</button><button type="button" class="otherLabels" onclick="setLimit(\'display' + feats[0].table + 'Rows\', max' + feats[0].table.charAt(0).toUpperCase() + feats[0].table.slice(1) + ');limitRows(\'raw' + feats[0].table.charAt(0).toUpperCase() + feats[0].table.slice(1) + '\', \'display' + feats[0].table + 'Rows\')">Max</button>';
     let rawForm = document.getElementById(rawID);
     if(rawForm) {
         rawForm.innerHTML = formBody;

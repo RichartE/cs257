@@ -8,6 +8,8 @@
     <script type="text/javascript" src="{{ url_for('static', filename='webapp.js') }}"></script>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
     <title>FindMyAstronaut - Home</title>
+    <link rel="stylesheet" href="css/chartist.min.css">
+    <link rel="stylesheet" href="css/chart-from-api.css">
 </head>
 
 <body>
@@ -77,5 +79,8 @@
         <h3>About the Data</h3>
         <p>This data was made from the <a href="https://data.mendeley.com/datasets/86tsnnbv2w/1">Astronaut Database</a>.</p>
     </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/chartist.min.js"></script>
+    <script src="js/chart-from-api.js"></script>
 </body>
 </html>

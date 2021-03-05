@@ -252,17 +252,29 @@ section > form > input {
     visibility: hidden;
 }
 
-section > form > label {
+section > form > label, section > form > button {
     margin-top: .5vw;
     user-select: none;
     background-color: lightskyblue;
     color: white;
     border-radius: 25px;
     padding: .7em 1.5em;
+    cursor: pointer;
+    font-size: unset;
+    font-family: "Times New Roman", Times, serif;
 }
 
 :checked + label {
     background-color: dodgerblue;
+}
+
+.otherLabels {
+    background-color: dodgerblue;
+    margin-left: 13px;
+}
+
+label.otherLabels {
+    cursor: unset;
 }
 
 .moveRight {

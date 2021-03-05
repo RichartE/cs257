@@ -28,7 +28,6 @@ function buildList(order) {
     .then((response) => response.json())
 
     .then((missionlist) => {
-        console.log(missionlist);
         let list = '';
         missionlist.forEach(mission => list += '<div><h3>' + mission.title + '</h3><p>Selected in ' + mission.year + '</p></div>');
         if (order === 'year') {
