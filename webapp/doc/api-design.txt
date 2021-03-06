@@ -71,6 +71,9 @@ RESPONSE: a JSON list of dictionaries, each of which represents one astronaut. E
     Name -- (string) the astronaut's name
     Year of Selection -- (int) The year the astronaut was selected to become an astronaut
     Nationality -- (string) the astronaut's nationality
+EXAMPLE:
+    /api/astronauts/?order=year
+        [{x:"UAE", y:1}, ...]
 
 REQUEST: /missions/list/
 GET PARAMETERS:
