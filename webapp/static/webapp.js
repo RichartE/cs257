@@ -170,7 +170,6 @@ function updateSelection() {
 function populateFeatureSelectors() {
     let xSelector = document.getElementById('x-select');
     let ySelector = document.getElementById('y-select');
-    let firstA = document.getElementById('firstA');
     if (xSelector && ySelector) {
         // Populate it with states from the API
         let featureSelectorBody = '';
@@ -230,9 +229,9 @@ function createFeatureChart() {
         let newCasesData = [];
         for (let k = 0; k < days.length; k++) {
             // Assumes YYYYMMDD int
-            let date = days[days.length - k -1].y;
+            let date = days[days.length - k -1].x;
             labels.push(date);
-            newCasesData.push({meta: date, value: days[days.length - k - 1].x});
+            newCasesData.push({meta: date, value: days[days.length - k - 1].y});
         }
         console.log(labels);
         console.log(newCasesData);

@@ -6,14 +6,15 @@ RESPONSE: An JSON list of dictionaries, each which represent a feature.
 Each feature dictionary will have the following fields.
     Feature Name -- (string) the name of the feature
     Feature Type -- (string) the type of the feature
-    Raw -- (string) either astronaut, mission or neither
+    Tabke -- (string) what table it belongs to in the db
+EXAMPLE:
+    /api/features 
+        [{name:"id", type:"integer", table:"astronaut_mission"}, ...]
 
 REQUEST: /astronauts/raw/
 GET PARAMETERS: 
-    features {Optional, '|' separated feature list, default=all the features} feature names to be checked for sql injection then added in the SELECT block of the query
-    sort {Optional, '|' separated list of features to sort by, default='id'} feature names to be checked for sql injection then added in the SORT block of the query
-    show {Optional, number of entries to show/limit, default=10} number to be checked for sql injection then added in the LIMIT block of the query
-RESPONSE: a JSON list of dictionaries, 10 or {show} entries long, each of which repressents one astronaut, sorted by id or {show}.
+    order {Optional, list of features to sort by, default='id'} feature names to be checked for sql injection then added in the ORDER BY block of the query
+RESPONSE: a JSON list of dictionaries each of which repressents one astronaut, sorted by id or {show}.
 Each astronaut dictionary may have all the following fields or just some as indicated by {features}.
     Name -- (string) the astronaut's name
     Original Name -- (string) the astronaut's name in their original language (ex: Russion, Chinese)
@@ -29,16 +30,14 @@ Each astronaut dictionary may have all the following fields or just some as indi
     Missions -- (array/list (string)) list of the missions the astronaut was on
     Mission Years -- (array/list (int)) list of the years the astronaut had a mission
     Occupations -- (array/list (string)) list of different roles the astronaut had on missions
-
-REQUEST: /astronauts/raw/max
-RESPONSE: integer of the number of entries
+EXAMPLE:
+    /api/astronauts/raw?order=id
+        [{id:1, english_name:"Gagarin, Yuri", ...}, ...]
 
 REQUEST: /missions/raw/
 GET PARAMETERS: 
-    features {Optional, '|' separated feature list, default=all the features} feature names to be checked for sql injection then added in the SELECT block of the query
-    sort {Optional, '|' separated list of features to sort by, default='id'} feature names to be checked for sql injection then added in the SORT block of the query
-    show {Optional, number of entries to show/limit, default=10} number to be checked for sql injection then added in the LIMIT block of the query
-RESPONSE: a JSON list of dictionaries, 10 or {show} entries long, each of which repressents one mission, sorted by id or {show}.
+    sort {Optional, list of features to sort by, default='id'} feature names to be checked for sql injection then added in the ORDER BY block of the query
+RESPONSE: a JSON list of dictionaries, each of which repressents one mission, sorted by id or {show}.
 Each astronaut dictionary may have all the following fields or just some as indicated by {features}.
     Mission Title -- (string) the name of the mission
     Mission Year -- (int) year of the mission
@@ -50,39 +49,36 @@ Each astronaut dictionary may have all the following fields or just some as indi
     Astronauts -- (array/list (string)) the names of the astronauts on the mission
     Occupations -- (array/list (string)) the jobs the astronauts had on the mission.
     Composition -- (string) Mil if all the members of the mission were military, Civ if all the members of the mission were civilian and Mil/Civ if it is a combination.
+EXAMPLE:
+    /api/missions/raw?order=id
+        [{id:1, title:"Vostok 1", ...}, ...]
 
-REQUEST: /missions/raw/max
-RESPONSE: integer of the number of entries
-
-REQUEST: /graph
+REQUEST: /graphing
 GET PARAMETERS:
-    query {Optional, the psql query, default=""} some sort of query string to be checked for sql injection then added in the WHERE block of the query
-    sort {Optional, '|' separated list of features to sort by, default=''} feature names to be checked for sql injection then added in the SORT block of the query
-    show {Optional, number of entries to show/limit, default=''} number to be checked for sql injection then added in the LIMIT block of the query
-    layout {Required, '|' separated, x-axis, y-axis, aggregate} the x-axis and y-axis to be checked for sql injection then added in the SELECT block of the query, aggregate will be used on the y-axis feature like SELECT COUNT(y-axis) x-axis
-RESPONSE: an interactive graph if possible or an image. It could also be a link to put into an <img> tag's href.
+    x {optional, the feature on the x axis of the graph, default is nationality.nation}
+    y {optional the feature on the y axis of the graph, default is astronauts.id}
+    aggregate {optional, how to aggregate y SUM or COUNT, default is COUNT}
+    order {optional if the order is ascending or decending}
+RESPONSE: a javascript libaray graph with GROUP BY x  on the x axis and {aggregate}(y) on the y axis sorted by y in {order} order.
+EXAMPLE:
+    /api/graphing/?x=nationality.nation&y=astronauts.id
+        [{x:"UAE", y:1}, ...]
 
-REQUEST: /astronauts/list/name
-RESPONSE: a JSON list of dictionaries, each of which represents one astronaut, sorted by name. Each astronaut will have the following fields.
+REQUEST: /astronauts/list/
+GET PARAMETERS:
+    order {optional, order to sort list by either name or year selected, default is name}
+RESPONSE: a JSON list of dictionaries, each of which represents one astronaut. Each astronaut will have the following fields.
     Name -- (string) the astronaut's name
     Year of Selection -- (int) The year the astronaut was selected to become an astronaut
     Nationality -- (string) the astronaut's nationality
 
-REQUEST: /astronauts/list/year
-RESPONSE: a JSON list of dictionaries, each of which represents one astronaut, sorted by year selected. Each astronaut will have the following fields.
-    Name -- (string) the astronaut's name
-    Year of Selection -- (int) The year the astronaut was selected to become an astronaut
-    Nationality -- (string) the astronaut's nationality
-
-REQUEST: /missions/list/name
-RESPONSE: a JSON list of dictionaries, each of which represents one mission, sorted by mission title. Each mission will have the following fields.
+REQUEST: /missions/list/
+GET PARAMETERS:
+    order {optional, order to sort list by either mission title or mission year, default is title}
+RESPONSE: a JSON list of dictionaries, each of which represents one mission.. Each mission will have the following fields.
     Mission Title -- (string) the name of the mission
     Mission Year -- (int) year of the mission
 
-REQUEST: /missions/list/year
-RESPONSE: a JSON list of dictionaries, each of which represents one mission, sorted by mission year. Each mission will have the following fields.
-    Mission Title -- (string) the name of the mission
-    Mission Year -- (int) year of the mission
 
 REQUEST: /astronauts/<name>
 RESPONSE: a JSON dictionary, which repressents the astronaut.

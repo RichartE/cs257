@@ -56,7 +56,7 @@ def get_features():
 def get_astronauts():
     ''' Returns a list of all the astronauts in the database''' 
     
-    sort = flask.request.args.get('order', 'astronauts.id')
+    sort = flask.request.args.get('order', 'astronauts.id').casefold()
     order = []
     if 'id' in sort:
         order.append('astronauts.id')
@@ -113,7 +113,7 @@ def get_astronauts_list_raw():
     ''' Returns a list of all the astronauts in the database sorter by name'''
     query = '''SELECT astronauts.english_name, astronauts.yos, nationality.nation, nationality.code FROM astronauts, nationality WHERE astronauts.nationality = nationality.id ORDER BY '''
 
-    features = flask.request.args.get('order', 'name')
+    features = flask.request.args.get('order', 'name').casefold()
     if 'year' in features:
         query += 'astronauts.yos;'
     else:
@@ -138,7 +138,7 @@ def get_astronauts_list_raw():
 def get_missions():
     ''' Returns a list of all the missions in the database'''
 
-    sort = flask.request.args.get('order', 'id')
+    sort = flask.request.args.get('order', 'id').casefold()
     order = []
     if 'id' in sort:
         order.append('missions.id')
@@ -189,7 +189,7 @@ def get_missions_list_raw():
     ''' Returns a list of all the astronauts in the database sorter by name'''
     query = '''SELECT title, mission_year FROM missions ORDER BY '''
 
-    features = flask.request.args.get('order', 'name')
+    features = flask.request.args.get('order', 'title').casefold()
     if 'year' in features:
         query += 'mission_year;'
     else:
@@ -280,10 +280,10 @@ def get_list(feature):
         
 @api.route('/graphing/')
 def get_graph():
-    x = flask.request.args.get('x', 'nationality.nation')
-    y = flask.request.args.get('y', 'astronauts.id')
-    aggregation = flask.request.args.get('agregate', 'COUNT')
-    order = flask.request.args.get('order', '')
+    x = flask.request.args.get('x', 'nationality.nation').casefold()
+    y = flask.request.args.get('y', 'astronauts.id').casefold()
+    aggregation = flask.request.args.get('agregate', 'COUNT').upper()
+    order = flask.request.args.get('order', '').upper()
     x = get_list(x)
     y = get_list(y)
     query_from = set()
@@ -307,7 +307,7 @@ def get_graph():
         cursor = connection.cursor()
         cursor.execute(query)
         for row in cursor:
-            entry = {'x':row[0], 'y':row[1]}
+            entry = {'x':row[1], 'y':row[0]}
             graph_list.append(entry)
         cursor.close()
         connection.close()
