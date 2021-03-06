@@ -2,6 +2,7 @@ window.onload = initialize;
 let features;
 let maxAstronauts;
 let maxMissions;
+let currentFeatures;
 function initialize() {
     display(1);
     getFeatures();
@@ -100,6 +101,7 @@ function getFeatures() {
         const mission_feats = features.filter(feat => feat.table === 'missions');
         raw('/missions/raw/', mission_feats, 'rawMissions');
         rawForm(mission_feats, 'rawMissionsForm', 'rawMissions');
+        populateFeatureSelectors();
     })
 
     .catch(function(error) {
@@ -125,7 +127,6 @@ function raw(api, feats, rawID) {
             tableBody += '</tr>\n';
         }
         tableBody += '</tbody>';
-
         let rawTable = document.getElementById(rawID);
         if (rawTable) {
             rawTable.innerHTML = tableBody;
@@ -148,4 +149,150 @@ function rawForm(feats, rawID, rawTableID) {
     if(rawForm) {
         rawForm.innerHTML = formBody;
     }
+}
+
+function updateSelection() {
+    let xSelector = document.getElementById('x-select');
+    let ySelector = document.getElementById('y-select');
+    let xTable = xSelector.value.split('.')[0];
+    let yTable = ySelector.value.split('.')[0];
+    currentFeatures = features.filter(feat=> feat.table === xTable || feat.table === yTable);
+    let featureSelectorBody = '';
+    for (let k=0; k < currentFeatures.length; k++) {
+        let feature = currentFeatures[k];
+        featureSelectorBody += '<option value="' + feature.table + '.' + feature.name + '">' + feature.table + '.' + feature.name + '</option>\n';
+    }
+
+    let aSelectors = document.getElementsByClassName('aSelector');
+    Array.from(aSelectors).forEach(elm => elm.innerHTML = featureSelectorBody);
+}
+
+function populateFeatureSelectors() {
+    let xSelector = document.getElementById('x-select');
+    let ySelector = document.getElementById('y-select');
+    let firstA = document.getElementById('firstA');
+    if (xSelector && ySelector) {
+        // Populate it with states from the API
+        let featureSelectorBody = '';
+        for (let k=0; k < features.length; k++) {
+            let feature = features[k];
+            featureSelectorBody += '<option value="' + feature.table + '.' + feature.name + '">' + feature.table + '.' + feature.name + '</option>\n';
+        }
+        xSelector.innerHTML = featureSelectorBody;
+        ySelector.innerHTML = featureSelectorBody;
+
+        // Start us out looking at Minnesota.
+        xSelector.value = 'nationality.nation';
+        ySelector.value = 'astronauts.original_name';
+        updateSelection();
+    }
+}
+
+function createFeatureChart() {
+    // Set the title
+    let graphTitle = document.getElementById('state-new-cases-title');
+    let xSelector = document.getElementById('x-select');
+    let ySelector = document.getElementById('y-select');
+    if (graphTitle) {
+        graphTitle.innerHTML = xSelector.value + ' v. ' + ySelector.value;
+    }
+
+    // Create the chart
+    let url = getAPIBaseURL() + '/graphing/?x=' + xSelector.value + '&y=' + ySelector.value;
+
+    fetch(url, {method: 'get'})
+
+    .then((response) => response.json())
+
+    .then(function(days) {
+        console.log(days);
+        // Use the API response (days), which is a list of dictionaries like this:
+        //
+        //   {date: '20200315', positiveIncrease: 2345, ... }
+        //
+        // to assemble the data my bar-chart will need. That data looks like a
+        // list of dictionaries (newCasesData). Each dictionary in the list will look
+        // like this:
+        //
+        //   {meta:'2020-03-15', value: 2345}
+        //
+        // Here, meta is the date, which Chartist will use in a popup window that appears
+        // if you hover over a bar in the bar chart, and value is the number of new COVID
+        // cases for that date, which will, of course, determine the height of the bar
+        // in the bar chart.
+        //
+        // In this same loop, we're also creating a list (labels) of labels to be used
+        // along the x-axis of the bar chart.
+
+        // This code assumes results are sorted in descending order by date, which is
+        // indeed how the API returns the data as of this writing.
+        let labels = [];
+        let newCasesData = [];
+        for (let k = 0; k < days.length; k++) {
+            // Assumes YYYYMMDD int
+            let date = days[days.length - k -1].y;
+            labels.push(date);
+            newCasesData.push({meta: date, value: days[days.length - k - 1].x});
+        }
+        console.log(labels);
+        console.log(newCasesData);
+        // We set some options for our bar chart. seriesBarDistance is the width of the
+        // bars. axisX allows us to specify a bunch of options related to the x-axis.
+        // The one we're picking is labelInterpolationFnc, which allows us to control
+        // which bars have x-axis labels. Here, we're saying "write the date of the bar
+        // on the x-axis every 7 days". Otherwise, the axis just gets too crowded.
+        let options = { seriesBarDistance: 25,
+                        axisX: { labelInterpolationFnc: function(value, index) {
+                                    let numLabels = Math.min(Math.max(Math.round(1500/(window.innerWidth)*0.9), 1), 7);
+                                    return index % numLabels === 0 ? value : null;
+                                }
+                        },
+                      };
+
+        // Here's the form in which Chartist expects its data to be specified. Not that
+        // series is a list, since you might want to have two or more differently colored
+        // sets of bars, or line graphs, etc. on the same chart.
+        let data = { labels: labels, series: [newCasesData] };
+
+        // Finally, we create the bar chart, and attach it to the desired <div> in our HTML.
+        let chart = new Chartist.Bar('#state-new-cases-chart', data, options);
+
+        // HERE COMES THE MESS THAT IS TOOLTIPS! FEEL FREE TO IGNORE!
+        // Tooltips are those little sometimes-informative popups that give you a little
+        // information about something your mouse is hovering over. We want them on this
+        // bar chart so we can get the exact number of new cases on a particular day, not
+        // just an estimate (which is what you'll get from just looking at the bar's height).
+        //
+        // I got a lot of help from here.
+        // https://stackoverflow.com/questions/34562140/how-to-show-label-when-mouse-over-bar
+        //
+        // Note that all of this code uses jQuery notation. I wrote everything above here
+        // in vanilla Javascript, but I don't feel like rewriting the following more complicated code.
+
+        chart.on('created', function(bar) {
+            let toolTipSelector = '#state-new-cases-tooltip';
+            $('.chart-container .ct-bar').on('mouseenter', function(e) {  // Set a "hover handler" for every bar in the chart
+                let value = $(this).attr('ct:value'); // value and meta come ultimately from the newCasesData above
+                let label = $(this).attr('ct:meta');
+                let caption = '<b>Date:</b> ' + label + '<br><b>New cases (' + stateName + '):</b> ' + value;
+                $(toolTipSelector).html(caption);
+                $(toolTipSelector).parent().css({position: 'relative'});
+                // bring to front, https://stackoverflow.com/questions/3233219/is-there-a-way-in-jquery-to-bring-a-div-to-front
+                $(toolTipSelector).parent().append($(toolTipSelector));
+
+                let x = e.clientX;
+                let y = e.clientY;
+                $(toolTipSelector).css({top: y, left: x, position:'fixed', display: 'block'});
+            });
+
+            $('.state-new-cases-chart .ct-bar').on('mouseout', function() {
+                $(toolTipSelector).css({display: 'none'});
+            });
+        });
+    })
+
+    // Log the error if anything went wrong during the fetch.
+    .catch(function(error) {
+        console.log(error);
+    });
 }

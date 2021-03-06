@@ -56,7 +56,7 @@ def get_features():
 def get_astronauts():
     ''' Returns a list of all the astronauts in the database''' 
     
-    sort = flask.request.args.get('order', 'id')
+    sort = flask.request.args.get('order', 'astronauts.id')
     order = []
     if 'id' in sort:
         order.append('astronauts.id')
@@ -71,7 +71,7 @@ def get_astronauts():
     if 'yob' in sort:
         order.append('astronauts.yob')
     if 'nationality' in sort:
-        order.append('astronauts.nationality')
+        order.append('nationality.nation')
     if 'mil_civ' in sort:
         order.append('astronauts.mil_civ')
     if 'yos' in sort:
@@ -83,7 +83,7 @@ def get_astronauts():
     if 'total_eva_hours' in sort:
         order.append('astronauts.total_eva_hours')
     if len(order) == 0:
-        order = 'id'
+        order = 'astronauts.id'
     else:
         order = ', '.join(order)
     query = '''SELECT astronauts.id, astronauts.english_name, astronauts.original_name, astronauts.nwnumber, astronauts.sex, astronauts.yob, nationality.nation, astronauts.mil_civ, astronauts.yos, astronauts.total_missions, astronauts.total_mission_hours, astronauts.total_eva_hours FROM astronauts, nationality WHERE astronauts.nationality = nationality.id ORDER BY ''' + order + ';'
@@ -137,11 +137,33 @@ def get_astronauts_list_raw():
 @api.route('/missions/raw/') 
 def get_missions():
     ''' Returns a list of all the missions in the database'''
-    query = '''SELECT * FROM missions;'''
 
-    features = flask.request.args.get('features', None)
-    if features is not None:
-        pass
+    sort = flask.request.args.get('order', 'id')
+    order = []
+    if 'id' in sort:
+        order.append('missions.id')
+    if 'title' in sort:
+        order.append('missions.title')
+    if 'original_name' in sort:
+        order.append('missions.mission_year')
+    if 'nwnumber' in sort:
+        order.append('missions.ascent')
+    if 'sex' in sort:
+        order.append('missions.orbit')
+    if 'yob' in sort:
+        order.append('missions.decent')
+    if 'nationality' in sort:
+        order.append('missions.duration')
+    if 'mil_civ' in sort:
+        order.append('missions.combined_eva')
+    if 'yos' in sort:
+        order.append('missions.composition')
+    if len(order) == 0:
+        order = 'missins.id'
+    else:
+        order = ', '.join(order)
+    query = '''SELECT missions.id, missions.title, missions.mission_year, missions.ascent, missions.orbit, missions.decent, missions.duration, missions.combined_eva, missions.composition FROM missions ORDER BY ''' + order + ';'
+
     
     mission_list = []
     try:
@@ -187,5 +209,108 @@ def get_missions_list_raw():
         print(e, file=sys.stderr)
     return json.dumps(mission_list)
 
+def get_list(feature):
+    if 'astronauts' in feature:
+        if 'id' in feature:
+            return 'astronauts.id'
+        if 'english_name' in feature:
+            return 'astronauts.english_name'
+        if 'original_name' in feature:
+            return 'astronauts.original_name'
+        if 'nwnumber' in feature:
+            return 'astronauts.nwnumber'
+        if 'sex' in feature:
+            return 'astronauts.sex'
+        if 'yob' in feature:
+            return 'astronauts.yob'
+        if 'nationality' in feature:
+            return 'nationality.nation'
+        if 'mil_civ' in feature:
+            return 'astronauts.mil_civ'
+        if 'yos' in feature:
+            return 'astronauts.yos'
+        if 'total_missions' in feature:
+            return 'astronauts.total_missions'
+        if 'total_mission_hours' in feature:
+            return 'astronauts.total_mission_hours'
+        if 'total_eva_hours' in feature:
+            return 'astronauts.total_eva_hours'
+    if 'missions' in feature:
+        if 'id' in feature:
+            return 'missions.id'
+        if 'title' in feature:
+            return 'missions.title'
+        if 'original_name' in feature:
+            return 'missions.mission_year'
+        if 'nwnumber' in feature:
+            return 'missions.ascent'
+        if 'sex' in feature:
+            return 'missions.orbit'
+        if 'yob' in feature:
+            return 'missions.decent'
+        if 'nationality' in feature:
+            return 'missions.duration'
+        if 'mil_civ' in feature:
+            return 'missions.combined_eva'
+        if 'yos' in feature:
+            return 'missions.composition'
+    if 'nationality' in feature:
+        if 'id' in feature:
+            return 'nationality.id'
+        if 'code' in feature:
+            return 'nationality.code'
+        if 'nation' in feature:
+            return 'nationality.nation'
+    if 'astronaut_mission' in feature:
+        if 'id' in feature:
+            return 'astronaut_mission.id'
+        if 'occupation' in feature:
+            return 'astronaut_mission.occupation'
+        if 'eva_hours' in feature:
+            return 'astronaut_mission.eva_hours'
+        if 'mission_num' in feature:
+            return 'astronaut_mission.mission_num'
+        if 'selection' in feature:
+            return 'astronaut_mission.selection'
+        if 'astronaut_mission.astronaut' in feature:
+            return 'astronaut_mission.astronaut'
+        if 'astronaut_mission.mission' in feature:
+            return 'astronaut_mission.mission'
+    return 'astronauts.id'
+        
+@api.route('/graphing/')
+def get_graph():
+    x = flask.request.args.get('x', 'nationality.nation')
+    y = flask.request.args.get('y', 'astronauts.id')
+    aggregation = flask.request.args.get('agregate', 'COUNT')
+    order = flask.request.args.get('order', '')
+    x = get_list(x)
+    y = get_list(y)
+    query_from = set()
+    query_from.add(x.split('.')[0])
+    query_from.add(y.split('.')[0])
+    if 'SUM' in aggregation:
+        aggregation = 'SUM'
+    else:
+        aggregation = 'COUNT'
+    if 'DESC' in order:
+        order = 'DESC'
+    elif 'ASC' in order:
+        order = 'ASC'
+    else:
+        order = ''
 
-
+    query = 'SELECT ' + aggregation + '(' + y + '), ' + x + ' FROM ' + ', '.join(query_from) + ' WHERE astronauts.nationality = nationality.id GROUP BY nationality.nation ORDER BY ' + aggregation + '(' + y + ') ' + order + ';'
+    graph_list = []
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(query)
+        for row in cursor:
+            entry = {'x':row[0], 'y':row[1]}
+            graph_list.append(entry)
+        cursor.close()
+        connection.close()
+    except Exception as e:
+        print(e, file=sys.stderr)
+    return json.dumps(graph_list)

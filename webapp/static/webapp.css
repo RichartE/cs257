@@ -157,7 +157,7 @@ section {
     max-width: clamp(400px, 40vw, 600px);
 }
 
-#astronauts, #missions {
+#astronauts, #missions, #graphing {
     flex-direction: column;
 }
 
@@ -283,4 +283,10 @@ label.otherLabels {
 
 .hideColumn {
     display: none;
+}
+
+#where {
+    text-align: left;
+    margin: 2vw;
+    min-width: 50%;
 }

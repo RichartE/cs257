@@ -8,8 +8,8 @@
     <script type="text/javascript" src="{{ url_for('static', filename='webapp.js') }}"></script>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
     <title>FindMyAstronaut - Home</title>
-    <link rel="stylesheet" href="css/chartist.min.css">
-    <link rel="stylesheet" href="css/chart-from-api.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='chartist.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='chart-from-api.css') }}">
 </head>
 
 <body>
@@ -70,17 +70,46 @@
             </div>
         </div>
     </section>
-    <section>
+    <section  id="graphing">
         <h2>Graph the Data</h2>
-        <button id="toggleDataSource"></button>
-        <div id="dataSource"></div>
+        <div class="header">
+            <select id="y-select" onchange="updateSelection()"></select>
+            <select id="x-select" onchange="updateSelection()"></select>
+            <button type=button onclick="createFeatureChart()">Graph</button>
+        </div>
+        <h3>Where Clause:</h3>
+        <table id="where">
+            <thead>
+                <tr>
+                    <th>A</th>
+                    <th>Connects</th>
+                    <th>B</th>
+                    <th>More</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr onchange="checkExpression()">
+                    <td class="A"><select class="aSelector"></select></td>
+                    <td class="Connects"></td>
+                    <td class="B"></td>
+                    <td class="More"></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- Positive tests -->
+        <div class="chart-container">
+            <div class="chart-title" id="state-new-cases-title"></div>
+            <div class="ct-chart ct-perfect-fourth" id="state-new-cases-chart"></div>
+            <div id="state-new-cases-tooltip" class="tooltip"> </div>
+        </div>
     </section>
     <footer>
         <h3>About the Data</h3>
         <p>This data was made from the <a href="https://data.mendeley.com/datasets/86tsnnbv2w/1">Astronaut Database</a>.</p>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="js/chartist.min.js"></script>
-    <script src="js/chart-from-api.js"></script>
+    <script src="{{ url_for('static', filename='chartist.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='chart-from-api.js') }}"></script>
 </body>
 </html>
