@@ -282,7 +282,7 @@ def get_list(feature):
 def get_graph():
     x = flask.request.args.get('x', 'nationality.nation').casefold()
     y = flask.request.args.get('y', 'astronauts.id').casefold()
-    aggregation = flask.request.args.get('agregate', 'COUNT').upper()
+    aggregation = flask.request.args.get('aggregate', 'COUNT').upper()
     order = flask.request.args.get('order', '').upper()
     x = get_list(x)
     y = get_list(y)

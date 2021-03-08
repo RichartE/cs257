@@ -290,3 +290,32 @@ label.otherLabels {
     margin: 2vw;
     min-width: 50%;
 }
+
+.header {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+option {
+    font-size: unset;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.header > button {
+    background-color: mediumaquamarine;
+    border-radius: 25px;
+    height: 40.375px;
+    color: white;
+    font-size: unset;
+    font-family: "Times New Roman", Times, serif;
+    margin: 0 30%;
+    cursor: pointer;
+}
+
+h3 {
+    margin-left: 3vw;
+}
+
+.buttonHover:hover {
+    background-color: tomato;
+}

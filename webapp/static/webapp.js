@@ -142,9 +142,9 @@ function raw(api, feats, rawID) {
 function rawForm(feats, rawID, rawTableID) {
     let formBody = '';
     let count = 0;
-    feats.forEach(feat => formBody += '<input type=checkbox name="' + feat.name + '" id="' + feat.name + feat.table + '" checked/><label for="' + feat.name + feat.table + '" onclick="collapseColumn(\'' + rawTableID +'\', ' + count++ + ')">' + feat.name + '</label>');
-    formBody += '<label class="otherLabels" for="display' + feats[0].table + 'Rows" onchange="limitRows(\'raw' + feats[0].table.charAt(0).toUpperCase() + feats[0].table.slice(1) + '\', \'display' + feats[0].table + 'Rows\')">Limit: <input type=number name="number of rows to display" id="display' + feats[0].table + 'Rows" min=0 /></label>';
-    formBody += '<button type="button" class="otherLabels" onclick="setLimit(\'display' + feats[0].table + 'Rows\', 10);limitRows(\'raw' + feats[0].table.charAt(0).toUpperCase() + feats[0].table.slice(1) + '\', \'display' + feats[0].table + 'Rows\')">10</button><button type="button" class="otherLabels" onclick="setLimit(\'display' + feats[0].table + 'Rows\', max' + feats[0].table.charAt(0).toUpperCase() + feats[0].table.slice(1) + ');limitRows(\'raw' + feats[0].table.charAt(0).toUpperCase() + feats[0].table.slice(1) + '\', \'display' + feats[0].table + 'Rows\')">Max</button>';
+    feats.forEach(feat => formBody += '<input type=checkbox name="' + feat.name + '" id="' + feat.name + feat.table + '" checked/><label class="buttonHover" for="' + feat.name + feat.table + '" onclick="collapseColumn(\'' + rawTableID +'\', ' + count++ + ')">' + feat.name + '</label>');
+    formBody += '<label class="otherLabels buttonHover" for="display' + feats[0].table + 'Rows" onchange="limitRows(\'raw' + feats[0].table.charAt(0).toUpperCase() + feats[0].table.slice(1) + '\', \'display' + feats[0].table + 'Rows\')">Limit: <input type=number name="number of rows to display" id="display' + feats[0].table + 'Rows" min=0 /></label>';
+    formBody += '<button type="button" class="otherLabels buttonHover" onclick="setLimit(\'display' + feats[0].table + 'Rows\', 10);limitRows(\'raw' + feats[0].table.charAt(0).toUpperCase() + feats[0].table.slice(1) + '\', \'display' + feats[0].table + 'Rows\')">10</button><button type="button" class="otherLabels buttonHover" onclick="setLimit(\'display' + feats[0].table + 'Rows\', max' + feats[0].table.charAt(0).toUpperCase() + feats[0].table.slice(1) + ');limitRows(\'raw' + feats[0].table.charAt(0).toUpperCase() + feats[0].table.slice(1) + '\', \'display' + feats[0].table + 'Rows\')">Max</button>';
     let rawForm = document.getElementById(rawID);
     if(rawForm) {
         rawForm.innerHTML = formBody;
@@ -192,12 +192,14 @@ function createFeatureChart() {
     let graphTitle = document.getElementById('state-new-cases-title');
     let xSelector = document.getElementById('x-select');
     let ySelector = document.getElementById('y-select');
+    let aggSelector = document.getElementById('aggregate');
+    let orderSelector = document.getElementById('order');
     if (graphTitle) {
-        graphTitle.innerHTML = xSelector.value + ' v. ' + ySelector.value;
+        graphTitle.innerHTML = xSelector.value + ' vs. ' + ySelector.value;
     }
 
     // Create the chart
-    let url = getAPIBaseURL() + '/graphing/?x=' + xSelector.value + '&y=' + ySelector.value;
+    let url = getAPIBaseURL() + '/graphing/?x=' + xSelector.value + '&y=' + ySelector.value + '&aggregate=' + aggSelector.value + '&order=' + orderSelector.value;
 
     fetch(url, {method: 'get'})
 
@@ -229,9 +231,9 @@ function createFeatureChart() {
         let newCasesData = [];
         for (let k = 0; k < days.length; k++) {
             // Assumes YYYYMMDD int
-            let date = days[days.length - k -1].x;
+            let date = days[k].x;
             labels.push(date);
-            newCasesData.push({meta: date, value: days[days.length - k - 1].y});
+            newCasesData.push({meta: date, value: days[k].y});
         }
         console.log(labels);
         console.log(newCasesData);

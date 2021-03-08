@@ -73,9 +73,30 @@
     <section  id="graphing">
         <h2>Graph the Data</h2>
         <div class="header">
-            <select id="y-select" onchange="updateSelection()"></select>
-            <select id="x-select" onchange="updateSelection()"></select>
-            <button type=button onclick="createFeatureChart()">Graph</button>
+            <div>
+                <label for="x-select">X Axis:</label>
+                <select id="x-select" onchange="updateSelection()"></select>
+            </div>
+            <div>
+                <label for="y-select">Y Axis:</label>
+                <select id="y-select" onchange="updateSelection()"></select>
+            </div>
+            <div>
+                <label for="aggregate">Y Aggregation:</label>
+                <select id="aggregate">
+                    <option>COUNT</option>
+                    <option>SUM</option>
+                </select>
+            </div>
+            <div>
+                <label for="order">Order:</label>
+                <select id="order">
+                    <option></option>
+                    <option>ASC</option>
+                    <option>DESC</option>
+                </select>
+            </div>
+            <button type=button class="buttonHover" onclick="createFeatureChart()">Graph</button>
         </div>
         <h3>Where Clause:</h3>
         <table id="where">
