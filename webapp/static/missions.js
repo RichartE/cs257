@@ -6,7 +6,7 @@ let nameNode;
 let yosNode;
 function initialize() {
     listNode = document.getElementById('listContainer');
-    setList('name');
+    setList('year');
     nameNode = document.getElementById('name');
     yosNode = document.getElementById('year');
 }
@@ -29,7 +29,7 @@ function buildList(order) {
 
     .then((missionlist) => {
         let list = '';
-        missionlist.forEach(mission => list += '<div><h3>' + mission.title + '</h3><p>Selected in ' + mission.year + '</p></div>');
+        missionlist.forEach(mission => list += '<div><h3>' + mission.title + '</h3><p>' + mission.year + '</p></div>');
         if (order === 'year') {
             missionsByYOS = list;
             listNode.innerHTML = missionsByYOS;
