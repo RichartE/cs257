@@ -15,7 +15,7 @@ body {
     background-color: azure;
 }
 
-header {
+header, footer {
     background-color: black;
     display: flex;
     flex-direction: row;
@@ -23,7 +23,7 @@ header {
     justify-content: space-between;
 }
 
-header > h1 {
+h1 {
     color: white;
     max-width: 60vw;
     width: 60vw;
@@ -42,7 +42,7 @@ header > div {
 
 header > div > form {
     align-self: flex-end;
-    margin-right: 5px;
+    margin-right: 13px;
     margin-top: 5px;
 }
 
@@ -312,10 +312,63 @@ option {
     cursor: pointer;
 }
 
-h3 {
+section > h3 {
     margin-left: 3vw;
 }
 
 .buttonHover:hover {
     background-color: tomato;
+}
+
+#where th {
+    width: 25%;
+}
+
+#search {
+    width: 25vw;
+}
+
+footer {
+    padding: 1em 0;
+    justify-content: flex-start;
+}
+
+footer > * {
+    width: 25%;
+    color: white;
+}
+
+.footCol {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    border-top: none;
+    border-bottom: none;
+}
+
+div > h3 {
+    margin-bottom: 0.5em;
+}
+
+div > p {
+    text-align: center;
+}
+
+.fa-github {
+    font-size: 90px !important;
+}
+
+.footCol a {
+    text-decoration: none;
+    color: tomato;
+}
+
+.footCol a:hover {
+    color: lightskyblue;
+}
+
+.lCol {
+    border-left: none;
 }

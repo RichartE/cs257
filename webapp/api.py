@@ -42,8 +42,6 @@ def get_features():
             feature = {'name':row[0],
                       'type':row[1],
                       'table':row[2]}
-            if feature['name'] == 'nationality':
-                feature['type'] = 'text'
             feature_list.append(feature)
         cursor.close()
         connection.close()

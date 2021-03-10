@@ -69,3 +69,6 @@ svg.ct-chart-bar, svg.ct-chart-line{
     white-space:nowrap;
 }
 
+.ct-chart {
+    max-height: 80vh;
+}

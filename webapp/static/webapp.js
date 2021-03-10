@@ -3,6 +3,8 @@ let features;
 let maxAstronauts;
 let maxMissions;
 let currentFeatures;
+let optionsNumeric = '<option value="=">=</option>\n<option value="!=">!=</option>\n<option value="&gt">&gt</option>\n<option value="&lt">&lt</option>';
+let optionsText = '<option value="=">=</option>\n<option value="!=">!=</option>';
 function initialize() {
     display(1);
     getFeatures();
@@ -104,6 +106,8 @@ function getFeatures() {
         populateFeatureSelectors();
     })
 
+    .then(() => createFeatureChart())
+
     .catch(function(error) {
         console.log(error);
     });
@@ -187,6 +191,40 @@ function populateFeatureSelectors() {
     }
 }
 
+function getType(featur) {
+    let [table, name] = featur.split('.');
+    return currentFeatures.filter((feat) => feat.table === table && feat.name === name)[0];
+}
+
+function checkExpression() {
+    console.log(features);
+    let rows = document.getElementById('where').rows;
+    for (i = 1; i < rows.length; i++) {
+        let col = rows[i].childNodes;
+        let typeA = getType(col[1].firstChild.value).type;
+        let Connects = col[3].firstChild;
+        let valueC = Connects.value;
+        if (typeA === 'text' || typeA === 'character varying') {
+            Connects.innerHTML = optionsText;
+            Connects.value = valueC;
+        } else {
+            Connects.innerHTML = optionsNumeric;
+            Connects.value = valueC;
+        }
+    }
+}
+
+function computeWhere() {
+    let rows = document.getElementById('where').rows;
+    let where = '';
+    for (i = 1; i < rows.length; i++) {
+        let col = rows[i].childNodes;
+        for (j = 0; j < 4; j++) {
+            where += col[j].value + ',';
+        }
+    }
+}
+
 function createFeatureChart() {
     // Set the title
     let graphTitle = document.getElementById('state-new-cases-title');
@@ -206,7 +244,6 @@ function createFeatureChart() {
     .then((response) => response.json())
 
     .then(function(days) {
-        console.log(days);
         // Use the API response (days), which is a list of dictionaries like this:
         //
         //   {date: '20200315', positiveIncrease: 2345, ... }
@@ -235,8 +272,6 @@ function createFeatureChart() {
             labels.push(date);
             newCasesData.push({meta: date, value: days[k].y});
         }
-        console.log(labels);
-        console.log(newCasesData);
         // We set some options for our bar chart. seriesBarDistance is the width of the
         // bars. axisX allows us to specify a bunch of options related to the x-axis.
         // The one we're picking is labelInterpolationFnc, which allows us to control

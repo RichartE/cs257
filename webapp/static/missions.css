@@ -15,7 +15,7 @@ body {
     background-color: azure;
 }
 
-header {
+header, footer {
     background-color: black;
     display: flex;
     flex-direction: row;
@@ -27,7 +27,7 @@ header > a {
     text-decoration: none;
 }
 
-header > a > h1 {
+h1 {
     color: white;
     max-width: 60vw;
     width: 60vw;
@@ -173,4 +173,53 @@ section::before {
 .active {
     background-color: lightskyblue !important;
     color: white;
+}
+
+#search {
+    width: 25vw;
+}
+
+footer {
+    padding: 1em 0;
+    justify-content: flex-start;
+}
+
+footer > * {
+    width: 25%;
+    color: white;
+}
+
+.footCol {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    border-top: none;
+    border-bottom: none;
+}
+
+div > h3 {
+    margin-bottom: 0.5em;
+}
+
+div > p {
+    text-align: center;
+}
+
+.fa-github {
+    font-size: 90px !important;
+}
+
+.footCol a {
+    text-decoration: none;
+    color: tomato;
+}
+
+.footCol a:hover {
+    color: lightskyblue;
+}
+
+.lCol {
+    border-left: none;
 }

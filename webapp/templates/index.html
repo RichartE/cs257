@@ -10,6 +10,7 @@
     <title>FindMyAstronaut - Home</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='chartist.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='chart-from-api.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -18,7 +19,7 @@
         <div>
             <form>
                 <label for="search">Search:</label>
-                <input type="text" placeholder="Astronaut, Mission, Craft" name="search" />
+                <input id="search" type="text" placeholder="Astronaut, Mission, Craft" name="search" />
                 <input type="submit" value="GO"></input>
             </form>
             <nav>
@@ -111,7 +112,7 @@
             <tbody>
                 <tr onchange="checkExpression()">
                     <td class="A"><select class="aSelector"></select></td>
-                    <td class="Connects"></td>
+                    <td class="Connects"><select class="cSelector"></select></td>
                     <td class="B"></td>
                     <td class="More"></td>
                 </tr>
@@ -126,8 +127,17 @@
         </div>
     </section>
     <footer>
-        <h3>About the Data</h3>
-        <p>This data was made from the <a href="https://data.mendeley.com/datasets/86tsnnbv2w/1">Astronaut Database</a>.</p>
+        <h1>Find <br />My <br />Astronaut</h1>
+        <div class='footCol'>
+            <h3>About the Data</h3>
+            <p>This data was made from the <a href="https://data.mendeley.com/datasets/86tsnnbv2w/1">Astronaut Database</a>.<br />
+                Published: 17-01-2020<br /><strong>DOI</strong>: 10.17632/86tsnnbv2w.1<br />Contributors: Mariya Stavnichuk and Tatsuya Corlett
+            </p>
+        </div>
+        <div class='footCol lCol'>
+            <h3>Webcite Source Code</h3>
+            <a href="https://github.com/RichartE/cs257/tree/main/webapp"><i class="fa fa-github"></i></a>
+        </div>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ url_for('static', filename='chartist.min.js') }}"></script>

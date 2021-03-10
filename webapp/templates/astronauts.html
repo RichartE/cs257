@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='astronauts.css') }}" />
     <script type="text/javascript" src="{{ url_for('static', filename='astronauts.js') }}"></script>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>FindMyAstronaut - Astronaut List</title>
 </head>
 
@@ -16,7 +17,7 @@
         <div>
             <form>
                 <label for="search">Search:</label>
-                <input type="text" placeholder="Astronaut, Mission, Craft" name="search" />
+                <input id="search" type="text" placeholder="Astronaut, Mission, Craft" name="search" />
                 <input type="submit" value="GO"></input>
             </form>
             <nav>
@@ -37,8 +38,17 @@
         </div>
     </section>
     <footer>
-        <h3>About the Data</h3>
-        <p>This data was made from the <a href="https://data.mendeley.com/datasets/86tsnnbv2w/1">Astronaut Database</a>.</p>
+        <h1>Find <br />My <br />Astronaut</h1>
+        <div class='footCol'>
+            <h3>About the Data</h3>
+            <p>This data was made from the <a href="https://data.mendeley.com/datasets/86tsnnbv2w/1">Astronaut Database</a>.<br />
+                Published: 17-01-2020<br /><strong>DOI</strong>: 10.17632/86tsnnbv2w.1<br />Contributors: Mariya Stavnichuk and Tatsuya Corlett
+            </p>
+        </div>
+        <div class='footCol lCol'>
+            <h3>Webcite Source Code</h3>
+            <a href="https://github.com/RichartE/cs257/tree/main/webapp"><i class="fa fa-github"></i></a>
+        </div>
     </footer>
 </body>
 </html>
