@@ -2,9 +2,13 @@ window.onload = initialize;
 let features;
 let maxAstronauts;
 let maxMissions;
-let currentFeatures;
+let currentFeatHTML;
+let currentTextFeatHTML;
+let currentNumFeatHTML;
 let optionsNumeric = '<option value="=">=</option>\n<option value="!=">!=</option>\n<option value="&gt">&gt</option>\n<option value="&lt">&lt</option>';
 let optionsText = '<option value="=">=</option>\n<option value="!=">!=</option>';
+let whereNum = 0;
+
 function initialize() {
     display(1);
     getFeatures();
@@ -160,15 +164,31 @@ function updateSelection() {
     let ySelector = document.getElementById('y-select');
     let xTable = xSelector.value.split('.')[0];
     let yTable = ySelector.value.split('.')[0];
+    
     currentFeatures = features.filter(feat=> feat.table === xTable || feat.table === yTable);
+    currentFeatHTML = createOptions(currentFeatures);
+    
+    currentTextFeatHTML = createOptions(currentFeatures.filter(feat=> feat.type === 'text' || feat.type === 'character varying'));
+    currentNumFeatHTML = createOptions(currentFeatures.filter(feat=> feat.type != 'text' && feat.type != 'character varying'));
+    
+    let aSelectors = document.getElementsByClassName('aSelector');
+    Array.from(aSelectors).forEach(elm => {
+        let valC = elm.value;
+        elm.innerHTML = currentFeatHTML;
+        if (valC != '') {
+            elm.value = valC;
+        }
+    });
+    checkExpression();
+}
+
+function createOptions(feats) {
     let featureSelectorBody = '';
-    for (let k=0; k < currentFeatures.length; k++) {
-        let feature = currentFeatures[k];
+    for (let k = 0; k < feats.length; k++) {
+        let feature = feats[k];
         featureSelectorBody += '<option value="' + feature.table + '.' + feature.name + '">' + feature.table + '.' + feature.name + '</option>\n';
     }
-
-    let aSelectors = document.getElementsByClassName('aSelector');
-    Array.from(aSelectors).forEach(elm => elm.innerHTML = featureSelectorBody);
+    return featureSelectorBody
 }
 
 function populateFeatureSelectors() {
@@ -176,11 +196,7 @@ function populateFeatureSelectors() {
     let ySelector = document.getElementById('y-select');
     if (xSelector && ySelector) {
         // Populate it with states from the API
-        let featureSelectorBody = '';
-        for (let k=0; k < features.length; k++) {
-            let feature = features[k];
-            featureSelectorBody += '<option value="' + feature.table + '.' + feature.name + '">' + feature.table + '.' + feature.name + '</option>\n';
-        }
+        featureSelectorBody = createOptions(features);
         xSelector.innerHTML = featureSelectorBody;
         ySelector.innerHTML = featureSelectorBody;
 
@@ -188,28 +204,53 @@ function populateFeatureSelectors() {
         xSelector.value = 'nationality.nation';
         ySelector.value = 'astronauts.original_name';
         updateSelection();
+        addRow();
     }
 }
 
 function getType(featur) {
     let [table, name] = featur.split('.');
-    return currentFeatures.filter((feat) => feat.table === table && feat.name === name)[0];
+    return features.filter((feat) => feat.table === table && feat.name === name)[0];
+}
+
+function addRow() {
+    let where = document.getElementById('whereBody');
+    let whereRow = '';
+    whereRow += '<td class="A"><select class="aSelector"></select></td><td class="Connects"><select class="cSelector"></select></td><td class="B">';
+    whereRow += '<label for="' + whereNum + 'feat">Feature:&nbsp</label><input id="' + whereNum + 'feat" type="radio" name="bOptions' + whereNum + '"checked>&nbsp&nbsp<label for="' + whereNum + 'feat">Input:&nbsp</label><input id="' + whereNum + 'feat" type="radio" name="bOptions' + whereNum + '"><select class="hideIn"></select><input class="hideIn" type="text">';
+    whereRow += '</td><td class="More"><i class="fa fa-times fa-3" aria-hidden="true"></i></td>';
+    let row = where.insertRow();
+    row.setAttribute("onchange", "checkExpression()");
+    row.innerHTML = whereRow;
+    whereNum++;
+    checkExpression();
 }
 
 function checkExpression() {
-    console.log(features);
     let rows = document.getElementById('where').rows;
     for (i = 1; i < rows.length; i++) {
         let col = rows[i].childNodes;
-        let typeA = getType(col[1].firstChild.value).type;
-        let Connects = col[3].firstChild;
+        if (col[0].firstChild.innerHTML === '') {
+            col[0].firstChild.innerHTML = currentFeatHTML;
+        }
+        if (!col[0].firstChild.value) {
+            continue;
+        }
+        let typeA = getType(col[0].firstChild.value).type;
+        let Connects = col[1].firstChild;
         let valueC = Connects.value;
+        let selectB = col[2].childNodes[5];
+        let inputB = col[2].childNodes[6];
         if (typeA === 'text' || typeA === 'character varying') {
             Connects.innerHTML = optionsText;
             Connects.value = valueC;
+            selectB.innerHTML = currentTextFeatHTML;
+            inputB.setAttribute('type', 'text');
         } else {
             Connects.innerHTML = optionsNumeric;
             Connects.value = valueC;
+            selectB.innerHTML = currentNumFeatHTML;
+            inputB.setAttribute('type', 'number');
         }
     }
 }
@@ -305,26 +346,26 @@ function createFeatureChart() {
         // Note that all of this code uses jQuery notation. I wrote everything above here
         // in vanilla Javascript, but I don't feel like rewriting the following more complicated code.
 
-        chart.on('created', function(bar) {
-            let toolTipSelector = '#state-new-cases-tooltip';
-            $('.chart-container .ct-bar').on('mouseenter', function(e) {  // Set a "hover handler" for every bar in the chart
-                let value = $(this).attr('ct:value'); // value and meta come ultimately from the newCasesData above
-                let label = $(this).attr('ct:meta');
-                let caption = '<b>Date:</b> ' + label + '<br><b>New cases (' + stateName + '):</b> ' + value;
-                $(toolTipSelector).html(caption);
-                $(toolTipSelector).parent().css({position: 'relative'});
-                // bring to front, https://stackoverflow.com/questions/3233219/is-there-a-way-in-jquery-to-bring-a-div-to-front
-                $(toolTipSelector).parent().append($(toolTipSelector));
+        // chart.on('created', function(bar) {
+        //     let toolTipSelector = '#state-new-cases-tooltip';
+        //     $('.chart-container .ct-bar').on('mouseenter', function(e) {  // Set a "hover handler" for every bar in the chart
+        //         let value = $(this).attr('ct:value'); // value and meta come ultimately from the newCasesData above
+        //         let label = $(this).attr('ct:meta');
+        //         let caption = '<b>Date:</b> ' + label + '<br><b>New cases (' + stateName + '):</b> ' + value;
+        //         $(toolTipSelector).html(caption);
+        //         $(toolTipSelector).parent().css({position: 'relative'});
+        //         // bring to front, https://stackoverflow.com/questions/3233219/is-there-a-way-in-jquery-to-bring-a-div-to-front
+        //         $(toolTipSelector).parent().append($(toolTipSelector));
 
-                let x = e.clientX;
-                let y = e.clientY;
-                $(toolTipSelector).css({top: y, left: x, position:'fixed', display: 'block'});
-            });
+        //         let x = e.clientX;
+        //         let y = e.clientY;
+        //         $(toolTipSelector).css({top: y, left: x, position:'fixed', display: 'block'});
+        //     });
 
-            $('.state-new-cases-chart .ct-bar').on('mouseout', function() {
-                $(toolTipSelector).css({display: 'none'});
-            });
-        });
+        //     $('.state-new-cases-chart .ct-bar').on('mouseout', function() {
+        //         $(toolTipSelector).css({display: 'none'});
+        //     });
+        // });
     })
 
     // Log the error if anything went wrong during the fetch.

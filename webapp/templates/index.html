@@ -38,7 +38,7 @@
                 <div id="example2" onclick="display(2)">Example 2</div>
             </div>
             <div id="exampleGraphs">
-                <img id="exampleGraph1" src="https://wikieducator.org/images/c/c7/Bargraph.jpg" alt="a temporary image of a graph to fill the spot where an actual graph will go." />
+                <img id="exampleGraph1" src="" alt="a temporary image of a graph to fill the spot where an actual graph will go." />
                 <img id="exampleGraph2" src="https://images.squarespace-cdn.com/content/v1/55b6a6dce4b089e11621d3ed/1585087896250-R3GZ6OFWYQRZUJRCJU3D/ke17ZwdGBToddI8pDm48kGWofyRxfSJ9uscCn11zkbYUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKct6JBMPHLafCAclEKcWHYDNY2rZovXxL9ZlIF7nd_MJE2NdXUI24p4bxl0V65eVL_/produce_monthly.png" alt="a temporary image of a graph to fill the spot where an actual graph will go." />
             </div>
         </div>
@@ -99,7 +99,7 @@
             </div>
             <button type=button class="buttonHover" onclick="createFeatureChart()">Graph</button>
         </div>
-        <h3>Where Clause:</h3>
+        <h3>Where Clause:</h3><button onclick="addRow()">addRow</button><button onclick="checkExpression()">check</button>
         <table id="where">
             <thead>
                 <tr>
@@ -109,13 +109,7 @@
                     <th>More</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr onchange="checkExpression()">
-                    <td class="A"><select class="aSelector"></select></td>
-                    <td class="Connects"><select class="cSelector"></select></td>
-                    <td class="B"></td>
-                    <td class="More"></td>
-                </tr>
+            <tbody id="whereBody">
             </tbody>
         </table>
         
