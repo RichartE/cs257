@@ -176,7 +176,6 @@ function createStateChart(stateName, stateAbbreviation) {
 
 /*
 For reference, this is what the "day" dictionaries returned by the COVID API look like.
-
 {
     "date":20200607,
     "state":"MN",
@@ -215,4 +214,3 @@ For reference, this is what the "day" dictionaries returned by the COVID API loo
     "grade":""
 }
 */
-

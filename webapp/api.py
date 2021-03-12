@@ -25,10 +25,7 @@ def get_connection():
 def get_help():
     '''API Documentation'''
     with open('./doc/api-design.txt', 'r') as helpfile:
-        txt = html.escape(helpfile.read())
-        paragraphs = txt.split('\n')[1:]
-        htmlReady = '<p>\t' + '</p><p>\t'.join(paragraphs) + '</p>'
-        return flask.render_template('help.html', api_design=htmlReady)
+        return flask.render_template('help.html', api_design=helpfile.read())
     
 @api.route('/features/')
 def get_features():
@@ -280,9 +277,10 @@ def get_list(feature):
             return 'astronaut_mission.mission'
     return 'astronauts.id'
 
+search_list = []
+
 @api.route('/search/') 
 def search():
-    search_list = []
     try:
         connection = get_connection()
         cursor = connection.cursor()
@@ -313,6 +311,14 @@ def search():
     except Exception as e:
         print(e, file=sys.stderr)
     return json.dumps(search_list)
+
+@api.route('/search/<name>') 
+def search_word(name):
+    '''Search'''
+    with open('./doc/api-design.txt', 'r') as helpfile:
+        txt = html.escape(helpfile.read())
+        htmlReady =  + txt + '</pre>'
+        return flask.render_template('help.html', api_design=htmlReady)
 
 @api.route('/graphing/')
 def get_graph():

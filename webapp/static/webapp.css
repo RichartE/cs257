@@ -457,7 +457,7 @@ input[type="radio"] {
   font-size: 16px;
 }
 
-#autoContainer ~ input[type=submit] {
+#autoContainer ~ input[type=button] {
   background-color: DodgerBlue;
   color: #fff;
 }

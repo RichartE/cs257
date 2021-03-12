@@ -190,6 +190,11 @@ function getSearch() {
     });
 }
 
+function searchSubmit() {
+    let searchVal = document.getElementById('search').value;
+    window.location.replace(getAPIBaseURL() + '/search/' + searchVal);
+}
+
 // autocomplete from https://www.w3schools.com/howto/howto_js_autocomplete.asp
 function autocomplete(inp, arr) {
     /*the autocomplete function takes two arguments,
@@ -470,6 +475,7 @@ function createFeatureChart(restOfTheURL, chartID) {
             labels.push(date);
             newCasesData.push({meta: date, value: days[k].y});
         }
+        console.log('hi')
         // We set some options for our bar chart. seriesBarDistance is the width of the
         // bars. axisX allows us to specify a bunch of options related to the x-axis.
         // The one we're picking is labelInterpolationFnc, which allows us to control
