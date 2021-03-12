@@ -5,9 +5,11 @@ let maxMissions;
 let currentFeatHTML;
 let currentTextFeatHTML;
 let currentNumFeatHTML;
-let optionsNumeric = '<option value="=">=</option>\n<option value="!=">!=</option>\n<option value="&gt">&gt</option>\n<option value="&lt">&lt</option>';
-let optionsText = '<option value="=">=</option>\n<option value="!=">!=</option>';
+let optionsNumeric = ['=', '!=', '<', '>', '<=', '>='];
+let optionsText = ['=', '!='];
+let moreOptions = ['', 'AND', 'OR'];
 let whereNum = 0;
+let whereExpression;
 
 function initialize() {
     display(1);
@@ -27,7 +29,7 @@ function display(x) {
         exampleGraph2.style.display = "block";
     } else {
         example1.classList.add("active");
-        exampleGraph1.style.display = "block";
+        exampleGraph1.style.display = "inline-block";
         exampleGraph2.style.display = "none";
     }
 }
@@ -110,7 +112,11 @@ function getFeatures() {
         populateFeatureSelectors();
     })
 
-    .then(() => createFeatureChart())
+    .then(() => {
+        customGraph();
+        let ex1URL = '/graphing/?x=nationality.nation&y=astronauts.yos&aggregate=SUM&order='
+        createFeatureChart(ex1URL, '#exGraph1');
+    })
 
     .catch(function(error) {
         console.log(error);
@@ -159,34 +165,11 @@ function rawForm(feats, rawID, rawTableID) {
     }
 }
 
-function updateSelection() {
-    let xSelector = document.getElementById('x-select');
-    let ySelector = document.getElementById('y-select');
-    let xTable = xSelector.value.split('.')[0];
-    let yTable = ySelector.value.split('.')[0];
-    
-    currentFeatures = features.filter(feat=> feat.table === xTable || feat.table === yTable);
-    currentFeatHTML = createOptions(currentFeatures);
-    
-    currentTextFeatHTML = createOptions(currentFeatures.filter(feat=> feat.type === 'text' || feat.type === 'character varying'));
-    currentNumFeatHTML = createOptions(currentFeatures.filter(feat=> feat.type != 'text' && feat.type != 'character varying'));
-    
-    let aSelectors = document.getElementsByClassName('aSelector');
-    Array.from(aSelectors).forEach(elm => {
-        let valC = elm.value;
-        elm.innerHTML = currentFeatHTML;
-        if (valC != '') {
-            elm.value = valC;
-        }
-    });
-    checkExpression();
-}
-
 function createOptions(feats) {
-    let featureSelectorBody = '';
+    let featureSelectorBody = [];
     for (let k = 0; k < feats.length; k++) {
         let feature = feats[k];
-        featureSelectorBody += '<option value="' + feature.table + '.' + feature.name + '">' + feature.table + '.' + feature.name + '</option>\n';
+        featureSelectorBody.push(feature.table + '.' + feature.name);
     }
     return featureSelectorBody
 }
@@ -196,14 +179,13 @@ function populateFeatureSelectors() {
     let ySelector = document.getElementById('y-select');
     if (xSelector && ySelector) {
         // Populate it with states from the API
-        featureSelectorBody = createOptions(features);
-        xSelector.innerHTML = featureSelectorBody;
-        ySelector.innerHTML = featureSelectorBody;
-
-        // Start us out looking at Minnesota.
-        xSelector.value = 'nationality.nation';
-        ySelector.value = 'astronauts.original_name';
-        updateSelection();
+        currentTextFeatHTML = createOptions(features.filter(feat=> feat.type === 'text' || feat.type === 'character varying'));
+        currentNumFeatHTML = createOptions(features.filter(feat=> feat.type != 'text' && feat.type != 'character varying'));
+        currentFeatHTML = createOptions(features);
+        currentFeatHTML.forEach((val, key) => {
+            xSelector[key] = new Option(val, val, false, val === 'nationality.nation' ? true : false);
+            ySelector[key] = new Option(val, val, false, val === 'astronauts.original_name' ? true : false);
+        });
         addRow();
     }
 }
@@ -218,55 +200,103 @@ function addRow() {
     let whereRow = '';
     whereRow += '<td class="A"><select class="aSelector"></select></td><td class="Connects"><select class="cSelector"></select></td><td class="B">';
     whereRow += '<label for="' + whereNum + 'feat">Feature:&nbsp</label><input id="' + whereNum + 'feat" type="radio" name="bOptions' + whereNum + '"checked>&nbsp&nbsp<label for="' + whereNum + 'feat">Input:&nbsp</label><input id="' + whereNum + 'feat" type="radio" name="bOptions' + whereNum + '"><select class="hideIn"></select><input class="hideIn" type="text">';
-    whereRow += '</td><td class="More"><i class="fa fa-times fa-3" aria-hidden="true"></i></td>';
+    whereRow += '</td><td class="More"><select class="moreSelector"><option value=""></option><option value="AND">AND</option><option value="OR">OR</option></select><i class="fa fa-times fa-3" onclick="removeRow(\'whereRow' + whereNum + '\')" aria-hidden="true"></i></td>';
     let row = where.insertRow();
     row.setAttribute("onchange", "checkExpression()");
+    row.setAttribute("id", "whereRow" + whereNum);
     row.innerHTML = whereRow;
+    let elm = row.getElementsByClassName('aSelector')[0];
+    currentFeatHTML.forEach((val, key) => elm[key] = new Option(val, val));
     whereNum++;
+    let more = row.getElementsByClassName('moreSelector')[0];
+    moreOptions.forEach((val, key) => more[key] = new Option(val));
     checkExpression();
 }
 
+function removeRow(rowID) {
+    document.getElementById(rowID).remove();
+    let more = document.getElementsByClassName('moreSelector');
+    console.log(more);
+    Array.from(more).forEach((selector, index) => {
+        let sVal = selector.value;
+        moreOptions.forEach((val, key) => selector[key] = new Option(val, val, false, sVal === val ? true : false));
+        if (index != more.length - 1) {
+            selector.options.remove(0);
+        }
+    });
+}
+
 function checkExpression() {
+    whereExpression = '';
     let rows = document.getElementById('where').rows;
     for (i = 1; i < rows.length; i++) {
         let col = rows[i].childNodes;
-        if (col[0].firstChild.innerHTML === '') {
-            col[0].firstChild.innerHTML = currentFeatHTML;
-        }
-        if (!col[0].firstChild.value) {
-            continue;
-        }
-        let typeA = getType(col[0].firstChild.value).type;
+        let A = col[0].firstChild.value;
+        let typeA = getType(A).type;
+
         let Connects = col[1].firstChild;
         let valueC = Connects.value;
+
         let selectB = col[2].childNodes[5];
         let inputB = col[2].childNodes[6];
+        let B;
+        if (col[2].childNodes[1].checked) {
+            B = selectB.value;
+        } else {
+            B = inputB.value;
+        }
+        
         if (typeA === 'text' || typeA === 'character varying') {
-            Connects.innerHTML = optionsText;
-            Connects.value = valueC;
-            selectB.innerHTML = currentTextFeatHTML;
+            optionsText.forEach((val, key) => Connects[key] = new Option(val, val, false, val === valueC ? true : false));
+            
+            currentTextFeatHTML.forEach((val, key) => selectB[key] = new Option(val, val, false, val === B ? true : false));
             inputB.setAttribute('type', 'text');
         } else {
-            Connects.innerHTML = optionsNumeric;
-            Connects.value = valueC;
-            selectB.innerHTML = currentNumFeatHTML;
+            optionsNumeric.forEach((val, key) => Connects[key] = new Option(val, val, false, val === valueC ? true : false));
+            
+            currentNumFeatHTML.forEach((val, key) => selectB[key] = new Option(val, val, false, val === B ? true : false));
             inputB.setAttribute('type', 'number');
         }
-    }
-}
 
-function computeWhere() {
-    let rows = document.getElementById('where').rows;
-    let where = '';
-    for (i = 1; i < rows.length; i++) {
-        let col = rows[i].childNodes;
-        for (j = 0; j < 4; j++) {
-            where += col[j].value + ',';
+        valueC = Connects.value;
+
+        if (col[2].childNodes[1].checked) {
+            B = selectB.value;
+        } else {
+            B = inputB.value;
+        }
+
+        if (A && valueC && B) {
+            let more = col[3];
+            if (more.childNodes[0].value) {
+                if (i === rows.length-1) {
+                    addRow();
+                    return;
+                }
+                whereExpression += A + ' ' + valueC + ' ' + B + ' ' + more.childNodes[0].value + ' ';
+            } else if (i === rows.length-1) {
+                whereExpression += A + ' ' + valueC + ' ' + B;
+            } else {
+                whereExpression = 'error';
+            }
+        } else {
+            whereExpression = 'error';
         }
     }
+    let more = document.getElementsByClassName('moreSelector');
+    Array.from(more).forEach((selector, index) => {
+        moreOptions.forEach((val, key) => selector[key] = new Option(val));
+        if (index != more.length - 1) {
+            selector.options.remove(0);
+        }
+    });
 }
 
-function createFeatureChart() {
+function customGraph() {
+    checkExpression();
+    // if (whereExpression.startsWith('error')) {
+    //     alert('The where clause is missing some ')
+    // }
     // Set the title
     let graphTitle = document.getElementById('state-new-cases-title');
     let xSelector = document.getElementById('x-select');
@@ -276,9 +306,13 @@ function createFeatureChart() {
     if (graphTitle) {
         graphTitle.innerHTML = xSelector.value + ' vs. ' + ySelector.value;
     }
+    restOfTheURL = '/graphing/?x=' + xSelector.value + '&y=' + ySelector.value + '&aggregate=' + aggSelector.value + '&order=' + orderSelector.value;
+    createFeatureChart(restOfTheURL, '#state-new-cases-chart');
+}
 
+function createFeatureChart(restOfTheURL, chartID) {
     // Create the chart
-    let url = getAPIBaseURL() + '/graphing/?x=' + xSelector.value + '&y=' + ySelector.value + '&aggregate=' + aggSelector.value + '&order=' + orderSelector.value;
+    let url = getAPIBaseURL() + restOfTheURL;
 
     fetch(url, {method: 'get'})
 
@@ -332,7 +366,7 @@ function createFeatureChart() {
         let data = { labels: labels, series: [newCasesData] };
 
         // Finally, we create the bar chart, and attach it to the desired <div> in our HTML.
-        let chart = new Chartist.Bar('#state-new-cases-chart', data, options);
+        let chart = new Chartist.Bar(chartID, data, options);
 
         // HERE COMES THE MESS THAT IS TOOLTIPS! FEEL FREE TO IGNORE!
         // Tooltips are those little sometimes-informative popups that give you a little
@@ -346,26 +380,26 @@ function createFeatureChart() {
         // Note that all of this code uses jQuery notation. I wrote everything above here
         // in vanilla Javascript, but I don't feel like rewriting the following more complicated code.
 
-        // chart.on('created', function(bar) {
-        //     let toolTipSelector = '#state-new-cases-tooltip';
-        //     $('.chart-container .ct-bar').on('mouseenter', function(e) {  // Set a "hover handler" for every bar in the chart
-        //         let value = $(this).attr('ct:value'); // value and meta come ultimately from the newCasesData above
-        //         let label = $(this).attr('ct:meta');
-        //         let caption = '<b>Date:</b> ' + label + '<br><b>New cases (' + stateName + '):</b> ' + value;
-        //         $(toolTipSelector).html(caption);
-        //         $(toolTipSelector).parent().css({position: 'relative'});
-        //         // bring to front, https://stackoverflow.com/questions/3233219/is-there-a-way-in-jquery-to-bring-a-div-to-front
-        //         $(toolTipSelector).parent().append($(toolTipSelector));
+        chart.on('created', function(bar) {
+            let toolTipSelector = '#state-new-cases-tooltip';
+            $('.chart-container .ct-bar').on('mouseenter', function(e) {  // Set a "hover handler" for every bar in the chart
+                let value = $(this).attr('ct:value'); // value and meta come ultimately from the newCasesData above
+                let label = $(this).attr('ct:meta');
+                let caption = '<b>Date:</b> ' + label + '<br><b>New cases (' + stateName + '):</b> ' + value;
+                $(toolTipSelector).html(caption);
+                $(toolTipSelector).parent().css({position: 'relative'});
+                // bring to front, https://stackoverflow.com/questions/3233219/is-there-a-way-in-jquery-to-bring-a-div-to-front
+                $(toolTipSelector).parent().append($(toolTipSelector));
 
-        //         let x = e.clientX;
-        //         let y = e.clientY;
-        //         $(toolTipSelector).css({top: y, left: x, position:'fixed', display: 'block'});
-        //     });
+                let x = e.clientX;
+                let y = e.clientY;
+                $(toolTipSelector).css({top: y, left: x, position:'fixed', display: 'block'});
+            });
 
-        //     $('.state-new-cases-chart .ct-bar').on('mouseout', function() {
-        //         $(toolTipSelector).css({display: 'none'});
-        //     });
-        // });
+            $('.state-new-cases-chart .ct-bar').on('mouseout', function() {
+                $(toolTipSelector).css({display: 'none'});
+            });
+        });
     })
 
     // Log the error if anything went wrong during the fetch.

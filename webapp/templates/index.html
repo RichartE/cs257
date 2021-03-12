@@ -38,7 +38,7 @@
                 <div id="example2" onclick="display(2)">Example 2</div>
             </div>
             <div id="exampleGraphs">
-                <img id="exampleGraph1" src="" alt="a temporary image of a graph to fill the spot where an actual graph will go." />
+                <div id="exampleGraph1" class="chart-container"><div class="ct-chart ct-perfect-fourth" id="exGraph1"></div></div>
                 <img id="exampleGraph2" src="https://images.squarespace-cdn.com/content/v1/55b6a6dce4b089e11621d3ed/1585087896250-R3GZ6OFWYQRZUJRCJU3D/ke17ZwdGBToddI8pDm48kGWofyRxfSJ9uscCn11zkbYUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKct6JBMPHLafCAclEKcWHYDNY2rZovXxL9ZlIF7nd_MJE2NdXUI24p4bxl0V65eVL_/produce_monthly.png" alt="a temporary image of a graph to fill the spot where an actual graph will go." />
             </div>
         </div>
@@ -97,9 +97,9 @@
                     <option>DESC</option>
                 </select>
             </div>
-            <button type=button class="buttonHover" onclick="createFeatureChart()">Graph</button>
+            <button type=button class="buttonHover" onclick="customGraph()">Graph</button>
         </div>
-        <h3>Where Clause:</h3><button onclick="addRow()">addRow</button><button onclick="checkExpression()">check</button>
+        <div class="rawHeader"><h3>Where Clause:</h3><button onclick="addRow()">addRow</button></div>
         <table id="where">
             <thead>
                 <tr>
@@ -129,8 +129,12 @@
             </p>
         </div>
         <div class='footCol lCol'>
-            <h3>Webcite Source Code</h3>
+            <h3>Website Source Code</h3>
             <a href="https://github.com/RichartE/cs257/tree/main/webapp"><i class="fa fa-github"></i></a>
+        </div>
+        <div class='footCol nCol'>
+            <h3>API Documentation</h3>
+            <a href="/api/help"><i class="fa fa-book" aria-hidden="true"></i></a>
         </div>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

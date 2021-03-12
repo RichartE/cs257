@@ -29,7 +29,7 @@ select {
     border: 2px dashed gray;
     width: 90%;
     margin: 5%;
-    padding-bottom: 50px;
+    background-color: white;
 }
 
 .chart-container .ct-bar {
@@ -42,10 +42,6 @@ select {
     text-align: center;
     width: 100%;
     font-size: 36pt;
-}
-
-select {
-    font-size: 16pt;
 }
 
 .tooltip {
