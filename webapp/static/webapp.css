@@ -111,15 +111,14 @@ section {
 
 #exampleContainer {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
     justify-content: center;
     align-items: stretch;
 }
 
 #exampleSelection {
-    min-width: clamp(130px, 15vw, 200px);
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: row wrap;
     justify-items: flex-start;
     justify-content: center;
 }
@@ -148,13 +147,18 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1vw 0;
 }
 
-#exampleGraphs > img {
+#exampleGraphs > * {
     z-index: 2;
     display: none;
-    max-width: clamp(400px, 40vw, 600px);
+    width: 100%;
+    max-height: 60vh !important;
+}
+
+#exampleGraphs * {
+    max-height: 50vh;
+    max-width: clamp(800px, 80vw, 2000px);
 }
 
 #astronauts, #missions, #graphing {
@@ -168,16 +172,32 @@ section {
     justify-content: space-between;
 }
 
+
+/* some of the button styling from https://codepen.io/zeynepozdem/pen/yLymeja?editors=0110*/
 .rawHeader > button {
     margin-right: 10vw;
     font-size: 1em;
     background-color: unset;
     cursor: pointer;
-    text-decoration: underline;
+    box-shadow: -3px -3px 5px rgba(255, 255, 255, 0.8), 3px 3px 5px rgba(0, 0, 0, 0.2);
+    color: #6f6cde;
+    padding: 0.5em 1em;
+    border-radius: 1em;
+}
+
+button {
+    transition: all 0.1s ease-in-out;
 }
 
 .rawHeader > button:hover {
-    font-weight: bold;
+    opacity: 0.3;
+    box-shadow: -3px -3px 5px rgba(255, 255, 255, 0.8), 3px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.rawHeader > button:active {
+    opacity: 1;
+    box-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.5), inset 4px 4px 8px rgba(0, 0, 0, 0.1);
+    color: #79e3b6;
 }
 
 section > table {
@@ -189,6 +209,7 @@ section > table {
     position:relative;
     padding: 2vw;
     max-height: calc(50vh + 2vw);
+    overflow: hidden;
 }
 
 .table-scroll {
@@ -288,7 +309,7 @@ label.otherLabels {
 #where {
     text-align: left;
     margin: 2vw;
-    min-width: 50%;
+    min-width: calc(100% - 4vw);
 }
 
 .header {
@@ -312,16 +333,18 @@ option {
     cursor: pointer;
 }
 
-section > h3 {
+section > div > h3 {
     margin-left: 3vw;
 }
 
 .buttonHover:hover {
-    background-color: tomato;
+    background-color: tomato !important;
 }
 
-#where th {
-    width: 25%;
+.buttonHover:active {
+    opacity: 1;
+    background-color: tomato !important;
+    box-shadow: inset -4px -4px 8px rgba(255, 255, 255, 0.5), inset 8px 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 #search {
@@ -356,12 +379,11 @@ div > p {
     text-align: center;
 }
 
-.fa-github {
+.fa-github, .fa-book {
     font-size: 90px !important;
 }
 
 .footCol a {
-    text-decoration: none;
     color: tomato;
 }
 
@@ -371,6 +393,10 @@ div > p {
 
 .lCol {
     border-left: none;
+}
+
+.nCol {
+    border: none;
 }
 
 .B {
@@ -400,6 +426,10 @@ input[type="radio"] {
 
 .More {
     position: relative;
+}
+
+.moreSelector {
+    margin-right: 50px;
 }
 
 .More > i {

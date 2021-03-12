@@ -207,12 +207,11 @@ div > p {
     text-align: center;
 }
 
-.fa-github {
+.fa-github, .fa-book  {
     font-size: 90px !important;
 }
 
 .footCol a {
-    text-decoration: none;
     color: tomato;
 }
 
@@ -222,4 +221,8 @@ div > p {
 
 .lCol {
     border-left: none;
+}
+
+.nCol {
+    border: none;
 }
