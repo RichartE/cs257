@@ -28,7 +28,7 @@ select {
     display: inline-block;
     border: 2px dashed gray;
     width: 90%;
-    margin: 5%;
+    margin: 2vh 5%;
     background-color: white;
 }
 

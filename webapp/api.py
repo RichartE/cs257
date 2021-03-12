@@ -279,7 +279,41 @@ def get_list(feature):
         if 'astronaut_mission.mission' in feature:
             return 'astronaut_mission.mission'
     return 'astronauts.id'
-        
+
+@api.route('/search/') 
+def search():
+    search_list = []
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        query = 'SELECT english_name, original_name FROM astronauts ORDER BY english_name;'
+        cursor.execute(query)
+        for row in cursor:
+            search_list.append(row[0])
+            if row[0]  != row[1]:
+                search_list.append(row[1])
+        query = 'SELECT title FROM missions ORDER BY title;'
+        cursor.execute(query)
+        for row in cursor:
+            search_list.append(row[0])
+        query = 'SELECT DISTINCT ascent FROM missions ORDER BY ascent;'
+        cursor.execute(query)
+        for row in cursor:
+            search_list.append(row[0])
+        query = 'SELECT DISTINCT orbit FROM missions ORDER BY orbit;'
+        cursor.execute(query)
+        for row in cursor:
+            search_list.append(row[0])
+        query = 'SELECT DISTINCT decent FROM missions ORDER BY decent;'
+        cursor.execute(query)
+        for row in cursor:
+            search_list.append(row[0])
+        cursor.close()
+        connection.close()
+    except Exception as e:
+        print(e, file=sys.stderr)
+    return json.dumps(search_list)
+
 @api.route('/graphing/')
 def get_graph():
     x = flask.request.args.get('x', 'nationality.nation').casefold()
@@ -309,7 +343,7 @@ def get_graph():
         cursor = connection.cursor()
         cursor.execute(query)
         for row in cursor:
-            entry = {'x':row[1], 'y':row[0]}
+            entry = {'x':str(row[1]), 'y':str(row[0])}
             graph_list.append(entry)
         cursor.close()
         connection.close()

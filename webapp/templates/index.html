@@ -17,9 +17,10 @@
     <header>
         <h1>FindMyAstronaut</h1>
         <div>
-            <form>
-                <label for="search">Search:</label>
-                <input id="search" type="text" placeholder="Astronaut, Mission, Craft" name="search" />
+            <form autocomplete="off">
+                <label id="autoContainer" for="search">Search:
+                    <input id="search" type="text" placeholder="Astronaut, Mission, Craft" name="search" />
+                </label>
                 <input type="submit" value="GO"></input>
             </form>
             <nav>
@@ -34,12 +35,12 @@
         <h2>Example Results</h2>
         <div id="exampleContainer">
             <div id="exampleSelection">
-                <div id="example1" class="active" onclick="display(1)">Example 1</div>
-                <div id="example2" onclick="display(2)">Example 2</div>
+                <div id="example1" class="active" onclick="display(1)">Nationality vs. Sum of the Year Astronauts were Selected</div>
+                <div id="example2" onclick="display(2)">Nationality vs. Sum of their Astronauts' Extra-Vehicular Acitvity</div>
             </div>
             <div id="exampleGraphs">
                 <div id="exampleGraph1" class="chart-container"><div class="ct-chart ct-perfect-fourth" id="exGraph1"></div></div>
-                <img id="exampleGraph2" src="https://images.squarespace-cdn.com/content/v1/55b6a6dce4b089e11621d3ed/1585087896250-R3GZ6OFWYQRZUJRCJU3D/ke17ZwdGBToddI8pDm48kGWofyRxfSJ9uscCn11zkbYUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKct6JBMPHLafCAclEKcWHYDNY2rZovXxL9ZlIF7nd_MJE2NdXUI24p4bxl0V65eVL_/produce_monthly.png" alt="a temporary image of a graph to fill the spot where an actual graph will go." />
+                <div id="exampleGraph2" class="chart-container"><div class="ct-chart ct-perfect-fourth" id="exGraph2"></div></div>
             </div>
         </div>
     </section>
