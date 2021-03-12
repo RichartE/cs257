@@ -7,6 +7,7 @@ import flask
 import json
 import config
 import psycopg2
+import html
 
 api = flask.Blueprint('api', __name__)
 
@@ -24,8 +25,11 @@ def get_connection():
 def get_help():
     '''API Documentation'''
     with open('./doc/api-design.txt', 'r') as helpfile:
-        return helpfile.read()
-
+        txt = html.escape(helpfile.read())
+        paragraphs = txt.split('\n')[1:]
+        htmlReady = '<p>\t' + '</p><p>\t'.join(paragraphs) + '</p>'
+        return flask.render_template('help.html', api_design=htmlReady)
+    
 @api.route('/features/')
 def get_features():
     '''An JSON list of dictionaries, each which represent a column in a table.'''

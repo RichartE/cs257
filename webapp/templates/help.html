@@ -1,0 +1,64 @@
+<!--Author: Etienne Richart-->
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='astronauts.css') }}" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>FindMyAstronaut - Astronaut List</title>
+</head>
+
+<body>
+    <header>
+        <a href="/"><h1>FindMyAstronaut</h1></a>
+        <div>
+            <form>
+                <label for="search">Search:</label>
+                <input id="search" type="text" placeholder="Astronaut, Mission, Craft" name="search" />
+                <input type="submit" value="GO"></input>
+            </form>
+            <nav>
+                <ul>
+                    <li id="astronautsTab">Astronauts</li>
+                    <li id="missionsTab"><a href="/missions.html">Missions</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section id="help">
+        <h2>API Design: </h2>
+        <div id="text">{{  api_design  }}</div>
+    </section>
+    <footer>
+        <h1>Find <br />My <br />Astronaut</h1>
+        <div class='footCol'>
+            <h3>About the Data</h3>
+            <p>This data was made from the <a href="https://data.mendeley.com/datasets/86tsnnbv2w/1">Astronaut Database</a>.<br />
+                Published: 17-01-2020<br /><strong>DOI</strong>: 10.17632/86tsnnbv2w.1<br />Contributors: Mariya Stavnichuk and Tatsuya Corlett
+            </p>
+        </div>
+        <div class='footCol lCol'>
+            <h3>Webcite Source Code</h3>
+            <a href="https://github.com/RichartE/cs257/tree/main/webapp"><i class="fa fa-github"></i></a>
+        </div>
+        <div class='footCol nCol'>
+            <h3>API Documentation</h3>
+            <a href="/api/help"><i class="fa fa-book" aria-hidden="true"></i></a>
+        </div>
+    </footer>
+    <script>window.onload = init;
+    let txt = document.getElementById('text');
+    async function getText() {
+        return txt.innerText;
+    }
+    async function init() {
+        let text = await getText();
+        console.log(text);
+        txt.innerHTML = text
+        txt.innerText = '';
+    }
+    </script>
+</body>
+</html>
