@@ -1,6 +1,6 @@
 --
 -- PostgreSQL database dump
---
+-- database designed and created by Etienne Richart
 
 -- Dumped from database version 12.5 (Ubuntu 12.5-0ubuntu0.20.04.1)
 -- Dumped by pg_dump version 12.5 (Ubuntu 12.5-0ubuntu0.20.04.1)

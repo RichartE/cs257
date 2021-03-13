@@ -21,7 +21,7 @@
                 <label id="autoContainer" for="search">Search:
                     <input id="search" type="text" placeholder="Astronaut, Mission, Craft" name="search" />
                 </label>
-                <input type="button" class="buttonHover" value="GO" onclick="searchSubmit()"></input>
+                <input type="button" class="buttonHoverHead" value="GO" onclick="searchSubmit()"></input>
             </form>
             <nav>
                 <ul>
@@ -140,7 +140,6 @@
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ url_for('static', filename='chartist.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='chart-from-api.js') }}"></script>
     <script src="{{ url_for('static', filename='chartist-plugin-tooltip.js') }}"></script>
 </body>
 </html>

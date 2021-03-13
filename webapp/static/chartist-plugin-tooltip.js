@@ -1,3 +1,5 @@
+/*Used by: Etienne Richart*/
+
 (function (root, factory) {
   if (root === undefined && window !== undefined) root = window;
   if (typeof define === 'function' && define.amd) {

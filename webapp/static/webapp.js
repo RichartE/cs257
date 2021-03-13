@@ -1,3 +1,5 @@
+/*Author: Etienne Richart*/
+
 window.onload = initialize;
 let features;
 let maxAstronauts;
@@ -475,7 +477,7 @@ function createFeatureChart(restOfTheURL, chartID) {
             labels.push(date);
             newCasesData.push({meta: date, value: days[k].y});
         }
-        console.log('hi')
+        
         // We set some options for our bar chart. seriesBarDistance is the width of the
         // bars. axisX allows us to specify a bunch of options related to the x-axis.
         // The one we're picking is labelInterpolationFnc, which allows us to control
@@ -514,7 +516,7 @@ function createFeatureChart(restOfTheURL, chartID) {
             $('.chart-container .ct-bar').on('mouseenter', function(e) {  // Set a "hover handler" for every bar in the chart
                 let value = $(this).attr('ct:value'); // value and meta come ultimately from the newCasesData above
                 let label = $(this).attr('ct:meta');
-                let caption = '<b>Date:</b> ' + label + '<br><b>New cases (' + stateName + '):</b> ' + value;
+                let caption = '<b>X:</b> ' + label + '<br><b>Y:</b> ' + value;
                 $(toolTipSelector).html(caption);
                 $(toolTipSelector).parent().css({position: 'relative'});
                 // bring to front, https://stackoverflow.com/questions/3233219/is-there-a-way-in-jquery-to-bring-a-div-to-front
@@ -522,10 +524,10 @@ function createFeatureChart(restOfTheURL, chartID) {
 
                 let x = e.clientX;
                 let y = e.clientY;
-                $(toolTipSelector).css({top: y, left: x, position:'fixed', display: 'block'});
+                $(toolTipSelector).css({top: y, left: x, position:'fixed', display: 'block', zIndex: 3});
             });
 
-            $('.state-new-cases-chart .ct-bar').on('mouseout', function() {
+            $('.ct-bar').on('mouseout', function() {
                 $(toolTipSelector).css({display: 'none'});
             });
         });

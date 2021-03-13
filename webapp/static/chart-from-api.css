@@ -1,4 +1,4 @@
-/*
+/* Slightly modified by Etienne Richart from :
  * chart-from-api.css
  * Jeff Ondich, 12 November 2020
  *
@@ -30,12 +30,6 @@ select {
     width: 90%;
     margin: 2vh 5%;
     background-color: white;
-}
-
-.chart-container .ct-bar {
-    stroke: #11aa11;
-    fill: #11aa11;
-    stroke-width: 5px;
 }
 
 .chart-title {

@@ -1,3 +1,4 @@
+/*Author: Etienne Richart*/
 window.onload = initialize;
 let astronautsByName;
 let astronautsByYOS;

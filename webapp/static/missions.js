@@ -1,3 +1,5 @@
+/*Author: Etienne Richart*/
+
 window.onload = initialize;
 let missionsByName;
 let missionsByYOS;

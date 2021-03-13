@@ -1,3 +1,14 @@
+/*Author: Etienne Richart*/
+
+:root {
+    /*Pallete #5 Audacious and Vibrant from https://visme.co/blog/website-color-schemes/*/
+    --orange-main: tomato;
+    --blue-main: #3FEEE6;
+    --blue-sec: #55BCC9;
+    --blue-ter: #97CAEF;
+    --blue-quar: #CAFAFE;
+}
+
 * {
     margin:0;
     padding:0;
@@ -12,11 +23,11 @@
 }
 
 body {
-    background-color: azure;
+    background-color: var(--blue-main);
 }
 
 header, footer {
-    background-color: black;
+    background-color: var(--orange-main);
     display: flex;
     flex-direction: row;
     align-items: stretch;
@@ -24,7 +35,7 @@ header, footer {
 }
 
 h1 {
-    color: white;
+    color: black;
     max-width: 60vw;
     width: 60vw;
     font-size: 4em;
@@ -46,8 +57,8 @@ header > div > form {
     margin-top: 5px;
 }
 
-header > div > form > label{
-    color: white;
+header > div > form > label {
+    color: black;
 }
 
 input {
@@ -60,10 +71,10 @@ nav > ul {
 }
 
 nav > ul > li {
-    background-color: lightgrey;
+    background-color: var(--blue-ter);
     float: left;
     text-align: center;
-    border: solid 2px black;
+    border: solid 2px var(--orange-main);
     border-bottom: none;
     width: 50%;
     padding: 3px 0;
@@ -83,11 +94,11 @@ li:hover > a{
 }
 
 #astronautsTab:hover {
-    background-color: lightskyblue;
+    background-color: var(--blue-main);
 }
 
 #missionsTab:hover {
-    background-color: mediumaquamarine;
+    background-color: var(--blue-main);
 }
 
 h2 {
@@ -105,7 +116,6 @@ section {
 }
 
 #example {
-    background-color: tomato;
     display: block;
 }
 
@@ -124,21 +134,22 @@ section {
 }
 
 #exampleSelection > div {
-    background-color: turquoise;
-    color: whitesmoke;
+    background-color: var(--blue-ter);
+    color: black;
     border-radius: 15px;
     margin: 10px;
     padding: 10px;
 }
 
 #exampleSelection > div.active{
-    background-color: dodgerblue;
+    background-color: var(--blue-sec);
+    color: white;
     font-weight: bolder;
 }
 
 #exampleSelection > div:hover{
-    background-color: lightslategray;
-    font-weight: bolder;
+    background-color: var(--blue-quar);
+    color: black;
 }
 
 #exampleGraphs {
@@ -170,6 +181,10 @@ section {
     flex-direction: column;
 }
 
+#graphing {
+    padding-bottom: 5vh;
+}
+
 .rawHeader {
     display: flex;
     align-items: baseline;
@@ -182,27 +197,26 @@ section {
 .rawHeader > button {
     margin-right: 10vw;
     font-size: 1em;
-    background-color: unset;
+    background-color: var(--blue-quar);
     cursor: pointer;
-    box-shadow: -3px -3px 5px rgba(255, 255, 255, 0.8), 3px 3px 5px rgba(0, 0, 0, 0.2);
-    color: #6f6cde;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+    color: var(--blue-sec);
     padding: 0.5em 1em;
     border-radius: 1em;
 }
 
-button {
+button, label {
     transition: all 0.1s ease-in-out;
 }
 
 .rawHeader > button:hover {
-    opacity: 0.3;
-    box-shadow: -3px -3px 5px rgba(255, 255, 255, 0.8), 3px 3px 5px rgba(0, 0, 0, 0.2);
+    color: var(--orange-main);
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
 }
 
 .rawHeader > button:active {
-    opacity: 1;
+    color: var(--orange-main);
     box-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.5), inset 4px 4px 8px rgba(0, 0, 0, 0.1);
-    color: #79e3b6;
 }
 
 section > table {
@@ -242,7 +256,7 @@ tbody > tr:nth-child(even) {
 }
 
 .table-scroll tbody > tr:hover {
-    background-color: lightskyblue;
+    background-color: var(--blue-ter);
     color: whitesmoke;
 }
 
@@ -281,8 +295,8 @@ section > form > input {
 section > form > label, section > form > button {
     margin-top: .5vw;
     user-select: none;
-    background-color: lightskyblue;
-    color: white;
+    background-color: var(--blue-ter);
+    color: black;
     border-radius: 25px;
     padding: .7em 1.5em;
     cursor: pointer;
@@ -291,11 +305,13 @@ section > form > label, section > form > button {
 }
 
 input[type="checkbox"]:checked + label {
-    background-color: dodgerblue;
+    background-color: var(--blue-sec);
+    color: white;
 }
 
 .otherLabels {
-    background-color: dodgerblue;
+    background-color: var(--blue-sec);
+    color: white;
     margin-left: 13px;
 }
 
@@ -328,10 +344,10 @@ option {
 }
 
 .header > button {
-    background-color: mediumaquamarine;
+    background-color: var(--blue-quar);
     border-radius: 25px;
     height: 40.375px;
-    color: white;
+    color: var(--blue-sec);
     font-size: unset;
     font-family: "Times New Roman", Times, serif;
     margin: 0 30%;
@@ -343,12 +359,22 @@ section > div > h3 {
 }
 
 .buttonHover:hover {
-    background-color: tomato !important;
+    background-color: var(--orange-main) !important;
+    color: white;
+}
+
+.buttonHoverHead {
+    background-color: var(--blue-sec) !important;
+}
+
+.buttonHoverHead:hover {
+    background-color: var(--blue-main) !important;
+    color: white;
 }
 
 .buttonHover:active {
     opacity: 1;
-    background-color: tomato !important;
+    background-color: var(--orange-main) !important;
     box-shadow: inset -4px -4px 8px rgba(255, 255, 255, 0.5), inset 8px 8px 16px rgba(0, 0, 0, 0.1);
 }
 
@@ -359,8 +385,11 @@ section > div > h3 {
 footer {
     padding: 1em 0;
     justify-content: flex-start;
+    background-color: black;
 }
-
+footer > h1 {
+    font-size: clamp(2em, 5vw, 4em);
+}
 footer > * {
     width: 25%;
     color: white;
@@ -389,11 +418,11 @@ div > p {
 }
 
 .footCol a {
-    color: tomato;
+    color: var(--orange-main);
 }
 
 .footCol a:hover {
-    color: lightskyblue;
+    color: var(--blue-main);
 }
 
 .lCol {
@@ -446,7 +475,7 @@ input[type="radio"] {
 }
 
 .More > i:hover {
-    color: tomato;
+    color: var(--orange-main);
 }
 
 #autoContainer ~ input, #autoContainer input{
@@ -458,7 +487,7 @@ input[type="radio"] {
 }
 
 #autoContainer ~ input[type=button] {
-  background-color: DodgerBlue;
+  background-color: var(--blue-main);
   color: #fff;
 }
 .autocomplete-items {
@@ -487,14 +516,37 @@ input[type="radio"] {
   }
 .autocomplete-items div:hover {
   /*when hovering an item:*/
-  background-color: lightskyblue;
+  background-color: var(--blue-ter);
 }
 .autocomplete-active {
   /*when navigating through the items using the arrow keys:*/
-  background-color: DodgerBlue !important;
+  background-color: var(--blue-main) !important;
   color: #ffffff;
 }
 
 #autoContainer {
     position: relative;
+}
+
+.chart-container .ct-bar {
+    stroke: var(--blue-sec) !important;
+    fill: var(--blue-sec);
+    stroke-width: 5px;
+}
+
+@media screen and (max-width: 975px) {
+    header{
+        flex-direction: column;
+    }
+    header > div {
+        width: 100vw;
+        max-width: unset;
+        flex-flow: row-reverse wrap;
+        justify-content: space-evenly;
+    }
+
+    header > div > nav {
+        align-self: flex-end;
+        width: 40%;
+    }
 }
