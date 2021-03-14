@@ -25,7 +25,10 @@ def get_connection():
 def get_help():
     '''API Documentation'''
     with open('./doc/api-design.txt', 'r') as helpfile:
-        return flask.render_template('help.html', api_design=helpfile.read())
+        with open('./doc/database-schema.sql', 'r') as schema:
+            tables = [table + ';' for table in schema.read().split(';') if table]
+            print(tables)
+            return flask.render_template('help.html', api_design=helpfile.read(), db_schema0=tables[0], db_schema1=tables[1], db_schema2=tables[2], db_schema3=tables[3])
     
 @api.route('/features/')
 def get_features():
@@ -208,74 +211,81 @@ def get_missions_list_raw():
         print(e, file=sys.stderr)
     return json.dumps(mission_list)
 
+table = set()
+
 def get_list(feature):
+    '''Return proper feature name to prevent SQL injection. If no match is found returns -1'''
     if 'astronauts' in feature:
+        table.add('astronauts')
         if 'id' in feature:
             return 'astronauts.id'
-        if 'english_name' in feature:
+        elif 'english_name' in feature:
             return 'astronauts.english_name'
-        if 'original_name' in feature:
+        elif 'original_name' in feature:
             return 'astronauts.original_name'
-        if 'nwnumber' in feature:
+        elif 'nwnumber' in feature:
             return 'astronauts.nwnumber'
-        if 'sex' in feature:
+        elif 'sex' in feature:
             return 'astronauts.sex'
-        if 'yob' in feature:
+        elif 'yob' in feature:
             return 'astronauts.yob'
-        if 'nationality' in feature:
-            return 'nationality.nation'
-        if 'mil_civ' in feature:
+        elif 'nationality' in feature:
+            return 'astronauts.nationality'
+        elif 'mil_civ' in feature:
             return 'astronauts.mil_civ'
-        if 'yos' in feature:
+        elif 'yos' in feature:
             return 'astronauts.yos'
-        if 'total_missions' in feature:
+        elif 'total_missions' in feature:
             return 'astronauts.total_missions'
-        if 'total_mission_hours' in feature:
+        elif 'total_mission_hours' in feature:
             return 'astronauts.total_mission_hours'
-        if 'total_eva_hours' in feature:
+        elif 'total_eva_hours' in feature:
             return 'astronauts.total_eva_hours'
-    if 'missions' in feature:
+    elif 'missions' in feature:
+        table.add('missions')
         if 'id' in feature:
             return 'missions.id'
-        if 'title' in feature:
+        elif 'title' in feature:
             return 'missions.title'
-        if 'original_name' in feature:
+        elif 'original_name' in feature:
             return 'missions.mission_year'
-        if 'nwnumber' in feature:
+        elif 'nwnumber' in feature:
             return 'missions.ascent'
-        if 'sex' in feature:
+        elif 'sex' in feature:
             return 'missions.orbit'
-        if 'yob' in feature:
+        elif 'yob' in feature:
             return 'missions.decent'
-        if 'nationality' in feature:
+        elif 'nationality' in feature:
             return 'missions.duration'
-        if 'mil_civ' in feature:
+        elif 'mil_civ' in feature:
             return 'missions.combined_eva'
-        if 'yos' in feature:
+        elif 'yos' in feature:
             return 'missions.composition'
-    if 'nationality' in feature:
-        if 'id' in feature:
-            return 'nationality.id'
-        if 'code' in feature:
-            return 'nationality.code'
-        if 'nation' in feature:
-            return 'nationality.nation'
-    if 'astronaut_mission' in feature:
+    elif 'astronaut_mission' in feature:
+        table.add('astronaut_mission')
         if 'id' in feature:
             return 'astronaut_mission.id'
-        if 'occupation' in feature:
+        elif 'occupation' in feature:
             return 'astronaut_mission.occupation'
-        if 'eva_hours' in feature:
+        elif 'eva_hours' in feature:
             return 'astronaut_mission.eva_hours'
-        if 'mission_num' in feature:
+        elif 'mission_num' in feature:
             return 'astronaut_mission.mission_num'
-        if 'selection' in feature:
+        elif 'selection' in feature:
             return 'astronaut_mission.selection'
-        if 'astronaut_mission.astronaut' in feature:
+        elif 'astronaut_mission.astronaut' in feature:
             return 'astronaut_mission.astronaut'
-        if 'astronaut_mission.mission' in feature:
+        elif 'astronaut_mission.mission' in feature:
             return 'astronaut_mission.mission'
-    return 'astronauts.id'
+    elif 'nationality' in feature:
+        table.add('nationality')
+        if 'id' in feature:
+            return 'nationality.id'
+        elif 'code' in feature:
+            return 'nationality.code'
+        elif 'nation' in feature:
+            return 'nationality.nation'
+    return -1
 
 search_list = []
 
@@ -320,12 +330,53 @@ def search_word(name):
         htmlReady =  + txt + '</pre>'
         return flask.render_template('help.html', api_design=htmlReady)
 
+
+def get_other(other):
+    if '!=' in other:
+        return '!='
+    elif '>=' in other:
+        return '>='
+    elif '<=' in other:
+        return '<='
+    elif '>' in other:
+        return '>'
+    elif '<' in other:
+        return '<'
+    elif '=' in other:
+        return '='
+    elif 'AND' in other:
+        return 'AND'
+    elif 'OR' in other:
+        return 'OR'
+
+
+def parseWhere(where):
+    where = where.split(' ')
+    print(where)
+    query = ''
+    while where:
+        a = get_list(where[0].casefold())
+        b = get_other(where[1])
+        c = get_list(where[2].casefold())
+        if c == -1 :
+            c = "'{}'".format(where[2].replace("'", "''").replace(";", ""))
+        query += '{} {} {} '.format(a, b, c)
+        if len(where) > 3:
+            query += '{} '.format(get_other(where[3].upper()))
+            where = where[4:]
+            print(where)
+        else:
+            break
+    return query
+
 @api.route('/graphing/')
 def get_graph():
+    table.clear()
     x = flask.request.args.get('x', 'nationality.nation').casefold()
     y = flask.request.args.get('y', 'astronauts.id').casefold()
     aggregation = flask.request.args.get('aggregate', 'COUNT').upper()
     order = flask.request.args.get('order', '').upper()
+    where = flask.request.args.get('query', '')
     x = get_list(x)
     y = get_list(y)
     query_from = set()
@@ -341,8 +392,11 @@ def get_graph():
         order = 'ASC'
     else:
         order = ''
+    if where:
+        where = 'WHERE ' + parseWhere(where)
 
-    query = 'SELECT ' + aggregation + '(' + y + '), ' + x + ' FROM ' + ', '.join(query_from) + ' WHERE astronauts.nationality = nationality.id GROUP BY nationality.nation ORDER BY ' + aggregation + '(' + y + ') ' + order + ';'
+    query = 'SELECT ' + aggregation + '(' + y + '), ' + x + ' FROM ' + ', '.join(table) + ' ' + where + 'GROUP BY ' + x + ' ORDER BY ' + aggregation + '(' + y + ') ' + order + ';'
+    print(query)
     graph_list = []
     try:
         connection = get_connection()

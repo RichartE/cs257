@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='astronauts.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='webapp.css') }}" />
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>FindMyAstronaut - Astronaut List</title>
@@ -14,22 +14,32 @@
     <header>
         <a href="/"><h1>FindMyAstronaut</h1></a>
         <div>
-            <form autocapitalize="off">
-                <label for="search">Search:</label>
-                <input id="search" type="text" placeholder="Astronaut, Mission, Craft" name="search" />
-                <input type="submit" value="GO"></input>
+            <form autocomplete="off">
+                <label id="autoContainer" for="search">Search:
+                    <input id="search" type="text" placeholder="Astronaut, Mission, Craft" name="search" />
+                </label>
+                <input type="button" class="buttonHoverHead" value="GO" onclick="searchSubmit()"></input>
             </form>
             <nav>
                 <ul>
-                    <li id="astronautsTab">Astronauts</li>
+                    <li id="astronautsTab"><a href="/astronauts.html">Astronauts</a></li>
                     <li id="missionsTab"><a href="/missions.html">Missions</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-    <section id="help">
+    <section class="help">
         <h2>API Design: </h2>
-        <div id="text"><pre>{{  api_design  }}</pre></div>
+        <pre>{{  api_design  }}</pre>
+    </section>
+    <section class="help">
+        <h2>Database Schema: </h2>
+        <div class="row">
+            <pre>{{  db_schema0  }}</pre>
+            <pre>{{  db_schema1  }}</pre>
+            <pre>{{  db_schema2  }}</pre>
+            <pre>{{  db_schema3  }}</pre>
+        </div>
     </section>
     <footer>
         <h1>Find <br />My <br />Astronaut</h1>

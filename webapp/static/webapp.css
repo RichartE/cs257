@@ -139,6 +139,7 @@ section {
     border-radius: 15px;
     margin: 10px;
     padding: 10px;
+    cursor: pointer;
 }
 
 #exampleSelection > div.active{
@@ -219,7 +220,7 @@ button, label {
     box-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.5), inset 4px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-section > table {
+.raw > table {
     max-height: 50vh;
     overflow: hidden;
 }
@@ -329,8 +330,13 @@ label.otherLabels {
 
 #where {
     text-align: left;
-    margin: 2vw;
-    min-width: calc(100% - 4vw);
+}
+
+#whereWrapper {
+    margin: 1vw 6vw 2vw 6vw;
+    min-width: calc(100% - 12vw);
+    padding: 0;
+    max-height: unset;
 }
 
 .header {
@@ -338,12 +344,22 @@ label.otherLabels {
     flex-flow: column wrap;
 }
 
+.header select {
+    min-width: min(90%, 380px);
+}
+
 option {
     font-size: unset;
     font-family: "Times New Roman", Times, serif;
 }
 
-.header > button {
+.header label {
+    display: inline-block;
+    min-width: 20vw;
+    margin-left: calc(6vw - 20px);
+}
+
+.header ~ button {
     background-color: var(--blue-quar);
     border-radius: 25px;
     height: 40.375px;
@@ -355,7 +371,7 @@ option {
 }
 
 section > div > h3 {
-    margin-left: 3vw;
+    margin-left: 5vw;
 }
 
 .buttonHover:hover {
@@ -365,6 +381,7 @@ section > div > h3 {
 
 .buttonHoverHead {
     background-color: var(--blue-sec) !important;
+    cursor: pointer;
 }
 
 .buttonHoverHead:hover {
@@ -532,6 +549,118 @@ input[type="radio"] {
     stroke: var(--blue-sec) !important;
     fill: var(--blue-sec);
     stroke-width: 5px;
+}
+
+#list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-items: center;
+    justify-content: space-between;
+    align-items: baseline;
+    max-width: 100vw;
+    overflow-x: hidden;
+    padding-top: 0;
+}
+
+#list::before {
+    content: " ";
+    width: 100%;
+    background-color: var(--blue-quar);
+    height: 20px;
+    margin-bottom: 5px;
+}
+
+#listContainer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+}
+
+#listContainer > div {
+    background-color: var(--blue-quar);
+    border-radius: 25px;
+    margin: 2.5%;
+    min-width: 20%;
+    padding: 12px;
+}
+
+#orderContainer {
+    min-width: 40%;
+    margin-top: 1vw;
+    margin-right: 3vw;
+    transform: translateY(5px);
+}
+
+#name, #year {
+    float: left;
+    width: 49%;
+    background-color: var(--blue-ter);
+    cursor: pointer;
+    padding: .2em 0;
+}
+
+#name:hover, #year:hover {
+    background-color: var(--blue-sec);
+    color: white;
+}
+
+#name {
+    text-align: right;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding-right: 1%;
+}
+
+#year {
+    text-align: left;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-left: 1%;
+}
+
+.active {
+    background-color: var(--orange-main) !important;
+    color: white;
+}
+
+.hold {
+    background-color: var(--blue-quar) !important;
+}
+
+header > a {
+    text-decoration: none;
+}
+
+.help {
+    margin-bottom: 5vh;
+    flex-flow: column wrap;
+}
+.help > pre, .help > .row {
+    margin-top: 10px;
+    margin-left: 5vw;
+}
+
+.row {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin-right: 5vw;
+}
+
+#whereWrapper ~ .chart-container {
+    padding-bottom: 40px;
+}
+
+/*https://css-tricks.com/snippets/css/make-pre-text-wrap/*/
+pre {
+    white-space: pre-wrap;       /* css-3 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
 
 @media screen and (max-width: 975px) {

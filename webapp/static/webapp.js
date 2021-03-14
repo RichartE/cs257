@@ -317,6 +317,8 @@ function populateFeatureSelectors() {
             ySelector[key] = new Option(val, val, false, val === 'astronauts.original_name' ? true : false);
         });
         addRow();
+        document.getElementsByClassName('aSelector')[0].value = 'astronauts.nationality';
+        document.getElementsByClassName('hideIn')[0].value = 'nationality.id'
     }
 }
 
@@ -346,12 +348,14 @@ function addRow() {
 function removeRow(rowID) {
     document.getElementById(rowID).remove();
     let more = document.getElementsByClassName('moreSelector');
-    console.log(more);
     Array.from(more).forEach((selector, index) => {
         let sVal = selector.value;
         moreOptions.forEach((val, key) => selector[key] = new Option(val, val, false, sVal === val ? true : false));
         if (index != more.length - 1) {
             selector.options.remove(0);
+        }
+        else {
+            selector.value = '';
         }
     });
 }
@@ -424,9 +428,9 @@ function checkExpression() {
 
 function customGraph() {
     checkExpression();
-    // if (whereExpression.startsWith('error')) {
-    //     alert('The where clause is missing some ')
-    // }
+    if (whereExpression.startsWith('error')) {
+        whereExpression = '';
+    }
     // Set the title
     let graphTitle = document.getElementById('state-new-cases-title');
     let xSelector = document.getElementById('x-select');
@@ -436,7 +440,7 @@ function customGraph() {
     if (graphTitle) {
         graphTitle.innerHTML = xSelector.value + ' vs. ' + ySelector.value;
     }
-    restOfTheURL = '/graphing/?x=' + xSelector.value + '&y=' + ySelector.value + '&aggregate=' + aggSelector.value + '&order=' + orderSelector.value;
+    restOfTheURL = '/graphing/?x=' + xSelector.value + '&y=' + ySelector.value + '&aggregate=' + aggSelector.value + '&order=' + orderSelector.value + '&query=' + whereExpression;
     createFeatureChart(restOfTheURL, '#state-new-cases-chart');
 }
 

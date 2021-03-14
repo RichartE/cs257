@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='missions.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='webapp.css') }}" />
     <script type="text/javascript" src="{{ url_for('static', filename='missions.js') }}"></script>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -16,23 +16,24 @@
         <a href="/"><h1>FindMyAstronaut</h1></a>
         <div>
             <form autocomplete="off">
-                <label for="search">Search:</label>
-                <input id="search" type="text" placeholder="Astronaut, Mission, Craft" name="search" />
-                <input type="submit" value="GO"></input>
+                <label id="autoContainer" for="search">Search:
+                    <input id="search" type="text" placeholder="Astronaut, Mission, Craft" name="search" />
+                </label>
+                <input type="button" class="buttonHoverHead" value="GO" onclick="searchSubmit()"></input>
             </form>
             <nav>
                 <ul>
                     <li id="astronautsTab"><a href="/astronauts.html">Astronauts</a></li>
-                    <li id="missionsTab">Missions</li>
+                    <li id="missionsTab" class="hold">Missions</li>
                 </ul>
             </nav>
         </div>
     </header>
-    <section id="astronautList">
+    <section id="list">
         <h2>Mission List:</h2>
         <div id="orderContainer">
-            <div id="name" onclick="setList('name');flip()">Name</div>
-            <div id="year" class="active" onclick="setList('year');flip()">Year Selected</div>
+            <div id="name" onclick="setList('name');flip()">Mission Title</div>
+            <div id="year" class="active" onclick="setList('year');flip()">Mission Year</div>
         </div>
         <div id="listContainer">
         </div>

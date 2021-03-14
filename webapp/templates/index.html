@@ -44,7 +44,7 @@
             </div>
         </div>
     </section>
-    <section id="astronauts">
+    <section id="astronauts" class="raw">
         <div class="rawHeader">
             <h2>Explore the Astronauts</h2>
             <button id="toggleRawAstronauts" onclick="hideShow('wrapRawAstronauts', 'toggleRawAstronauts', 'rawAstronautsForm')">hide</button>
@@ -58,7 +58,7 @@
             </div>
         </div>
     </section>
-    <section id="missions">
+    <section id="missions" class="raw">
         <div class="rawHeader">
             <h2>Explore the Missions</h2>
             <button id="toggleRawMissions" onclick="hideShow('wrapRawMissions', 'toggleRawMissions', 'rawMissionsForm')">hide</button>
@@ -98,22 +98,25 @@
                     <option>DESC</option>
                 </select>
             </div>
-            <button type=button class="buttonHover" onclick="customGraph()">Graph</button>
         </div>
         <div class="rawHeader"><h3>Where Clause:</h3><button onclick="addRow()">addRow</button></div>
-        <table id="where">
-            <thead>
-                <tr>
-                    <th>A</th>
-                    <th>Connects</th>
-                    <th>B</th>
-                    <th>More</th>
-                </tr>
-            </thead>
-            <tbody id="whereBody">
-            </tbody>
-        </table>
-        
+        <div id="whereWrapper" class="table-wrapper">
+            <div class="table-scroll">
+                <table id="where">
+                    <thead>
+                        <tr>
+                            <th>A</th>
+                            <th>Connects</th>
+                            <th>B</th>
+                            <th>More</th>
+                        </tr>
+                    </thead>
+                    <tbody id="whereBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <button type=button class="buttonHover" onclick="customGraph()">Graph</button>
         <!-- Positive tests -->
         <div class="chart-container">
             <div class="chart-title" id="state-new-cases-title"></div>
