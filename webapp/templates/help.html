@@ -5,9 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='webapp.css') }}" />
+    <script type="text/javascript" src="{{ url_for('static', filename='search.js') }}"></script>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>FindMyAstronaut - Astronaut List</title>
+    <title>FMA - Help</title>
 </head>
 
 <body>
@@ -58,17 +59,5 @@
             <a href="/api/help"><i class="fa fa-book" aria-hidden="true"></i></a>
         </div>
     </footer>
-    <!-- <script>window.onload = init;
-    let txt = document.getElementById('text');
-    async function getText() {
-        return txt.innerText;
-    }
-    async function init() {
-        let text = await getText();
-        console.log(text);
-        txt.innerHTML = text
-        txt.innerText = '';
-    }
-    </script> -->
 </body>
 </html>

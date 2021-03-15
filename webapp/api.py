@@ -3,11 +3,13 @@
     Etienne Richart
 '''
 import sys
+import os
 import flask
 import json
 import config
 import psycopg2
 import html
+from difflib import get_close_matches
 
 api = flask.Blueprint('api', __name__)
 
@@ -27,7 +29,6 @@ def get_help():
     with open('./doc/api-design.txt', 'r') as helpfile:
         with open('./doc/database-schema.sql', 'r') as schema:
             tables = [table + ';' for table in schema.read().split(';') if table]
-            print(tables)
             return flask.render_template('help.html', api_design=helpfile.read(), db_schema0=tables[0], db_schema1=tables[1], db_schema2=tables[2], db_schema3=tables[3])
     
 @api.route('/features/')
@@ -287,8 +288,7 @@ def get_list(feature):
             return 'nationality.nation'
     return -1
 
-search_list = []
-
+search_set = {'astronauts': set(), 'missions': set(), 'crafts': set()}
 @api.route('/search/') 
 def search():
     try:
@@ -297,39 +297,138 @@ def search():
         query = 'SELECT english_name, original_name FROM astronauts ORDER BY english_name;'
         cursor.execute(query)
         for row in cursor:
-            search_list.append(row[0])
-            if row[0]  != row[1]:
-                search_list.append(row[1])
+            search_set['astronauts'].add(row[0])
+            search_set['astronauts'].add(row[1])
         query = 'SELECT title FROM missions ORDER BY title;'
         cursor.execute(query)
         for row in cursor:
-            search_list.append(row[0])
+            search_set['missions'].add(row[0])
         query = 'SELECT DISTINCT ascent FROM missions ORDER BY ascent;'
         cursor.execute(query)
         for row in cursor:
-            search_list.append(row[0])
+            search_set['crafts'].add(row[0])
         query = 'SELECT DISTINCT orbit FROM missions ORDER BY orbit;'
         cursor.execute(query)
         for row in cursor:
-            search_list.append(row[0])
+            search_set['crafts'].add(row[0])
         query = 'SELECT DISTINCT decent FROM missions ORDER BY decent;'
         cursor.execute(query)
         for row in cursor:
-            search_list.append(row[0])
+            search_set['crafts'].add(row[0])
         cursor.close()
         connection.close()
     except Exception as e:
         print(e, file=sys.stderr)
-    return json.dumps(search_list)
+    return json.dumps([*search_set['astronauts'], *search_set['missions'], *search_set['crafts']])
 
 @api.route('/search/<name>') 
 def search_word(name):
     '''Search'''
-    with open('./doc/api-design.txt', 'r') as helpfile:
-        txt = html.escape(helpfile.read())
-        htmlReady =  + txt + '</pre>'
-        return flask.render_template('help.html', api_design=htmlReady)
-
+    if not len(search_set['astronauts']) > 0:
+        search()
+    if name in search_set['astronauts']:
+        missions_html = ''
+        try:
+            connection = get_connection()
+            cursor = connection.cursor()
+            query = "SELECT * FROM astronauts WHERE english_name = '" + name + "' OR original_name = '" + name + "';"
+            cursor.execute(query)
+            for row in cursor:
+                ID = str(row[0])
+                en_name = row[1]
+                og_name = row[2]
+                nnum = row[3]
+                sx = row[4]
+                yb = row[5]
+                nat = row[6]
+                m_c = row[7]
+                ys = row[8]
+                t_m = row[9]
+                t_m_h = row[10]
+                t_e_h = row[11]
+                break
+            query = "SELECT astronaut_mission.id, astronaut_mission.mission, missions.title, astronaut_mission.occupation, astronaut_mission.eva_hours, astronaut_mission.mission_num, astronaut_mission.selection FROM astronaut_mission, astronauts, missions WHERE astronauts.id = " + ID + " AND astronaut_mission.astronaut = astronauts.id AND astronaut_mission.mission = missions.id;"
+            cursor.execute(query)
+            for row in cursor:
+                print(row)
+                a_mID = str(row[0])
+                missionID = str(row[1])
+                mission_title = row[2]
+                occupation = row[3].capitalize()
+                eva_h = str(row[4])
+                ord_mission_num = str(row[5])
+                astronaut_group = row[6]
+                missions_html += '''<h2><a href="/api/search/{}">{}</a>: Missions ID-{} Astronaut_Mission ID-{}</h2>\
+                    <table>\
+                        <tr><th>Occupation on Mission:</th><td>{}</td></tr>\
+                        <tr><th>Extravehicular Hours on Mission:</th><td>{}</td></tr>\
+                        <tr><th>{}'s Mission Number:</th><td>{}</td></tr>\
+                        <tr><th>Selection Group for Mission:</th><td>{}</td></tr>\
+                    </table>'''.format(mission_title, mission_title, missionID, a_mID, occupation, eva_h, en_name, ord_mission_num, astronaut_group)
+            with open('./templates/astro_prof.html', 'a') as file:
+                file.write(missions_html)
+        except Exception as e:
+            print(e, file=sys.stderr)
+        page = flask.render_template('astronaut_profile.html', id=ID, english_name=en_name, original_name=og_name, nwnumber=nnum, sex=sx, yob=yb, natID=nat, mil_civ=m_c, yos=ys, total_missions=t_m, total_mission_hours=t_m_h, total_eva_hours=t_e_h, missions='astro_prof.html')
+        os.remove('./templates/astro_prof.html')
+        return page
+    elif name in search_set['missions']:
+        astronauts_html = ''
+        try:
+            connection = get_connection()
+            cursor = connection.cursor()
+            query = "SELECT * FROM missions WHERE title = '" + name + "';"
+            cursor.execute(query)
+            for row in cursor:
+                ID = str(row[0])
+                titl = row[1]
+                m_y = row[2]
+                asc = row[3]
+                orb = row[4]
+                dec = row[5]
+                dur = row[6]
+                comb_eva = row[7]
+                comp = row[8]
+                break
+            query = "SELECT astronaut_mission.id, astronaut_mission.astronaut, astronauts.english_name, astronaut_mission.occupation, astronaut_mission.eva_hours, astronaut_mission.mission_num, astronaut_mission.selection, astronauts.original_name FROM astronaut_mission, astronauts, missions WHERE missions.id = " + ID + " AND astronaut_mission.astronaut = astronauts.id AND astronaut_mission.mission = missions.id;"
+            cursor.execute(query)
+            for row in cursor:
+                print(row)
+                a_mID = str(row[0])
+                astronautID = str(row[1])
+                en_name = row[2]
+                occupation = row[3].capitalize()
+                eva_h = str(row[4])
+                ord_mission_num = str(row[5])
+                astronaut_group = row[6]
+                og_name = row[7]
+                astronauts_html += '''<h2><a href="/api/search/{}">{}</a> ({}): Astronauts ID-{} Astronaut_Mission ID-{}</h2>\
+                    <table>\
+                        <tr><th>Occupation on Mission:</th><td>{}</td></tr>\
+                        <tr><th>Extravehicular Hours on Mission:</th><td>{}</td></tr>\
+                        <tr><th>{}'s Mission Number:</th><td>{}</td></tr>\
+                        <tr><th>Selection Group for Mission:</th><td>{}</td></tr>\
+                    </table>'''.format(en_name, en_name, og_name, astronautID, a_mID, occupation, eva_h, en_name, ord_mission_num, astronaut_group)
+            with open('./templates/missn_prof.html', 'a') as file:
+                file.write(astronauts_html)
+        except Exception as e:
+            print(e, file=sys.stderr)
+        page = flask.render_template('mission_profile.html', id=ID, title=titl, mission_year=m_y, ascent=asc, orbit=orb, decent=dec, duration=dur, combined_eva=comb_eva, composition=comp, astronauts='missn_prof.html')
+        os.remove('./templates/missn_prof.html')
+        return page
+    elif name in search_set['crafts']:
+        try:
+            connection = get_connection()
+            cursor = connection.cursor()
+            query = 'SELECT * FROM astronauts WHERE english_name = "' + name + '" OR original_name = "' + name + '";'
+            cursor.execute(query)
+            print(cursor[0])
+            en_name = cursor[0][1]
+        except Exception as e:
+            print(e, file=sys.stderr)
+        return flask.render_template('astronaut_profile.html', english_name=en_name)
+    else:
+        flask.abort(404)
 
 def get_other(other):
     if '!=' in other:
@@ -352,7 +451,6 @@ def get_other(other):
 
 def parseWhere(where):
     where = where.split(' ')
-    print(where)
     query = ''
     while where:
         a = get_list(where[0].casefold())
@@ -364,7 +462,6 @@ def parseWhere(where):
         if len(where) > 3:
             query += '{} '.format(get_other(where[3].upper()))
             where = where[4:]
-            print(where)
         else:
             break
     return query
@@ -396,7 +493,6 @@ def get_graph():
         where = 'WHERE ' + parseWhere(where)
 
     query = 'SELECT ' + aggregation + '(' + y + '), ' + x + ' FROM ' + ', '.join(table) + ' ' + where + 'GROUP BY ' + x + ' ORDER BY ' + aggregation + '(' + y + ') ' + order + ';'
-    print(query)
     graph_list = []
     try:
         connection = get_connection()

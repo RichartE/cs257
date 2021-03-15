@@ -13,10 +13,17 @@ let moreOptions = ['', 'AND', 'OR'];
 let whereNum = 0;
 let whereExpression;
 let search;
+let searchover;
 
 function initialize() {
-    display(1);
-    getFeatures();
+    let example1 = document.getElementById("example1");
+    if (example1) {
+        display(1);
+    }
+    let xSelector = document.getElementById('x-select');
+    if (xSelector) {
+        getFeatures();
+    }
     getSearch();
 }
 
@@ -120,11 +127,11 @@ function getFeatures() {
     })
 
     .then(() => {
-        customGraph();
-        let ex1URL = '/graphing/?x=nationality.nation&y=astronauts.yos&aggregate=SUM'
+        let ex1URL = '/graphing/?x=nationality.nation&y=astronauts.yos&aggregate=SUM&query=astronauts.nationality = nationality.id'
         createFeatureChart(ex1URL, '#exGraph1');
-        let ex2URL = '/graphing/?x=nationality.nation&y=astronauts.total_eva_hours&aggregate=SUM&order=DESC';
+        let ex2URL = '/graphing/?x=nationality.nation&y=astronauts.total_eva_hours&aggregate=SUM&order=DESC&query=astronauts.nationality = nationality.id';
         createFeatureChart(ex2URL, '#exGraph2');
+        customGraph();
     })
 
     .catch(function(error) {
@@ -227,12 +234,9 @@ function autocomplete(inp, arr) {
             /*insert a input field that will hold the current array item's value:*/
             b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
             /*execute a function when someone clicks on the item value (DIV element):*/
-                b.addEventListener("click", function(e) {
+                b.addEventListener("mouseover", function(e) {
                 /*insert the value for the autocomplete text field:*/
                 inp.value = this.getElementsByTagName("input")[0].value;
-                /*close the list of autocompleted values,
-                (or any other open lists of autocompleted values:*/
-                closeAllLists();
             });
             a.appendChild(b);
           }
@@ -290,10 +294,19 @@ function autocomplete(inp, arr) {
     }
   }
   /*execute a function when someone clicks in the document:*/
-  document.addEventListener("click", function (e) {
-      closeAllLists(e.target);
+  inp.addEventListener("focusout", function (e) {
+      let val = inp.value;
+      if (!arr.includes(val)) {
+        let searchList = document.getElementById('searchautocomplete-list');
+        if (searchList && searchList.childNodes.length != 0) {
+            inp.value = searchList.childNodes[0].lastChild.value;
+        } else {
+            inp.value = ''
+        }
+      }
+      closeAllLists(document);
   });
-  }
+}
 
 function createOptions(feats) {
     let featureSelectorBody = [];
@@ -541,4 +554,11 @@ function createFeatureChart(restOfTheURL, chartID) {
     .catch(function(error) {
         console.log(error);
     });
+}
+
+function astronaut_profile() {
+    let url = getAPIBaseURL() + '/search';
+
+    
+
 }

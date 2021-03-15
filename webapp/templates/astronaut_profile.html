@@ -1,0 +1,51 @@
+<!--Author: Etienne Richart-->
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='webapp.css') }}" />
+    <script type="text/javascript" src="{{ url_for('static', filename='webapp.js') }}"></script>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+    <title>FMA - {{ english_name}}'s Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='chartist.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='chart-from-api.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <header>
+        <a href="/"><h1>FindMyAstronaut</h1></a>
+        <div>
+            <form autocomplete="off">
+                <label id="autoContainer" for="search">Search:
+                    <input id="search" type="text" placeholder="Astronaut, Mission, Craft" name="search" />
+                </label>
+                <input type="button" class="buttonHoverHead" value="GO" onclick="searchSubmit()"></input>
+            </form>
+            <nav>
+                <ul>
+                    <li id="astronautsTab"><a href="/astronauts.html">Astronauts</a></li>
+                    <li id="missionsTab"><a href="/missions.html">Missions</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section id="profile">
+        <h2>{{ english_name }} - {{ original_name }}  :</h2>
+        <table>
+            <tr><th>Astronauts ID:</th><td>{{id}}</td></tr>
+            <tr><th>Sex:</th><td>{{ sex }}</td></tr>
+            <tr><th>Year of Birth:</th><td>{{yob}}</td></tr>
+            <tr><th>Nationality ID:</th><td>{{ natID }}</td></tr>
+            <tr><th>Millitary/Civilian Status:</th><td>{{mil_civ}}</td></tr>
+            <tr><th>Year Selected to the Astronaut Program:</th><td>{{ yos }}</td></tr>
+            <tr><th>Nationwide Astronaut Order:</th><td>{{nwnumber}}</td></tr>
+            <tr><th>Total Missions:</th><td>{{ total_missions }}</td></tr>
+            <tr><th>Total Mission Hours:</th><td>{{total_mission_hours}}</td></tr>
+            <tr><th>Total Extravehicular Hours:</th><td>{{ total_eva_hours }}</td></tr>
+        </table>
+        {% include missions%}
+    </section>
+</body>
+</html>

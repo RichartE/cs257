@@ -654,6 +654,26 @@ header > a {
     padding-bottom: 40px;
 }
 
+#profile {
+    flex-direction: column;
+}
+
+#profile > table {
+    margin-top: 10px;
+    margin-left: 5vw;
+    border: none;
+    min-width: 0;
+    width: 40%
+}
+#profile * {
+    background-color: transparent;
+}
+#profile > table th, #profile > table td{
+    width: 20%;
+    color: black !important;
+    text-align: left;
+}
+
 /*https://css-tricks.com/snippets/css/make-pre-text-wrap/*/
 pre {
     white-space: pre-wrap;       /* css-3 */
