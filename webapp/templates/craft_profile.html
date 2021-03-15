@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='webapp.css') }}" />
     <script type="text/javascript" src="{{ url_for('static', filename='webapp.js') }}"></script>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
-    <title>FMA - {{ english_name}}'s Profile</title>
+    <title>FMA - {{ title }} Mission Profile</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='chartist.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='chart-from-api.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -32,21 +32,7 @@
         </div>
     </header>
     <section id="profile">
-        <h2><span>{{ english_name }} - {{ original_name }}:<img src="https://www.countryflags.io/{{code}}/flat/64.png" alt="{{nation}} flag" /></span></h2>
-        <table>
-            <tr><th>Astronauts ID:</th><td>{{id}}</td></tr>
-            <tr><th>Sex:</th><td>{{ sex }}</td></tr>
-            <tr><th>Year of Birth:</th><td>{{yob}}</td></tr>
-            <tr><th>Nationality:</th><td>{{ nation }}</td></tr>
-            <tr><th>Nationality ID:</th><td>{{ natID }}</td></tr>
-            <tr><th>Millitary/Civilian Status:</th><td>{{mil_civ}}</td></tr>
-            <tr><th>Year Selected to the Astronaut Program:</th><td>{{ yos }}</td></tr>
-            <tr><th>Nationwide Astronaut Order:</th><td>{{nwnumber}}</td></tr>
-            <tr><th>Total Missions:</th><td>{{ total_missions }}</td></tr>
-            <tr><th>Total Mission Hours:</th><td>{{total_mission_hours}}</td></tr>
-            <tr><th>Total Extravehicular Hours:</th><td>{{ total_eva_hours }}</td></tr>
-        </table>
-        
+        <h2>{{ craft }}: </h2><br />
         {% include missions%}
     </section>
     <footer>

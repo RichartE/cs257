@@ -35,14 +35,31 @@
         <h2>{{ title }}: Missions ID-{{ id }}</h2>
         <table>
             <tr><th>Mission Year:</th><td>{{ mission_year }}</td></tr>
-            <tr><th>Ascent Craft:</th><td>{{ ascent }}</td></tr>
-            <tr><th>Orbit Craft:</th><td>{{ orbit }}</td></tr>
-            <tr><th>Decent Craft:</th><td>{{ decent }}</td></tr>
+            <tr><th><a href="/api/search/{{ ascent }}">Ascent Craft:</a></th><td>{{ ascent }}</td></tr>
+            <tr><th><a href="/api/search/{{ orbit }}">Orbit Craft:</a></th><td>{{ orbit }}</td></tr>
+            <tr><th><a href="/api/search/{{ decent }}">Decent Craft:</a></th><td>{{ decent }}</td></tr>
             <tr><th>Duration:</th><td>{{ duration }}</td></tr>
             <tr><th>Combined Astronaut Extravehicular Time:</th><td>{{ combined_eva }}</td></tr>
             <tr><th>Millitary/Civillian Composition of Crew:</th><td>{{ composition }}</td></tr>
         </table>
         {% include astronauts%}
     </section>
+    <footer>
+        <h1>Find <br />My <br />Astronaut</h1>
+        <div class='footCol'>
+            <h3>About the Data</h3>
+            <p>This data was made from the <a href="https://data.mendeley.com/datasets/86tsnnbv2w/1">Astronaut Database</a>.<br />
+                Published: 17-01-2020<br /><strong>DOI</strong>: 10.17632/86tsnnbv2w.1<br />Contributors: Mariya Stavnichuk and Tatsuya Corlett
+            </p>
+        </div>
+        <div class='footCol lCol'>
+            <h3>Website Source Code</h3>
+            <a href="https://github.com/RichartE/cs257/tree/main/webapp"><i class="fa fa-github"></i></a>
+        </div>
+        <div class='footCol nCol'>
+            <h3>API Documentation</h3>
+            <a href="/api/help"><i class="fa fa-book" aria-hidden="true"></i></a>
+        </div>
+    </footer>
 </body>
 </html>

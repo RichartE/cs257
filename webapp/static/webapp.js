@@ -201,7 +201,7 @@ function getSearch() {
 
 function searchSubmit() {
     let searchVal = document.getElementById('search').value;
-    window.location.replace(getAPIBaseURL() + '/search/' + searchVal);
+    window.location.replace(getAPIBaseURL() + '/profile/' + searchVal);
 }
 
 // autocomplete from https://www.w3schools.com/howto/howto_js_autocomplete.asp
@@ -554,11 +554,4 @@ function createFeatureChart(restOfTheURL, chartID) {
     .catch(function(error) {
         console.log(error);
     });
-}
-
-function astronaut_profile() {
-    let url = getAPIBaseURL() + '/search';
-
-    
-
 }
