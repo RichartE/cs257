@@ -116,7 +116,7 @@ def get_astronauts():
     return json.dumps(astronaut_list)
 
 @api.route('/astronauts/list/') 
-def get_astronauts_list_raw():
+def get_astronauts_list():
     ''' 
     Returns a list of all the astronauts's English name, year selected, nationality and country code.
     Can be sorted by name or year selected by passing the optional parameter order {year | name}.
@@ -198,7 +198,7 @@ def get_missions():
     return json.dumps(mission_list)
 
 @api.route('/missions/list/') 
-def get_missions_list_raw():
+def get_missions_list():
     ''' 
     Returns a list of all the missions' title, and year.
     Can be sorted by title or year selected by passing the optional parameter order {year | title}.
@@ -227,7 +227,7 @@ def get_missions_list_raw():
 
 table = set()
 
-def get_list(feature):
+def get_feat(feature):
     '''
     Returns the proper feature name to prevent SQL injection. 
     Populates the table set that will be placed in the FROM block of the graphing endpoint.
@@ -306,8 +306,9 @@ def get_list(feature):
     return -1
 
 search_set = {'astronauts': set(), 'missions': set(), 'crafts': set()}
+
 @api.route('/search/') 
-def search():
+def get_search():
     '''
     Sets the search_set dictionary for the profile endpoint and, 
     returns a list of astronauts' English name and original name, mission titles and spacecraft names.
@@ -347,7 +348,7 @@ def get_profile():
     '''Returns a profile page for astronauts, missions or spacecrafts.'''
     name = flask.request.args.get('name')
     if not len(search_set['astronauts']) > 0:
-        search()
+        get_search()
     if name in search_set['astronauts']:
         missions_html = ''
         try:
@@ -477,7 +478,7 @@ def get_profile():
     else:
         flask.abort(404)
 
-def get_other(other):
+def get_operator(other):
     '''Return proper operators to prevent SQL injection.'''
     if '!=' in other:
         return '!='
@@ -497,19 +498,19 @@ def get_other(other):
         return 'OR'
 
 
-def parseWhere(where):
+def parse_where(where):
     '''Parse the inputted WHERE clause to try and prevent SQL injection.'''
     where = where.split(' ')
     query = ''
     while where:
-        a = get_list(where[0].casefold())
-        b = get_other(where[1])
-        c = get_list(where[2].casefold())
+        a = get_feat(where[0].casefold())
+        b = get_operator(where[1])
+        c = get_feat(where[2].casefold())
         if c == -1 :
             c = "'{}'".format(where[2].replace("'", "''").replace(";", ""))
         query += '{} {} {} '.format(a, b, c)
         if len(where) > 3:
-            query += '{} '.format(get_other(where[3].upper()))
+            query += '{} '.format(get_operator(where[3].upper()))
             where = where[4:]
         else:
             break
@@ -529,8 +530,8 @@ def get_graph():
     aggregation = flask.request.args.get('aggregate', 'COUNT').upper()
     order = flask.request.args.get('order', '').upper()
     where = flask.request.args.get('query', '')
-    x = get_list(x)
-    y = get_list(y)
+    x = get_feat(x)
+    y = get_feat(y)
     query_from = set()
     query_from.add(x.split('.')[0])
     query_from.add(y.split('.')[0])
@@ -545,7 +546,7 @@ def get_graph():
     else:
         order = ''
     if where:
-        where = 'WHERE ' + parseWhere(where)
+        where = 'WHERE ' + parse_where(where)
 
     query = 'SELECT ' + aggregation + '(' + y + '), ' + x + ' FROM ' + ', '.join(table) + ' ' + where + 'GROUP BY ' + x + ' ORDER BY ' + aggregation + '(' + y + ') ' + order + ';'
     graph_list = []
