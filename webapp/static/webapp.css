@@ -320,8 +320,14 @@ input[type="checkbox"]:checked + label {
     margin-left: 13px;
 }
 
+label.otherLabels > select {
+    font-size: 16px;
+    font-family: "Times New Roman", Times, serif;
+}
+
 label.otherLabels {
     cursor: unset;
+    max-height: 40.365px;
 }
 
 .moveRight {
@@ -708,6 +714,7 @@ header > a {
 #profile * {
     background-color: transparent;
 }
+
 #profile > table th, #profile > table td{
     width: 20%;
     color: black !important;

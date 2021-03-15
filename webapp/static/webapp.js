@@ -21,7 +21,6 @@ let whereNum = 0;
 //the evaluate WHERE builder epression
 let whereExpression;
 let search;
-let searchover;
 // lets buildList() know if this is a missions list or astronaut list page
 let listPage;
 let byName;
@@ -262,7 +261,7 @@ function getFeatures() {
 //build the table
 function raw(api, feats, rawID) {
     let url = getAPIBaseURL() + api;
-
+    console.log(rawID);
     fetch(url, {method: 'get'})
 
     .then((response) => response.json())
@@ -290,13 +289,24 @@ function raw(api, feats, rawID) {
     });
 }
 
+function selectCallRaw(table, id, rawID) {
+    let order = document.getElementById(id).value;
+    let api = '/' + table + '/raw/?order=' + order;
+    let feats = features.filter(feat => feat.table === table);
+    raw(api, feats, rawID)
+}
+
 //build the table header to limit entries, hide columns
 function rawForm(feats, rawID, rawTableID) {
+    console.log(rawID);
     let formBody = '';
     let count = 0;
+    let options = createOptions(feats);
     feats.forEach(feat => formBody += '<input type=checkbox name="' + feat.name + '" id="' + feat.name + feat.table + '" checked/><label class="buttonHover" for="' + feat.name + feat.table + '" onclick="collapseColumn(\'' + rawTableID +'\', ' + count++ + ')">' + feat.name + '</label>');
     formBody += '<label class="otherLabels buttonHover" for="display' + feats[0].table + 'Rows" onchange="limitRows(\'raw' + feats[0].table.charAt(0).toUpperCase() + feats[0].table.slice(1) + '\', \'display' + feats[0].table + 'Rows\')">Limit: <input type=number name="number of rows to display" id="display' + feats[0].table + 'Rows" min=0 /></label>';
-    formBody += '<button type="button" class="otherLabels buttonHover" onclick="setLimit(\'display' + feats[0].table + 'Rows\', 10);limitRows(\'raw' + feats[0].table.charAt(0).toUpperCase() + feats[0].table.slice(1) + '\', \'display' + feats[0].table + 'Rows\')">10</button><button type="button" class="otherLabels buttonHover" onclick="setLimit(\'display' + feats[0].table + 'Rows\', max' + feats[0].table.charAt(0).toUpperCase() + feats[0].table.slice(1) + ');limitRows(\'raw' + feats[0].table.charAt(0).toUpperCase() + feats[0].table.slice(1) + '\', \'display' + feats[0].table + 'Rows\')">Max</button>';
+    formBody += '<label class="otherLabels buttonHover"><select id="select' + feats[0].table + '" onchange="selectCallRaw(\'' + feats[0].table + '\', \'select' + feats[0].table + '\', \'' + rawID.substr(0, rawID.length - 4) + '\')">';
+    options.forEach((val) => formBody += '<option>' + val + '</option>');
+    formBody += '</select></label><button type="button" class="otherLabels buttonHover" onclick="setLimit(\'display' + feats[0].table + 'Rows\', 10);limitRows(\'raw' + feats[0].table.charAt(0).toUpperCase() + feats[0].table.slice(1) + '\', \'display' + feats[0].table + 'Rows\')">10</button><button type="button" class="otherLabels buttonHover" onclick="setLimit(\'display' + feats[0].table + 'Rows\', max' + feats[0].table.charAt(0).toUpperCase() + feats[0].table.slice(1) + ');limitRows(\'raw' + feats[0].table.charAt(0).toUpperCase() + feats[0].table.slice(1) + '\', \'display' + feats[0].table + 'Rows\')">Max</button>';
     let rawForm = document.getElementById(rawID);
     if(rawForm) {
         rawForm.innerHTML = formBody;
