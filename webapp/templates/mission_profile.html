@@ -35,9 +35,9 @@
         <h2>{{ title }}: Missions ID-{{ id }}</h2>
         <table>
             <tr><th>Mission Year:</th><td>{{ mission_year }}</td></tr>
-            <tr><th>Ascent Craft:</th><td><a href="/api/profile/{{ ascent }}">{{ ascent }}</a></td></tr>
-            <tr><th>Orbit Craft:</th><td><a href="/api/profile/{{ orbit }}">{{ orbit }}</a></td></tr>
-            <tr><th>Decent Craft:</th><td><a href="/api/profile/{{ decent }}">{{ decent }}</a></td></tr>
+            <tr><th>Ascent Craft:</th><td><a href="/api/profile/?name={{ ascent }}">{{ ascent }}</a></td></tr>
+            <tr><th>Orbit Craft:</th><td><a href="/api/profile/?name={{ orbit }}">{{ orbit }}</a></td></tr>
+            <tr><th>Decent Craft:</th><td><a href="/api/profile/?name={{ decent }}">{{ decent }}</a></td></tr>
             <tr><th>Duration:</th><td>{{ duration }}</td></tr>
             <tr><th>Combined Astronaut Extravehicular Time:</th><td>{{ combined_eva }}</td></tr>
             <tr><th>Millitary/Civillian Composition of Crew:</th><td>{{ composition }}</td></tr>

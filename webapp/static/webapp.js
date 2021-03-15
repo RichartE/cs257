@@ -1,51 +1,63 @@
 /*Author: Etienne Richart*/
 
 window.onload = initialize;
+//all the features of the database: feature name, type, and table
 let features;
+//total number of entries in astronauts table
 let maxAstronauts;
+//total number of entries in missions table
 let maxMissions;
 let currentFeatHTML;
 let currentTextFeatHTML;
 let currentNumFeatHTML;
+//for the WHERE builder, if A is numeric the opperator is one of these
 let optionsNumeric = ['=', '!=', '<', '>', '<=', '>='];
+//for the WHERE builder, if A is text the opperator is one of these
 let optionsText = ['=', '!='];
+//for the WHERE builder connector these are the options
 let moreOptions = ['', 'AND', 'OR'];
+//to help generate unique IDs for the inputs of the WHERE builder to connect them to labels
 let whereNum = 0;
+//the evaluate WHERE builder epression
 let whereExpression;
 let search;
 let searchover;
+// lets buildList() know if this is a missions list or astronaut list page
 let listPage;
-let astronautsByName;
-let astronautsByYOS;
+let byName;
+let byYOS;
 let listNode;
 let nameNode;
 let yosNode;
 
 function initialize() {
+    //check if we are on the home page
     let example1 = document.getElementById("example1");
     if (example1) {
         display(1);
-    }
-    let xSelector = document.getElementById('x-select');
-    if (xSelector) {
         getFeatures();
     }
+    //chack if we are on either astronauts list or missions list page
     let list = document.getElementById('list');
     if (list) {
         listNode = document.getElementById('listContainer');
         nameNode = document.getElementById('name');
         yosNode = document.getElementById('year');
         if (list.childNodes[1].innerText === 'Mission List:') {
+            //tell buildList() to build a mission list
             listPage = 'missions';
             setList('year');
         } else {
+            //tell buildList to build an astronaut list
             listPage = 'astronauts';
-            setList('year');
+            setList('name');
         }
     }
+    //initialize the search bar
     getSearch();
 }
 
+//toggle between displaying the example graphs
 function display(x) {
     let example1 = document.getElementById("example1");
     let example2 = document.getElementById("example2");
@@ -67,11 +79,8 @@ function display(x) {
     }
 }
 
-function flip() {
-    nameNode.classList.toggle("active");
-    yosNode.classList.toggle("active");
-}
-
+//build a list of the specified order for the correct list page.
+//store the list in a variable so that it does not need to be recomputed.
 function buildList(order) {
     if (listPage === 'missions') {
         let url = getAPIBaseURL() + '/missions/list/?order=' + order;
@@ -83,11 +92,11 @@ function buildList(order) {
             let list = '';
             missionlist.forEach(mission => list += '<div><h3>' + mission.title + '</h3><p>' + mission.year + '</p></div>');
             if (order === 'year') {
-                missionsByYOS = list;
-                listNode.innerHTML = missionsByYOS;
+                byYOS = list;
+                listNode.innerHTML = byYOS;
             } else {
-                missionsByName = list;
-                listNode.innerHTML = missionsByName;
+                byName = list;
+                listNode.innerHTML = byName;
             }
         })
 
@@ -108,11 +117,11 @@ function buildList(order) {
                 list += '<div><h3>' + astronaut.english_name + '</h3><p>Selected in ' + astronaut.yos + '</p>' + flags + '</div>';
             });
             if (order === 'year') {
-                astronautsByYOS = list;
-                listNode.innerHTML = astronautsByYOS;
+                byYOS = list;
+                listNode.innerHTML = byYOS;
             } else {
-                astronautsByName = list;
-                listNode.innerHTML = astronautsByName;
+                byName = list;
+                listNode.innerHTML = byName;
             }
         })
 
@@ -122,22 +131,29 @@ function buildList(order) {
     }
 }
 
+//sets the list to the specified order.
+//adds or removes the active class in order to indicate the ordering
 function setList(order) {
     if (order === 'year') {
-        if (typeof missionsByYOS === 'undefined'){
+        nameNode.classList.remove('active');
+        yosNode.classList.add('active');
+        if (typeof byYOS === 'undefined'){
             buildList(order);
         } else {
-            listNode.innerHTML = missionsByYOS;
+            listNode.innerHTML = byYOS;
         }
     } else {
-        if (typeof missionsByName === 'undefined') {
+        nameNode.classList.add('active');
+        yosNode.classList.remove('active');
+        if (typeof byName === 'undefined') {
             buildList(order);
         } else {
-            listNode.innerHTML = missionsByName;
+            listNode.innerHTML = byName;
         }
     }
 }
 
+//hides or shows the data tables on the home page
 function hideShow(x, y, z) {
     let itemA = document.getElementById(x);
     let itemB = document.getElementById(y);
@@ -153,6 +169,7 @@ function hideShow(x, y, z) {
 
 }
 
+//hides a column of the data table on the home page
 function collapseColumn(tableID, columnNumber) {
     let rows = document.getElementById(tableID).rows;
     for (i = 0; i < rows.length; i++) {
@@ -161,6 +178,8 @@ function collapseColumn(tableID, columnNumber) {
     }
 }
 
+//sets the max number of entries for each table,
+//so that the user can use butto to quickly change the number of entries displayed.
 function setMaxes() {
     maxAstronauts = document.getElementById("rawAstronauts").rows.length - 1;
     maxMissions = document.getElementById("rawMissions").rows.length - 1;
@@ -176,6 +195,7 @@ function setMaxes() {
     }
 }
 
+//limit the number of entries displayed in the data tables on the home page
 function limitRows(tableID, inputID) {
     let rows = document.getElementById(tableID).rows;
     let numVisible = document.getElementById(inputID).value;
@@ -189,15 +209,18 @@ function limitRows(tableID, inputID) {
     }
 }
 
+//puts a value into the limit input number
 function setLimit(inputID, limit) {
     document.getElementById(inputID).value = limit;
 }
 
+// returns the APIBaseURL used to make calls to the API
 function getAPIBaseURL() {
     let baseURL = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/api';
     return baseURL;
 }
 
+//get all the features in the database and use them to create datatables and graphing creator.
 function getFeatures() {
     let url = getAPIBaseURL() + '/features/';
 
@@ -206,12 +229,19 @@ function getFeatures() {
     .then((response) => response.json())
 
     .then((featur) => {
+        //put features into a global variable so that there is no need to reask the server for the features
         features = featur;
+        //get the features from the astronaut table
         const astronaut_feats = features.filter(feat => feat.table === 'astronauts');
+        //build the astronauts table
         raw('/astronauts/raw/', astronaut_feats, 'rawAstronauts');
+        //build the astronauts table header to limit entries, hide columns
         rawForm(astronaut_feats, 'rawAstronautsForm', 'rawAstronauts');
+        //get the features from the missions table
         const mission_feats = features.filter(feat => feat.table === 'missions');
+        //build the missions table
         raw('/missions/raw/', mission_feats, 'rawMissions');
+        //build the missions table header to limit entries, hide columns
         rawForm(mission_feats, 'rawMissionsForm', 'rawMissions');
         populateFeatureSelectors();
     })
@@ -229,6 +259,7 @@ function getFeatures() {
     });
 }
 
+//build the table
 function raw(api, feats, rawID) {
     let url = getAPIBaseURL() + api;
 
@@ -259,6 +290,7 @@ function raw(api, feats, rawID) {
     });
 }
 
+//build the table header to limit entries, hide columns
 function rawForm(feats, rawID, rawTableID) {
     let formBody = '';
     let count = 0;
@@ -271,6 +303,7 @@ function rawForm(feats, rawID, rawTableID) {
     }
 }
 
+//get all the possible searches (astronauts' English name and original name, mission title, spacecraft name)
 function getSearch() {
     let url = getAPIBaseURL() + '/search/';
 
@@ -289,12 +322,15 @@ function getSearch() {
     });
 }
 
+//Do the search and go to the profile page
 function searchSubmit() {
     let searchVal = document.getElementById('search').value;
-    window.location.replace(getAPIBaseURL() + '/profile/' + searchVal);
+    if (searchVal) {
+        window.location.replace(getAPIBaseURL() + '/profile/?name=' + searchVal);
+    }   
 }
 
-// autocomplete from https://www.w3schools.com/howto/howto_js_autocomplete.asp
+// autocomplete updated from https://www.w3schools.com/howto/howto_js_autocomplete.asp
 function autocomplete(inp, arr) {
     /*the autocomplete function takes two arguments,
     the text field element and an array of possible autocompleted values:*/
@@ -386,8 +422,10 @@ function autocomplete(inp, arr) {
   /*execute a function when someone clicks in the document:*/
   inp.addEventListener("focusout", function (e) {
       let val = inp.value;
+      //value is not valid search name
       if (!arr.includes(val)) {
         let searchList = document.getElementById('searchautocomplete-list');
+        //if user clicks away without a valid search and there are search options available, use the first one
         if (searchList && searchList.childNodes.length != 0) {
             inp.value = searchList.childNodes[0].lastChild.value;
         } else {
@@ -398,6 +436,7 @@ function autocomplete(inp, arr) {
   });
 }
 
+//create option for select input
 function createOptions(feats) {
     let featureSelectorBody = [];
     for (let k = 0; k < feats.length; k++) {
@@ -411,25 +450,33 @@ function populateFeatureSelectors() {
     let xSelector = document.getElementById('x-select');
     let ySelector = document.getElementById('y-select');
     if (xSelector && ySelector) {
-        // Populate it with states from the API
+        // create option list to create new Options so that DOM properly updates
+        //String options
         currentTextFeatHTML = createOptions(features.filter(feat=> feat.type === 'text' || feat.type === 'character varying'));
+        //Numeric options
         currentNumFeatHTML = createOptions(features.filter(feat=> feat.type != 'text' && feat.type != 'character varying'));
+        //All options
         currentFeatHTML = createOptions(features);
+        //Populate x and y options
         currentFeatHTML.forEach((val, key) => {
             xSelector[key] = new Option(val, val, false, val === 'nationality.nation' ? true : false);
             ySelector[key] = new Option(val, val, false, val === 'astronauts.original_name' ? true : false);
         });
+        //Add a row to the WHERE builder
         addRow();
+        //Set default values to first row
         document.getElementsByClassName('aSelector')[0].value = 'astronauts.nationality';
         document.getElementsByClassName('hideIn')[0].value = 'nationality.id'
     }
 }
 
+//get the feature dictionary from features that matches the input feature
 function getType(featur) {
     let [table, name] = featur.split('.');
     return features.filter((feat) => feat.table === table && feat.name === name)[0];
 }
 
+//add row to WHERE builder
 function addRow() {
     let where = document.getElementById('whereBody');
     let whereRow = '';
@@ -441,19 +488,25 @@ function addRow() {
     row.setAttribute("id", "whereRow" + whereNum);
     row.innerHTML = whereRow;
     let elm = row.getElementsByClassName('aSelector')[0];
+    //populate A with all the features
     currentFeatHTML.forEach((val, key) => elm[key] = new Option(val, val));
     whereNum++;
     let more = row.getElementsByClassName('moreSelector')[0];
+    //populate more with moreOptions ('', AND, OR )
     moreOptions.forEach((val, key) => more[key] = new Option(val));
+    //Validate the WHERE expression and set connector and B based on the type of A
     checkExpression();
 }
 
+//remove a row from the WHERE builder
 function removeRow(rowID) {
     document.getElementById(rowID).remove();
     let more = document.getElementsByClassName('moreSelector');
     Array.from(more).forEach((selector, index) => {
         let sVal = selector.value;
         moreOptions.forEach((val, key) => selector[key] = new Option(val, val, false, sVal === val ? true : false));
+        //only the last row may have the empty option for more,
+        //since the preceding ones have to be connected together
         if (index != more.length - 1) {
             selector.options.remove(0);
         }
@@ -463,6 +516,10 @@ function removeRow(rowID) {
     });
 }
 
+//validate WHERE builder.
+//set connector and B based on A
+//build where expression
+//flip between select, text and numerical input for B
 function checkExpression() {
     whereExpression = '';
     let rows = document.getElementById('where').rows;
@@ -477,12 +534,15 @@ function checkExpression() {
         let selectB = col[2].childNodes[5];
         let inputB = col[2].childNodes[6];
         let B;
+        //flips between select and input based on what is checked
         if (col[2].childNodes[1].checked) {
             B = selectB.value;
         } else {
             B = inputB.value;
         }
         
+        //reasigns options of connector and B &
+        //input type of B based on type of A
         if (typeA === 'text' || typeA === 'character varying') {
             optionsText.forEach((val, key) => Connects[key] = new Option(val, val, false, val === valueC ? true : false));
             
@@ -495,31 +555,38 @@ function checkExpression() {
             inputB.setAttribute('type', 'number');
         }
 
+        //if the value before the above change still exists, set it to that 
         valueC = Connects.value;
-
+        //if the value before the change still exists, set it to that
         if (col[2].childNodes[1].checked) {
             B = selectB.value;
         } else {
             B = inputB.value;
         }
-
+        //if there is input for A, connector and B
         if (A && valueC && B) {
             let more = col[3];
             if (more.childNodes[0].value) {
+                //if the last row has a more alue than there needs another row
                 if (i === rows.length-1) {
                     addRow();
                     return;
                 }
+                //update whereExpression with 4 values
                 whereExpression += A + ' ' + valueC + ' ' + B + ' ' + more.childNodes[0].value + ' ';
             } else if (i === rows.length-1) {
+                //update whereExpression with 3 values
                 whereExpression += A + ' ' + valueC + ' ' + B;
             } else {
+                //whereExpression is invalid
                 whereExpression = 'error';
             }
         } else {
+            //whereExpression is invalid
             whereExpression = 'error';
         }
     }
+    //update the more selector so only the last one has the '' value
     let more = document.getElementsByClassName('moreSelector');
     Array.from(more).forEach((selector, index) => {
         moreOptions.forEach((val, key) => selector[key] = new Option(val));
@@ -529,6 +596,7 @@ function checkExpression() {
     });
 }
 
+//call the graphing API thorugh the graphing UI
 function customGraph() {
     checkExpression();
     if (whereExpression.startsWith('error')) {
@@ -547,8 +615,9 @@ function customGraph() {
     createFeatureChart(restOfTheURL, '#state-new-cases-chart');
 }
 
+//create a chart/graph
 function createFeatureChart(restOfTheURL, chartID) {
-    // Create the chart
+    // Call graphi enpoint
     let url = getAPIBaseURL() + restOfTheURL;
 
     fetch(url, {method: 'get'})

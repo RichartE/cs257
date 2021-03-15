@@ -8,8 +8,6 @@ import flask
 import json
 import config
 import psycopg2
-import html
-from difflib import get_close_matches
 
 api = flask.Blueprint('api', __name__)
 
@@ -344,9 +342,10 @@ def search():
         print(e, file=sys.stderr)
     return json.dumps([*search_set['astronauts'], *search_set['missions'], *search_set['crafts']])
 
-@api.route('/profile/<name>') 
-def search_word(name):
+@api.route('/profile/') 
+def get_profile():
     '''Returns a profile page for astronauts, missions or spacecrafts.'''
+    name = flask.request.args.get('name')
     if not len(search_set['astronauts']) > 0:
         search()
     if name in search_set['astronauts']:
@@ -383,7 +382,7 @@ def search_word(name):
                 eva_h = str(row[4])
                 ord_mission_num = str(row[5])
                 astronaut_group = row[6]
-                missions_html += '''<h2><a href="/api/profile/{}">{}</a>: Missions ID-{} Astronaut_Mission ID-{}</h2>\
+                missions_html += '''<h2><a href="/api/profile/?name={}">{}</a>: Missions ID-{} Astronaut_Mission ID-{}</h2>\
                     <table>\
                         <tr><th>Occupation on Mission:</th><td>{}</td></tr>\
                         <tr><th>Extravehicular Hours on Mission:</th><td>{}</td></tr>\
@@ -427,7 +426,7 @@ def search_word(name):
                 ord_mission_num = str(row[5])
                 astronaut_group = row[6]
                 og_name = row[7]
-                astronauts_html += '''<h2><a href="/api/profile/{}">{}</a> ({}): Astronauts ID-{} Astronaut_Mission ID-{}</h2>\
+                astronauts_html += '''<h2><a href="/api/profile/?name={}">{}</a> ({}): Astronauts ID-{} Astronaut_Mission ID-{}</h2>\
                     <table>\
                         <tr><th>Occupation on Mission:</th><td>{}</td></tr>\
                         <tr><th>Extravehicular Hours on Mission:</th><td>{}</td></tr>\
@@ -458,12 +457,12 @@ def search_word(name):
                 dur = row[6]
                 comb_eva = row[7]
                 comp = row[8]
-                missions_html += '''<h2><a href="/api/profile/{}">{}</a>: Missions ID-{}</h2>\
+                missions_html += '''<h2><a href="/api/profile/?name={}">{}</a>: Missions ID-{}</h2>\
                     <table>\
                         <tr><th>Mission Year:</th><td>{}</td></tr>\
-                        <tr><th><a href="/api/profile/{}">Ascent Craft</a>:</th><td>{}</td></tr>\
-                        <tr><th><a href="/api/profile/{}">Orbit Craft</a>:</th><td>{}</td></tr>\
-                        <tr><th><a href="/api/profile/{}">Decent Craft</a>:</th><td>{}</td></tr>\
+                        <tr><th>Ascent Craft:</th><td><a href="/api/profile/?name={}">{}</a></td></tr>\
+                        <tr><th>Orbit Craft:</th><td><a href="/api/profile/?name={}">{}</a></td></tr>\
+                        <tr><th>Decent Craft:</th><td><a href="/api/profile/?name={}">{}</a></td></tr>\
                         <tr><th>Duration:</th><td>{}</td></tr>\
                         <tr><th>Combined Astronaut Extravehicular Time:</th><td>{}</td></tr>\
                         <tr><th>Millitary/Civillian Composition of Crew:</th><td>{}</td></tr>\

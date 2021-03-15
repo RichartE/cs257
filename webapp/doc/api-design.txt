@@ -80,7 +80,9 @@ EXAMPLE:
     /api/search/
         [["", "Onufrienko, Yuri", "राकेश शर्मा", ...]
 
-REQUEST: /api/profile/<name>
+REQUEST: /api/profile/
+GET PARAMETERS:
+    name {require the name of the profile you are searching for}
 RESPONSE: an html page with either an astronaut profile, mission profile or craft profile.
 
 REQUEST: /api/graphing/
