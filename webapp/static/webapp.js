@@ -14,6 +14,12 @@ let whereNum = 0;
 let whereExpression;
 let search;
 let searchover;
+let listPage;
+let astronautsByName;
+let astronautsByYOS;
+let listNode;
+let nameNode;
+let yosNode;
 
 function initialize() {
     let example1 = document.getElementById("example1");
@@ -23,6 +29,19 @@ function initialize() {
     let xSelector = document.getElementById('x-select');
     if (xSelector) {
         getFeatures();
+    }
+    let list = document.getElementById('list');
+    if (list) {
+        listNode = document.getElementById('listContainer');
+        nameNode = document.getElementById('name');
+        yosNode = document.getElementById('year');
+        if (list.childNodes[1].innerText === 'Mission List:') {
+            listPage = 'missions';
+            setList('year');
+        } else {
+            listPage = 'astronauts';
+            setList('year');
+        }
     }
     getSearch();
 }
@@ -45,6 +64,77 @@ function display(x) {
         example1.classList.add("active");
         exampleGraph1.style.zIndex = 2;
         exampleGraph2.style.zIndex = -1;
+    }
+}
+
+function flip() {
+    nameNode.classList.toggle("active");
+    yosNode.classList.toggle("active");
+}
+
+function buildList(order) {
+    if (listPage === 'missions') {
+        let url = getAPIBaseURL() + '/missions/list/?order=' + order;
+        fetch(url, {method: 'get'})
+
+        .then((response) => response.json())
+
+        .then((missionlist) => {
+            let list = '';
+            missionlist.forEach(mission => list += '<div><h3>' + mission.title + '</h3><p>' + mission.year + '</p></div>');
+            if (order === 'year') {
+                missionsByYOS = list;
+                listNode.innerHTML = missionsByYOS;
+            } else {
+                missionsByName = list;
+                listNode.innerHTML = missionsByName;
+            }
+        })
+
+        .catch(function(error) {
+            console.log(error);
+        });
+    } else {
+        let url = getAPIBaseURL() + '/astronauts/list/?order=' + order;
+        fetch(url, {method: 'get'})
+
+        .then((response) => response.json())
+
+        .then((astronautlist) => {
+            let list = '';
+            astronautlist.forEach(astronaut => {
+                let flags = '';
+                astronaut.country_code.split("/").forEach(code => flags += '<img src="https://www.countryflags.io/' + code + '/flat/64.png" alt="' + astronaut.nationality+ ' flag" />');
+                list += '<div><h3>' + astronaut.english_name + '</h3><p>Selected in ' + astronaut.yos + '</p>' + flags + '</div>';
+            });
+            if (order === 'year') {
+                astronautsByYOS = list;
+                listNode.innerHTML = astronautsByYOS;
+            } else {
+                astronautsByName = list;
+                listNode.innerHTML = astronautsByName;
+            }
+        })
+
+        .catch(function(error) {
+            console.log(error);
+        });
+    }
+}
+
+function setList(order) {
+    if (order === 'year') {
+        if (typeof missionsByYOS === 'undefined'){
+            buildList(order);
+        } else {
+            listNode.innerHTML = missionsByYOS;
+        }
+    } else {
+        if (typeof missionsByName === 'undefined') {
+            buildList(order);
+        } else {
+            listNode.innerHTML = missionsByName;
+        }
     }
 }
 

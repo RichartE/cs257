@@ -25,7 +25,7 @@ def get_connection():
 ########### The API endpoints ###########
 @api.route('/help/')
 def get_help():
-    '''API Documentation and Database Schema'''
+    '''Returns an HTML page with the API Documentation and Database Schema'''
     with open('./doc/api-design.txt', 'r') as helpfile:
         with open('./doc/database-schema.sql', 'r') as schema:
             tables = [table + ';' for table in schema.read().split(';') if table]
@@ -33,7 +33,10 @@ def get_help():
     
 @api.route('/features/')
 def get_features():
-    '''An JSON list of dictionaries, each which represent a column in a table.'''
+    '''
+    Returns a JSON list of dictionaries, each which represent a column in a table.
+    Each dictionay entry has the column name, type and the table they come from.
+    '''
     query = '''SELECT column_name, data_type, table_name
                 FROM information_schema.columns
                 WHERE table_schema NOT IN ('information_schema', 'pg_catalog')
@@ -57,7 +60,10 @@ def get_features():
 
 @api.route('/astronauts/raw/') 
 def get_astronauts():
-    ''' Returns a list of all the astronauts in the database''' 
+    '''
+    The astronauts table from the database except that nationality is replaced with the actual nation name from the nationality table.
+    Can also order the table by passing feature names to the optional parameter order.
+    ''' 
     
     sort = flask.request.args.get('order', 'astronauts.id').casefold()
     order = []
@@ -113,7 +119,10 @@ def get_astronauts():
 
 @api.route('/astronauts/list/') 
 def get_astronauts_list_raw():
-    ''' Returns a list of all the astronauts in the database sorter by name'''
+    ''' 
+    Returns a list of all the astronauts's English name, year selected, nationality and country code.
+    Can be sorted by name or year selected by passing the optional parameter order {year | name}.
+    '''
     query = '''SELECT astronauts.english_name, astronauts.yos, nationality.nation, nationality.code FROM astronauts, nationality WHERE astronauts.nationality = nationality.id ORDER BY '''
 
     features = flask.request.args.get('order', 'name').casefold()
@@ -139,7 +148,10 @@ def get_astronauts_list_raw():
 
 @api.route('/missions/raw/') 
 def get_missions():
-    ''' Returns a list of all the missions in the database'''
+    ''' 
+    Returns the missions table in the database.
+    Can be ordered by features in the missions table by passing them to the optional order parameter.
+    '''
 
     sort = flask.request.args.get('order', 'id').casefold()
     order = []
@@ -189,7 +201,10 @@ def get_missions():
 
 @api.route('/missions/list/') 
 def get_missions_list_raw():
-    ''' Returns a list of all the missions in the database sorter by name'''
+    ''' 
+    Returns a list of all the missions' title, and year.
+    Can be sorted by title or year selected by passing the optional parameter order {year | title}.
+    '''
     query = '''SELECT title, mission_year FROM missions ORDER BY '''
 
     features = flask.request.args.get('order', 'title').casefold()
@@ -215,7 +230,11 @@ def get_missions_list_raw():
 table = set()
 
 def get_list(feature):
-    '''Return proper feature name to prevent SQL injection. If no match is found returns -1'''
+    '''
+    Returns the proper feature name to prevent SQL injection. 
+    Populates the table set that will be placed in the FROM block of the graphing endpoint.
+    If no match is found returns -1.
+    '''
     if 'astronauts' in feature:
         table.add('astronauts')
         if 'id' in feature:
@@ -291,6 +310,10 @@ def get_list(feature):
 search_set = {'astronauts': set(), 'missions': set(), 'crafts': set()}
 @api.route('/search/') 
 def search():
+    '''
+    Sets the search_set dictionary for the profile endpoint and, 
+    returns a list of astronauts' English name and original name, mission titles and spacecraft names.
+    '''
     try:
         connection = get_connection()
         cursor = connection.cursor()
@@ -323,7 +346,7 @@ def search():
 
 @api.route('/profile/<name>') 
 def search_word(name):
-    '''Search'''
+    '''Returns a profile page for astronauts, missions or spacecrafts.'''
     if not len(search_set['astronauts']) > 0:
         search()
     if name in search_set['astronauts']:
@@ -360,7 +383,7 @@ def search_word(name):
                 eva_h = str(row[4])
                 ord_mission_num = str(row[5])
                 astronaut_group = row[6]
-                missions_html += '''<h2><a href="/api/search/{}">{}</a>: Missions ID-{} Astronaut_Mission ID-{}</h2>\
+                missions_html += '''<h2><a href="/api/profile/{}">{}</a>: Missions ID-{} Astronaut_Mission ID-{}</h2>\
                     <table>\
                         <tr><th>Occupation on Mission:</th><td>{}</td></tr>\
                         <tr><th>Extravehicular Hours on Mission:</th><td>{}</td></tr>\
@@ -404,7 +427,7 @@ def search_word(name):
                 ord_mission_num = str(row[5])
                 astronaut_group = row[6]
                 og_name = row[7]
-                astronauts_html += '''<h2><a href="/api/search/{}">{}</a> ({}): Astronauts ID-{} Astronaut_Mission ID-{}</h2>\
+                astronauts_html += '''<h2><a href="/api/profile/{}">{}</a> ({}): Astronauts ID-{} Astronaut_Mission ID-{}</h2>\
                     <table>\
                         <tr><th>Occupation on Mission:</th><td>{}</td></tr>\
                         <tr><th>Extravehicular Hours on Mission:</th><td>{}</td></tr>\
@@ -435,12 +458,12 @@ def search_word(name):
                 dur = row[6]
                 comb_eva = row[7]
                 comp = row[8]
-                missions_html = '''<h2><a href="/api/search/{}">{}</a>: Missions ID-{}</h2>\
+                missions_html += '''<h2><a href="/api/profile/{}">{}</a>: Missions ID-{}</h2>\
                     <table>\
                         <tr><th>Mission Year:</th><td>{}</td></tr>\
-                        <tr><th><a href="/api/search/{}">Ascent Craft</a>:</th><td>{}</td></tr>\
-                        <tr><th><a href="/api/search/{}">Orbit Craft</a>:</th><td>{}</td></tr>\
-                        <tr><th><a href="/api/search/{}">Decent Craft</a>:</th><td>{}</td></tr>\
+                        <tr><th><a href="/api/profile/{}">Ascent Craft</a>:</th><td>{}</td></tr>\
+                        <tr><th><a href="/api/profile/{}">Orbit Craft</a>:</th><td>{}</td></tr>\
+                        <tr><th><a href="/api/profile/{}">Decent Craft</a>:</th><td>{}</td></tr>\
                         <tr><th>Duration:</th><td>{}</td></tr>\
                         <tr><th>Combined Astronaut Extravehicular Time:</th><td>{}</td></tr>\
                         <tr><th>Millitary/Civillian Composition of Crew:</th><td>{}</td></tr>\
@@ -456,6 +479,7 @@ def search_word(name):
         flask.abort(404)
 
 def get_other(other):
+    '''Return proper operators to prevent SQL injection.'''
     if '!=' in other:
         return '!='
     elif '>=' in other:
@@ -475,6 +499,7 @@ def get_other(other):
 
 
 def parseWhere(where):
+    '''Parse the inputted WHERE clause to try and prevent SQL injection.'''
     where = where.split(' ')
     query = ''
     while where:
@@ -493,6 +518,12 @@ def parseWhere(where):
 
 @api.route('/graphing/')
 def get_graph():
+    '''
+    Return a list of x, y values to that can be used to make a chart.
+    Takes optional operators for x (default is nationality.nation),
+    y (default is astronauts.id), aggregate (default is COUNT), 
+    order (default is '') and query (default is '').
+    '''
     table.clear()
     x = flask.request.args.get('x', 'nationality.nation').casefold()
     y = flask.request.args.get('y', 'astronauts.id').casefold()
